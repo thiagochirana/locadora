@@ -18,33 +18,55 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class GeradorID {
+public class Gerador {
     
     public static void createDataBaseID()throws FileNotFoundException, IOException{
         String idGeral ="./src/com/neuron/data/idControle.txt";
         String idCPF ="./src/com/neuron/data/idControlePessoaFisica.txt";
         String idCNPJ ="./src/com/neuron/data/idControlePessoaJuridica.txt";
+        String idUser = "./src/com/neuron/data/idControleUsers.txt";
         
         FileWriter fwGeral = new FileWriter(idGeral);
         FileWriter fwCPF = new FileWriter(idCPF);
         FileWriter fwCNPJ = new FileWriter(idCNPJ);
+        FileWriter fwUser = new FileWriter(idUser);
         
         //Criar o buffer do arquivo
         BufferedWriter bwGeral =new BufferedWriter(fwGeral);
         BufferedWriter bwCPF =new BufferedWriter(fwCPF);
         BufferedWriter bwCNPJ =new BufferedWriter(fwCNPJ);
+        BufferedWriter bwUser =new BufferedWriter(fwUser);
         
         //Escreve no arquivo
-        String saidaID = 1+""; //ID Geral e ID para CNPJs
+        String saidaID = 1+""; //ID Geral, ID para CNPJs, ID para Users
         String saidaIDCPF = 2+""; //ID para CPFs
         bwGeral.write(saidaID);
         bwCNPJ.write(saidaID);
         bwCPF.write(idCPF);
+        bwUser.write(idUser);
         
         //fecha o arquivo
         bwGeral.close();
         bwCPF.close();
         bwCNPJ.close();
+        bwUser.close();
+    }
+    
+    public static void createDataBase()throws FileNotFoundException, IOException{
+        String dbCarro ="./src/com/neuron/data/dbCarro.txt";
+        String dbUser ="./src/com/neuron/data/dbUser.txt";
+        String dbCliente ="./src/com/neuron/data/dbCliente.txt";
+        
+        FileWriter fwCarro = new FileWriter(dbCarro);
+        BufferedWriter bwCarro =new BufferedWriter(fwCarro);
+        
+        FileWriter fwUser = new FileWriter(dbUser);
+        BufferedWriter bwUser =new BufferedWriter(fwUser);
+        
+        FileWriter fwCliente = new FileWriter(dbCliente);
+        BufferedWriter bwCliente =new BufferedWriter(fwCliente);
+        
+        //continuar aqui, criar bancos
     }
     
     public static int getID()throws FileNotFoundException, IOException{

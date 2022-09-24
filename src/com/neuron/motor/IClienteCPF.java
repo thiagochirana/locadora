@@ -11,12 +11,11 @@
 
 package com.neuron.motor;
 
+import java.util.ArrayList;
 
-public class ClienteCNPJ extends Motor{
 
-    public ClienteCNPJ() {
-        super();
-    }
-    
-    
+public interface IClienteCPF {
+    ArrayList<ClienteCPF> listaClienteCPF()throws Exception;
 }
+
+// Software developed by Thiago Macedo -> https://github.com/othiagomacedo
