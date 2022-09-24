@@ -1,13 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+/******** About this Software *********
+ 
+@Author Thiago Chirana 
+@Github https://github.com/othiagomacedo
+@Email thiago.chirana@gmail.com
+@Year 2022
+@Course Software Engineering
+@College FATESG Senai
+  
+ ************* enjoy ******************/
+
 package com.neuron.tela;
 
-/**
- *
- * @author thiag
- */
+import com.neuron.utils.GeradorID;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class telaInicio extends javax.swing.JFrame {
 
     /**
@@ -85,7 +93,7 @@ public class telaInicio extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 866, Short.MAX_VALUE)
+            .addGap(0, 669, Short.MAX_VALUE)
         );
 
         pack();
