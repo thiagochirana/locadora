@@ -12,11 +12,8 @@
 package com.neuron.motor;
 
 
-public class ClienteCNPJ extends Motor{
+public class Insert {
 
-    public ClienteCNPJ() {
-        super();
-    }
-    
-    
 }
+
+// Software developed by Thiago Macedo -> https://github.com/othiagomacedo

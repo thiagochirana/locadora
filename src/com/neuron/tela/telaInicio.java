@@ -11,7 +11,7 @@
 
 package com.neuron.tela;
 
-import com.neuron.utils.GeradorID;
+import com.neuron.utils.Gerador;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
