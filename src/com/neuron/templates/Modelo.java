@@ -13,6 +13,71 @@ package com.neuron.templates;
 
 
 public class Modelo {
+    
+    private int idModelo;
+    private String nomeModelo;
+    private String nomeMarcaRelacionado;
+    private String dirFotoModelo;
+    private int idMarcaRelacionado;
+    
+    public Modelo(){
+        
+    }
+
+    public Modelo(int idModelo, String nomeModelo, String nomeMarcaRelacionado, String dirFotoModelo, int idMarcaRelacinado) {
+        this.idModelo = idModelo;
+        this.nomeModelo = nomeModelo;
+        this.nomeMarcaRelacionado = nomeMarcaRelacionado;
+        this.dirFotoModelo = dirFotoModelo;
+        this.idMarcaRelacionado = idMarcaRelacinado;
+    }
+
+    public int getIdModelo() {
+        return idModelo;
+    }
+
+    public void setIdModelo(int idModelo) {
+        this.idModelo = idModelo;
+    }
+
+    public String getNomeModelo() {
+        return nomeModelo;
+    }
+
+    public void setNomeModelo(String nomeModelo) {
+        this.nomeModelo = nomeModelo;
+    }
+
+    public String getNomeMarcaRelacionado() {
+        return nomeMarcaRelacionado;
+    }
+
+    public void setNomeMarcaRelacionado(String nomeMarcaRelacionado) {
+        this.nomeMarcaRelacionado = nomeMarcaRelacionado;
+    }
+
+    public String getDirFotoModelo() {
+        return dirFotoModelo;
+    }
+
+    public void setDirFotoModelo(String dirFotoModelo) {
+        this.dirFotoModelo = dirFotoModelo;
+    }
+
+    public int getIdMarcaRelacinado() {
+        return idMarcaRelacionado;
+    }
+
+    public void setIdMarcaRelacinado(int idMarcaRelacinado) {
+        this.idMarcaRelacionado = idMarcaRelacinado;
+    }
+
+    @Override
+    public String toString() {
+        return idModelo + ";" + nomeModelo + ";" + nomeMarcaRelacionado + ";" + dirFotoModelo + ";" + idMarcaRelacionado;
+    }
+    
+    
 
 }
 

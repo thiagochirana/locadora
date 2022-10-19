@@ -11,7 +11,7 @@
 
 package com.neuron.tela;
 
-import com.neuron.templates.Marca;
+import com.neuron.templates.Modelo;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -38,7 +38,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 
-public class telaMarcaCarros extends javax.swing.JFrame {
+public class telaModelos extends javax.swing.JFrame {
 
     /**
      * Creates new form telaLogin
@@ -46,21 +46,21 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     DefaultTableCellRenderer tCR = new DefaultTableCellRenderer();
     IControle interControle = new Controle();
     ISelecionarArq iArquivo = new SelecionarArq();
-    String caminhoArquivo = "novo arquivo";
+    String caminhoArquivo = "";
     ControladorImg file = new ControladorImg();
-    Marca marca = new Marca();
+    Modelo modelo = new Modelo();
     
-    public telaMarcaCarros() {
+    public telaModelos() {
         initComponents();
-        ((DefaultTableCellRenderer) tabelaMarca.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
-        tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagem());
+        ((DefaultTableCellRenderer) tabelaModelo.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
+        tabelaModelo.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagem());
         
         this.setLocationRelativeTo(null);
         customizeMenuBar(jMenuBar); //customizar cor do menu
         datahora(); //data e hora no sistema
         resizeColunas();
         try {
-            if (!interControle.listagemMarca().isEmpty() || interControle.listagemMarca() != null ) ImprimirGrid(interControle.listagemMarca());
+            if (!interControle.listagemModelo().isEmpty() || interControle.listagemModelo() != null ) ImprimirGrid(interControle.listagemModelo());
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
         }
@@ -83,11 +83,11 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         cpUser = new javax.swing.JLabel();
         logoNeuron = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaMarca = new javax.swing.JTable();
+        tabelaModelo = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        cpInsMarca = new javax.swing.JTextField();
-        btnInserirMarca = new javax.swing.JToggleButton();
+        cpInserir = new javax.swing.JTextField();
+        btnInserir = new javax.swing.JToggleButton();
         txtQtdeResultados = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         saidaDiretorio = new javax.swing.JLabel();
@@ -95,10 +95,14 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         saidaID = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         saidaLogo = new javax.swing.JLabel();
-        btnAlterarMarca = new javax.swing.JToggleButton();
+        btnAlterar = new javax.swing.JToggleButton();
         bgBtnCarregarArquivo = new javax.swing.JPanel();
         btnCarregarArquivo = new javax.swing.JLabel();
         saidaStatusOperacao = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxMarcas = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        saidaLogoMarca = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -123,7 +127,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(84, 197, 255));
-        jLabel1.setText("Marcas");
+        jLabel1.setText("Modelos");
 
         cpData.setForeground(new java.awt.Color(153, 153, 153));
         cpData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,47 +138,47 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         logoNeuron.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         logoNeuron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/logoMin.png"))); // NOI18N
 
-        tabelaMarca.setAutoCreateRowSorter(true);
-        tabelaMarca.setBackground(new java.awt.Color(255, 255, 255));
-        tabelaMarca.setForeground(new java.awt.Color(1, 75, 222));
-        tabelaMarca.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaModelo.setAutoCreateRowSorter(true);
+        tabelaModelo.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaModelo.setForeground(new java.awt.Color(1, 75, 222));
+        tabelaModelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Marca", "Diretório", "Logo"
+                "ID", "Modelo", "Marca", "Diretório", "Logo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tabelaMarca.setGridColor(new java.awt.Color(255, 255, 255));
-        tabelaMarca.setRowHeight(40);
-        tabelaMarca.setSelectionBackground(new java.awt.Color(1, 132, 222));
-        tabelaMarca.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tabelaMarca.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaModelo.setGridColor(new java.awt.Color(255, 255, 255));
+        tabelaModelo.setRowHeight(40);
+        tabelaModelo.setSelectionBackground(new java.awt.Color(1, 132, 222));
+        tabelaModelo.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tabelaModelo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaMarcaMouseClicked(evt);
+                tabelaModeloMouseClicked(evt);
             }
         });
-        tabelaMarca.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaModelo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaMarcaMouseClicked(evt);
+                tabelaModeloMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelaMarca);
-        if (tabelaMarca.getColumnModel().getColumnCount() > 0) {
-            tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagem());
+        jScrollPane1.setViewportView(tabelaModelo);
+        if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
+            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagem());
         }
-        tabelaMarca.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jSeparator1.setBackground(new java.awt.Color(1, 132, 222));
         jSeparator1.setForeground(new java.awt.Color(1, 132, 222));
@@ -182,32 +186,32 @@ public class telaMarcaCarros extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel2.setText("Marca:");
+        jLabel2.setText("Modelo:");
 
-        cpInsMarca.setBackground(new java.awt.Color(250, 250, 250));
-        cpInsMarca.setForeground(new java.awt.Color(1, 132, 222));
-        cpInsMarca.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        cpInsMarca.addActionListener(new java.awt.event.ActionListener() {
+        cpInserir.setBackground(new java.awt.Color(250, 250, 250));
+        cpInserir.setForeground(new java.awt.Color(1, 132, 222));
+        cpInserir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        cpInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cpInsMarcaActionPerformed(evt);
+                cpInserirActionPerformed(evt);
             }
         });
 
-        btnInserirMarca.setBackground(new java.awt.Color(1, 132, 222));
-        btnInserirMarca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnInserirMarca.setForeground(new java.awt.Color(255, 255, 255));
-        btnInserirMarca.setText("INSERIR");
-        btnInserirMarca.setBorder(null);
-        btnInserirMarca.addActionListener(new java.awt.event.ActionListener() {
+        btnInserir.setBackground(new java.awt.Color(1, 132, 222));
+        btnInserir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnInserir.setForeground(new java.awt.Color(255, 255, 255));
+        btnInserir.setText("INSERIR");
+        btnInserir.setBorder(null);
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInserirMarcaActionPerformed(evt);
+                btnInserirActionPerformed(evt);
             }
         });
 
         txtQtdeResultados.setBackground(new java.awt.Color(250, 250, 250));
         txtQtdeResultados.setForeground(new java.awt.Color(100, 210, 243));
         txtQtdeResultados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtQtdeResultados.setText("n marcas cadastradas.");
+        txtQtdeResultados.setText("n modelos cadastrados.");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 132, 222));
@@ -224,16 +228,18 @@ public class telaMarcaCarros extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel4.setText("Logo:");
+        jLabel4.setText("Foto:");
 
-        btnAlterarMarca.setBackground(new java.awt.Color(1, 132, 222));
-        btnAlterarMarca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAlterarMarca.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterarMarca.setText("ALTERAR");
-        btnAlterarMarca.setBorder(null);
-        btnAlterarMarca.addActionListener(new java.awt.event.ActionListener() {
+        saidaLogo.setVerifyInputWhenFocusTarget(false);
+
+        btnAlterar.setBackground(new java.awt.Color(1, 132, 222));
+        btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterar.setText("ALTERAR");
+        btnAlterar.setBorder(null);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarMarcaActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -264,6 +270,19 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         saidaStatusOperacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saidaStatusOperacao.setForeground(new java.awt.Color(1, 132, 222));
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel6.setText("Marca:");
+
+        jComboBoxMarcas.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarcas.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxMarcas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarcas.setBorder(null);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel7.setText("Logo da Marca:");
+
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
         bgBackgroundLayout.setHorizontalGroup(
@@ -273,7 +292,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                         .addComponent(saidaStatusOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                         .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
                         .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,29 +306,43 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(btnInserirMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
-                                .addComponent(btnAlterarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cpInsMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saidaID, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxMarcas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(32, 32, 32)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(saidaID, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(saidaLogoMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saidaDiretorio, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(saidaDiretorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50)))
                 .addGap(19, 19, 19))
         );
         bgBackgroundLayout.setVerticalGroup(
@@ -328,23 +361,31 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cpInsMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(saidaDiretorio)
                     .addComponent(jLabel5)
                     .addComponent(saidaID))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnInserirMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAlterarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(saidaLogoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(15, 15, 15)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,8 +393,10 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 46, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -505,28 +548,29 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ImprimirGrid(ArrayList<Marca> listaDeMarcas) {
+    private void ImprimirGrid(ArrayList<Modelo> listaDeMarcas) {
         try {
-            DefaultTableModel modelo = (DefaultTableModel) tabelaMarca.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) tabelaModelo.getModel();
             TabelaImagem tabelaImagem = new TabelaImagem();
-            tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(tabelaImagem);
+            tabelaModelo.getColumnModel().getColumn(3).setCellRenderer(tabelaImagem);
             ImageIcon logoCell = new ImageIcon();
             
             //Limpa a tabela 
             modelo.setNumRows(0); //setar numero de linhas exibidas para 0
-            Iterator<Marca> lista = listaDeMarcas.iterator();
+            Iterator<Modelo> lista = listaDeMarcas.iterator();
             
             while (lista.hasNext()) {
                 String[] grid = new String[5];
-                Marca listaCarro = lista.next();
-                grid[0] = listaCarro.getIdMarca() + "";
-                grid[1] = listaCarro.getNomeMarca();
-                grid[2] = listaCarro.getDirLogo();
-                grid[3] = "";
+                Modelo listaModelo = lista.next();
+                grid[0] = listaModelo.getIdModelo() + "";
+                grid[1] = listaModelo.getNomeModelo();
+                grid[2] = listaModelo.getNomeMarcaRelacionado();
+                grid[3] = listaModelo.getDirFotoModelo();
+                grid[4] = "";
                 
-                logoCell = new ImageIcon(listaCarro.getLogoMarca());
+                logoCell = new ImageIcon(listaModelo.getDirFotoModelo());
                 
-                modelo.addRow(new Object[]{grid[0],grid[1],grid[2],logoCell});
+                modelo.addRow(new Object[]{grid[0],grid[1],grid[2],grid[3],logoCell});
                 
             }
         } catch (Exception erro) {
@@ -536,7 +580,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     }
     
     public void resizeColunas(){
-        TableColumnModel tCM = tabelaMarca.getColumnModel();
+        TableColumnModel tCM = tabelaModelo.getColumnModel();
         tCM.getColumn(0).setPreferredWidth(50);
         tCM.getColumn(1).setPreferredWidth(200);
         tCM.getColumn(2).setPreferredWidth(300);
@@ -598,35 +642,38 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void btnInserirMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirMarcaActionPerformed
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         try {
-            String arquivoSelecionado = cpInsMarca.getText().toUpperCase()+".jpeg";
-            CopyFiles.copiarImgMarca(getCaminhoArquivo(), "./src/com/neuron/icons/logo/", arquivoSelecionado);
+            String arquivoSelecionado = cpInserir.getText().toUpperCase()+".jpeg";
+            CopyFiles.copiarImgMarca(getCaminhoArquivo(), "./src/com/neuron/icons/modelo/", arquivoSelecionado);
             String caminhoImg = "./src/com/neuron/icons/logo/"+arquivoSelecionado;
+            String nomeMarcaSelecionada = jComboBoxMarcas.getSelectedItem().toString();
             
-            Marca marca = new Marca(0,cpInsMarca.getText().toUpperCase(),caminhoImg);
-            interControle.incluirMarca(marca);
             
-            cpInsMarca.setText("");
+            Modelo modelo = new Modelo (0,cpInserir.getText().toUpperCase(), nomeMarcaSelecionada, caminhoImg , Gerador.getIDMarcaSelecionada(nomeMarcaSelecionada) );
+            //Marca marca = new Marca(0,cpInserir.getText().toUpperCase(),caminhoImg);
+            interControle.incluirModelo(modelo);
+            
+            cpInserir.setText("");
             saidaLogo.setIcon(null);
             
-            ImprimirGrid(interControle.listagemMarca());
+            ImprimirGrid(interControle.listagemModelo());
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: "+erro.getMessage()+ " | Selecione uma imagem!");
+            JOptionPane.showMessageDialog(this, "Erro: "+erro.getMessage());
         }
-    }//GEN-LAST:event_btnInserirMarcaActionPerformed
+    }//GEN-LAST:event_btnInserirActionPerformed
 
-    private void cpInsMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInsMarcaActionPerformed
+    private void cpInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cpInsMarcaActionPerformed
+    }//GEN-LAST:event_cpInserirActionPerformed
 
-    private void tabelaMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMarcaMouseClicked
+    private void tabelaModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaModeloMouseClicked
         try {
-            this.saidaID.setText((String) this.tabelaMarca.getValueAt(tabelaMarca.getSelectedRow(), 0));
-            this.cpInsMarca.setText((String) this.tabelaMarca.getValueAt(tabelaMarca.getSelectedRow(), 1));
+            this.saidaID.setText((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 0));
+            this.cpInserir.setText((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1));
             //this.cpInfoAdicional.setText( interControle.getInformacoesMarca(saidaID.getText()) );
 
-            caminhoArquivo = (String) this.tabelaMarca.getValueAt(tabelaMarca.getSelectedRow(), 2);
+            caminhoArquivo = (String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2);
             
             saidaDiretorio.setText(caminhoArquivo);
             
@@ -638,24 +685,24 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         } catch (Exception err) {
             JOptionPane.showMessageDialog(this, err);
         }
-    }//GEN-LAST:event_tabelaMarcaMouseClicked
+    }//GEN-LAST:event_tabelaModeloMouseClicked
 
-    private void btnAlterarMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarMarcaActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         try {
             int auxID = (Integer.parseInt(saidaID.getText()));
-            interControle.alterarMarca(auxID, cpInsMarca.getText().toUpperCase(), "./src/com/neuron/icons"+saidaDiretorio.getText());
-            ImprimirGrid(interControle.listagemMarca());
-            JOptionPane.showMessageDialog(this, "Marca "+cpInsMarca.getText()+" alterada com sucesso!");
+            interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons"+saidaDiretorio.getText());
+            ImprimirGrid(interControle.listagemModelo());
+            JOptionPane.showMessageDialog(this, "Marca "+cpInserir.getText()+" alterada com sucesso!");
             //cpInfoAdicional.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }//GEN-LAST:event_btnAlterarMarcaActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnCarregarArquivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseClicked
         try {
             ImageIcon imgLogo = new ImageIcon();
-            imgLogo = iArquivo.abrirBuscadorImg(300,300);
+            imgLogo = iArquivo.abrirBuscadorImg(saidaLogo.getWidth(),saidaLogo.getHeight());
             setCaminhoArquivo((String) iArquivo.getCaminhoDoArquivo());
             saidaLogo.setIcon(imgLogo);
         } catch (Exception e) {
@@ -753,14 +800,18 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaMarcaCarros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaModelos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaMarcaCarros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaModelos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaMarcaCarros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaModelos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaMarcaCarros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(telaModelos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -769,7 +820,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaMarcaCarros().setVisible(true);
+                new telaModelos().setVisible(true);
             }
         });
         
@@ -778,17 +829,20 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgBackground;
     private javax.swing.JPanel bgBtnCarregarArquivo;
-    private javax.swing.JToggleButton btnAlterarMarca;
+    private javax.swing.JToggleButton btnAlterar;
     private javax.swing.JLabel btnCarregarArquivo;
-    private javax.swing.JToggleButton btnInserirMarca;
+    private javax.swing.JToggleButton btnInserir;
     private javax.swing.JLabel cpData;
-    private javax.swing.JTextField cpInsMarca;
+    private javax.swing.JTextField cpInserir;
     private javax.swing.JLabel cpUser;
+    private javax.swing.JComboBox<String> jComboBoxMarcas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -812,8 +866,9 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     private javax.swing.JLabel saidaDiretorio;
     private javax.swing.JLabel saidaID;
     private javax.swing.JLabel saidaLogo;
+    private javax.swing.JLabel saidaLogoMarca;
     private javax.swing.JLabel saidaStatusOperacao;
-    private javax.swing.JTable tabelaMarca;
+    private javax.swing.JTable tabelaModelo;
     private javax.swing.JLabel txtQtdeResultados;
     // End of variables declaration//GEN-END:variables
 }

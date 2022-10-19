@@ -11,12 +11,14 @@
 
 package com.neuron.utils;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 
 public interface ISelecionarArq {
     ImageIcon abrirBuscadorImg(int w, int h) throws Exception;
     ImageIcon getImagem(String caminho) throws Exception;
+    Image getImage(String caminho) throws Exception;
     ImageIcon RedimensionarImg(String caminho, int w, int h) throws Exception;
     String getCaminhoDoArquivo() throws Exception;
 }

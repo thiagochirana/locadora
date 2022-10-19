@@ -12,9 +12,7 @@
 package com.neuron.utils;
 
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -55,6 +53,13 @@ public class SelecionarArq implements ISelecionarArq{
     @Override
     public ImageIcon getImagem(String caminho) throws Exception{
         ImageIcon img = new ImageIcon(caminho);
+        return img;
+    }
+    
+    @Override
+    public Image getImage(String caminho) throws Exception{
+        ImageIcon imgIcon = new ImageIcon(caminho);
+        Image img = imgIcon.getImage();
         return img;
     }
     

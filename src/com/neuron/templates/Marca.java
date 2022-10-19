@@ -19,7 +19,7 @@ public class Marca{
     private int idMarca = 0;
     private String nomeMarca = "";
     private String dirLogo = "";
-    private ImageIcon logoMarca;
+    private String logoMarca = "";
 
     public Marca() {
         
@@ -29,6 +29,7 @@ public class Marca{
         this.idMarca = id;
         this.nomeMarca = descricao;
         this.dirLogo = url;
+        
     }
 
     public void setIdMarca(int idMarca) {
@@ -55,16 +56,14 @@ public class Marca{
         return dirLogo;
     }
 
-    public ImageIcon getLogoMarca() {
+    public String getLogoMarca() {
         return logoMarca;
     }
 
-    public void setLogoMarca(ImageIcon logoMarca) {
+    public void setLogoMarca(String logoMarca) {
         this.logoMarca = logoMarca;
     }
 
-    
-    
     @Override
     public String toString() {
         return idMarca + ";" + nomeMarca + ";" + dirLogo;

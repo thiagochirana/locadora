@@ -16,7 +16,6 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -40,16 +39,15 @@ public class TabelaImagem extends DefaultTableCellRenderer {
         }
 
         if (value != null) {
-            ImageIcon iconLogo = new ImageIcon(table.getValueAt(row, column - 1).toString());
+            ImageIcon iconLogo = new ImageIcon("./src/com/neuron/icons"+table.getValueAt(row, column - 1).toString());
             int tamanho = table.getRowHeight();
             int recuo = 20 * tamanho / 100;
-            icone.setText((String) value);
-            iconLogo.setImage(iconLogo.getImage().getScaledInstance(
-                    tamanho - recuo, tamanho - recuo, 1));
+            //icone.setText((String) value);
+            iconLogo.setImage(iconLogo.getImage().getScaledInstance(tamanho - recuo, tamanho - recuo, 1));
             icone.setIcon(iconLogo);
         }
 
-        icone.setHorizontalAlignment(JLabel.CENTER);
+        icone.setHorizontalAlignment(JLabel.LEFT);
         return icone;
     }
 }

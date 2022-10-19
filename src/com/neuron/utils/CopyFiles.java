@@ -30,10 +30,10 @@ public class CopyFiles {
         File dest = new File(destino+nomeArquivo);
         
         BufferedImage imgSelecionada = ImageIO.read(orig);
-        BufferedImage buffer = new BufferedImage(150,150,BufferedImage.TYPE_INT_RGB);        
+        BufferedImage buffer = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);        
         
         Graphics2D gImg = buffer.createGraphics();
-        gImg.drawImage(imgSelecionada,0,0,150,150,null);
+        gImg.drawImage(imgSelecionada,0,0,300,300,null);
         gImg.dispose();
         
         ImageIO.write(buffer, "JPEG", dest);

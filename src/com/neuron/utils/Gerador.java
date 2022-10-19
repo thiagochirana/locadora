@@ -11,6 +11,7 @@
 
 package com.neuron.utils;
 
+import com.neuron.templates.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -166,5 +167,45 @@ public class Gerador {
         //fecha o arquivo
         bw.close();	
         return id;
+    }
+    
+    public static int getIdModelo()throws FileNotFoundException, IOException{
+        String nomeDoArquivo ="./src/com/neuron/database/idControleModelo.txt";
+        FileReader fr = new FileReader(nomeDoArquivo);
+        BufferedReader br  = new BufferedReader(fr);
+        String linha=br.readLine();
+        int id = Integer.parseInt(linha);
+        br.close();
+        id=id+1;
+        //cria o arquivo
+        FileWriter fw = new FileWriter(nomeDoArquivo);
+        //Criar o buffer do arquivo
+        BufferedWriter bw =new BufferedWriter(fw);
+        //Escreve no arquivo
+        String saida = id+"";
+        bw.write(saida);
+        //fecha o arquivo
+        bw.close();	
+        return id;
+    }
+    
+    public static int getIDMarcaSelecionada(String nomeMarca) throws FileNotFoundException, IOException {
+        String dirMarca ="./src/com/neuron/database/dbMarca.txt";
+        FileReader fr = new FileReader(dirMarca);
+        BufferedReader br  = new BufferedReader(fr);
+        
+        String linha = "";
+        int res=0;
+        boolean achou = false;
+        
+        while((linha=br.readLine())!=null && achou == false){
+            if (linha.contains(nomeMarca)){
+                String vetorString[] = linha.split(";");
+                res = Integer.parseInt(vetorString[0]);
+                achou = true;
+            }
+        }
+        
+        if (achou == true) return res; else throw new IOException("Marca não encontrada!");
     }
 }

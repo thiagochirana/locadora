@@ -11,6 +11,9 @@
 
 package com.neuron.utils;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class GUI_Utils extends javax.swing.JFrame {
@@ -35,6 +38,9 @@ public class GUI_Utils extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnCreateDatas = new javax.swing.JButton();
+        jTFNomeMarca = new javax.swing.JTextField();
+        jLabelIDMarca = new javax.swing.JLabel();
+        btnConsultaRetornaIDMarca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +61,26 @@ public class GUI_Utils extends javax.swing.JFrame {
             }
         });
 
+        jTFNomeMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFNomeMarcaActionPerformed(evt);
+            }
+        });
+
+        jLabelIDMarca.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelIDMarca.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelIDMarca.setText("Consulta ID Marca");
+
+        btnConsultaRetornaIDMarca.setBackground(new java.awt.Color(102, 255, 102));
+        btnConsultaRetornaIDMarca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnConsultaRetornaIDMarca.setForeground(new java.awt.Color(0, 102, 0));
+        btnConsultaRetornaIDMarca.setText("CONSULTA ID");
+        btnConsultaRetornaIDMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaRetornaIDMarcaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -63,7 +89,11 @@ public class GUI_Utils extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateDatas, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabelIDMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTFNomeMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnCreateDatas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(btnConsultaRetornaIDMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -73,7 +103,13 @@ public class GUI_Utils extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
                 .addComponent(btnCreateDatas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelIDMarca)
+                .addGap(4, 4, 4)
+                .addComponent(jTFNomeMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConsultaRetornaIDMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,6 +135,19 @@ public class GUI_Utils extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnCreateDatasActionPerformed
+
+    private void btnConsultaRetornaIDMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaRetornaIDMarcaActionPerformed
+
+        try {
+            jLabelIDMarca.setText(Gerador.getIDMarcaSelecionada(jTFNomeMarca.getText().toUpperCase())+"");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnConsultaRetornaIDMarcaActionPerformed
+
+    private void jTFNomeMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFNomeMarcaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,9 +185,12 @@ public class GUI_Utils extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultaRetornaIDMarca;
     private javax.swing.JButton btnCreateDatas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelIDMarca;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTFNomeMarca;
     // End of variables declaration//GEN-END:variables
 
 }  

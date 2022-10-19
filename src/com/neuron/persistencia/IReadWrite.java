@@ -11,13 +11,18 @@
 
 package com.neuron.persistencia;
 
-import com.neuron.templates.Marca;
+import com.neuron.templates.*;
 import java.util.ArrayList;
 
 
 public interface IReadWrite{
-    void incluir(Marca marca)throws Exception;
-    ArrayList<Marca> listagem()throws Exception;
+    void incluirMarca(Marca marca)throws Exception;
+    void alterarMarca(int id, String nomeMarca,String caminhoLogo) throws Exception;
+    ArrayList<Marca> listagemMarca()throws Exception;
+    
+    void incluirModelo(Modelo modelo)throws Exception;
+    void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo) throws Exception;
+    ArrayList<Modelo> listagemModelo()throws Exception;
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo
