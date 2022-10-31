@@ -324,7 +324,7 @@
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="saidaLogo" alignment="3" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="41" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -392,7 +392,7 @@
                     <Column editable="false" title="Logo" type="java.lang.Object"/>
                   </Table>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="if (tabelaMarca.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagem());&#xa;}" postCode="tabelaMarca.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);">
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="if (tabelaMarca.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagemMarca());&#xa;}" postCode="tabelaMarca.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>

@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.*;
 import com.neuron.utils.*;
-import com.neuron.utils.TabelaImagem;
+import com.neuron.utils.TabelaImagemMarca;
 import com.neuron.icons.*;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -48,18 +48,25 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "novo arquivo";
     ControladorImg file = new ControladorImg();
+    IControladorImg iImg = new ControladorImg();
     Marca marca = new Marca();
     
     public telaMarcaCarros() {
         initComponents();
         ((DefaultTableCellRenderer) tabelaMarca.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
-        tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagem());
+        tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagemMarca());
         
         this.setLocationRelativeTo(null);
         customizeMenuBar(jMenuBar); //customizar cor do menu
         datahora(); //data e hora no sistema
         resizeColunas();
         try {
+            iImg.limparImgNaoUsadas("./src/com/neuron/icons/logo/");
+        } catch (Exception e) {
+            Logs.logger("Nao foi possivel limpar imagens do diretorio ./src/com/neuron/icons/logo/", getClass().toString());
+        }
+        try {
+            
             if (!interControle.listagemMarca().isEmpty() || interControle.listagemMarca() != null ) ImprimirGrid(interControle.listagemMarca());
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
@@ -172,7 +179,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaMarca);
         if (tabelaMarca.getColumnModel().getColumnCount() > 0) {
-            tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagem());
+            tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagemMarca());
         }
         tabelaMarca.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -337,14 +344,11 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnInserirMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAlterarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnInserirMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAlterarMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -353,7 +357,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 41, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -508,7 +512,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     private void ImprimirGrid(ArrayList<Marca> listaDeMarcas) {
         try {
             DefaultTableModel modelo = (DefaultTableModel) tabelaMarca.getModel();
-            TabelaImagem tabelaImagem = new TabelaImagem();
+            TabelaImagemMarca tabelaImagem = new TabelaImagemMarca();
             tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(tabelaImagem);
             ImageIcon logoCell = new ImageIcon();
             

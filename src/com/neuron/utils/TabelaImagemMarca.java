@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author aluno
  */
-public class TabelaImagem extends DefaultTableCellRenderer {
+public class TabelaImagemMarca extends DefaultTableCellRenderer {
 
     JLabel icone = new JLabel();
 

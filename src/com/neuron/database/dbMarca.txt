@@ -1,10 +1,10 @@
-1;MANUEL;./src/com/neuron/icons/logo/MANUEL.jpeg
-2;RED HOT;./src/com/neuron/icons/logo/RED HOT.jpeg
-3;DROGARIA;./src/com/neuron/icons/logo/DROGARIA.jpeg
-4;ASTRONEER;./src/com/neuron/icons/logo/ASTRONEER.jpeg
-5;CORSINHA;./src/com/neuron/icons/logo/CORSINHA.jpeg;./src/com/neuron/icons/logo/CORSINHA.jpeg
-6;PRINT;./src/com/neuron/icons/logo/PRINT.jpeg
-7;NFCE;./src/com/neuron/icons/logo/NFCE.jpeg
-8;SOUNDGARDEN;./src/com/neuron/icons/logo/SOUNDGARDEN.jpeg
-9;BINÉRIO;./src/com/neuron/icons/logo/BINÉRIO.jpeg
-11;LOGOMARQIUNHO;./src/com/neuron/icons/logo/LOGOMARQIUNHO.jpeg
+1;FORD;./src/com/neuron/icons/logo/FORD.jpeg
+2;ALFA ROMEO;./src/com/neuron/icons/logo/ALFA ROMEO.jpeg
+3;LAMBORGHINI;./src/com/neuron/icons/logo/LAMBORGHINI.jpeg
+4;LAND ROVER;./src/com/neuron/icons/logo/LAND ROVER.jpeg
+5;FIAT;./src/com/neuron/icons/logo/FIAT.jpeg
+6;HYUNDAI;./src/com/neuron/icons/logo/HYUNDAI.jpeg
+7;FERRARI;./src/com/neuron/icons/logo/FERRARI.jpeg
+8;MERCEDES-BENZ;./src/com/neuron/icons/logo/MERCEDES-BENZ.jpeg
+9;CAOA CHERRY;./src/com/neuron/icons/logo/CAOA CHERRY.jpeg
+10;CHEVROLET;./src/com/neuron/icons/logo/CHEVROLET.jpeg

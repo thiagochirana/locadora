@@ -41,6 +41,9 @@ public class GUI_Utils extends javax.swing.JFrame {
         jTFNomeMarca = new javax.swing.JTextField();
         jLabelIDMarca = new javax.swing.JLabel();
         btnConsultaRetornaIDMarca = new javax.swing.JButton();
+        jLabelNomeMarca = new javax.swing.JLabel();
+        jTFIDMarca = new javax.swing.JTextField();
+        btnConsultaRetornaNomeMarca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +84,26 @@ public class GUI_Utils extends javax.swing.JFrame {
             }
         });
 
+        jLabelNomeMarca.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelNomeMarca.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNomeMarca.setText("Consulta Marca pelo ID");
+
+        jTFIDMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFIDMarcaActionPerformed(evt);
+            }
+        });
+
+        btnConsultaRetornaNomeMarca.setBackground(new java.awt.Color(102, 255, 102));
+        btnConsultaRetornaNomeMarca.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnConsultaRetornaNomeMarca.setForeground(new java.awt.Color(0, 102, 0));
+        btnConsultaRetornaNomeMarca.setText("CONSULTA MARCA");
+        btnConsultaRetornaNomeMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaRetornaNomeMarcaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,6 +111,10 @@ public class GUI_Utils extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabelNomeMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTFIDMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnConsultaRetornaNomeMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabelIDMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -109,7 +136,13 @@ public class GUI_Utils extends javax.swing.JFrame {
                 .addComponent(jTFNomeMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsultaRetornaIDMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelNomeMarca)
+                .addGap(4, 4, 4)
+                .addComponent(jTFIDMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConsultaRetornaNomeMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,6 +182,20 @@ public class GUI_Utils extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFNomeMarcaActionPerformed
 
+    private void jTFIDMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFIDMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFIDMarcaActionPerformed
+
+    private void btnConsultaRetornaNomeMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaRetornaNomeMarcaActionPerformed
+        try {
+            String NomeMarca = Gerador.getNomeMarcaByID(Integer.parseInt(jTFIDMarca.getText()));
+            jLabelNomeMarca.setText(NomeMarca);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+            
+    }//GEN-LAST:event_btnConsultaRetornaNomeMarcaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -186,10 +233,13 @@ public class GUI_Utils extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultaRetornaIDMarca;
+    private javax.swing.JButton btnConsultaRetornaNomeMarca;
     private javax.swing.JButton btnCreateDatas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelIDMarca;
+    private javax.swing.JLabel jLabelNomeMarca;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTFIDMarca;
     private javax.swing.JTextField jTFNomeMarca;
     // End of variables declaration//GEN-END:variables
 

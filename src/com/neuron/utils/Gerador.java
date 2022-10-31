@@ -152,7 +152,7 @@ public class Gerador {
     public static int getIdMarca()throws FileNotFoundException, IOException{
         String nomeDoArquivo ="./src/com/neuron/database/idControleMarca.txt";
         FileReader fr = new FileReader(nomeDoArquivo);
-        BufferedReader br  = new BufferedReader(fr);
+        BufferedReader br  = new BufferedReader(fr); 
         String linha=br.readLine();
         int id = Integer.parseInt(linha);
         br.close();
@@ -206,6 +206,26 @@ public class Gerador {
             }
         }
         
-        if (achou == true) return res; else throw new IOException("Marca não encontrada!");
+        if (achou == true) return res; else throw new IOException("Marca nao encontrada pelo nome!");
+    }
+    
+    public static String getNomeMarcaByID(int IDMarca)throws FileNotFoundException, IOException, Exception{
+        String dirMarca = "./src/com/neuron/database/dbMarca.txt";
+        FileReader fr = new FileReader(dirMarca);
+        BufferedReader br = new BufferedReader(fr);
+        
+        String linha = "";
+        String res="";
+        boolean achou = false;
+        
+        while((linha=br.readLine())!=null && achou == false){
+            if (linha.contains(IDMarca+"")){
+                String vetorString[] = linha.split(";");
+                res = vetorString[1];
+                achou = true;
+            }
+        }
+        
+        if (achou == true) return res; else throw new IOException("Marca nao encontrada pelo ID!");
     }
 }

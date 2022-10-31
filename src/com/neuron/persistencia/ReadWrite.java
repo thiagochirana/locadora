@@ -16,12 +16,14 @@ import com.neuron.icons.IControladorImg;
 import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.Gerador;
+import com.neuron.utils.Logs;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ReadWrite implements IReadWrite{
@@ -29,6 +31,9 @@ public class ReadWrite implements IReadWrite{
     IControladorImg iImg;
     private String dirMarca;
     private String dirModelo;
+    
+    String thisClass;
+    
     public ReadWrite(){
         this.iImg = new ControladorImg();
         this.dirMarca = "./src/com/neuron/database/dbMarca.txt";
@@ -75,7 +80,7 @@ public class ReadWrite implements IReadWrite{
 
             //altera a linha caso o ID for igual ao do selecionado na tabelaMarca
             while ((linha = br.readLine()) != null) {
-                if(linha.contains(id+"")){
+                if(linha.equals(id+"")){
                     marca.setIdMarca(id);
                     marca.setNomeMarca(nomeMarca);
                     marca.setDirLogo(iImg.alterNomeImgMarca(nomeMarca, caminhoLogo));
@@ -116,8 +121,10 @@ public class ReadWrite implements IReadWrite{
                 listaDeMarcas.add(marca);
             }
             br.close();
-         return listaDeMarcas;
+            return listaDeMarcas;
+            
         } catch(Exception erro){
+            
          throw new Exception(erro);
         }
     }
@@ -129,13 +136,19 @@ public class ReadWrite implements IReadWrite{
             FileWriter fw = new FileWriter(dirModelo, true);
             //Criar o buffer do arquivo
             BufferedWriter bw = new BufferedWriter(fw);
+            Logs.logger("Conectando ao database de modelos "+dirModelo,getThisClass());
+            
             // Incluindo o id no objeto ******
             modelo.setIdModelo(Gerador.getIdModelo());
+            Logs.logger("Criando novo ID para o modelo = "+modelo.getIdModelo(),getThisClass());
             //Escreve no arquivo
             bw.write(modelo.toString() + "\n");
+            Logs.logger("Salvando no database...",getThisClass());
             //fecha o arquivo
             bw.close();
+            Logs.logger(modelo.getNomeModelo()+" salvo com sucesso! ",getThisClass());
         } catch (Exception erro) {
+            Logs.logger("Nao foi possivel Salvar o modelo "+modelo.getNomeModelo()+" no database! "+erro.getMessage(),getThisClass());
             throw erro;
         }
         
@@ -166,8 +179,6 @@ public class ReadWrite implements IReadWrite{
                 if(linha.contains(id+"")){
                     modelo.setIdModelo(id);
                     modelo.setNomeModelo(nomeModelo);
-                    //IMPLEMENTAR MARCA NA SETAGEM DE MODELOS
-                    modelo.setNomeMarcaRelacionado(nomeModelo);
                     modelo.setDirFotoModelo(iImg.alterNomeImgMarca(nomeModelo, caminhoFotoModelo));
                     bwAux1.write(modelo.toString()+"\n");
                 } else {
@@ -196,24 +207,72 @@ public class ReadWrite implements IReadWrite{
             ArrayList<Modelo> listaModelo = new ArrayList<Modelo>();
             FileReader fr = new FileReader("./src/com/neuron/database/dbModelo.txt");
             BufferedReader br  = new BufferedReader(fr);
-            String linha = "";
+            
+            if (br.readLine()==null || br.readLine().equals("")) {
+                Logs.logger("Lista Vazia! Por favor insira um modelo!",getThisClass());
+                throw new Exception();
+            }            
+            
+            String linha;
             while((linha=br.readLine())!=null){
+                
                 Modelo modelo = new Modelo();
                 String vetorString[] = linha.split(";");
                 modelo.setIdModelo(Integer.parseInt(vetorString[0]));
                 modelo.setNomeModelo(vetorString[1]);
-                modelo.setNomeMarcaRelacionado(vetorString[2]);
-                modelo.setDirFotoModelo(vetorString[3].replace("./src/com/neuron/icons/","/"));
+                modelo.setDirFotoModelo(vetorString[2]);
+                modelo.setIdMarcaRelacinado(Integer.parseInt(vetorString[3]));
                 listaModelo.add(modelo);
             }
             br.close();
-         return listaModelo;
+            Logs.logger("Consulta completa a base de dados. Em processamento para exibir Modelos cadastrados",getThisClass());
+            return listaModelo;
+            
         } catch(Exception erro){
-         throw new Exception(erro);
+            throw new Exception("Erro ao acessar Modelos cadastrados! Lista vazia ou com problemas! \n"+erro);
         }
     }
 
-   
+    @Override
+    public ArrayList<String> listagemNomeMarcas() throws Exception {
+        ArrayList<String> listaNomeMarca = new ArrayList<>();
+        FileReader fr = new FileReader("./src/com/neuron/database/dbMarca.txt");
+        BufferedReader br = new BufferedReader(fr);
+        
+        String linha = "";
+        
+        while((linha=br.readLine())!=null){
+            Modelo modelo = new Modelo();
+            String vetorString[] = linha.split(";");
+            listaNomeMarca.add(vetorString[1]);
+        }
+        br.close();
+        return listaNomeMarca;
+    }
+    
+    @Override
+    public List<String> listagemNomeMarcasList() throws Exception {
+        List<String> listaNomeMarca = new ArrayList<>();
+        FileReader fr = new FileReader("./src/com/neuron/database/dbMarca.txt");
+        BufferedReader br = new BufferedReader(fr);
+        
+        String linha = "";
+        
+        while((linha=br.readLine())!=null){
+            Modelo modelo = new Modelo();
+            String vetorString[] = linha.split(";");
+            listaNomeMarca.add(vetorString[1]);
+        }
+        br.close();
+        return listaNomeMarca;
+    }
+
+    
+    public String getThisClass() {
+        thisClass = getClass() + "";
+        thisClass = thisClass.replace("class ", "");
+        return thisClass;
+    }
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

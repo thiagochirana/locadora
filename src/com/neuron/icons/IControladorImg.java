@@ -15,7 +15,7 @@ package com.neuron.icons;
 public interface IControladorImg {
     String alterNomeImgMarca(String novoNome, String caminho) throws Exception;
     void deleteFile(String caminho) throws Exception;
-    void limparImgNaoUsadas(String caminho) throws Exception;
+    void limparImgNaoUsadas(String caminhoID) throws Exception;
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

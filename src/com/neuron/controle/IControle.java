@@ -13,12 +13,15 @@ package com.neuron.controle;
 
 import com.neuron.templates.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public interface IControle {
     void incluirMarca(Marca marca)throws Exception;
     void alterarMarca(int id, String nomeMarca,String caminhoLogo) throws Exception;
     ArrayList<Marca> listagemMarca()throws Exception;
+    public ArrayList<String> listagemNomeMarcas() throws Exception;
+    public List<String> listagemNomeMarcasList() throws Exception;
     
     void incluirModelo(Modelo modelo)throws Exception;
     void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo) throws Exception;

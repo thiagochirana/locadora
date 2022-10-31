@@ -16,7 +16,6 @@ public class Modelo {
     
     private int idModelo;
     private String nomeModelo;
-    private String nomeMarcaRelacionado;
     private String dirFotoModelo;
     private int idMarcaRelacionado;
     
@@ -24,10 +23,9 @@ public class Modelo {
         
     }
 
-    public Modelo(int idModelo, String nomeModelo, String nomeMarcaRelacionado, String dirFotoModelo, int idMarcaRelacinado) {
+    public Modelo(int idModelo, String nomeModelo, String dirFotoModelo, int idMarcaRelacinado) {
         this.idModelo = idModelo;
         this.nomeModelo = nomeModelo;
-        this.nomeMarcaRelacionado = nomeMarcaRelacionado;
         this.dirFotoModelo = dirFotoModelo;
         this.idMarcaRelacionado = idMarcaRelacinado;
     }
@@ -48,14 +46,6 @@ public class Modelo {
         this.nomeModelo = nomeModelo;
     }
 
-    public String getNomeMarcaRelacionado() {
-        return nomeMarcaRelacionado;
-    }
-
-    public void setNomeMarcaRelacionado(String nomeMarcaRelacionado) {
-        this.nomeMarcaRelacionado = nomeMarcaRelacionado;
-    }
-
     public String getDirFotoModelo() {
         return dirFotoModelo;
     }
@@ -74,10 +64,8 @@ public class Modelo {
 
     @Override
     public String toString() {
-        return idModelo + ";" + nomeModelo + ";" + nomeMarcaRelacionado + ";" + dirFotoModelo + ";" + idMarcaRelacionado;
+        return idModelo + ";" + nomeModelo + ";" + dirFotoModelo + ";" + idMarcaRelacionado;
     }
-    
-    
 
 }
 
