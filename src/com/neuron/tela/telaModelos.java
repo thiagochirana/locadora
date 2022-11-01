@@ -43,7 +43,6 @@ public class telaModelos extends javax.swing.JFrame {
     DefaultTableCellRenderer tCR = new DefaultTableCellRenderer();
     IControle interControle = new Controle();
     ISelecionarArq iArquivo = new SelecionarArq();
-    IControladorImg iImg = new ControladorImg();
     String caminhoArquivo = "";
     ControladorImg file = new ControladorImg();
     Modelo modelo = new Modelo();
@@ -87,7 +86,6 @@ public class telaModelos extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         cpInserir = new javax.swing.JTextField();
-        btnInserir = new javax.swing.JToggleButton();
         txtQtdeResultados = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         saidaDiretorio = new javax.swing.JLabel();
@@ -95,14 +93,18 @@ public class telaModelos extends javax.swing.JFrame {
         saidaID = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         saidaLogo = new javax.swing.JLabel();
-        btnAlterar = new javax.swing.JToggleButton();
         bgBtnCarregarArquivo = new javax.swing.JPanel();
         btnCarregarArquivo = new javax.swing.JLabel();
         saidaStatusOperacao = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxMarcas = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        btnAttLista = new javax.swing.JButton();
         saidaLogoMarca = new javax.swing.JLabel();
+        bgBtnInserir = new javax.swing.JPanel();
+        btnInserir = new javax.swing.JLabel();
+        bgBtnInserir3 = new javax.swing.JPanel();
+        btnAlterar = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -179,6 +181,9 @@ public class telaModelos extends javax.swing.JFrame {
         if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemModelo());
         }
+        if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
+            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(null);
+        }
         tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jSeparator1.setBackground(new java.awt.Color(1, 132, 222));
@@ -195,17 +200,6 @@ public class telaModelos extends javax.swing.JFrame {
         cpInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cpInserirActionPerformed(evt);
-            }
-        });
-
-        btnInserir.setBackground(new java.awt.Color(1, 132, 222));
-        btnInserir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnInserir.setForeground(new java.awt.Color(255, 255, 255));
-        btnInserir.setText("INSERIR");
-        btnInserir.setBorder(null);
-        btnInserir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInserirActionPerformed(evt);
             }
         });
 
@@ -232,17 +226,6 @@ public class telaModelos extends javax.swing.JFrame {
         jLabel4.setText("Foto:");
 
         saidaLogo.setVerifyInputWhenFocusTarget(false);
-
-        btnAlterar.setBackground(new java.awt.Color(1, 132, 222));
-        btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterar.setText("ALTERAR");
-        btnAlterar.setBorder(null);
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
 
         bgBtnCarregarArquivo.setBackground(new java.awt.Color(1, 132, 222));
 
@@ -290,6 +273,65 @@ public class telaModelos extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(1, 132, 222));
         jLabel7.setText("Logo da Marca:");
 
+        btnAttLista.setBackground(new java.awt.Color(1, 132, 222));
+        btnAttLista.setForeground(new java.awt.Color(255, 255, 255));
+        btnAttLista.setText("Atualizar");
+        btnAttLista.setAlignmentX(0.5F);
+        btnAttLista.setAutoscrolls(true);
+        btnAttLista.setBorder(null);
+        btnAttLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAttListaActionPerformed(evt);
+            }
+        });
+
+        bgBtnInserir.setBackground(new java.awt.Color(1, 132, 222));
+
+        btnInserir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnInserir.setForeground(new java.awt.Color(255, 255, 255));
+        btnInserir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnInserir.setText("INSERIR");
+        btnInserir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInserirMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bgBtnInserirLayout = new javax.swing.GroupLayout(bgBtnInserir);
+        bgBtnInserir.setLayout(bgBtnInserirLayout);
+        bgBtnInserirLayout.setHorizontalGroup(
+            bgBtnInserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnInserir, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+        );
+        bgBtnInserirLayout.setVerticalGroup(
+            bgBtnInserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnInserir, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
+        bgBtnInserir3.setBackground(new java.awt.Color(1, 132, 222));
+        bgBtnInserir3.setPreferredSize(new java.awt.Dimension(170, 35));
+
+        btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlterar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAlterar.setText("ALTERAR");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bgBtnInserir3Layout = new javax.swing.GroupLayout(bgBtnInserir3);
+        bgBtnInserir3.setLayout(bgBtnInserir3Layout);
+        bgBtnInserir3Layout.setHorizontalGroup(
+            bgBtnInserir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+        );
+        bgBtnInserir3Layout.setVerticalGroup(
+            bgBtnInserir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
         bgBackgroundLayout.setHorizontalGroup(
@@ -299,7 +341,7 @@ public class telaModelos extends javax.swing.JFrame {
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                         .addComponent(saidaStatusOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
                         .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,37 +349,36 @@ public class telaModelos extends javax.swing.JFrame {
                         .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAttLista, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxMarcas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bgBtnInserir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(45, 45, 45)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBoxMarcas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(32, 32, 32)
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(saidaID, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(saidaLogoMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)
+                                .addGap(30, 30, 30)
+                                .addComponent(saidaID, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(saidaLogoMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -356,8 +397,10 @@ public class telaModelos extends javax.swing.JFrame {
             bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAttLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -377,22 +420,12 @@ public class telaModelos extends javax.swing.JFrame {
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                            .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(btnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addComponent(saidaLogoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(15, 15, 15)
+                                .addComponent(saidaLogoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -401,9 +434,15 @@ public class telaModelos extends javax.swing.JFrame {
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 46, Short.MAX_VALUE)))
+                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bgBtnInserir3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -581,8 +620,7 @@ public class telaModelos extends javax.swing.JFrame {
                 grid[0] = listaModelo.getIdModelo() + "";
                 grid[1] = listaModelo.getNomeModelo();
                 grid[2] = Gerador.getNomeMarcaByID(listaModelo.getIdMarcaRelacinado());
-                grid[3] = listaModelo.getDirFotoModelo()/*.replace("./src/com/neuron/icons/","/")*/;
-                grid[4] = "";
+                grid[3] = listaModelo.getDirFotoModelo().replace("./src/com/neuron/icons/","/");
                 
                 logoCell = new ImageIcon(listaModelo.getDirFotoModelo());
                 
@@ -598,7 +636,6 @@ public class telaModelos extends javax.swing.JFrame {
     public void carregarComboBoxMarcas() throws Exception{
         String[] stringArray = interControle.listagemNomeMarcasList().toArray(new String[interControle.listagemNomeMarcas().size()]);
         jComboBoxMarcas.removeAllItems();
-        int tamVet = interControle.listagemNomeMarcas().size();
         for (String itemMarca : stringArray) {
             jComboBoxMarcas.addItem(itemMarca);
         }
@@ -609,7 +646,7 @@ public class telaModelos extends javax.swing.JFrame {
         TableColumnModel tCM = tabelaModelo.getColumnModel();
         tCM.getColumn(0).setPreferredWidth(50);
         tCM.getColumn(1).setPreferredWidth(200);
-        tCM.getColumn(2).setPreferredWidth(300);
+        tCM.getColumn(2).setPreferredWidth(200);
         tCM.getColumn(3).setPreferredWidth(150);
     }
     
@@ -668,58 +705,20 @@ public class telaModelos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-        try {
-            String arquivoSelecionado = cpInserir.getText().toUpperCase()+".jpeg";
-            Logs.logger("Nome do modelo a ser cadastrado: "+cpInserir.getText().toUpperCase(),getThisClass());
-            
-            String caminhoImg = "./src/com/neuron/icons/modelo/"+arquivoSelecionado;
-            int idCombo = jComboBoxMarcas.getSelectedIndex();
-            Logs.logger("ID do Item Selecionado na ComboBox: "+idCombo,getThisClass());
-            
-            String nomeMarcaSelecionada = jComboBoxMarcas.getSelectedItem().toString();
-            Logs.logger("Marca selecionada no ComboBox "+nomeMarcaSelecionada,getThisClass());
-            
-            Modelo modelo = new Modelo (0,cpInserir.getText().toUpperCase(), caminhoImg , Gerador.getIDMarcaSelecionada(nomeMarcaSelecionada) );
-            Logs.logger("Preparado os dados para inserir na tabela",getThisClass());
-            
-            Logs.logger("Modelo Inserido: "+modelo.getNomeModelo(),getThisClass());
-            Logs.logger("Dir do Modelo: "+modelo.getDirFotoModelo(), getThisClass());
-            Logs.logger("ID da Marca do Modelo Selecionado: "+modelo.getIdMarcaRelacinado(), getThisClass());
-            
-            try {
-                interControle.incluirModelo(modelo);
-                Logs.logger("Novo modelo Inserido com sucesso!",getThisClass());
-            } catch (Exception e) {
-                Logs.logger("Não foi possível inserir novo modelo - "+e.getMessage(),getThisClass());
-                throw new Exception("Nao foi possivel inserir novo modelo"+e.getMessage());
-            }
-                    
-            CopyFiles.copiarImgMarca(getCaminhoArquivo(), "./src/com/neuron/icons/modelo/", arquivoSelecionado);
-            Logs.logger("Arquivo transferido e armazenado com caminho e nome: "+caminhoImg,getThisClass());
-            
-            cpInserir.setText("");
-            saidaLogo.setIcon(null);
-            
-            ImprimirGrid(interControle.listagemModelo());
-            Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos",getThisClass());
-                    
-        } catch (Exception erro) {
-            
-            JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n"+erro.getMessage());
-        }
-    }//GEN-LAST:event_btnInserirActionPerformed
-
     private void cpInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpInserirActionPerformed
 
     private void tabelaModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaModeloMouseClicked
+       
         try {
             this.saidaID.setText((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 0));
             this.cpInserir.setText((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1));
 
             caminhoArquivo = (String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 3);
+            String nomeMarcaSelecionado = this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2) + "";
+            
+            String caminhoLogoMarca = ".src/com/neuron/icons/modelo/"+nomeMarcaSelecionado.toUpperCase()+".jpeg";
             
             saidaDiretorio.setText(caminhoArquivo);
             
@@ -728,23 +727,27 @@ public class telaModelos extends javax.swing.JFrame {
             imgLogo = iArquivo.RedimensionarImg("./src/com/neuron/icons"+caminhoArquivo,150,150);
             saidaLogo.setIcon(imgLogo);
             Logs.logger("Modelo selecionado na tabela: "+this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1),getThisClass());
+            
+            
+            
+            try {
+                saidaLogoMarca.setIcon(iArquivo.RedimensionarImg(caminhoLogoMarca, 105, 105));
+            } catch (Exception e) {
+                Logs.logger("Nao foi configurado a logo da marca "+nomeMarcaSelecionado+ " na tela"+e.getMessage(), getThisClass());
+            }
+            
         } catch (Exception err) {
             JOptionPane.showMessageDialog(this, err);
             Logs.logger("Nao foi possivel selecionar modelo\n"+err.getMessage(),getThisClass());
         }
-    }//GEN-LAST:event_tabelaModeloMouseClicked
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        //Set imagem da Marca
+        
         try {
-            int auxID = (Integer.parseInt(saidaID.getText()));
-            interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons"+saidaDiretorio.getText());
-            ImprimirGrid(interControle.listagemModelo());
-            JOptionPane.showMessageDialog(this, "Marca "+cpInserir.getText()+" alterada com sucesso!");
-            //cpInfoAdicional.setText("");
+            //saidaLogoMarca.setIcon(Gerador.getLogoMarcaByNome((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2)));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            Logs.logger("Nao foi possivel capturar imagem da logo Marca"+e.getMessage(), telaModelos.class.getName());
         }
-    }//GEN-LAST:event_btnAlterarActionPerformed
+    }//GEN-LAST:event_tabelaModeloMouseClicked
 
     private void btnCarregarArquivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseClicked
         Logs.logger("Iniciando selecao de imagem",getThisClass());
@@ -778,6 +781,69 @@ public class telaModelos extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void btnAttListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttListaActionPerformed
+        try {
+            ImprimirGrid(interControle.listagemModelo());
+            Logs.logger("Lista atualizada em ", telaModelos.class.getName());
+        } catch (Exception ex) {
+            Logs.logger("Nao foi possivel atualizar a lista. "+ex.getMessage(), telaModelos.class.getName());
+        }
+    }//GEN-LAST:event_btnAttListaActionPerformed
+
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
+        try {
+            int auxID = (Integer.parseInt(saidaID.getText()));
+            interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons" + saidaDiretorio.getText());
+            ImprimirGrid(interControle.listagemModelo());
+            JOptionPane.showMessageDialog(this, "Marca " + cpInserir.getText() + " alterada com sucesso!");
+            //cpInfoAdicional.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnAlterarMouseClicked
+
+    private void btnInserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirMouseClicked
+        try {
+            String arquivoSelecionado = cpInserir.getText().toUpperCase() + ".jpeg";
+            Logs.logger("Nome do modelo a ser cadastrado: " + cpInserir.getText().toUpperCase(), getThisClass());
+
+            String caminhoImg = "./src/com/neuron/icons/modelo/" + arquivoSelecionado;
+            int idCombo = jComboBoxMarcas.getSelectedIndex();
+            Logs.logger("ID do Item Selecionado na ComboBox: " + idCombo, getThisClass());
+
+            String nomeMarcaSelecionada = jComboBoxMarcas.getSelectedItem().toString();
+            Logs.logger("Marca selecionada no ComboBox " + nomeMarcaSelecionada, getThisClass());
+
+            Modelo modelo = new Modelo(0, cpInserir.getText().toUpperCase(), caminhoImg, Gerador.getIDMarcaSelecionada(nomeMarcaSelecionada));
+            Logs.logger("Preparado os dados para inserir na tabela", getThisClass());
+
+            Logs.logger("Modelo Inserido: " + modelo.getNomeModelo(), getThisClass());
+            Logs.logger("Dir do Modelo: " + modelo.getDirFotoModelo(), getThisClass());
+            Logs.logger("ID da Marca do Modelo Selecionado: " + modelo.getIdMarcaRelacinado(), getThisClass());
+
+            try {
+                interControle.incluirModelo(modelo);
+                Logs.logger("Novo modelo Inserido com sucesso!", getThisClass());
+            } catch (Exception e) {
+                Logs.logger("Não foi possível inserir novo modelo - " + e.getMessage(), getThisClass());
+                throw new Exception("Nao foi possivel inserir novo modelo" + e.getMessage());
+            }
+
+            CopyFiles.copiarImgMarca(getCaminhoArquivo(), "./src/com/neuron/icons/modelo/", arquivoSelecionado);
+            Logs.logger("Arquivo transferido e armazenado com caminho e nome: " + caminhoImg, getThisClass());
+
+            cpInserir.setText("");
+            saidaLogo.setIcon(null);
+
+            ImprimirGrid(interControle.listagemModelo());
+            Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos", getThisClass());
+
+        } catch (Exception erro) {
+
+            JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());
+        }
+    }//GEN-LAST:event_btnInserirMouseClicked
     
     public void enviarTokenEmail() {
 
@@ -893,9 +959,15 @@ public class telaModelos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgBackground;
     private javax.swing.JPanel bgBtnCarregarArquivo;
-    private javax.swing.JToggleButton btnAlterar;
+    private javax.swing.JPanel bgBtnInserir;
+    private javax.swing.JPanel bgBtnInserir1;
+    private javax.swing.JPanel bgBtnInserir2;
+    private javax.swing.JPanel bgBtnInserir3;
+    private javax.swing.JLabel btnAlterar;
+    private javax.swing.JButton btnAttLista;
     private javax.swing.JLabel btnCarregarArquivo;
-    private javax.swing.JToggleButton btnInserir;
+    private javax.swing.JLabel btnInserir;
+    private javax.swing.JLabel btnInserir1;
     private javax.swing.JLabel cpData;
     private javax.swing.JTextField cpInserir;
     private javax.swing.JLabel cpUser;
@@ -924,6 +996,7 @@ public class telaModelos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logoNeuron;

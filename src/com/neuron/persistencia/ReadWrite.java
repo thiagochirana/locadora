@@ -204,6 +204,7 @@ public class ReadWrite implements IReadWrite{
     @Override
     public ArrayList<Modelo> listagemModelo() throws Exception {
         try {
+            Logs.logger("Iniciando Listagem dos Moledos disponiveis", getThisClass());
             ArrayList<Modelo> listaModelo = new ArrayList<Modelo>();
             FileReader fr = new FileReader("./src/com/neuron/database/dbModelo.txt");
             BufferedReader br  = new BufferedReader(fr);
@@ -214,6 +215,7 @@ public class ReadWrite implements IReadWrite{
             }            
             
             String linha;
+            int qtde = 0;
             while((linha=br.readLine())!=null){
                 
                 Modelo modelo = new Modelo();
@@ -222,7 +224,12 @@ public class ReadWrite implements IReadWrite{
                 modelo.setNomeModelo(vetorString[1]);
                 modelo.setDirFotoModelo(vetorString[2]);
                 modelo.setIdMarcaRelacinado(Integer.parseInt(vetorString[3]));
+                Logs.logger("ID: "+modelo.getIdModelo()+"  Nome modelo: "+modelo.getNomeModelo()+
+                        "  Dir da img Modelo: "+modelo.getDirFotoModelo()+"  Id Marca | Nome Marca: "+
+                        modelo.getIdMarcaRelacinado()+" | "+Gerador.getNomeMarcaByID(modelo.getIdMarcaRelacinado()), getThisClass());
                 listaModelo.add(modelo);
+                qtde += 1;
+                Logs.logger(modelo.getNomeModelo()+ " adicionado com sucesso a lista! Quantidade inserida a lista: "+qtde, getThisClass());
             }
             br.close();
             Logs.logger("Consulta completa a base de dados. Em processamento para exibir Modelos cadastrados",getThisClass());

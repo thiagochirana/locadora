@@ -85,9 +85,9 @@ public class Controle implements IControle{
     @Override
     public void incluirModelo(Modelo model) throws Exception {
         Modelo modelo = model;
-        /*if (buscarModelo(modelo.getNomeModelo())) {
+        if (buscarModelo(modelo.getNomeModelo())) {
         throw new Exception("Modelo já foi cadastrado");
-        }*/
+        }
         rw.incluirModelo(model);
     }
 

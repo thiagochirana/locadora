@@ -13,6 +13,7 @@ package com.neuron.utils;
 
 
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -34,6 +35,7 @@ public class CopyFiles {
         
         Graphics2D gImg = buffer.createGraphics();
         gImg.drawImage(imgSelecionada,0,0,300,300,null);
+        gImg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         gImg.dispose();
         
         ImageIO.write(buffer, "JPEG", dest);

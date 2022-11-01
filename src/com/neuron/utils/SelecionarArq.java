@@ -33,7 +33,7 @@ public class SelecionarArq implements ISelecionarArq{
         JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fc.addChoosableFileFilter(new FileNameExtensionFilter("Imagens", "jpg", "png", "jpeg"));
-        fc.setCurrentDirectory(new File("D:\\"));
+        fc.setCurrentDirectory(new File("C:\\"));
         Action details = fc.getActionMap().get("Go Up");
         details.actionPerformed(null);
         details.actionPerformed(null);
@@ -41,12 +41,14 @@ public class SelecionarArq implements ISelecionarArq{
         File arquivo = fc.getSelectedFile();
         if (arquivo != null) {
             setCaminhoDoArquivo(arquivo.getPath());
+            Logs.logger("Arquivo selecionado no caminho "+arquivo.getPath(), SelecionarArq.class.getName());
             //jTextFieldUrl.setText(nomeDoArquivo);
             ImageIcon iconLogo = new ImageIcon(getCaminhoDoArquivo());
             iconLogo.setImage(iconLogo.getImage().getScaledInstance(w, h, 1));
             return iconLogo;
         } else {
-            throw new Exception("Não foi possível carregar o arquivo. Arquivo não existe ou corrompido");
+            Logs.logger("Nao foi possivel carregar o arquivo", SelecionarArq.class.getName());
+            throw new Exception("Nao foi possível carregar o arquivo.");
         }  
     }
 

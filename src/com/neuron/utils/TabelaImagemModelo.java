@@ -38,14 +38,14 @@ public class TabelaImagemModelo extends DefaultTableCellRenderer {
             this.setForeground(table.getForeground());
         }
 
-        if (value != null) {
-            ImageIcon iconLogo = new ImageIcon("./src/com/neuron/icons/"+table.getValueAt(row, column - 1).toString());
-            int tamanho = table.getRowHeight();
-            int recuo = 20 * tamanho / 100;
-            //icone.setText((String) value);
-            iconLogo.setImage(iconLogo.getImage().getScaledInstance(tamanho - recuo, tamanho - recuo, 1));
-            icone.setIcon(iconLogo);
-        }
+        
+        ImageIcon iconLogo = new ImageIcon("./src/com/neuron/icons/"+table.getValueAt(row, column - 1).toString());
+        int tamanho = table.getRowHeight();
+        int recuo = 20 * tamanho / 100;
+        //icone.setText((String) value);
+        iconLogo.setImage(iconLogo.getImage().getScaledInstance(tamanho - recuo, tamanho - recuo, 1));
+        icone.setIcon(iconLogo);
+        
 
         icone.setHorizontalAlignment(JLabel.LEFT);
         return icone;

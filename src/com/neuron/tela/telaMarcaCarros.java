@@ -526,7 +526,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                 grid[0] = listaCarro.getIdMarca() + "";
                 grid[1] = listaCarro.getNomeMarca();
                 grid[2] = listaCarro.getDirLogo();
-                grid[3] = "";
+                
                 
                 logoCell = new ImageIcon(listaCarro.getLogoMarca());
                 

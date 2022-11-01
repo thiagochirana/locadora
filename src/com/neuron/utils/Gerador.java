@@ -18,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 
 public class Gerador {
     
@@ -227,5 +228,33 @@ public class Gerador {
         }
         
         if (achou == true) return res; else throw new IOException("Marca nao encontrada pelo ID!");
+    }
+    
+    public static ImageIcon getLogoMarcaByID (int IDMarca) throws FileNotFoundException, IOException, Exception{
+        String dirMarca = "./src/com/neuron/database/dbMarca.txt";
+        FileReader fr = new FileReader(dirMarca);
+        BufferedReader br = new BufferedReader(fr);
+        
+        String linha = "";
+        boolean achou = false;
+        ImageIcon img = new ImageIcon();
+        
+        while ((linha = br.readLine()) != null && achou == false) {
+            if (linha.contains(IDMarca + "")) {
+                String vetorString[] = linha.split(";");
+                int id = Integer.parseInt(vetorString[1]);
+                img = new ImageIcon(".src/com/neuron/icons/logo/"+getNomeMarcaByID(id).toUpperCase()+".jpeg");
+                achou = true;
+            }
+        }
+        
+        if (achou == true) return img; else throw new IOException("Logo da Marca nao encontrada pelo ID!");
+    }
+    
+    public static ImageIcon getLogoMarcaByNome (String nomeMarca) throws FileNotFoundException, IOException, Exception{
+        Logs.logger("Marca selecionada: "+nomeMarca, Gerador.class.getName());
+        String caminho = ".src/com/neuron/icons/logo/"+nomeMarca.toUpperCase()+".jpeg";
+        Logs.logger("Procurando arquivo: "+caminho, Gerador.class.getName());
+        return new ImageIcon(caminho);
     }
 }
