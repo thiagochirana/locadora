@@ -353,10 +353,8 @@
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="saidaLogo" alignment="3" min="-2" pref="150" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jComboBoxMarcas" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -366,6 +364,10 @@
                                       <Component id="bgBtnInserir3" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="bgBtnInserir" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="saidaLogo" alignment="3" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="43" max="32767" attributes="0"/>
@@ -437,7 +439,7 @@
                     <Column editable="false" title="Logo" type="java.lang.Object"/>
                   </Table>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="if (tabelaModelo.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemModelo());&#xa;}" postCode="tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);">
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="if (tabelaModelo.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());&#xa;}" postCode="tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
@@ -462,7 +464,7 @@
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
-                      <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor"/>
+                      <Renderer/>
                     </Column>
                   </TableColumnModel>
                 </Property>
@@ -783,6 +785,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAlterarMouseClicked"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAlterarMouseEntered"/>
               </Events>
             </Component>
           </SubComponents>

@@ -155,15 +155,16 @@ public class ReadWrite implements IReadWrite{
     }
 
     @Override
-    public void alterarModelo(int id, String nomeModelo, String caminhoFotoModelo) throws Exception {
+    public void alterarModelo(int id, String nomeModelo, String caminhoFotoModelo, int idMarca) throws Exception {
         try {
             System.out.println(caminhoFotoModelo);
             Modelo modelo = new Modelo();
-            ArrayList<Modelo> aux = new ArrayList<Modelo>();
+            //ArrayList<Modelo> aux = new ArrayList<Modelo>();
             String linha = "";
             
             //Criar o txt auxiliar para manipulacao da pilha 
             String dbAux1 ="./src/com/neuron/database/dbModeloAux1.txt";
+            Gerador.createDB("dbModeloAux1");
             FileWriter fwAux1 = new FileWriter(dbAux1);
             BufferedWriter bwAux1 = new BufferedWriter(fwAux1);
             
@@ -176,10 +177,12 @@ public class ReadWrite implements IReadWrite{
 
             //altera a linha caso o ID for igual ao do selecionado na tabelaMarca
             while ((linha = br.readLine()) != null) {
-                if(linha.contains(id+"")){
+                String[] vet = linha.split(";");
+                if(vet[0].equals(id+"")){
                     modelo.setIdModelo(id);
                     modelo.setNomeModelo(nomeModelo);
                     modelo.setDirFotoModelo(iImg.alterNomeImgMarca(nomeModelo, caminhoFotoModelo));
+                    modelo.setIdMarcaRelacinado(idMarca);
                     bwAux1.write(modelo.toString()+"\n");
                 } else {
                     bwAux1.write(linha+"\n");
@@ -189,7 +192,7 @@ public class ReadWrite implements IReadWrite{
             br.close();
             bwAux1.close();
             
-            File dbModeloNovo = new File (dbAux1);
+           File dbModeloNovo = new File (dbAux1);
             
             //deleta o banco atual
             dbModelo.delete();
@@ -197,7 +200,7 @@ public class ReadWrite implements IReadWrite{
             //renomeia o dbMarcaAux1 para ser o principal
             dbModeloNovo.renameTo(dbModeloAux);
         } catch (Exception e) {
-            throw new Exception("");
+            throw new Exception("Nao foi possivel alterar modelo: "+e.getMessage());
         }
     }
 
@@ -207,19 +210,15 @@ public class ReadWrite implements IReadWrite{
             Logs.logger("Iniciando Listagem dos Moledos disponiveis", getThisClass());
             ArrayList<Modelo> listaModelo = new ArrayList<Modelo>();
             FileReader fr = new FileReader("./src/com/neuron/database/dbModelo.txt");
-            BufferedReader br  = new BufferedReader(fr);
+            BufferedReader br  = new BufferedReader(fr);         
             
-            if (br.readLine()==null || br.readLine().equals("")) {
-                Logs.logger("Lista Vazia! Por favor insira um modelo!",getThisClass());
-                throw new Exception();
-            }            
-            
-            String linha;
+            String linha=br.readLine();
             int qtde = 0;
-            while((linha=br.readLine())!=null){
+            while(linha!=null){
                 
                 Modelo modelo = new Modelo();
                 String vetorString[] = linha.split(";");
+               //int idModelo = vetorString[0].equals("") ? 0 : Integer.parseInt(vetorString[0]);
                 modelo.setIdModelo(Integer.parseInt(vetorString[0]));
                 modelo.setNomeModelo(vetorString[1]);
                 modelo.setDirFotoModelo(vetorString[2]);
@@ -230,6 +229,7 @@ public class ReadWrite implements IReadWrite{
                 listaModelo.add(modelo);
                 qtde += 1;
                 Logs.logger(modelo.getNomeModelo()+ " adicionado com sucesso a lista! Quantidade inserida a lista: "+qtde, getThisClass());
+                linha=br.readLine();
             }
             br.close();
             Logs.logger("Consulta completa a base de dados. Em processamento para exibir Modelos cadastrados",getThisClass());

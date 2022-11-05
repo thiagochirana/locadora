@@ -90,6 +90,14 @@ public class Gerador {
         bwUser.close();
     }
     
+    public static void createDB(String nome)throws FileNotFoundException, IOException{
+        String db ="./src/com/neuron/database/"+nome+".txt";
+        FileWriter fw = new FileWriter(db);
+        BufferedWriter bw =new BufferedWriter(fw);
+        bw.write("");
+        bw.close();
+    }
+    
     public static int getID()throws FileNotFoundException, IOException{
         String idGeral ="./src/com/neuron/database/idControle.txt";
         FileReader fr = new FileReader(idGeral);

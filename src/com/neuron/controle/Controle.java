@@ -14,6 +14,7 @@ import com.neuron.templates.Marca;
 import com.neuron.persistencia.*;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -69,7 +70,8 @@ public class Controle implements IControle{
     private boolean buscarModelo(String descricao)throws Exception{
         try {
             ArrayList<Modelo> listagem = rw.listagemModelo();
-            for (Modelo modelo : listagem) {
+            for (Iterator<Modelo> it = listagem.iterator(); it.hasNext();) {
+                Modelo modelo = it.next();
                 if(modelo.getNomeModelo().equalsIgnoreCase(descricao)){
                     Logs.logger("Modelo já foi cadastrado", getThisClass());
                     return true;
@@ -86,14 +88,17 @@ public class Controle implements IControle{
     public void incluirModelo(Modelo model) throws Exception {
         Modelo modelo = model;
         if (buscarModelo(modelo.getNomeModelo())) {
-        throw new Exception("Modelo já foi cadastrado");
+        throw new Exception("Modelo ja foi cadastrado");
+        }
+        if (modelo.getNomeModelo().isEmpty() || modelo.getNomeModelo() == null){
+            throw new Exception("Nao e possivel salvar novo modelo sem nome");
         }
         rw.incluirModelo(model);
     }
 
     @Override
-    public void alterarModelo(int id, String nomeModelo, String caminhoFotoModelo) throws Exception {
-        rw.alterarMarca(id, nomeModelo.toUpperCase(), caminhoFotoModelo);
+    public void alterarModelo(int id, String nomeModelo, String caminhoFotoModelo, int idMarca) throws Exception {
+        rw.alterarModelo(id, nomeModelo.toUpperCase(), caminhoFotoModelo, idMarca);
     }
 
     @Override

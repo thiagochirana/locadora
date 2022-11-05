@@ -1,7 +1,4 @@
-2;AMG;./src/com/neuron/icons/modelo/AMG.jpeg;8
+1;SS33;./src/com/neuron/icons/logo/SS33.jpeg;1
+2;GALLARDO;./src/com/neuron/icons/modelo/GALLARDO.jpeg;3
 3;HB20;./src/com/neuron/icons/modelo/HB20.jpeg;6
-4;SS;./src/com/neuron/icons/modelo/SS.jpeg;10
-5;UNO;./src/com/neuron/icons/modelo/UNO.jpeg;5
-6;DISCOVERY;./src/com/neuron/icons/modelo/DISCOVERY.jpeg;4
-7;GALLARDO;./src/com/neuron/icons/modelo/GALLARDO.jpeg;3
-8;JEKSO;./src/com/neuron/icons/modelo/JEKSO.jpeg;11
+4;HB34;./src/com/neuron/icons/modelo/HB34.jpeg;6

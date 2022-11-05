@@ -24,7 +24,7 @@ public interface IReadWrite{
     public List<String> listagemNomeMarcasList() throws Exception;
     
     void incluirModelo(Modelo modelo)throws Exception;
-    void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo) throws Exception;
+    void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo, int idMarca) throws Exception;
     ArrayList<Modelo> listagemModelo()throws Exception;  
 }
 

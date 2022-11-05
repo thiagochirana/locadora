@@ -50,10 +50,7 @@ public class telaModelos extends javax.swing.JFrame {
     String thisClass = "";
             
     public telaModelos() {
-        initComponents();
-        ((DefaultTableCellRenderer) tabelaModelo.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
-        tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemModelo());
-        
+        initComponents();        
         this.setLocationRelativeTo(null);
         customizeMenuBar(jMenuBar); //customizar cor do menu
         datahora(); //data e hora no sistema
@@ -179,10 +176,7 @@ public class telaModelos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelaModelo);
         if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
-            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemModelo());
-        }
-        if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
-            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(null);
+            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());
         }
         tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -319,6 +313,9 @@ public class telaModelos extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAlterarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseEntered(evt);
+            }
         });
 
         javax.swing.GroupLayout bgBtnInserir3Layout = new javax.swing.GroupLayout(bgBtnInserir3);
@@ -431,9 +428,7 @@ public class telaModelos extends javax.swing.JFrame {
                             .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -441,7 +436,10 @@ public class telaModelos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bgBtnInserir3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -728,8 +726,6 @@ public class telaModelos extends javax.swing.JFrame {
             saidaLogo.setIcon(imgLogo);
             Logs.logger("Modelo selecionado na tabela: "+this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1),getThisClass());
             
-            
-            
             try {
                 saidaLogoMarca.setIcon(iArquivo.RedimensionarImg(caminhoLogoMarca, 105, 105));
             } catch (Exception e) {
@@ -794,9 +790,12 @@ public class telaModelos extends javax.swing.JFrame {
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         try {
             int auxID = (Integer.parseInt(saidaID.getText()));
-            interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons" + saidaDiretorio.getText());
+            String nomeMarcaSelecionado = this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2) + "";
+            int idCombo = jComboBoxMarcas.getSelectedIndex() + 1;
+            interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons" + saidaDiretorio.getText(),idCombo);
             ImprimirGrid(interControle.listagemModelo());
-            JOptionPane.showMessageDialog(this, "Marca " + cpInserir.getText() + " alterada com sucesso!");
+            saidaLogo.setIcon(null);
+            JOptionPane.showMessageDialog(this, "Modelo " + cpInserir.getText().toUpperCase() + " alterado com sucesso!");
             //cpInfoAdicional.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -827,7 +826,7 @@ public class telaModelos extends javax.swing.JFrame {
                 Logs.logger("Novo modelo Inserido com sucesso!", getThisClass());
             } catch (Exception e) {
                 Logs.logger("Não foi possível inserir novo modelo - " + e.getMessage(), getThisClass());
-                throw new Exception("Nao foi possivel inserir novo modelo" + e.getMessage());
+                throw new Exception("Nao foi possivel inserir novo modelo - " + e.getMessage());
             }
 
             CopyFiles.copiarImgMarca(getCaminhoArquivo(), "./src/com/neuron/icons/modelo/", arquivoSelecionado);
@@ -844,6 +843,10 @@ public class telaModelos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());
         }
     }//GEN-LAST:event_btnInserirMouseClicked
+
+    private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarMouseEntered
     
     public void enviarTokenEmail() {
 
@@ -960,14 +963,11 @@ public class telaModelos extends javax.swing.JFrame {
     private javax.swing.JPanel bgBackground;
     private javax.swing.JPanel bgBtnCarregarArquivo;
     private javax.swing.JPanel bgBtnInserir;
-    private javax.swing.JPanel bgBtnInserir1;
-    private javax.swing.JPanel bgBtnInserir2;
     private javax.swing.JPanel bgBtnInserir3;
     private javax.swing.JLabel btnAlterar;
     private javax.swing.JButton btnAttLista;
     private javax.swing.JLabel btnCarregarArquivo;
     private javax.swing.JLabel btnInserir;
-    private javax.swing.JLabel btnInserir1;
     private javax.swing.JLabel cpData;
     private javax.swing.JTextField cpInserir;
     private javax.swing.JLabel cpUser;
@@ -996,7 +996,6 @@ public class telaModelos extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logoNeuron;

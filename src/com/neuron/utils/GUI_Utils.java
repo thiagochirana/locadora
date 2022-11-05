@@ -44,6 +44,9 @@ public class GUI_Utils extends javax.swing.JFrame {
         jLabelNomeMarca = new javax.swing.JLabel();
         jTFIDMarca = new javax.swing.JTextField();
         btnConsultaRetornaNomeMarca = new javax.swing.JButton();
+        jLabelIDMarca1 = new javax.swing.JLabel();
+        jTFBanco = new javax.swing.JTextField();
+        btnCriaBanco = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +107,26 @@ public class GUI_Utils extends javax.swing.JFrame {
             }
         });
 
+        jLabelIDMarca1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelIDMarca1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelIDMarca1.setText("Criar Banco");
+
+        jTFBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFBancoActionPerformed(evt);
+            }
+        });
+
+        btnCriaBanco.setBackground(new java.awt.Color(102, 255, 102));
+        btnCriaBanco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCriaBanco.setForeground(new java.awt.Color(0, 102, 0));
+        btnCriaBanco.setText("CRIA BANCO TXT");
+        btnCriaBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriaBancoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,11 +139,17 @@ public class GUI_Utils extends javax.swing.JFrame {
                         .addComponent(jTFIDMarca, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnConsultaRetornaNomeMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabelIDMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTFNomeMarca, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnCreateDatas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                        .addComponent(btnConsultaRetornaIDMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelIDMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTFNomeMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCreateDatas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(btnConsultaRetornaIDMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelIDMarca1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTFBanco, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCriaBanco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,11 +158,19 @@ public class GUI_Utils extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
-                .addComponent(btnCreateDatas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelIDMarca)
-                .addGap(4, 4, 4)
-                .addComponent(jTFNomeMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCreateDatas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelIDMarca)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTFNomeMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelIDMarca1)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTFBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCriaBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConsultaRetornaIDMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -196,6 +233,18 @@ public class GUI_Utils extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnConsultaRetornaNomeMarcaActionPerformed
 
+    private void jTFBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBancoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBancoActionPerformed
+
+    private void btnCriaBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriaBancoActionPerformed
+        try {
+            Gerador.createDB(jTFBanco.getText());
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_btnCriaBancoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,10 +284,13 @@ public class GUI_Utils extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultaRetornaIDMarca;
     private javax.swing.JButton btnConsultaRetornaNomeMarca;
     private javax.swing.JButton btnCreateDatas;
+    private javax.swing.JButton btnCriaBanco;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelIDMarca;
+    private javax.swing.JLabel jLabelIDMarca1;
     private javax.swing.JLabel jLabelNomeMarca;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTFBanco;
     private javax.swing.JTextField jTFIDMarca;
     private javax.swing.JTextField jTFNomeMarca;
     // End of variables declaration//GEN-END:variables
