@@ -179,7 +179,8 @@ public class telaModelos extends javax.swing.JFrame {
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());
         }
         if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
-            tabelaModelo.getColumnModel().getColumn(5).setCellRenderer(new TabelaImagemMarca());
+            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemModelo());
+            tabelaModelo.getColumnModel().getColumn(5).setCellRenderer(new TabelaImagemLogoMarca());
         }
         tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -610,7 +611,7 @@ public class telaModelos extends javax.swing.JFrame {
             TabelaImagemModelo tabelaImagem = new TabelaImagemModelo();
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(tabelaImagem);
             ImageIcon logoCell = new ImageIcon();
-            ImageIcon logoMarcaCell;
+            ImageIcon logoMarcaCell = new ImageIcon();
             
             //Limpa a tabela 
             modelo.setNumRows(0); //setar numero de linhas exibidas para 0

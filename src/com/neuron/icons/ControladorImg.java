@@ -36,6 +36,16 @@ public class ControladorImg implements IControladorImg{
     }
     
     @Override
+    public String alterNomeImgModelo(String novoNome, String caminho) throws Exception{
+        File caminhoAtual = new File(caminho);
+        File novoCaminho = new File("./src/com/neuron/icons/modelo/"+novoNome+".jpeg");
+        
+        caminhoAtual.renameTo(novoCaminho);
+        
+        return ("./src/com/neuron/icons/modelo/"+novoNome+".jpeg");
+    }
+    
+    @Override
     public void deleteFile(String caminho) throws Exception{
         File file = new File(caminho);
         try {

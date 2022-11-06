@@ -182,7 +182,7 @@ public class ReadWrite implements IReadWrite{
                 if(vet[0].equals(id+"")){
                     modelo.setIdModelo(id);
                     modelo.setNomeModelo(nomeModelo);
-                    modelo.setDirFotoModelo(iImg.alterNomeImgMarca(nomeModelo, caminhoFotoModelo));
+                    modelo.setDirFotoModelo(iImg.alterNomeImgModelo(nomeModelo, caminhoFotoModelo));
                     modelo.setIdMarcaRelacinado(idMarca);
                     bwAux1.write(modelo.toString()+"\n");
                 } else {

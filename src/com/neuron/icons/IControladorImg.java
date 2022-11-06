@@ -14,6 +14,7 @@ package com.neuron.icons;
 
 public interface IControladorImg {
     String alterNomeImgMarca(String novoNome, String caminho) throws Exception;
+    String alterNomeImgModelo(String novoNome, String caminho) throws Exception;
     void deleteFile(String caminho) throws Exception;
     void limparImgNaoUsadas(String caminhoID) throws Exception;
 }

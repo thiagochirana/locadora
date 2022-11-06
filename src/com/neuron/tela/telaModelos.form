@@ -465,13 +465,15 @@
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
-                      <Renderer/>
+                      <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                        <Connection code="new TabelaImagemModelo()" type="code"/>
+                      </Renderer>
                     </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                        <Connection code="new TabelaImagemMarca()" type="code"/>
+                        <Connection code="new TabelaImagemLogoMarca()" type="code"/>
                       </Renderer>
                     </Column>
                   </TableColumnModel>
