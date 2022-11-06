@@ -26,7 +26,7 @@ public class CopyFiles {
         
     }
 
-    public static void copiarImgMarca(String origem, String destino, String nomeArquivo) throws Exception{
+    public static void copiarImgSelecionada(String origem, String destino, String nomeArquivo) throws Exception{
         File orig = new File(origem);
         File dest = new File(destino+nomeArquivo);
         

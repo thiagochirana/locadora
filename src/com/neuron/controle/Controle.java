@@ -14,7 +14,6 @@ import com.neuron.templates.Marca;
 import com.neuron.persistencia.*;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.*;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -100,7 +99,7 @@ public class Controle implements IControle{
             throw new Exception("Nao e possivel salvar novo modelo sem nome");
         }
         if(modelo.getDirFotoModelo()==null || modelo.getDirFotoModelo().equals("./src/com/neuron/icons/modelo/.jpeg")){
-            throw new Exception("Nao e possivel inserir o modelo "+modelo.getNomeModelo()+" sem logo!");
+            throw new Exception("Nao e possivel inserir o modelo "+modelo.getNomeModelo()+" sem imagem!");
         }
         rw.incluirModelo(model);
     }

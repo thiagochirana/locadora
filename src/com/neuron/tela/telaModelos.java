@@ -22,7 +22,6 @@ import java.util.Iterator;
 import com.neuron.controle.*;
 import com.neuron.utils.*;
 import com.neuron.utils.TabelaImagemModelo;
-import com.neuron.icons.*;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenu;
@@ -31,22 +30,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.MenuElement;
-import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicMenuBarUI;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 
 public class telaModelos extends javax.swing.JFrame {
 
-    DefaultTableCellRenderer tCR = new DefaultTableCellRenderer();
     IControle interControle = new Controle();
     ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "";
-    ControladorImg file = new ControladorImg();
-    Modelo modelo = new Modelo();
-    String ComboBoxMarcaSelecionada = "";
     String thisClass = "";
             
     public telaModelos() {
@@ -55,6 +48,7 @@ public class telaModelos extends javax.swing.JFrame {
         customizeMenuBar(jMenuBar); //customizar cor do menu
         datahora(); //data e hora no sistema
         resizeColunas();
+        limparTela();
         
         try {
             carregarComboBoxMarcas();
@@ -633,7 +627,16 @@ public class telaModelos extends javax.swing.JFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-
+        limparTela();
+    }
+    
+    public void limparTela(){
+        saidaLogo.setIcon(null);
+        saidaDiretorio.setText("");
+        saidaLogoMarca.setIcon(null);
+        saidaID.setText("");
+        cpInserir.setText("");
+        
     }
     
     public void carregarComboBoxMarcas() throws Exception{
@@ -759,6 +762,7 @@ public class telaModelos extends javax.swing.JFrame {
             saidaLogo.setIcon(imgLogo);
             Logs.logger("Imagem selecionada com sucesso do diretorio "+iArquivo.getCaminhoDoArquivo(),getThisClass());
         } catch (Exception e) {
+            
             JOptionPane.showMessageDialog(this, e.getMessage());
             Logs.logger("Nao foi possivel selecionar imagem para este modelo\n"+e.getMessage(),getThisClass());
         }
@@ -795,16 +799,15 @@ public class telaModelos extends javax.swing.JFrame {
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         try {
             int auxID = (Integer.parseInt(saidaID.getText()));
-            String nomeMarcaSelecionado = this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2) + "";
             int idCombo = jComboBoxMarcas.getSelectedIndex() + 1;
             interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons" + saidaDiretorio.getText(),idCombo);
             ImprimirGrid(interControle.listagemModelo());
-            saidaLogo.setIcon(null);
             JOptionPane.showMessageDialog(this, "Modelo " + cpInserir.getText().toUpperCase() + " alterado com sucesso!");
             //cpInfoAdicional.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        limparTela();
     }//GEN-LAST:event_btnAlterarMouseClicked
 
     private void btnInserirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirMouseClicked
@@ -827,26 +830,31 @@ public class telaModelos extends javax.swing.JFrame {
             Logs.logger("ID da Marca do Modelo Selecionado: " + modelo.getIdMarcaRelacinado(), getThisClass());
 
             try {
-                interControle.incluirModelo(modelo);
+                if ((saidaLogo.getIcon())==null){
+                    Logs.logger("Nao e possivel salvar Modelo sem uma imagem o representado! - Por favor selecione uma imagem!", getThisClass());
+                    throw new Exception("Nao e possivel salvar Modelo sem uma imagem o representado!\nPor favor selecione uma imagem!");
+                }
+                
+                interControle.incluirModelo(modelo);                
                 Logs.logger("Novo modelo Inserido com sucesso!", getThisClass());
             } catch (Exception e) {
                 Logs.logger("Não foi possível inserir novo modelo - " + e.getMessage(), getThisClass());
                 throw new Exception("Nao foi possivel inserir novo modelo - " + e.getMessage());
             }
 
-            CopyFiles.copiarImgMarca(getCaminhoArquivo(), "./src/com/neuron/icons/modelo/", arquivoSelecionado);
-            Logs.logger("Arquivo transferido e armazenado com caminho e nome: " + caminhoImg, getThisClass());
-
-            cpInserir.setText("");
-            saidaLogo.setIcon(null);
-
+            
             ImprimirGrid(interControle.listagemModelo());
-            Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos", getThisClass());
 
         } catch (Exception erro) {
 
             JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());
         }
+        
+        cpInserir.setText("");
+        saidaLogo.setIcon(null);
+
+        
+        Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos", getThisClass());
     }//GEN-LAST:event_btnInserirMouseClicked
 
     private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered

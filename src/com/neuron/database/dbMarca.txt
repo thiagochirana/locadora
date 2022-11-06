@@ -7,3 +7,7 @@
 7;MERCEDES-BENZ;./src/com/neuron/icons/logo/MERCEDES-BENZ.jpeg
 8;KOENIGSEGG;./src/com/neuron/icons/logo/KOENIGSEGG.jpeg
 9;VOLKS;./src/com/neuron/icons/logo/VOLKS.jpeg
+10;TESTE2@;./src/com/neuron/icons/logo/TESTE2@.jpeg
+11;INSERIRMARCA;./src/com/neuron/icons/logo/INSERIRMARCA.jpeg
+12;NOVAMARCA;./src/com/neuron/icons/logo/NOVAMARCA.jpeg
+13;USANDOMARCA;./src/com/neuron/icons/logo/USANDOMARCA.jpeg

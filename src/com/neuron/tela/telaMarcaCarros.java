@@ -23,6 +23,8 @@ import com.neuron.controle.*;
 import com.neuron.utils.*;
 import com.neuron.utils.TabelaImagemMarca;
 import com.neuron.icons.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenu;
@@ -106,6 +108,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         bgBtnCarregarArquivo = new javax.swing.JPanel();
         btnCarregarArquivo = new javax.swing.JLabel();
         saidaStatusOperacao = new javax.swing.JLabel();
+        btnAtualizarLista = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -272,6 +275,15 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         saidaStatusOperacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saidaStatusOperacao.setForeground(new java.awt.Color(1, 132, 222));
 
+        btnAtualizarLista.setBackground(new java.awt.Color(1, 132, 222));
+        btnAtualizarLista.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizarLista.setText("ATUALIZAR");
+        btnAtualizarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarListaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
         bgBackgroundLayout.setHorizontalGroup(
@@ -289,7 +301,10 @@ public class telaMarcaCarros extends javax.swing.JFrame {
                         .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAtualizarLista))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
@@ -324,7 +339,9 @@ public class telaMarcaCarros extends javax.swing.JFrame {
             bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtualizarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -615,7 +632,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     private void btnInserirMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirMarcaActionPerformed
         try {
             String arquivoSelecionado = cpInsMarca.getText().toUpperCase()+".jpeg";
-            CopyFiles.copiarImgMarca(getCaminhoArquivo(), "./src/com/neuron/icons/logo/", arquivoSelecionado);
+            
             String caminhoImg = "./src/com/neuron/icons/logo/"+arquivoSelecionado;
             
             Marca marca = new Marca(0,cpInsMarca.getText().toUpperCase(),caminhoImg);
@@ -690,6 +707,15 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void btnAtualizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarListaActionPerformed
+        try {
+            ImprimirGrid(interControle.listagemMarca());
+            Logs.logger("lista de Marcas atualizada com sucesso!", telaMarcaCarros.class.getName());
+        } catch (Exception ex) {
+            Logs.logger("Nao foi atualizada a lista!", telaMarcaCarros.class.getName());
+        }
+    }//GEN-LAST:event_btnAtualizarListaActionPerformed
     
     public void enviarTokenEmail() {
 
@@ -797,6 +823,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     private javax.swing.JPanel bgBackground;
     private javax.swing.JPanel bgBtnCarregarArquivo;
     private javax.swing.JToggleButton btnAlterarMarca;
+    private javax.swing.JButton btnAtualizarLista;
     private javax.swing.JLabel btnCarregarArquivo;
     private javax.swing.JToggleButton btnInserirMarca;
     private javax.swing.JLabel cpData;

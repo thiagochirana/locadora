@@ -1,10 +1,4 @@
-1;M3;./src/com/neuron/icons/modelo/M3.jpeg;9
-2;BLOODERX;./src/com/neuron/icons/modelo/BLOODERX.jpeg;8
-3;KJKJKJHK;./src/com/neuron/icons/modelo/KJKJKJHK.jpeg;4
-4;ASDFGHJ;./src/com/neuron/icons/modelo/ASDFGHJ.jpeg;5
-5;GHSLDJN;./src/com/neuron/icons/modelo/GHSLDJN.jpeg;7
-6;E34RE;./src/com/neuron/icons/modelo/E34RE.jpeg;2
-7;D4667HGVV;./src/com/neuron/icons/modelo/D4667HGVV.jpeg;1
-8;DWEXC679;./src/com/neuron/icons/modelo/DWEXC679.jpeg;3
-9;DECERFV3;./src/com/neuron/icons/modelo/DECERFV3.jpeg;6
-10;IOP89;./src/com/neuron/icons/modelo/IOP89.jpeg;1
+1;CORSA;./src/com/neuron/icons/modelo/CORSA.jpeg;2
+2;MORELLO ;./src/com/neuron/icons/modelo/MORELLO .jpeg;5
+3;ROOSTER;./src/com/neuron/icons/modelo/ROOSTER.jpeg;9
+4;FAVELA;./src/com/neuron/icons/modelo/FAVELA.jpeg;6

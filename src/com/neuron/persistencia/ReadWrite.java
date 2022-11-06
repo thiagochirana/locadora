@@ -15,8 +15,11 @@ import com.neuron.icons.ControladorImg;
 import com.neuron.icons.IControladorImg;
 import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
+import com.neuron.utils.CopyFiles;
 import com.neuron.utils.Gerador;
 import com.neuron.utils.Logs;
+import com.neuron.utils.ISelecionarArq;
+import com.neuron.utils.SelecionarArq;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -29,13 +32,16 @@ import java.util.List;
 public class ReadWrite implements IReadWrite{
     
     IControladorImg iImg;
+    ISelecionarArq iArquivo;
     private String dirMarca;
     private String dirModelo;
+    String caminhoImg = "";
     
     String thisClass;
     
     public ReadWrite(){
         this.iImg = new ControladorImg();
+        this.iArquivo = new SelecionarArq();
         this.dirMarca = "./src/com/neuron/database/dbMarca.txt";
         this.dirModelo = "./src/com/neuron/database/dbModelo.txt";
     }
@@ -43,6 +49,7 @@ public class ReadWrite implements IReadWrite{
     @Override
     public void incluirMarca(Marca marca) throws Exception {
         try{
+            String caminho = getCaminhoImg();
             //cria o arquivo
             FileWriter fw = new FileWriter(dirMarca,true);
             //Criar o buffer do arquivo
@@ -52,7 +59,9 @@ public class ReadWrite implements IReadWrite{
             //Escreve no arquivo
             bw.write(marca.toString()+"\n");
             //fecha o arquivo
-            bw.close();		
+            bw.close();	
+            
+            CopyFiles.copiarImgSelecionada(caminho, "./src/com/neuron/icons/logo/", marca.getNomeMarca()+".jpeg");
       }catch(Exception erro){
             throw erro;
       }
@@ -133,6 +142,8 @@ public class ReadWrite implements IReadWrite{
     @Override
     public void incluirModelo(Modelo modelo) throws Exception {
         try {
+            String caminho = getCaminhoImg();
+            
             //cria o arquivo
             FileWriter fw = new FileWriter(dirModelo, true);
             //Criar o buffer do arquivo
@@ -147,6 +158,11 @@ public class ReadWrite implements IReadWrite{
             Logs.logger("Salvando no database...",getThisClass());
             //fecha o arquivo
             bw.close();
+
+            
+            CopyFiles.copiarImgSelecionada(caminho, "./src/com/neuron/icons/modelo/", modelo.getNomeModelo()+".jpeg");
+            Logs.logger("Arquivo imagem Modelo transferido e armazenado no caminho: ./src/com/neuron/icons/modelo/" + modelo.getNomeModelo()+".jpeg", getThisClass());
+            
             Logs.logger(modelo.getNomeModelo()+" salvo com sucesso! ",getThisClass());
         } catch (Exception erro) {
             Logs.logger("Nao foi possivel Salvar o modelo "+modelo.getNomeModelo()+" no database! "+erro.getMessage(),getThisClass());
@@ -281,6 +297,18 @@ public class ReadWrite implements IReadWrite{
         thisClass = thisClass.replace("class ", "");
         return thisClass;
     }
+
+    public String getCaminhoImg() throws Exception{
+        File file =  new File("./src/com/neuron/temp/pathImg.txt");
+        FileReader fr = new FileReader("./src/com/neuron/temp/pathImg.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String caminho =  br.readLine();
+        br.close();
+        file.delete();
+        return caminho;
+    }
+    
+    
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

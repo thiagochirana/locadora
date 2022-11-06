@@ -12,7 +12,9 @@
 package com.neuron.utils;
 
 import java.awt.Image;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -32,7 +34,7 @@ public class SelecionarArq implements ISelecionarArq{
         
         JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fc.addChoosableFileFilter(new FileNameExtensionFilter("Imagens", "jpg", "png", "jpeg"));
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("Imagens", "jpg", "png", "jpeg", "jfif"));
         fc.setCurrentDirectory(new File("C:\\"));
         Action details = fc.getActionMap().get("Go Up");
         details.actionPerformed(null);
@@ -79,8 +81,13 @@ public class SelecionarArq implements ISelecionarArq{
         return caminhoDoArquivo;
     }
 
-    private void setCaminhoDoArquivo(String caminhoDoArquivo) {
+    private void setCaminhoDoArquivo(String caminhoDoArquivo) throws Exception {
         this.caminhoDoArquivo = caminhoDoArquivo;
+        String temp = "./src/com/neuron/temp/pathImg.txt";
+        FileWriter fw = new FileWriter(temp);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(caminhoDoArquivo);
+        bw.close();
     }
             
            
