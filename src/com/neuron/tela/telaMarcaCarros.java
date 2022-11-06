@@ -112,12 +112,13 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -396,6 +397,24 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         jMenu3.setText("Carros");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        jMenuItem13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem13.setText("Modelos");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem13);
+
+        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuItem9.setText("Críticos");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem9);
+
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenuItem4.setText("Disponíveis");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -440,15 +459,6 @@ public class telaMarcaCarros extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem8);
-
-        jMenuItem9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuItem9.setText("Críticos");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem9);
 
         jMenuBar.add(jMenu3);
 
@@ -676,6 +686,10 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     private void menuLogOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogOffMouseClicked
         this.dispose();
     }//GEN-LAST:event_menuLogOffMouseClicked
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
     
     public void enviarTokenEmail() {
 
@@ -801,6 +815,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

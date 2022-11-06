@@ -80,7 +80,8 @@ public class ReadWrite implements IReadWrite{
 
             //altera a linha caso o ID for igual ao do selecionado na tabelaMarca
             while ((linha = br.readLine()) != null) {
-                if(linha.equals(id+"")){
+                String[] vet = linha.split(";");
+                if(vet[0].equals(id+"")){
                     marca.setIdMarca(id);
                     marca.setNomeMarca(nomeMarca);
                     marca.setDirLogo(iImg.alterNomeImgMarca(nomeMarca, caminhoLogo));

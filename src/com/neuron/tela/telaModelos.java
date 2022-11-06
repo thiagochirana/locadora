@@ -143,17 +143,17 @@ public class telaModelos extends javax.swing.JFrame {
         tabelaModelo.setForeground(new java.awt.Color(1, 75, 222));
         tabelaModelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Modelo", "Marca", "Diretório", "Logo"
+                "ID", "Modelo", "Marca", "Diretório", "Logo", "Logo Marca"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -177,6 +177,9 @@ public class telaModelos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabelaModelo);
         if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());
+        }
+        if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
+            tabelaModelo.getColumnModel().getColumn(5).setCellRenderer(new TabelaImagemMarca());
         }
         tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -607,6 +610,7 @@ public class telaModelos extends javax.swing.JFrame {
             TabelaImagemModelo tabelaImagem = new TabelaImagemModelo();
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(tabelaImagem);
             ImageIcon logoCell = new ImageIcon();
+            ImageIcon logoMarcaCell;
             
             //Limpa a tabela 
             modelo.setNumRows(0); //setar numero de linhas exibidas para 0
@@ -621,8 +625,8 @@ public class telaModelos extends javax.swing.JFrame {
                 grid[3] = listaModelo.getDirFotoModelo().replace("./src/com/neuron/icons/","/");
                 
                 logoCell = new ImageIcon(listaModelo.getDirFotoModelo());
-                
-                modelo.addRow(new Object[]{grid[0],grid[1],grid[2],grid[3],logoCell});
+                logoMarcaCell = new ImageIcon("./src/com/neuron/icons/logo/"+grid[2]+".jpeg");
+                modelo.addRow(new Object[]{grid[0],grid[1],grid[2],grid[3],logoCell,logoMarcaCell});
                 
             }          
         } catch (Exception erro) {
@@ -642,10 +646,12 @@ public class telaModelos extends javax.swing.JFrame {
     
     public void resizeColunas(){
         TableColumnModel tCM = tabelaModelo.getColumnModel();
-        tCM.getColumn(0).setPreferredWidth(50);
-        tCM.getColumn(1).setPreferredWidth(200);
-        tCM.getColumn(2).setPreferredWidth(200);
-        tCM.getColumn(3).setPreferredWidth(150);
+        tCM.getColumn(0).setPreferredWidth(30);
+        tCM.getColumn(1).setPreferredWidth(120);
+        tCM.getColumn(2).setPreferredWidth(120);
+        tCM.getColumn(3).setPreferredWidth(180);
+        tCM.getColumn(4).setPreferredWidth(80);
+        tCM.getColumn(5).setPreferredWidth(80);
     }
     
     public void datahora(){
@@ -716,7 +722,7 @@ public class telaModelos extends javax.swing.JFrame {
             caminhoArquivo = (String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 3);
             String nomeMarcaSelecionado = this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2) + "";
             
-            String caminhoLogoMarca = ".src/com/neuron/icons/modelo/"+nomeMarcaSelecionado.toUpperCase()+".jpeg";
+            String caminhoLogoMarca = "./src/com/neuron/icons/logo/"+nomeMarcaSelecionado.toUpperCase()+".jpeg";
             
             saidaDiretorio.setText(caminhoArquivo);
             
@@ -724,13 +730,11 @@ public class telaModelos extends javax.swing.JFrame {
             
             imgLogo = iArquivo.RedimensionarImg("./src/com/neuron/icons"+caminhoArquivo,150,150);
             saidaLogo.setIcon(imgLogo);
+            jComboBoxMarcas.setSelectedIndex(Gerador.getIDMarcaSelecionada(nomeMarcaSelecionado)-1);
             Logs.logger("Modelo selecionado na tabela: "+this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1),getThisClass());
             
-            try {
-                saidaLogoMarca.setIcon(iArquivo.RedimensionarImg(caminhoLogoMarca, 105, 105));
-            } catch (Exception e) {
-                Logs.logger("Nao foi configurado a logo da marca "+nomeMarcaSelecionado+ " na tela"+e.getMessage(), getThisClass());
-            }
+            saidaLogoMarca.setIcon(iArquivo.RedimensionarImg(caminhoLogoMarca, 105, 105));
+            
             
         } catch (Exception err) {
             JOptionPane.showMessageDialog(this, err);
@@ -848,10 +852,7 @@ public class telaModelos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarMouseEntered
     
-    public void enviarTokenEmail() {
-
-        
-    }
+    
     
     //COLORIR BARRA DE MENU
     Color azulSistema = new Color(1, 132, 222, 255);

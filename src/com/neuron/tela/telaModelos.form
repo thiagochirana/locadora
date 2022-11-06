@@ -431,12 +431,13 @@
                   <Color blue="de" green="4b" red="1" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
+                  <Table columnCount="6" rowCount="4">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="Modelo" type="java.lang.Object"/>
                     <Column editable="false" title="Marca" type="java.lang.Object"/>
                     <Column editable="false" title="Diret&#xf3;rio" type="java.lang.Object"/>
                     <Column editable="false" title="Logo" type="java.lang.Object"/>
+                    <Column editable="false" title="Logo Marca" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" preCode="if (tabelaModelo.getColumnModel().getColumnCount() &gt; 0) {&#xa;    tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());&#xa;}" postCode="tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);">
@@ -465,6 +466,13 @@
                       <Title/>
                       <Editor/>
                       <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                        <Connection code="new TabelaImagemMarca()" type="code"/>
+                      </Renderer>
                     </Column>
                   </TableColumnModel>
                 </Property>

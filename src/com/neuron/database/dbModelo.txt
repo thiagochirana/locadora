@@ -1,4 +1,5 @@
-1;SS33;./src/com/neuron/icons/logo/SS33.jpeg;1
-2;GALLARDO;./src/com/neuron/icons/modelo/GALLARDO.jpeg;3
-3;HB20;./src/com/neuron/icons/modelo/HB20.jpeg;6
-4;HB34;./src/com/neuron/icons/modelo/HB34.jpeg;6
+1;BLIZZ;./src/com/neuron/icons/modelo/BLIZZ.jpeg;1
+2;BLOOD234;./src/com/neuron/icons/logo/BLOOD234.jpeg;5
+3;BLOODFAKER;./src/com/neuron/icons/modelo/BLOODFAKER.jpeg;5
+4;ADVENTO;./src/com/neuron/icons/modelo/ADVENTO.jpeg;4
+5;ROMENIA;./src/com/neuron/icons/modelo/ROMENIA.jpeg;8

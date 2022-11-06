@@ -52,6 +52,12 @@ public class Controle implements IControle{
         if (buscarMarca(marca.getNomeMarca())) {
             throw new Exception("Marca já foi cadastrada");
         }
+        if(marca.getNomeMarca()==null ||marca.getNomeMarca().equals("")){
+            throw new Exception("Nao e possivel inserir uma marca sem nome!");
+        }
+        if(marca.getDirLogo()==null || marca.getDirLogo().equals("")){
+            throw new Exception("Nao e possivel inserir a marca "+marca.getNomeMarca()+" sem logo!");
+        }
         rw.incluirMarca(marca);
         
     }
@@ -92,6 +98,9 @@ public class Controle implements IControle{
         }
         if (modelo.getNomeModelo().isEmpty() || modelo.getNomeModelo() == null){
             throw new Exception("Nao e possivel salvar novo modelo sem nome");
+        }
+        if(modelo.getDirFotoModelo()==null || modelo.getDirFotoModelo().equals("./src/com/neuron/icons/modelo/.jpeg")){
+            throw new Exception("Nao e possivel inserir o modelo "+modelo.getNomeModelo()+" sem logo!");
         }
         rw.incluirModelo(model);
     }

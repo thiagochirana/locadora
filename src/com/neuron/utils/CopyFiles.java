@@ -31,10 +31,10 @@ public class CopyFiles {
         File dest = new File(destino+nomeArquivo);
         
         BufferedImage imgSelecionada = ImageIO.read(orig);
-        BufferedImage buffer = new BufferedImage(300,300,BufferedImage.TYPE_INT_RGB);        
+        BufferedImage buffer = new BufferedImage(450,450,BufferedImage.SCALE_SMOOTH);        
         
         Graphics2D gImg = buffer.createGraphics();
-        gImg.drawImage(imgSelecionada,0,0,300,300,null);
+        gImg.drawImage(imgSelecionada,0,0,450,450,null);
         gImg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         gImg.dispose();
         
