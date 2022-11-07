@@ -11,8 +11,7 @@
 
 package com.neuron.persistencia;
 
-import com.neuron.icons.ControladorImg;
-import com.neuron.icons.IControladorImg;
+import com.neuron.icons.*;
 import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.CopyFiles;
@@ -110,6 +109,8 @@ public class ReadWrite implements IReadWrite{
             
             //renomeia o dbMarcaAux1 para ser o principal
             dbMarcaNovo.renameTo(dbMarcaAux);
+            
+            iImg.limparImgNaoUsadas(Telas.MODELO);
         } catch (Exception e) {
             throw new Exception("");
         }
@@ -131,6 +132,9 @@ public class ReadWrite implements IReadWrite{
                 listaDeMarcas.add(marca);
             }
             br.close();
+            
+            
+            
             return listaDeMarcas;
             
         } catch(Exception erro){

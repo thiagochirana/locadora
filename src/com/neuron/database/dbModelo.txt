@@ -1,4 +1,4 @@
 1;CORSA;./src/com/neuron/icons/modelo/CORSA.jpeg;2
-2;MORELLO ;./src/com/neuron/icons/modelo/MORELLO .jpeg;5
+2;MORELLO ;./src/com/neuron/icons/modelo/MORELLO.jpeg;5
 3;ROOSTER;./src/com/neuron/icons/modelo/ROOSTER.jpeg;9
 4;FAVELA;./src/com/neuron/icons/modelo/FAVELA.jpeg;6

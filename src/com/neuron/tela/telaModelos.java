@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.*;
+import com.neuron.icons.*;
 import com.neuron.utils.*;
 import com.neuron.utils.TabelaImagemModelo;
 import javax.swing.ImageIcon;
@@ -41,7 +42,8 @@ public class telaModelos extends javax.swing.JFrame {
     ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "";
     String thisClass = "";
-            
+    IControladorImg iImg = new ControladorImg();
+    
     public telaModelos() {
         initComponents();        
         this.setLocationRelativeTo(null);
@@ -49,6 +51,12 @@ public class telaModelos extends javax.swing.JFrame {
         datahora(); //data e hora no sistema
         resizeColunas();
         limparTela();
+        
+        try {
+            iImg.limparImgNaoUsadas(Telas.MODELO);
+        } catch (Exception ex) {
+            Logs.logger("nao foi possivel iniciar limpando imagens nao vinculadas a Modelos cadastrados", telaModelos.class.getName());
+        }
         
         try {
             carregarComboBoxMarcas();

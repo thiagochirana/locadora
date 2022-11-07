@@ -16,6 +16,8 @@ import com.neuron.utils.Logs;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ControladorImg implements IControladorImg{
@@ -56,36 +58,74 @@ public class ControladorImg implements IControladorImg{
         
     }
     
+    
     @Override
-    public void limparImgNaoUsadas(String caminho) throws Exception{
+    public void limparImgNaoUsadas(Telas qualTelaSelecionada) throws Exception{
+        String dirLocalImgSalvas = "";
+        String dbImgs = "";
         try {
-            String dirId = caminho;
-            FileReader fr = new FileReader(dirId);
-            BufferedReader br = new BufferedReader(fr);
-            File f = new File(caminho);
-            String[] lista = f.list();
-
-            int qtde = 0;
-            String linha;
-            String nome;
-            String novoCam;
-
-            if ((linha = br.readLine()) != null) {
-                qtde = Integer.parseInt(linha);
-            } else {
-                throw new Exception("nao ha ID no caminho " + caminho);
+            switch (qualTelaSelecionada) {
+                case MARCA:
+                    dirLocalImgSalvas = "./src/com/neuron/icons/logo/";
+                    dbImgs = "./src/com/neuron/database/dbMarca.txt";
+                    break;
+                    
+                case MODELO:
+                    dirLocalImgSalvas = "./src/com/neuron/icons/modelo/";
+                    dbImgs = "./src/com/neuron/database/dbModelo.txt";
+                    break;
+                
+                case VEICULO:
+                    dirLocalImgSalvas = "./src/com/neuron/icons/veiculo/";
+                    dbImgs = "./src/com/neuron/database/dbVeiculo.txt";
+                    break;
+                    
+                default :
+                    throw new Exception ("nao foi possivel realizar a limpeza dos arquivos");
             }
+            
+            File f = new File(dirLocalImgSalvas);
+            FileReader fr = new FileReader(dbImgs);
+            BufferedReader br  = new BufferedReader(fr);
+            
+            List<String> listaArqDataBase = new ArrayList<>();
+            List<String> listaArqExistentes = new ArrayList<>();
+            
+            String[] lista = f.list(); //listar arquivos da pasta
+            String linhaLida = "";
 
-            for (int i = 0; i < lista.length; i++) {
-                if (!lista[i].contains(novoCam = Gerador.getNomeMarcaByID(i))) {
-
-                    deleteFile(caminho + novoCam + ".jpeg");
-                    Logs.logger("Limpeza de Imagens | Imagem" + novoCam + ".jpeg foi deletada por não ter vinculo com algum cadastro! ", getClass().toString());
-                }
+            //listar todos os modelos salvos no Banco
+            while ( (linhaLida = br.readLine()) != null) {
+                String[] vetLinha = linhaLida.split(";");
+                listaArqDataBase.add(vetLinha[2].replace(dirLocalImgSalvas, ""));
             }
+            
+            //listar todos as imagens que estão na pasta e transferir para o List
+            for (String arq : lista) {
+                listaArqExistentes.add(arq);
+            }
+            
+            List<String> emComum = new ArrayList<>(listaArqDataBase);
+            
+            //listar os nomes em comum
+            emComum.retainAll(listaArqExistentes);
+            
+            //listar arquivos que nao tem vinculo
+            List<String> arqSemVinculo = new ArrayList<>();
+            for (String element : listaArqExistentes)
+                if (!emComum.contains(element))
+                    arqSemVinculo.add(element);
+            
+            //deletar arquivos
+            for (String nomeArqDel : arqSemVinculo) {
+                File file = new File (dirLocalImgSalvas+nomeArqDel);
+                file.delete();
+            }
+            
         } catch (Exception e) {
-            throw new Exception("Erro ao executar limpeza: "+e.getMessage());
+            throw new Exception ("nao foi possivel realizar a limpeza dos arquivos : "+e.getMessage());
         }
+        
     }
     
 

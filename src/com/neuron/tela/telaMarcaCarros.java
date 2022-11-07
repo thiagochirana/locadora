@@ -63,7 +63,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         datahora(); //data e hora no sistema
         resizeColunas();
         try {
-            iImg.limparImgNaoUsadas("./src/com/neuron/icons/logo/");
+            iImg.limparImgNaoUsadas(Telas.MARCA);
         } catch (Exception e) {
             Logs.logger("Nao foi possivel limpar imagens do diretorio ./src/com/neuron/icons/logo/", getClass().toString());
         }

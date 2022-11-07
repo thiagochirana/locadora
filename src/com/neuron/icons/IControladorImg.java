@@ -16,7 +16,7 @@ public interface IControladorImg {
     String alterNomeImgMarca(String novoNome, String caminho) throws Exception;
     String alterNomeImgModelo(String novoNome, String caminho) throws Exception;
     void deleteFile(String caminho) throws Exception;
-    void limparImgNaoUsadas(String caminhoID) throws Exception;
+    void limparImgNaoUsadas(Telas qualTelaSelecionada) throws Exception;
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo
