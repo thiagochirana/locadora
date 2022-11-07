@@ -133,13 +133,12 @@ public class ReadWrite implements IReadWrite{
             }
             br.close();
             
-            
-            
             return listaDeMarcas;
             
         } catch(Exception erro){
+            Gerador.createDB("dbMarca");
             
-         throw new Exception(erro);
+            throw new Exception(erro +"\nFoi criado um database de contingência ");
         }
     }
 
