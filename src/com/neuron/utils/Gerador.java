@@ -91,7 +91,7 @@ public class Gerador {
     }
     
     public static void createDB(String nome)throws FileNotFoundException, IOException{
-        String db ="./src/com/neuron/database/"+nome+".txt";
+        String db = nome;
         FileWriter fw = new FileWriter(db);
         BufferedWriter bw =new BufferedWriter(fw);
         bw.write("");

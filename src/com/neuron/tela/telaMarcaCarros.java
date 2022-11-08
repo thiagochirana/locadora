@@ -21,10 +21,7 @@ import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.*;
 import com.neuron.utils.*;
-import com.neuron.utils.TabelaImagemMarca;
 import com.neuron.icons.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenu;
@@ -42,16 +39,10 @@ import javax.swing.table.TableColumnModel;
 
 public class telaMarcaCarros extends javax.swing.JFrame {
 
-    /**
-     * Creates new form telaLogin
-     */
-    DefaultTableCellRenderer tCR = new DefaultTableCellRenderer();
     IControle interControle = new Controle();
     ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "novo arquivo";
-    ControladorImg file = new ControladorImg();
     IControladorImg iImg = new ControladorImg();
-    Marca marca = new Marca();
     
     public telaMarcaCarros() {
         initComponents();
@@ -716,12 +707,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
             Logs.logger("Nao foi atualizada a lista!", telaMarcaCarros.class.getName());
         }
     }//GEN-LAST:event_btnAtualizarListaActionPerformed
-    
-    public void enviarTokenEmail() {
-
         
-    }
-    
     //COLORIR BARRA DE MENU
     Color azulSistema = new Color(1, 132, 222, 255);
 

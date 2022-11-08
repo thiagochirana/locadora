@@ -84,6 +84,7 @@ public class ControladorImg implements IControladorImg{
                     throw new Exception ("nao foi possivel realizar a limpeza dos arquivos");
             }
             
+            //local onde as imagens estao salvas
             File f = new File(dirLocalImgSalvas);
             FileReader fr = new FileReader(dbImgs);
             BufferedReader br  = new BufferedReader(fr);

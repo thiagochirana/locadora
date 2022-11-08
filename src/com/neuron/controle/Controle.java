@@ -10,10 +10,14 @@
  ************* enjoy ******************/
 
 package com.neuron.controle;
+import com.neuron.icons.Telas;
 import com.neuron.templates.Marca;
 import com.neuron.persistencia.*;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -52,10 +56,15 @@ public class Controle implements IControle{
             throw new Exception("Marca já foi cadastrada");
         }
         if(marca.getNomeMarca()==null ||marca.getNomeMarca().equals("")){
-            throw new Exception("Nao e possivel inserir uma marca sem nome!");
+            throw new Exception("Marca sem nome!");
+        }
+        char[] carac = marca.getNomeMarca().toCharArray();
+        char ver = ' ';
+        if (marca.getNomeMarca().contains("  ") || carac[0] == ver) {
+            throw new Exception("Nome da Marca com espacos excessivos ou nao permitidos!");
         }
         if(marca.getDirLogo()==null || marca.getDirLogo().equals("")){
-            throw new Exception("Nao e possivel inserir a marca "+marca.getNomeMarca()+" sem logo!");
+            throw new Exception("Marca "+marca.getNomeMarca()+" sem logo!");
         }
         rw.incluirMarca(marca);
         
@@ -63,6 +72,11 @@ public class Controle implements IControle{
     
     @Override
     public void alterarMarca(int id, String nomeMarca,String caminhoLogo) throws Exception{
+        char[] carac = nomeMarca.toCharArray();
+        char ver = ' ';
+        if (nomeMarca.contains("  ") || carac[0] == ver) {
+            throw new Exception("Nome da Marca com espacos excessivos ou nao permitidos!");
+        }
         rw.alterarMarca(id, nomeMarca.toUpperCase(), caminhoLogo);
     }
    
@@ -96,16 +110,27 @@ public class Controle implements IControle{
         throw new Exception("Modelo ja foi cadastrado");
         }
         if (modelo.getNomeModelo().isEmpty() || modelo.getNomeModelo() == null){
-            throw new Exception("Nao e possivel salvar novo modelo sem nome");
+            throw new Exception("Modelo sem nome");
+        }
+        
+        char[] carac = modelo.getNomeModelo().toCharArray();
+        char ver = ' ';
+        if (modelo.getNomeModelo().contains("  ")  || carac[0] == ver){
+            throw new Exception("Nome do Modelo com espacos excessivos ou nao permitidos!");
         }
         if(modelo.getDirFotoModelo()==null || modelo.getDirFotoModelo().equals("./src/com/neuron/icons/modelo/.jpeg")){
-            throw new Exception("Nao e possivel inserir o modelo "+modelo.getNomeModelo()+" sem imagem!");
+            throw new Exception("Modelo "+modelo.getNomeModelo()+" sem uma imagem!");
         }
         rw.incluirModelo(model);
     }
 
     @Override
     public void alterarModelo(int id, String nomeModelo, String caminhoFotoModelo, int idMarca) throws Exception {
+        char[] carac = nomeModelo.toCharArray();
+        char ver = ' ';
+        if (nomeModelo.contains("  ") || carac[0] == ver) {
+            throw new Exception("Nome do Modelo com espacos excessivos ou nao permitidos!");
+        }
         rw.alterarModelo(id, nomeModelo.toUpperCase(), caminhoFotoModelo, idMarca);
     }
 
@@ -127,6 +152,58 @@ public class Controle implements IControle{
         thisClass = getClass() + "";
         thisClass = thisClass.replace("class ", "");
         return thisClass;
+    }
+    
+    //Databases
+    public void backupDatabase() throws Exception {
+        String dirBkp = "./src/com/neuron/temp/database/";
+        File dirDB = new File("./src/com/neuron/database/");
+        String[] listaData = dirDB.list(); //listar os db
+        
+        for (String nome : listaData) {
+            CopyFiles.copiarArquivo(dirDB.getPath()+nome, dirBkp+nome);
+        }
+    }
+    
+    public void verificarIntegridadeBanco(Telas tela) throws Exception {
+        String dir = "";
+        switch (tela) {
+            case MARCA: 
+                dir = DataBase.MARCA.getPathDB(); 
+                break;
+            case MODELO: 
+                dir = DataBase.MODELO.getPathDB(); 
+                break;
+            case VEICULO:
+                dir = DataBase.VEICULO.getPathDB();
+                break;
+            default: throw new Exception ("Nao existe banco associado a esta Tela!");
+        }
+        
+        File db = new File(dir);
+        File dirBkp = new File("./src/com/neuron/temp/database/");
+        
+        List<String> listaArqBackup = new ArrayList<>();
+        List<String> listaArqExistentes = new ArrayList<>();
+        
+        String[] listaBackup = dirBkp.list();
+        String[] listaExistentes = db.list();
+        
+        for (String listaExis : listaExistentes) {
+            listaArqExistentes.add(listaExis);
+        }
+        
+        for (String bkp : listaBackup) {
+            listaArqBackup.add(bkp);
+        }
+        
+        List<String> emComum = new ArrayList<>(listaArqBackup);
+        
+        emComum.retainAll(listaArqExistentes);
+        
+        if (!db.exists()) {
+            
+        }
     }
 
 }

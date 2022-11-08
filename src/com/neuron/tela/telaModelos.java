@@ -49,17 +49,17 @@ public class telaModelos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         customizeMenuBar(jMenuBar); //customizar cor do menu
         datahora(); //data e hora no sistema
-        resizeColunas();
-        limparTela();
+        resizeColunas(); //tamanho colunas
+        //limparTela(); //limpar tela
         
         try {
-            iImg.limparImgNaoUsadas(Telas.MODELO);
+            iImg.limparImgNaoUsadas(Telas.MODELO); //limpar imagens do database que nao estao sendo usadas
         } catch (Exception ex) {
             Logs.logger("nao foi possivel iniciar limpando imagens nao vinculadas a Modelos cadastrados", telaModelos.class.getName());
         }
         
         try {
-            carregarComboBoxMarcas();
+            carregarComboBoxMarcas(); //inserir nomes das marcas no jComboBox
             if (!interControle.listagemModelo().isEmpty() || interControle.listagemModelo() != null ) ImprimirGrid(interControle.listagemModelo());
            
         } catch (Exception erro) {
@@ -648,9 +648,9 @@ public class telaModelos extends javax.swing.JFrame {
     }
     
     public void carregarComboBoxMarcas() throws Exception{
-        String[] stringArray = interControle.listagemNomeMarcasList().toArray(new String[interControle.listagemNomeMarcas().size()]);
+        String[] arrayNomeMarcas = interControle.listagemNomeMarcasList().toArray(new String[interControle.listagemNomeMarcas().size()]);
         jComboBoxMarcas.removeAllItems();
-        for (String itemMarca : stringArray) {
+        for (String itemMarca : arrayNomeMarcas) {
             jComboBoxMarcas.addItem(itemMarca);
         }
         
@@ -743,6 +743,7 @@ public class telaModelos extends javax.swing.JFrame {
             imgLogo = iArquivo.RedimensionarImg("./src/com/neuron/icons"+caminhoArquivo,150,150);
             saidaLogo.setIcon(imgLogo);
             jComboBoxMarcas.setSelectedIndex(Gerador.getIDMarcaSelecionada(nomeMarcaSelecionado)-1);
+            
             Logs.logger("Modelo selecionado na tabela: "+this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1),getThisClass());
             
             saidaLogoMarca.setIcon(iArquivo.RedimensionarImg(caminhoLogoMarca, 105, 105));

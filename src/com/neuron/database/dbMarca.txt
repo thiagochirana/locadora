@@ -11,3 +11,4 @@
 11;INSERIRMARCA;./src/com/neuron/icons/logo/INSERIRMARCA.jpeg
 12;NOVAMARCA;./src/com/neuron/icons/logo/NOVAMARCA.jpeg
 13;USANDOMARCA;./src/com/neuron/icons/logo/USANDOMARCA.jpeg
+14; LARAVEL;./src/com/neuron/icons/logo/ LARAVEL.jpeg

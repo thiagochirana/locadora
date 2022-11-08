@@ -47,6 +47,12 @@ public class CopyFiles {
         File dest = new File(destino + nomeArquivo);
         Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
+    
+    public static void copiarArquivo(String origem, String destino)throws Exception{
+        File orig = new File(origem);
+        File dest = new File(destino);
+        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    }
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

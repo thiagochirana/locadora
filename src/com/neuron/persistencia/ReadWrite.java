@@ -15,6 +15,7 @@ import com.neuron.icons.*;
 import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.CopyFiles;
+import com.neuron.utils.DataBase;
 import com.neuron.utils.Gerador;
 import com.neuron.utils.Logs;
 import com.neuron.utils.ISelecionarArq;
@@ -32,17 +33,12 @@ public class ReadWrite implements IReadWrite{
     
     IControladorImg iImg;
     ISelecionarArq iArquivo;
-    private String dirMarca;
-    private String dirModelo;
-    String caminhoImg = "";
     
     String thisClass;
     
     public ReadWrite(){
         this.iImg = new ControladorImg();
         this.iArquivo = new SelecionarArq();
-        this.dirMarca = "./src/com/neuron/database/dbMarca.txt";
-        this.dirModelo = "./src/com/neuron/database/dbModelo.txt";
     }
     
     @Override
@@ -50,7 +46,7 @@ public class ReadWrite implements IReadWrite{
         try{
             String caminho = getCaminhoImg();
             //cria o arquivo
-            FileWriter fw = new FileWriter(dirMarca,true);
+            FileWriter fw = new FileWriter(DataBase.MARCA.getPathDB(),true);
             //Criar o buffer do arquivo
             BufferedWriter bw =new BufferedWriter(fw);
             // Incluindo o id no objeto ******
@@ -80,7 +76,7 @@ public class ReadWrite implements IReadWrite{
             BufferedWriter bwAux1 = new BufferedWriter(fwAux1);
             
             //Leitura do banco atual
-            String caminhoDbMarca= "./src/com/neuron/database/dbMarca.txt";
+            String caminhoDbMarca= DataBase.MARCA.getPathDB();
             File dbMarca = new File(caminhoDbMarca);
             File dbMarcaAux = new File(caminhoDbMarca);
             FileReader fr = new FileReader(caminhoDbMarca);
@@ -120,7 +116,7 @@ public class ReadWrite implements IReadWrite{
     public ArrayList<Marca> listagemMarca() throws Exception {
         try {
             ArrayList<Marca> listaDeMarcas = new ArrayList<Marca>();
-            FileReader fr = new FileReader("./src/com/neuron/database/dbMarca.txt");
+            FileReader fr = new FileReader(DataBase.MARCA.getPathDB());
             BufferedReader br  = new BufferedReader(fr);
             String linha = "";
             while((linha=br.readLine())!=null){
@@ -136,10 +132,10 @@ public class ReadWrite implements IReadWrite{
             return listaDeMarcas;
             
         } catch(Exception erro){
-            Gerador.createDB("dbMarca");
+            Gerador.createDB(DataBase.MARCA.getPathDB());
             
             throw new Exception(erro +"\nFoi criado um database de contingência ");
-        }
+        } 
     }
 
     @Override
@@ -148,10 +144,10 @@ public class ReadWrite implements IReadWrite{
             String caminho = getCaminhoImg();
             
             //cria o arquivo
-            FileWriter fw = new FileWriter(dirModelo, true);
+            FileWriter fw = new FileWriter(DataBase.MODELO.getPathDB(), true);
             //Criar o buffer do arquivo
             BufferedWriter bw = new BufferedWriter(fw);
-            Logs.logger("Conectando ao database de modelos "+dirModelo,getThisClass());
+            Logs.logger("Conectando ao database de modelos "+DataBase.MODELO.getPathDB(),getThisClass());
             
             // Incluindo o id no objeto ******
             modelo.setIdModelo(Gerador.getIdModelo());
@@ -229,7 +225,7 @@ public class ReadWrite implements IReadWrite{
         try {
             Logs.logger("Iniciando Listagem dos Moledos disponiveis", getThisClass());
             ArrayList<Modelo> listaModelo = new ArrayList<Modelo>();
-            FileReader fr = new FileReader("./src/com/neuron/database/dbModelo.txt");
+            FileReader fr = new FileReader(DataBase.MODELO.getPathDB());
             BufferedReader br  = new BufferedReader(fr);         
             
             String linha=br.readLine();
@@ -263,7 +259,7 @@ public class ReadWrite implements IReadWrite{
     @Override
     public ArrayList<String> listagemNomeMarcas() throws Exception {
         ArrayList<String> listaNomeMarca = new ArrayList<>();
-        FileReader fr = new FileReader("./src/com/neuron/database/dbMarca.txt");
+        FileReader fr = new FileReader(DataBase.MARCA.getPathDB());
         BufferedReader br = new BufferedReader(fr);
         
         String linha = "";
@@ -280,7 +276,7 @@ public class ReadWrite implements IReadWrite{
     @Override
     public List<String> listagemNomeMarcasList() throws Exception {
         List<String> listaNomeMarca = new ArrayList<>();
-        FileReader fr = new FileReader("./src/com/neuron/database/dbMarca.txt");
+        FileReader fr = new FileReader(DataBase.MARCA.getPathDB());
         BufferedReader br = new BufferedReader(fr);
         
         String linha = "";
