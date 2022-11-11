@@ -12,6 +12,7 @@
 package com.neuron.persistencia;
 
 import com.neuron.icons.*;
+import com.neuron.persistencia.exceptions.*;
 import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.CopyFiles;
@@ -57,7 +58,7 @@ public class ReadWrite implements IReadWrite{
             bw.close();	
             
             CopyFiles.copiarImgSelecionada(caminho, "./src/com/neuron/icons/logo/", marca.getNomeMarca()+".jpeg");
-      }catch(Exception erro){
+      }catch(DataBaseException erro){
             throw erro;
       }
     }
@@ -107,8 +108,8 @@ public class ReadWrite implements IReadWrite{
             dbMarcaNovo.renameTo(dbMarcaAux);
             
             iImg.limparImgNaoUsadas(Telas.MODELO);
-        } catch (Exception e) {
-            throw new Exception("");
+        } catch (DataBaseException e) {
+            throw e;
         }
     }
     
