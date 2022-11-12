@@ -15,6 +15,7 @@ import com.neuron.icons.*;
 import com.neuron.persistencia.exceptions.*;
 import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
+import com.neuron.utils.Backup;
 import com.neuron.utils.CopyFiles;
 import com.neuron.utils.DataBase;
 import com.neuron.utils.Gerador;
@@ -58,6 +59,8 @@ public class ReadWrite implements IReadWrite{
             bw.close();	
             
             CopyFiles.copiarImgSelecionada(caminho, "./src/com/neuron/icons/logo/", marca.getNomeMarca()+".jpeg");
+            
+            Backup.Database();
       }catch(DataBaseException erro){
             throw erro;
       }
@@ -108,6 +111,8 @@ public class ReadWrite implements IReadWrite{
             dbMarcaNovo.renameTo(dbMarcaAux);
             
             iImg.limparImgNaoUsadas(Telas.MODELO);
+            
+            Backup.Database();
         } catch (DataBaseException e) {
             throw e;
         }
@@ -164,6 +169,8 @@ public class ReadWrite implements IReadWrite{
             Logs.logger("Arquivo imagem Modelo transferido e armazenado no caminho: ./src/com/neuron/icons/modelo/" + modelo.getNomeModelo()+".jpeg", getThisClass());
             
             Logs.logger(modelo.getNomeModelo()+" salvo com sucesso! ",getThisClass());
+            
+            Backup.Database();
         } catch (Exception erro) {
             Logs.logger("Nao foi possivel Salvar o modelo "+modelo.getNomeModelo()+" no database! "+erro.getMessage(),getThisClass());
             throw erro;
@@ -216,6 +223,8 @@ public class ReadWrite implements IReadWrite{
             
             //renomeia o dbMarcaAux1 para ser o principal
             dbModeloNovo.renameTo(dbModeloAux);
+            
+            Backup.Database();
         } catch (Exception e) {
             throw new Exception("Nao foi possivel alterar modelo: "+e.getMessage());
         }
@@ -306,6 +315,75 @@ public class ReadWrite implements IReadWrite{
         br.close();
         file.delete();
         return caminho;
+    }
+    
+    public void verificaBanco(Telas tela) throws Exception{
+        File dbOrig;
+        File idDBOrig;
+        File dbBkp;
+        File idDBBkp;
+        
+        //verificar qual tela partiu a solicitacao
+        switch (tela) {
+            case MARCA:
+                dbOrig = new File(DataBase.MARCA.getPathDB());
+                idDBOrig = new File(DataBase.IDMARCA.getPathDB());
+                dbBkp = new File(DataBase.BKPMARCA.getPathDB());
+                idDBBkp = new File(DataBase.BKPIDMARCA.getPathDB());
+                break;
+                
+            case MODELO:
+                dbOrig = new File(DataBase.MODELO.getPathDB());
+                idDBOrig = new File(DataBase.IDMODELO.getPathDB());
+                dbBkp = new File(DataBase.BKPMODELO.getPathDB());
+                idDBBkp = new File(DataBase.BKPIDMODELO.getPathDB());
+                break;
+                
+            case VEICULO:
+                dbOrig = new File(DataBase.VEICULO.getPathDB());
+                idDBOrig = new File(DataBase.IDVEICULO.getPathDB());
+                dbBkp = new File(DataBase.BKPVEICULO.getPathDB());
+                idDBBkp = new File(DataBase.BKPIDVEICULO.getPathDB());
+                break;
+            
+            default :
+                throw new Exception("Nao foi possivel identificar tela para verificacao do seu database");
+        }
+        
+        //verificar os bancos
+        FileReader fr = new FileReader(dbOrig);
+        BufferedReader dataOriginal = new BufferedReader(fr);
+        
+        fr = new FileReader(dbBkp);
+        BufferedReader dataBack = new BufferedReader(fr);
+        
+        String orig = dataOriginal.readLine();
+        String bkp = dataBack.readLine();
+        
+        boolean stop = false;
+        
+        if (orig != null || bkp != null) {
+            while (stop == false && bkp != null && orig != null && orig.equals(bkp)) {
+                if (orig.equals(bkp)) {
+                    orig = dataOriginal.readLine();
+                    bkp = dataBack.readLine();
+                } else {
+                    dataOriginal.close();
+                    dataBack.close();
+                    Backup.Restaurar();
+                    stop = true;
+                }
+            }
+            if (!orig.equals(bkp)) {
+                dataOriginal.close();
+                dataBack.close();
+                Backup.Restaurar();
+            }
+        } else {
+            dataOriginal.close();
+            dataBack.close();
+            Backup.Restaurar();
+        }
     }
     
     

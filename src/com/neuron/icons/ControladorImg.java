@@ -123,6 +123,8 @@ public class ControladorImg implements IControladorImg{
                 file.delete();
             }
             
+            fr.close();
+            br.close();
         } catch (Exception e) {
             throw new Exception ("nao foi possivel realizar a limpeza dos arquivos : "+e.getMessage());
         }

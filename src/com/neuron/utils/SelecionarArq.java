@@ -42,6 +42,11 @@ public class SelecionarArq implements ISelecionarArq{
         fc.showOpenDialog(null);
         File arquivo = fc.getSelectedFile();
         if (arquivo != null) {
+            String name = arquivo.getName();
+            if (!name.endsWith(".jpg") && !name.endsWith(".png") && !name.endsWith(".jpeg") && !name.endsWith(".jfif")){
+                throw new Exception("Formato de arquivo invalido! Por favor selecione uma imagem!\n"
+                        + "Formatos aceitos: .png, .jpg, .jpeg e .jfif\n\nDica: Use uma imagem quadrada, com mesma altura e largura");
+            }
             setCaminhoDoArquivo(arquivo.getPath());
             Logs.logger("Arquivo selecionado no caminho "+arquivo.getPath(), SelecionarArq.class.getName());
             //jTextFieldUrl.setText(nomeDoArquivo);

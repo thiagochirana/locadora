@@ -38,7 +38,7 @@ public class Controle implements IControle{
             Iterator<Marca> lista = listagem.iterator();
             while(lista.hasNext()){
                  Marca marca = lista.next();
-                if(marca.getNomeMarca().equalsIgnoreCase(descricao)){
+                if(marca.getNomeMarca().replace(" ","").equalsIgnoreCase(descricao.replace(" ",""))){
                     return true;
                 }
             }
@@ -52,7 +52,7 @@ public class Controle implements IControle{
     @Override
     public void incluirMarca(Marca m) throws Exception {
         Marca marca = m;
-        if (buscarMarca(marca.getNomeMarca())) {
+        if (buscarMarca(marca.getNomeMarca() )) {
             throw new Exception("Marca já foi cadastrada");
         }
         if(marca.getNomeMarca()==null ||marca.getNomeMarca().equals("")){
@@ -72,6 +72,7 @@ public class Controle implements IControle{
     
     @Override
     public void alterarMarca(int id, String nomeMarca,String caminhoLogo) throws Exception{
+        if (buscarMarca(nomeMarca.replace(" ",""))) throw new Exception("Nome de marca ja existe! Por favor escolha outro nome");
         char[] carac = nomeMarca.toCharArray();
         char ver = ' ';
         if (nomeMarca.contains("  ") || carac[0] == ver) {
@@ -142,6 +143,11 @@ public class Controle implements IControle{
     @Override
     public ArrayList<String> listagemNomeMarcas() throws Exception{
         return rw.listagemNomeMarcas();
+    }
+    
+    @Override
+    public void verificaBanco(Telas tela) throws Exception{
+        rw.verificaBanco(tela);
     }
     
     public List<String> listagemNomeMarcasList() throws Exception{

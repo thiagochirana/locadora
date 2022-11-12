@@ -11,6 +11,7 @@
 
 package com.neuron.persistencia;
 
+import com.neuron.icons.Telas;
 import com.neuron.templates.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,9 @@ public interface IReadWrite{
     
     void incluirModelo(Modelo modelo)throws Exception;
     void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo, int idMarca) throws Exception;
-    ArrayList<Modelo> listagemModelo()throws Exception;  
+    ArrayList<Modelo> listagemModelo()throws Exception; 
+    
+    void verificaBanco(Telas tela) throws Exception;
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

@@ -53,11 +53,19 @@ public class telaMarcaCarros extends javax.swing.JFrame {
         customizeMenuBar(jMenuBar); //customizar cor do menu
         datahora(); //data e hora no sistema
         resizeColunas();
+        
         try {
             iImg.limparImgNaoUsadas(Telas.MARCA);
         } catch (Exception e) {
             Logs.logger("Nao foi possivel limpar imagens do diretorio ./src/com/neuron/icons/logo/", getClass().toString());
         }
+        
+        try {
+            interControle.verificaBanco(Telas.MARCA);
+        } catch (Exception e) {
+            Logs.logger(e.getMessage(), getClass().toString());
+        }
+        
         try {
             
             if (!interControle.listagemMarca().isEmpty() || interControle.listagemMarca() != null ) ImprimirGrid(interControle.listagemMarca());
@@ -634,7 +642,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
             
             ImprimirGrid(interControle.listagemMarca());
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: "+erro.getMessage()+ " | Selecione uma imagem!");
+            JOptionPane.showMessageDialog(this, "Erro: "+erro.getMessage());
         }
     }//GEN-LAST:event_btnInserirMarcaActionPerformed
 
