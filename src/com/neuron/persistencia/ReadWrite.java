@@ -300,6 +300,10 @@ public class ReadWrite implements IReadWrite{
         return listaNomeMarca;
     }
 
+    @Override
+    public boolean verificaUser(ArrayList<String> usuario) throws Exception{
+        return true;
+    }
     
     public String getThisClass() {
         thisClass = getClass() + "";

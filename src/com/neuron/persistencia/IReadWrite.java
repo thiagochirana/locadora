@@ -29,6 +29,8 @@ public interface IReadWrite{
     ArrayList<Modelo> listagemModelo()throws Exception; 
     
     void verificaBanco(Telas tela) throws Exception;
+    
+    boolean verificaUser(ArrayList<String> usuario) throws Exception;
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

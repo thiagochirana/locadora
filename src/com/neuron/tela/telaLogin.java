@@ -17,6 +17,8 @@ public class telaLogin extends javax.swing.JFrame {
     
     public telaLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        jPasswordField.setText("");
     }
 
     /**
@@ -31,8 +33,6 @@ public class telaLogin extends javax.swing.JFrame {
         bgBackground = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         bgLogin = new javax.swing.JPanel();
-        cpLoginUser = new javax.swing.JTextField();
-        cpLoginPassword = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JButton();
         btnEsqueceuSenha = new javax.swing.JLabel();
         iconNeuronSistemas = new javax.swing.JLabel();
@@ -40,6 +40,8 @@ public class telaLogin extends javax.swing.JFrame {
         iconUser = new javax.swing.JLabel();
         iconPassword = new javax.swing.JLabel();
         cpStatusLogin = new javax.swing.JLabel();
+        cpLogin = new javax.swing.JFormattedTextField();
+        jPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,16 +50,6 @@ public class telaLogin extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(1, 163, 218));
 
         bgLogin.setBackground(new java.awt.Color(255, 255, 255));
-
-        cpLoginUser.setBackground(new java.awt.Color(250, 250, 250));
-        cpLoginUser.setForeground(new java.awt.Color(0, 0, 0));
-        cpLoginUser.setText("Login");
-        cpLoginUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-
-        cpLoginPassword.setBackground(new java.awt.Color(250, 250, 250));
-        cpLoginPassword.setForeground(new java.awt.Color(0, 0, 0));
-        cpLoginPassword.setText("Senha");
-        cpLoginPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         btnEntrar.setBackground(new java.awt.Color(1, 132, 222));
         btnEntrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -90,30 +82,48 @@ public class telaLogin extends javax.swing.JFrame {
         cpStatusLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cpStatusLogin.setText("   ");
 
+        cpLogin.setBackground(new java.awt.Color(255, 255, 255));
+        cpLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        cpLogin.setForeground(new java.awt.Color(0, 0, 0));
+        cpLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cpLoginMouseClicked(evt);
+            }
+        });
+
+        jPasswordField.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField.setForeground(new java.awt.Color(0, 0, 0));
+        jPasswordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
         javax.swing.GroupLayout bgLoginLayout = new javax.swing.GroupLayout(bgLogin);
         bgLogin.setLayout(bgLoginLayout);
         bgLoginLayout.setHorizontalGroup(
             bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cpVersao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLoginLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnEsqueceuSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(iconNeuronSistemas, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLoginLayout.createSequentialGroup()
-                        .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(iconUser, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(iconPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cpLoginPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .addComponent(cpLoginUser, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(cpStatusLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(39, 39, 39))
+                        .addComponent(cpVersao)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLoginLayout.createSequentialGroup()
+                        .addGap(0, 32, Short.MAX_VALUE)
+                        .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(iconNeuronSistemas, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addGroup(bgLoginLayout.createSequentialGroup()
+                                .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(iconUser, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(iconPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cpLogin)
+                                    .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                            .addComponent(cpStatusLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(39, 39, 39))))
+            .addGroup(bgLoginLayout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(btnEsqueceuSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         bgLoginLayout.setVerticalGroup(
             bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,25 +132,27 @@ public class telaLogin extends javax.swing.JFrame {
                 .addComponent(iconNeuronSistemas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cpStatusLogin)
-                .addGap(10, 10, 10)
-                .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cpLoginUser, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(bgLoginLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(iconUser)))
                 .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgLoginLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(cpLoginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
+                        .addGap(18, 18, 18)
+                        .addComponent(iconUser)
+                        .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLoginLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(bgLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLoginLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addComponent(iconPassword)
-                        .addGap(26, 26, 26)))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLoginLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(30, 30, 30)
                 .addComponent(btnEsqueceuSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addComponent(cpVersao)
                 .addContainerGap())
         );
@@ -150,9 +162,9 @@ public class telaLogin extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(319, 319, 319)
+                .addGap(322, 322, 322)
                 .addComponent(bgLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,8 +200,14 @@ public class telaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
+        String login = cpLogin.getText();
+        String pass = jPasswordField.getText();
+        System.out.println(pass);
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void cpLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cpLoginMouseClicked
+        cpLogin.setText("");
+    }//GEN-LAST:event_cpLoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -231,13 +249,13 @@ public class telaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel bgLogin;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel btnEsqueceuSenha;
-    private javax.swing.JTextField cpLoginPassword;
-    private javax.swing.JTextField cpLoginUser;
+    private javax.swing.JFormattedTextField cpLogin;
     private javax.swing.JLabel cpStatusLogin;
     private javax.swing.JLabel cpVersao;
     private javax.swing.JLabel iconNeuronSistemas;
     private javax.swing.JLabel iconPassword;
     private javax.swing.JLabel iconUser;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordField;
     // End of variables declaration//GEN-END:variables
 }
