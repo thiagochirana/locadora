@@ -46,6 +46,7 @@ public class ReadWriteUsers implements IReadWriteUsers{
     Color azulSistema = new Color(1, 132, 222, 255);
     
     //JMenus
+    JMenu jMDashboard = new JMenu("Dashboard");
     JMenu jMAluguel = new JMenu("Aluguel");
     JMenu jMCliente = new JMenu("Clientes");
     JMenu jMCarros = new JMenu("Carros");
@@ -86,8 +87,12 @@ public class ReadWriteUsers implements IReadWriteUsers{
     JMenuItem itemAdmListar = new JMenuItem("Mostrar Usuários");
     JMenuItem itemAdmAlterar = new JMenuItem("Alterar/Remover Usuários");
     
+    //jMenuItem Perfil
+    JMenuItem itemPerSuaConta = new JMenuItem("Perfil");
+    JMenuItem itemPerLogout = new JMenuItem("Logout");
+    
     @Override
-    public boolean validarAcesso(Usuario user) throws Exception{
+    public boolean validarAcesso(Usuario user, JFrame jf) throws Exception{
         Usuario u = user;
         FileReader fr = new FileReader(DataBase.USER.getPathDB());
         BufferedReader dbUser = new BufferedReader(fr);
@@ -100,21 +105,19 @@ public class ReadWriteUsers implements IReadWriteUsers{
                 FileWriter fw = new FileWriter(userTemp);
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(usuario[3]+";"+usuario[6]);
-
                 bw.close();
+                jf.dispose();
             }
         }
-        
         dbUser.close();
         return valido;
     }
     
-    
     //Configuracao de Menu Bar de acordo com permissao do User
     @Override
-    public JMenuBar customMenuBar() throws Exception{
+    public JMenuBar customMenuBar(JFrame jf) throws Exception{
         
-        JMenuBar jmb = jMenuStd();
+        JMenuBar jmb = jMenuStd(jf);
         
         //setando cor do menuBar
         jmb.setUI(new BasicMenuBarUI() {
@@ -161,7 +164,7 @@ public class ReadWriteUsers implements IReadWriteUsers{
         comp.setForeground(Color.white);
     }
     
-    private JMenuBar jMenuStd() throws Exception{
+    private JMenuBar jMenuStd(JFrame jf) throws Exception{
         FileReader f = new FileReader(userTemp);
         BufferedReader br = new BufferedReader(f);
         
@@ -169,7 +172,10 @@ public class ReadWriteUsers implements IReadWriteUsers{
         String[] user = aux.split(";");
         br.close();
         
-        JMenuBar jmenubar = new JMenuBar();
+        JMenuBar jmenubar = new JMenuBar();   
+        
+        jmenubar.add(setEvtMenu(jMDashboard, Telas.DASHBOARD, jf));
+        
         //primeiro adiciona o item ao menu
         jMAluguel.add(itemMenu(itemAluguelAlugar));
         jMAluguel.add(itemMenu(itemAluguelAtraso));
@@ -192,8 +198,8 @@ public class ReadWriteUsers implements IReadWriteUsers{
             jMCarros.add(itemMenu(itemCarVendidos));
             jMCarros.add(itemMenu(itemCarManut));
             jMCarros.add(itemMenu(itemCarAcidente));
-            jMCarros.add(itemMenu(itemCarMarca));
-            jMCarros.add(itemMenu(itemCarModelo));
+            jMCarros.add(itemMenu(itemCarMarca,jf));
+            jMCarros.add(itemMenu(itemCarModelo,jf));
             jMCarros.add(itemMenu(itemCarVeiculo)); 
         }
         jmenubar.add(jMCarros).setFont(new java.awt.Font("Segoe UI", 0, 14));
@@ -210,53 +216,14 @@ public class ReadWriteUsers implements IReadWriteUsers{
             jMAdmin.add(itemMenu(itemAdmAlterar));
             jMAdmin.add(itemMenu(itemAdmListar));
             jmenubar.add(jMAdmin).setFont(new java.awt.Font("Segoe UI", 0, 14));
-        }
+        } 
         
         jmenubar.add(Box.createHorizontalGlue());
-        jmenubar.add(jMPerfil).setFont(new java.awt.Font("Segoe UI", 0, 14));
-        
-        
+        jMPerfil.add(itemMenu(itemPerSuaConta));
+        jMPerfil.add(itemMenu(itemPerLogout,jf));
+        jmenubar.add(jMPerfil);
         
         return jmenubar;
-    }
-    
-    private void eventoClick(JMenuItem jmi,Telas tela){
-        Object t = new telaDashboard();
-
-        switch (tela) {
-            case MARCA:
-                t = new telaMarcaCarros();
-            default:
-                t = new telaDashboard();
-        }
-        
-        jmi.addMouseListener(new MouseListener(){
-        @Override
-        public void mousePressed(MouseEvent evt){
-            new t().setVisible(true);
-        }
-        
-        @Override
-        public void mouseClicked(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-        
-        @Override
-        public void mouseReleased(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-        
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-        
-        @Override
-        public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-        
-        });
     }
     
     private JMenuItem itemMenu(JMenuItem item){
@@ -265,7 +232,55 @@ public class ReadWriteUsers implements IReadWriteUsers{
         return jmi;
     }
     
+    private JMenuItem itemMenu(JMenuItem item, JFrame jf){
+        JMenuItem jmi = item;
+        jmi.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        
+        jmi.addMouseListener(new MouseListener(){
+        @Override
+        public void mousePressed(MouseEvent evt){
+            jf.dispose();
+            if (jmi == itemCarMarca) new telaMarcaCarros().setVisible(true);
+            if (jmi == itemCarModelo) new telaModelos().setVisible(true);
+            if (jmi == itemPerLogout) new telaLogin().setVisible(true);
+        }
+        
+        @Override
+        public void mouseClicked(MouseEvent e){}
+        @Override
+        public void mouseReleased(MouseEvent e){}
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}
+        });
+        
+        return jmi;
+    }
     
+    private JMenu setEvtMenu(JMenu jm, Telas tela,JFrame jf){
+        jm.addMouseListener(new MouseListener(){
+        @Override
+        public void mousePressed(MouseEvent evt){
+            switch (tela){
+                case DASHBOARD:
+                    new telaDashboard().setVisible(true); 
+                    break;
+            }            
+        }
+        @Override
+        public void mouseClicked(MouseEvent e){}
+        @Override
+        public void mouseReleased(MouseEvent e){}
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}
+        });
+        jm.setFont(new java.awt.Font("Segoe UI", 0, 14));
+        jf.dispose();
+        return jm;
+    }
     
     @Override
     public ArrayList<String> UserDataHoraAcesso() throws Exception{

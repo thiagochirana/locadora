@@ -9,5 +9,5 @@ package com.neuron.icons;
  * @author thiag
  */
 public enum Telas {
-    MODELO,MARCA,VEICULO;
+    MODELO,MARCA,VEICULO,DASHBOARD,USER_ALTERAR,USER_BUSCAR,SEM_TELA;
 }

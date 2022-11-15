@@ -13,7 +13,6 @@ package com.neuron.tela;
 
 import com.neuron.templates.Modelo;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,16 +22,12 @@ import com.neuron.controle.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
 import com.neuron.utils.TabelaImagemModelo;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.MenuElement;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -45,11 +40,14 @@ public class telaModelos extends javax.swing.JFrame {
     String caminhoArquivo = "";
     String thisClass = "";
     IControladorImg iImg = new ControladorImg();
-    IControleUser iContUser = new ControleUser();
+    
     public telaModelos() {
         initComponents();        
         this.setLocationRelativeTo(null);
+        //this.setUndecorated(true);
+        this.setTitle("Modelos");
         try {
+            menuLogOff.setVisible(false);
             customizeMenuBar(jMenuBar); //customizar cor do menu
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
@@ -104,12 +102,13 @@ public class telaModelos extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jComboBoxMarcas = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        btnAttLista = new javax.swing.JButton();
         saidaLogoMarca = new javax.swing.JLabel();
         bgBtnInserir = new javax.swing.JPanel();
         btnInserir = new javax.swing.JLabel();
         bgBtnInserir3 = new javax.swing.JPanel();
         btnAlterar = new javax.swing.JLabel();
+        btnAttLista = new javax.swing.JLabel();
+        btnVoltarPagAnt = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         menuLogOff = new javax.swing.JMenu();
 
@@ -118,7 +117,7 @@ public class telaModelos extends javax.swing.JFrame {
         bgBackground.setBackground(new java.awt.Color(250, 250, 250));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(84, 197, 255));
+        jLabel1.setForeground(new java.awt.Color(40, 106, 255));
         jLabel1.setText("Modelos");
 
         cpData.setForeground(new java.awt.Color(153, 153, 153));
@@ -263,18 +262,6 @@ public class telaModelos extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(1, 132, 222));
         jLabel7.setText("Logo da Marca:");
 
-        btnAttLista.setBackground(new java.awt.Color(1, 132, 222));
-        btnAttLista.setForeground(new java.awt.Color(255, 255, 255));
-        btnAttLista.setText("Atualizar");
-        btnAttLista.setAlignmentX(0.5F);
-        btnAttLista.setAutoscrolls(true);
-        btnAttLista.setBorder(null);
-        btnAttLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAttListaActionPerformed(evt);
-            }
-        });
-
         bgBtnInserir.setBackground(new java.awt.Color(1, 132, 222));
 
         btnInserir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -325,6 +312,20 @@ public class telaModelos extends javax.swing.JFrame {
             .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
+        btnAttLista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/att_blue.png"))); // NOI18N
+        btnAttLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAttListaMouseClicked(evt);
+            }
+        });
+
+        btnVoltarPagAnt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/voltar_blue.png"))); // NOI18N
+        btnVoltarPagAnt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarPagAntMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
         bgBackgroundLayout.setHorizontalGroup(
@@ -345,7 +346,10 @@ public class telaModelos extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAttLista, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAttLista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVoltarPagAnt)
+                        .addGap(2, 2, 2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
@@ -392,8 +396,9 @@ public class telaModelos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAttLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15)
+                    .addComponent(btnAttLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVoltarPagAnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -593,23 +598,9 @@ public class telaModelos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCarregarArquivoMouseEntered
 
-    private void menuLogOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogOffMouseClicked
-        Logs.logger("Encerrando Software",getThisClass());
-        this.dispose();
-    }//GEN-LAST:event_menuLogOffMouseClicked
-
     private void jComboBoxMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcasActionPerformed
         //setComboBoxMarcaSelecionada(jComboBoxMarcas.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBoxMarcasActionPerformed
-
-    private void btnAttListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttListaActionPerformed
-        try {
-            ImprimirGrid(interControle.listagemModelo());
-            Logs.logger("Lista atualizada em ", telaModelos.class.getName());
-        } catch (Exception ex) {
-            Logs.logger("Nao foi possivel atualizar a lista. "+ex.getMessage(), telaModelos.class.getName());
-        }
-    }//GEN-LAST:event_btnAttListaActionPerformed
 
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         try {
@@ -675,27 +666,42 @@ public class telaModelos extends javax.swing.JFrame {
     private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarMouseEntered
-    
-    
-    
-    //COLORIR BARRA DE MENU
-    Color azulSistema = new Color(1, 132, 222, 255);
 
+    private void menuLogOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogOffMouseClicked
+        Logs.logger("Encerrando Software",getThisClass());
+        this.dispose();
+    }//GEN-LAST:event_menuLogOffMouseClicked
+
+    private void btnAttListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttListaMouseClicked
+        try {
+            carregarComboBoxMarcas();
+            ImprimirGrid(interControle.listagemModelo());
+            Logs.logger("lista de Marcas atualizada com sucesso!", telaMarcaCarros.class.getName());
+        } catch (Exception ex) {
+            Logs.logger("Nao foi atualizada a lista!", telaMarcaCarros.class.getName());
+        }
+    }//GEN-LAST:event_btnAttListaMouseClicked
+
+    private void btnVoltarPagAntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarPagAntMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVoltarPagAntMouseClicked
+    
     private void customizeMenuBar(JMenuBar menuBar) throws Exception{
-
-        menuBar.add(iContUser.customMenuBar());
-        menuBar.setUI(new BasicMenuBarUI() {
-
+        IControleUser iContUser = new ControleUser();
+        JMenuBar jmb = menuBar;
+        
+        //Barra customizada de acordo com o perfil
+        jmb.add(iContUser.customMenuBar(this));
+        
+        jmb.setUI(new BasicMenuBarUI() {
             @Override
             public void paint(Graphics g, JComponent c) {
-                g.setColor(azulSistema);
+                g.setColor(new Color(1, 132, 222, 255));
                 g.fillRect(0, 0, c.getWidth(), c.getHeight());
             }
-
         });
-        
     }
-
+    
     public String getCaminhoArquivo() {
         return caminhoArquivo;
     }
@@ -760,9 +766,10 @@ public class telaModelos extends javax.swing.JFrame {
     private javax.swing.JPanel bgBtnInserir;
     private javax.swing.JPanel bgBtnInserir3;
     private javax.swing.JLabel btnAlterar;
-    private javax.swing.JButton btnAttLista;
+    private javax.swing.JLabel btnAttLista;
     private javax.swing.JLabel btnCarregarArquivo;
     private javax.swing.JLabel btnInserir;
+    private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;
     private javax.swing.JTextField cpInserir;
     private javax.swing.JLabel cpUser;

@@ -22,6 +22,7 @@ public class telaLogin extends javax.swing.JFrame {
     
     
     public telaLogin() {
+        this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         jPasswordField.setText("");
@@ -49,6 +50,7 @@ public class telaLogin extends javax.swing.JFrame {
         cpStatusLogin = new javax.swing.JLabel();
         cpLogin = new javax.swing.JFormattedTextField();
         jPasswordField = new javax.swing.JPasswordField();
+        btnClose = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,10 +161,17 @@ public class telaLogin extends javax.swing.JFrame {
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnEsqueceuSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(cpVersao)
                 .addContainerGap())
         );
+
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/close.png"))); // NOI18N
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCloseMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -171,14 +180,18 @@ public class telaLogin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(322, 322, 322)
                 .addComponent(bgLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
+                .addComponent(btnClose)
+                .addGap(29, 29, 29))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(bgLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnClose)
+                    .addComponent(bgLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
@@ -211,11 +224,12 @@ public class telaLogin extends javax.swing.JFrame {
             String login = cpLogin.getText();
             String pass = jPasswordField.getText();
             Usuario user = new Usuario(0,login,pass);
-            if (iControle.validarAcesso(user)) {
-                JOptionPane.showMessageDialog(this, "Acesso permitido");
+            if (iControle.validarAcesso(user,this)) {
+                this.dispose();
+                //JOptionPane.showMessageDialog(this, "Acesso permitido");
                 telaDashboard tela = new telaDashboard();
                 tela.setVisible(true);
-                this.dispose();
+                
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,ex.getMessage());
@@ -225,6 +239,10 @@ public class telaLogin extends javax.swing.JFrame {
     private void cpLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cpLoginMouseClicked
         cpLogin.setText("");
     }//GEN-LAST:event_cpLoginMouseClicked
+
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCloseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -264,6 +282,7 @@ public class telaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgBackground;
     private javax.swing.JPanel bgLogin;
+    private javax.swing.JLabel btnClose;
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel btnEsqueceuSenha;
     private javax.swing.JFormattedTextField cpLogin;

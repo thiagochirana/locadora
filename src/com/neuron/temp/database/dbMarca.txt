@@ -19,3 +19,4 @@
 19;GOHORSE;./src/com/neuron/icons/logo/GOHORSE.jpeg
 20;VARE;./src/com/neuron/icons/logo/VARE.jpeg
 21;BULLISHIT;./src/com/neuron/icons/logo/BULLISHIT.jpeg
+22;HONDA;./src/com/neuron/icons/logo/HONDA.jpeg

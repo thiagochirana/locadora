@@ -7,6 +7,7 @@ package com.neuron.controle;
 import com.neuron.persistencia.*;
 import com.neuron.templates.*;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
 /**
@@ -28,7 +29,7 @@ public class ControleUser implements IControleUser{
     }
     
     @Override
-    public boolean validarAcesso(Usuario usuario) throws Exception{
+    public boolean validarAcesso(Usuario usuario,JFrame jf) throws Exception{
         Usuario user = usuario;
         if (user.getUser().contains(" ")){
             throw new Exception("Usuario invalido por conter espacos");
@@ -37,12 +38,12 @@ public class ControleUser implements IControleUser{
             throw new Exception("Senha muito curta! Por favor informe uma senha maior que 8 digitos!");
         }
         
-        return iRWU.validarAcesso(user);
+        return iRWU.validarAcesso(user,jf);
     }
     
     @Override
-    public JMenuBar customMenuBar() throws Exception{
-        return iRWU.customMenuBar();
+    public JMenuBar customMenuBar(JFrame jf) throws Exception{
+        return iRWU.customMenuBar(jf);
     }
     
     @Override

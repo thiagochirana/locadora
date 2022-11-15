@@ -6,6 +6,7 @@ package com.neuron.persistencia;
 
 import com.neuron.templates.*;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
 /**
@@ -13,7 +14,7 @@ import javax.swing.JMenuBar;
  * @author thiag
  */
 public interface IReadWriteUsers {
-    boolean validarAcesso(Usuario usuario) throws Exception;
-    JMenuBar customMenuBar() throws Exception;
+    boolean validarAcesso(Usuario usuario,JFrame jf) throws Exception;
+    JMenuBar customMenuBar(JFrame jf) throws Exception;
     public ArrayList<String> UserDataHoraAcesso() throws Exception;
 }

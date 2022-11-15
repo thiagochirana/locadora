@@ -14,7 +14,6 @@ package com.neuron.tela;
 import com.neuron.controle.ControleUser;
 import com.neuron.controle.IControleUser;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,12 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComponent;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.MenuElement;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 
 
@@ -40,13 +35,16 @@ public class telaDashboard extends javax.swing.JFrame {
     IControleUser iUser = new ControleUser();
     
     public telaDashboard() {
+        //this.setUndecorated(true);
+        
         initComponents();
         this.setLocationRelativeTo(null);
-        
         try {
+            menuLogOff.setVisible(false);
             customizeMenuBar(jMenuBar);
             iUser.UserDataHoraAcesso();
             ArrayList<String> aux = iUser.UserDataHoraAcesso();
+            this.setTitle("Dashboard | "+aux.get(0));
             cpUser.setText(aux.get(0) + " - " +aux.get(1));
             cpData.setText(aux.get(2));
         } catch (Exception e) {
@@ -91,7 +89,7 @@ public class telaDashboard extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaDisponiveisDashboard1 = new javax.swing.JTable();
         jMenuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuLogOff = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -360,9 +358,9 @@ public class telaDashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu1.setText("Log-Off");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenuBar.add(jMenu1);
+        menuLogOff.setText("Log-Off");
+        menuLogOff.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuBar.add(menuLogOff);
 
         setJMenuBar(jMenuBar);
 
@@ -403,7 +401,7 @@ public class telaDashboard extends javax.swing.JFrame {
     Color azulSistema = new Color(1, 132, 222, 255);
 
     private void customizeMenuBar(JMenuBar menuBar) throws Exception{
-        menuBar.add(iUser.customMenuBar());
+        menuBar.add(iUser.customMenuBar(this));
         menuBar.setUI(new BasicMenuBarUI() {
 
             @Override
@@ -418,10 +416,6 @@ public class telaDashboard extends javax.swing.JFrame {
 
     }
 
-    private void changeComponentColors(Component comp) {
-        comp.setBackground(azulSistema);
-        comp.setForeground(Color.white);
-    }
     
     /**
      * @param args the command line arguments
@@ -476,7 +470,6 @@ public class telaDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
@@ -484,6 +477,7 @@ public class telaDashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logoNeuron;
+    private javax.swing.JMenu menuLogOff;
     private javax.swing.JTable tabelaDisponiveisDashboard;
     private javax.swing.JTable tabelaDisponiveisDashboard1;
     // End of variables declaration//GEN-END:variables
