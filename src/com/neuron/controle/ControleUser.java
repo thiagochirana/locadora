@@ -6,6 +6,7 @@ package com.neuron.controle;
 
 import com.neuron.persistencia.*;
 import com.neuron.templates.*;
+import java.util.ArrayList;
 import javax.swing.JMenuBar;
 
 /**
@@ -39,8 +40,14 @@ public class ControleUser implements IControleUser{
         return iRWU.validarAcesso(user);
     }
     
-    public JMenuBar customMenuBar(){
+    @Override
+    public JMenuBar customMenuBar() throws Exception{
         return iRWU.customMenuBar();
+    }
+    
+    @Override
+    public ArrayList<String> UserDataHoraAcesso() throws Exception{
+        return iRWU.UserDataHoraAcesso();
     }
     
     public void inserirNovoUsuario(){

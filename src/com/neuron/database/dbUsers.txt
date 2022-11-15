@@ -1,2 +1,2 @@
-1;admin;admin;ADMIN
-2;venda;venda123;VENDAS
+1;admin;admin;Administrador;admin@gmail.com;62999990123;ADMIN
+2;venda;venda123;Chirana;vendas@treasures.com;00123456789;VENDAS

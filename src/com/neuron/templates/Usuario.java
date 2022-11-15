@@ -9,6 +9,7 @@ import com.neuron.persistencia.PermissaoUsuario;
  */
 public class Usuario {
     int IdUsuario;
+    String nomeUsuario;
     String user;
     String pass;
     String email;
@@ -27,8 +28,9 @@ public class Usuario {
     }
 
     //constructor para criar um novo usuário
-    public Usuario(int idUsuario, String user, String pass, String email, String telefone, PermissaoUsuario permissao) {
+    public Usuario(int idUsuario,String nomeUsuario, String user, String pass, String email, String telefone, PermissaoUsuario permissao) {
         this.IdUsuario = idUsuario;
+        this.nomeUsuario = nomeUsuario;
         this.user = user;
         this.pass = pass;
         this.email = email;
@@ -78,7 +80,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return IdUsuario + ";" +user + ";" + pass + ";" + email + ";" + telefone + ";" + permissao;
+        return IdUsuario + ";" +user + ";" + pass + ";" + nomeUsuario + ";" + email + ";" + telefone + ";" + permissao;
     }
     
     

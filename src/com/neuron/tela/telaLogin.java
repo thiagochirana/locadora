@@ -13,8 +13,6 @@ package com.neuron.tela;
 
 import com.neuron.controle.*;
 import com.neuron.templates.Usuario;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -215,6 +213,9 @@ public class telaLogin extends javax.swing.JFrame {
             Usuario user = new Usuario(0,login,pass);
             if (iControle.validarAcesso(user)) {
                 JOptionPane.showMessageDialog(this, "Acesso permitido");
+                telaDashboard tela = new telaDashboard();
+                tela.setVisible(true);
+                this.dispose();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,ex.getMessage());
