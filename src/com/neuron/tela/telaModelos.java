@@ -43,7 +43,7 @@ public class telaModelos extends javax.swing.JFrame {
     String caminhoArquivo = "";
     String thisClass = "";
     IControladorImg iImg = new ControladorImg();
-    
+    IControleUser iContUser = new ControleUser();
     public telaModelos() {
         initComponents();        
         this.setLocationRelativeTo(null);
@@ -913,6 +913,8 @@ public class telaModelos extends javax.swing.JFrame {
                 }
             }
         }
+        
+        jMenuBar.add(iContUser.customMenuBar());
     }
 
     private void changeComponentColors(Component comp) {

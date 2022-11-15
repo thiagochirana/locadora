@@ -1,1 +1,2 @@
 1;admin;admin;ADMIN
+2;venda;venda123;VENDAS

@@ -11,7 +11,7 @@
 
 package com.neuron.utils;
 
-import com.neuron.persistencia.User;
+import com.neuron.persistencia.PermissaoUsuario;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -290,7 +290,7 @@ public class GUI_Utils extends javax.swing.JFrame {
             File file = new File("./src/com/neuron/database/dbUsers.txt");
             FileWriter fr = new FileWriter(file);
             BufferedWriter br = new BufferedWriter(fr);
-            br.write(User.ADMIN.toString());
+            br.write(PermissaoUsuario.ADMIN.toString());
             br.close();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex);

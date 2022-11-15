@@ -8,7 +8,7 @@ package com.neuron.persistencia;
  *
  * @author thiag
  */
-public enum User {
+public enum PermissaoUsuario {
     //ADMIN - acesso total a aplicacao
     //GERENTE - Pode realizar Cadastros
     //FINANCEIRO - visualiza apenas, tem acesso a vendas e compras de veiculos e servicos

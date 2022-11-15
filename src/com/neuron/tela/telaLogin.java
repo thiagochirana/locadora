@@ -11,14 +11,23 @@
 
 package com.neuron.tela;
 
+import com.neuron.controle.*;
+import com.neuron.templates.Usuario;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 
 public class telaLogin extends javax.swing.JFrame {
 
+    IControleUser iControle = new ControleUser();
+    
     
     public telaLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
         jPasswordField.setText("");
+        
     }
 
     /**
@@ -200,9 +209,16 @@ public class telaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        String login = cpLogin.getText();
-        String pass = jPasswordField.getText();
-        System.out.println(pass);
+        try {
+            String login = cpLogin.getText();
+            String pass = jPasswordField.getText();
+            Usuario user = new Usuario(0,login,pass);
+            if (iControle.validarAcesso(user)) {
+                JOptionPane.showMessageDialog(this, "Acesso permitido");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void cpLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cpLoginMouseClicked
