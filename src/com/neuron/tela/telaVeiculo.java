@@ -138,11 +138,11 @@ public class telaVeiculo extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Modelo", "Marca", "Placa", "Disponível", "Diretório", "Logo", "Logo Marca"
+                "ID", "Cor", "Modelo", "Marca", "Placa", "Disponível", "Logo", "Logo Marca"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

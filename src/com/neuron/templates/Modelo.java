@@ -12,7 +12,7 @@
 package com.neuron.templates;
 
 
-public class Modelo {
+public class Modelo extends Marca{
     
     private int idModelo;
     private String nomeModelo;
