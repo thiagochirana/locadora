@@ -107,6 +107,10 @@ public class telaVeiculo extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JLabel();
         btnAttLista = new javax.swing.JLabel();
         btnVoltarPagAnt = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBoxMarcas1 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        cpInserir1 = new javax.swing.JTextField();
         jMenuBar = new javax.swing.JMenuBar();
         menuLogOff = new javax.swing.JMenu();
 
@@ -116,7 +120,7 @@ public class telaVeiculo extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(40, 106, 255));
-        jLabel1.setText("Modelos");
+        jLabel1.setText("Veículos");
 
         cpData.setForeground(new java.awt.Color(153, 153, 153));
         cpData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -132,17 +136,17 @@ public class telaVeiculo extends javax.swing.JFrame {
         tabelaModelo.setForeground(new java.awt.Color(1, 75, 222));
         tabelaModelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Cor", "Modelo", "Marca", "Placa", "Disponível", "Logo", "Logo Marca"
+                "ID", "Cor", "Modelo", "Disponível", "Marca", "Ano", "Placa", "Combustível", "Quilometragem", "Tipo Veiculo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -168,8 +172,7 @@ public class telaVeiculo extends javax.swing.JFrame {
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());
         }
         if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
-            tabelaModelo.getColumnModel().getColumn(6).setCellRenderer(new TabelaImagemModelo());
-            tabelaModelo.getColumnModel().getColumn(7).setCellRenderer(new TabelaImagemLogoMarca());
+            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemLogoMarca());
         }
         tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -179,7 +182,7 @@ public class telaVeiculo extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel2.setText("Modelo:");
+        jLabel2.setText("Placa:");
 
         cpInserir.setBackground(new java.awt.Color(250, 250, 250));
         cpInserir.setForeground(new java.awt.Color(1, 132, 222));
@@ -324,6 +327,34 @@ public class telaVeiculo extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel8.setText("Modelo:");
+
+        jComboBoxMarcas1.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarcas1.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxMarcas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarcas1.setBorder(null);
+        jComboBoxMarcas1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComboBoxMarcas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcas1ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel9.setText("Renavam:");
+
+        cpInserir1.setBackground(new java.awt.Color(250, 250, 250));
+        cpInserir1.setForeground(new java.awt.Color(1, 132, 222));
+        cpInserir1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        cpInserir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpInserir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
         bgBackgroundLayout.setHorizontalGroup(
@@ -357,13 +388,21 @@ public class telaVeiculo extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jComboBoxMarcas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9)
+                                .addGap(4, 4, 4)
+                                .addComponent(cpInserir1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bgBtnInserir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                .addComponent(bgBtnInserir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBoxMarcas1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(45, 45, 45)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
@@ -411,7 +450,9 @@ public class telaVeiculo extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(saidaDiretorio)
                     .addComponent(jLabel5)
-                    .addComponent(saidaID))
+                    .addComponent(saidaID)
+                    .addComponent(jLabel9)
+                    .addComponent(cpInserir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
@@ -427,18 +468,23 @@ public class telaVeiculo extends javax.swing.JFrame {
                             .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jComboBoxMarcas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(bgBtnInserir3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -472,6 +518,7 @@ public class telaVeiculo extends javax.swing.JFrame {
         try {
             DefaultTableModel modelo = (DefaultTableModel) tabelaModelo.getModel();
             TabelaImagemModelo tabelaImagem = new TabelaImagemModelo();
+            //set imagem no grid
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(tabelaImagem);
             ImageIcon logoCell = new ImageIcon();
             ImageIcon logoMarcaCell = new ImageIcon();
@@ -481,7 +528,7 @@ public class telaVeiculo extends javax.swing.JFrame {
             Iterator<Modelo> lista = listaDeModelos.iterator();
             
             while (lista.hasNext()) {
-                String[] grid = new String[5];
+                String[] grid = new String[8];
                 Modelo listaModelo = lista.next();
                 grid[0] = listaModelo.getIdModelo() + "";
                 grid[1] = listaModelo.getNomeModelo();
@@ -534,10 +581,6 @@ public class telaVeiculo extends javax.swing.JFrame {
         cpData.setText("Hora do Acesso: "+dataFormatada.format(data) + " às " + horaFormatada.format(data));
     }
     
-    private void cpInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cpInserirActionPerformed
-
     private void tabelaModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaModeloMouseClicked
        
         try {
@@ -683,6 +726,18 @@ public class telaVeiculo extends javax.swing.JFrame {
     private void btnVoltarPagAntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarPagAntMouseClicked
         this.dispose();
     }//GEN-LAST:event_btnVoltarPagAntMouseClicked
+
+    private void cpInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpInserirActionPerformed
+
+    private void jComboBoxMarcas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMarcas1ActionPerformed
+
+    private void cpInserir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpInserir1ActionPerformed
     
     private void customizeMenuBar(JMenuBar menuBar) throws Exception{
         IControleUser iContUser = new ControleUser();
@@ -778,8 +833,10 @@ public class telaVeiculo extends javax.swing.JFrame {
     private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;
     private javax.swing.JTextField cpInserir;
+    private javax.swing.JTextField cpInserir1;
     private javax.swing.JLabel cpUser;
     private javax.swing.JComboBox<String> jComboBoxMarcas;
+    private javax.swing.JComboBox<String> jComboBoxMarcas1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -787,6 +844,8 @@ public class telaVeiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

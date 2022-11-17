@@ -9,5 +9,5 @@ package com.neuron.templates;
  * @author thiag
  */
 public enum TipoVeiculo {
-    SEDAN,SUV,HATCH;
+    SEDAN,SUV,HATCH,PICKUP;
 }

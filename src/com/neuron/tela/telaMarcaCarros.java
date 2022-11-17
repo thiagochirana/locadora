@@ -45,7 +45,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
     IControladorImg iImg = new ControladorImg();
     
     public telaMarcaCarros() {
-        this.setUndecorated(true);
+        //this.setUndecorated(true);
         initComponents();
         ((DefaultTableCellRenderer) tabelaMarca.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
         tabelaMarca.getColumnModel().getColumn(3).setCellRenderer(new TabelaImagemMarca());

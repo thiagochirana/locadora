@@ -1,1 +1,1 @@
-Chirana;VENDAS
+Administrador;ADMIN
