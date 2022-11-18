@@ -83,24 +83,14 @@ public class telaVeiculo extends javax.swing.JFrame {
         cpUser = new javax.swing.JLabel();
         logoNeuron = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaModelo = new javax.swing.JTable();
+        tabelaVeiculo = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         cpInserir = new javax.swing.JTextField();
         txtQtdeResultados = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        saidaDiretorio = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        saidaID = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        saidaLogo = new javax.swing.JLabel();
-        bgBtnCarregarArquivo = new javax.swing.JPanel();
-        btnCarregarArquivo = new javax.swing.JLabel();
         saidaStatusOperacao = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxMarcas = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        saidaLogoMarca = new javax.swing.JLabel();
         bgBtnInserir = new javax.swing.JPanel();
         btnInserir = new javax.swing.JLabel();
         bgBtnInserir3 = new javax.swing.JPanel();
@@ -111,6 +101,20 @@ public class telaVeiculo extends javax.swing.JFrame {
         jComboBoxMarcas1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         cpInserir1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBoxMarcas2 = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        cpInserir2 = new javax.swing.JTextField();
+        jComboBoxMarcas3 = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jComboBoxMarcas4 = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jComboBoxMarcas5 = new javax.swing.JComboBox<>();
         jMenuBar = new javax.swing.JMenuBar();
         menuLogOff = new javax.swing.JMenu();
 
@@ -131,10 +135,10 @@ public class telaVeiculo extends javax.swing.JFrame {
         logoNeuron.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         logoNeuron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/logoMin.png"))); // NOI18N
 
-        tabelaModelo.setAutoCreateRowSorter(true);
-        tabelaModelo.setBackground(new java.awt.Color(255, 255, 255));
-        tabelaModelo.setForeground(new java.awt.Color(1, 75, 222));
-        tabelaModelo.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaVeiculo.setAutoCreateRowSorter(true);
+        tabelaVeiculo.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaVeiculo.setForeground(new java.awt.Color(1, 75, 222));
+        tabelaVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -153,28 +157,28 @@ public class telaVeiculo extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaModelo.setGridColor(new java.awt.Color(255, 255, 255));
-        tabelaModelo.setRowHeight(40);
-        tabelaModelo.setSelectionBackground(new java.awt.Color(1, 132, 222));
-        tabelaModelo.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tabelaModelo.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaVeiculo.setGridColor(new java.awt.Color(255, 255, 255));
+        tabelaVeiculo.setRowHeight(40);
+        tabelaVeiculo.setSelectionBackground(new java.awt.Color(1, 132, 222));
+        tabelaVeiculo.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tabelaVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaModeloMouseClicked(evt);
             }
         });
-        tabelaModelo.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaModeloMouseClicked(evt);
+                tabelaVeiculoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelaModelo);
-        if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
-            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());
+        jScrollPane1.setViewportView(tabelaVeiculo);
+        if (tabelaVeiculo.getColumnModel().getColumnCount() > 0) {
+            tabelaVeiculo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());
         }
-        if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
-            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemLogoMarca());
+        if (tabelaVeiculo.getColumnModel().getColumnCount() > 0) {
+            tabelaVeiculo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemLogoMarca());
         }
-        tabelaModelo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tabelaVeiculo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jSeparator1.setBackground(new java.awt.Color(1, 132, 222));
         jSeparator1.setForeground(new java.awt.Color(1, 132, 222));
@@ -198,49 +202,6 @@ public class telaVeiculo extends javax.swing.JFrame {
         txtQtdeResultados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtQtdeResultados.setText("n modelos cadastrados.");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel3.setText("Diretório:");
-
-        saidaDiretorio.setForeground(new java.awt.Color(11, 149, 187));
-        saidaDiretorio.setText("   ");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel5.setText("ID:");
-
-        saidaID.setForeground(new java.awt.Color(11, 149, 187));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel4.setText("Foto:");
-
-        saidaLogo.setVerifyInputWhenFocusTarget(false);
-
-        bgBtnCarregarArquivo.setBackground(new java.awt.Color(1, 132, 222));
-
-        btnCarregarArquivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnCarregarArquivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/carregarImg.png"))); // NOI18N
-        btnCarregarArquivo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCarregarArquivoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCarregarArquivoMouseEntered(evt);
-            }
-        });
-
-        javax.swing.GroupLayout bgBtnCarregarArquivoLayout = new javax.swing.GroupLayout(bgBtnCarregarArquivo);
-        bgBtnCarregarArquivo.setLayout(bgBtnCarregarArquivoLayout);
-        bgBtnCarregarArquivoLayout.setHorizontalGroup(
-            bgBtnCarregarArquivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnCarregarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-        bgBtnCarregarArquivoLayout.setVerticalGroup(
-            bgBtnCarregarArquivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnCarregarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
         saidaStatusOperacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saidaStatusOperacao.setForeground(new java.awt.Color(1, 132, 222));
 
@@ -258,10 +219,6 @@ public class telaVeiculo extends javax.swing.JFrame {
                 jComboBoxMarcasActionPerformed(evt);
             }
         });
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel7.setText("Logo da Marca:");
 
         bgBtnInserir.setBackground(new java.awt.Color(1, 132, 222));
 
@@ -355,77 +312,182 @@ public class telaVeiculo extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel10.setText("Cor:");
+
+        jComboBoxMarcas2.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarcas2.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxMarcas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarcas2.setBorder(null);
+        jComboBoxMarcas2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComboBoxMarcas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcas2ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel11.setText("Ano:");
+
+        cpInserir2.setBackground(new java.awt.Color(250, 250, 250));
+        cpInserir2.setForeground(new java.awt.Color(1, 132, 222));
+        cpInserir2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        cpInserir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpInserir2ActionPerformed(evt);
+            }
+        });
+
+        jComboBoxMarcas3.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarcas3.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxMarcas3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarcas3.setBorder(null);
+        jComboBoxMarcas3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComboBoxMarcas3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcas3ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel12.setText("Tipo Combustível:");
+
+        jComboBoxMarcas4.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarcas4.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxMarcas4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarcas4.setBorder(null);
+        jComboBoxMarcas4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComboBoxMarcas4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcas4ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel13.setText("Tipo do Veículo:");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel14.setText("Data de Compra:");
+
+        jFormattedTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jFormattedTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 132, 222)));
+        jFormattedTextField1.setForeground(new java.awt.Color(1, 132, 222));
+        jFormattedTextField1.setText("00/00/0000");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel15.setText("Data de Venda:");
+
+        jFormattedTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        jFormattedTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 132, 222)));
+        jFormattedTextField2.setForeground(new java.awt.Color(1, 132, 222));
+        jFormattedTextField2.setText("00/00/0000");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel16.setText("Disponível:");
+
+        jComboBoxMarcas5.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxMarcas5.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxMarcas5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarcas5.setBorder(null);
+        jComboBoxMarcas5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComboBoxMarcas5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcas5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
         bgBackgroundLayout.setHorizontalGroup(
             bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgBackgroundLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addComponent(saidaStatusOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
                         .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
+                        .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 21, Short.MAX_VALUE))
+                    .addGroup(bgBackgroundLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAttLista)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnVoltarPagAnt)
-                        .addGap(2, 2, 2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxMarcas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9)
-                                .addGap(4, 4, 4)
-                                .addComponent(cpInserir1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                                .addComponent(bgBtnInserir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxMarcas1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(45, 45, 45)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxMarcas2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxMarcas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel9)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(cpInserir1))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                        .addComponent(bgBtnInserir3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jComboBoxMarcas1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(55, 55, 55)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBoxMarcas3, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBoxMarcas4, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cpInserir2))
+                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                .addComponent(jLabel16)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jComboBoxMarcas5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel15))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jFormattedTextField1)
+                                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(30, 30, 30)
-                                .addComponent(saidaID, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(saidaLogoMarca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saidaDiretorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(50, 50, 50)))
-                .addGap(19, 19, 19))
+                                .addComponent(saidaStatusOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(19, 19, 19))))
         );
         bgBackgroundLayout.setVerticalGroup(
             bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,48 +506,55 @@ public class telaVeiculo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(saidaDiretorio)
-                    .addComponent(jLabel5)
-                    .addComponent(saidaID)
-                    .addComponent(jLabel9)
-                    .addComponent(cpInserir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saidaLogoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cpInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(cpInserir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jComboBoxMarcas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jComboBoxMarcas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bgBtnInserir3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 43, Short.MAX_VALUE))
+                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jComboBoxMarcas3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jComboBoxMarcas4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(cpInserir2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16)
+                            .addComponent(jComboBoxMarcas5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(saidaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jComboBoxMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jComboBoxMarcas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bgBtnInserir3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 43, Short.MAX_VALUE)))
+                            .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -516,10 +585,10 @@ public class telaVeiculo extends javax.swing.JFrame {
 
     private void ImprimirGrid(ArrayList<Modelo> listaDeModelos) {
         try {
-            DefaultTableModel modelo = (DefaultTableModel) tabelaModelo.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) tabelaVeiculo.getModel();
             TabelaImagemModelo tabelaImagem = new TabelaImagemModelo();
             //set imagem no grid
-            tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(tabelaImagem);
+            tabelaVeiculo.getColumnModel().getColumn(4).setCellRenderer(tabelaImagem);
             ImageIcon logoCell = new ImageIcon();
             ImageIcon logoMarcaCell = new ImageIcon();
             
@@ -547,10 +616,10 @@ public class telaVeiculo extends javax.swing.JFrame {
     }
     
     public void limparTela(){
-        saidaLogo.setIcon(null);
+        /*saidaLogo.setIcon(null);
         saidaDiretorio.setText("");
         saidaLogoMarca.setIcon(null);
-        saidaID.setText("");
+        saidaID.setText("");*/
         cpInserir.setText("");
         
     }
@@ -565,13 +634,13 @@ public class telaVeiculo extends javax.swing.JFrame {
     }
     
     public void resizeColunas(){
-        TableColumnModel tCM = tabelaModelo.getColumnModel();
+        TableColumnModel tCM = tabelaVeiculo.getColumnModel();
         tCM.getColumn(0).setPreferredWidth(30);
-        tCM.getColumn(1).setPreferredWidth(120);
+        tCM.getColumn(1).setPreferredWidth(80);
         tCM.getColumn(2).setPreferredWidth(120);
-        tCM.getColumn(3).setPreferredWidth(180);
-        tCM.getColumn(4).setPreferredWidth(80);
-        tCM.getColumn(5).setPreferredWidth(80);
+        tCM.getColumn(3).setPreferredWidth(100);
+        tCM.getColumn(4).setPreferredWidth(30);
+        tCM.getColumn(5).setPreferredWidth(50);
     }
     
     public void datahora(){
@@ -581,73 +650,46 @@ public class telaVeiculo extends javax.swing.JFrame {
         cpData.setText("Hora do Acesso: "+dataFormatada.format(data) + " às " + horaFormatada.format(data));
     }
     
-    private void tabelaModeloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaModeloMouseClicked
-       
-        try {
-            this.saidaID.setText((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 0));
-            this.cpInserir.setText((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1));
+    private void menuLogOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogOffMouseClicked
+        Logs.logger("Encerrando Software",getThisClass());
+        this.dispose();
+    }//GEN-LAST:event_menuLogOffMouseClicked
 
-            caminhoArquivo = (String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 3);
-            String nomeMarcaSelecionado = this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2) + "";
-            
-            String caminhoLogoMarca = "./src/com/neuron/icons/logo/"+nomeMarcaSelecionado.toUpperCase()+".jpeg";
-            
-            saidaDiretorio.setText(caminhoArquivo);
-            
-            ImageIcon imgLogo = new ImageIcon();
-            
-            imgLogo = iArquivo.RedimensionarImg("./src/com/neuron/icons"+caminhoArquivo,150,150);
-            saidaLogo.setIcon(imgLogo);
-            jComboBoxMarcas.setSelectedIndex(Gerador.getIDMarcaSelecionada(nomeMarcaSelecionado)-1);
-            
-            Logs.logger("Modelo selecionado na tabela: "+this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 1),getThisClass());
-            
-            saidaLogoMarca.setIcon(iArquivo.RedimensionarImg(caminhoLogoMarca, 105, 105));
-            
-            
-        } catch (Exception err) {
-            JOptionPane.showMessageDialog(this, err);
-            Logs.logger("Nao foi possivel selecionar modelo\n"+err.getMessage(),getThisClass());
-        }
-        //Set imagem da Marca
-        
-        try {
-            //saidaLogoMarca.setIcon(Gerador.getLogoMarcaByNome((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2)));
-        } catch (Exception e) {
-            Logs.logger("Nao foi possivel capturar imagem da logo Marca"+e.getMessage(), telaVeiculo.class.getName());
-        }
-    }//GEN-LAST:event_tabelaModeloMouseClicked
-
-    private void btnCarregarArquivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseClicked
-        Logs.logger("Iniciando selecao de imagem",getThisClass());
-        try {
-            ImageIcon imgLogo = new ImageIcon();
-            imgLogo = iArquivo.abrirBuscadorImg(saidaLogo.getWidth(),saidaLogo.getHeight());
-            setCaminhoArquivo((String) iArquivo.getCaminhoDoArquivo());
-            saidaLogo.setIcon(imgLogo);
-            Logs.logger("Imagem selecionada com sucesso do diretorio "+iArquivo.getCaminhoDoArquivo(),getThisClass());
-        } catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            Logs.logger("Nao foi possivel selecionar imagem para este modelo\n"+e.getMessage(),getThisClass());
-        }
-        
-        
-    }//GEN-LAST:event_btnCarregarArquivoMouseClicked
-
-    private void btnCarregarArquivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseEntered
+    private void jComboBoxMarcas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcas2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCarregarArquivoMouseEntered
+    }//GEN-LAST:event_jComboBoxMarcas2ActionPerformed
 
-    private void jComboBoxMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcasActionPerformed
-        //setComboBoxMarcaSelecionada(jComboBoxMarcas.getSelectedItem().toString());
-    }//GEN-LAST:event_jComboBoxMarcasActionPerformed
+    private void cpInserir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpInserir1ActionPerformed
+
+    private void jComboBoxMarcas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMarcas1ActionPerformed
+
+    private void btnVoltarPagAntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarPagAntMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarPagAntMouseClicked
+
+    private void btnAttListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttListaMouseClicked
+        try {
+            carregarComboBoxMarcas();
+            ImprimirGrid(interControle.listagemModelo());
+            Logs.logger("lista de Marcas atualizada com sucesso!", telaMarcaCarros.class.getName());
+        } catch (Exception ex) {
+            Logs.logger("Nao foi atualizada a lista!", telaMarcaCarros.class.getName());
+        }
+    }//GEN-LAST:event_btnAttListaMouseClicked
+
+    private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarMouseEntered
 
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         try {
-            int auxID = (Integer.parseInt(saidaID.getText()));
+            //int auxID = (Integer.parseInt(saidaID.getText()));
             int idCombo = jComboBoxMarcas.getSelectedIndex() + 1;
-            interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons" + saidaDiretorio.getText(),idCombo);
+            //interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons" + saidaDiretorio.getText(),idCombo);
             ImprimirGrid(interControle.listagemModelo());
             JOptionPane.showMessageDialog(this, "Modelo " + cpInserir.getText().toUpperCase() + " alterado com sucesso!");
             //cpInfoAdicional.setText("");
@@ -676,68 +718,91 @@ public class telaVeiculo extends javax.swing.JFrame {
             Logs.logger("Dir do Modelo: " + modelo.getDirFotoModelo(), getThisClass());
             Logs.logger("ID da Marca do Modelo Selecionado: " + modelo.getIdMarcaRelacinado(), getThisClass());
 
-            try {
-                if ((saidaLogo.getIcon())==null){
-                    Logs.logger("Nao e possivel salvar Modelo sem uma imagem o representado! - Por favor selecione uma imagem!", getThisClass());
-                    throw new Exception("Nao e possivel salvar Modelo sem uma imagem o representado!\nPor favor selecione uma imagem!");
-                }
-                
-                interControle.incluirModelo(modelo);                
-                Logs.logger("Novo modelo Inserido com sucesso!", getThisClass());
-            } catch (Exception e) {
-                Logs.logger("Não foi possível inserir novo modelo - " + e.getMessage(), getThisClass());
-                throw new Exception("Nao foi possivel inserir novo modelo - " + e.getMessage());
+            /*try {
+            if ((saidaLogo.getIcon())==null){
+            Logs.logger("Nao e possivel salvar Modelo sem uma imagem o representado! - Por favor selecione uma imagem!", getThisClass());
+            throw new Exception("Nao e possivel salvar Modelo sem uma imagem o representado!\nPor favor selecione uma imagem!");
             }
-
             
+            interControle.incluirModelo(modelo);
+            Logs.logger("Novo modelo Inserido com sucesso!", getThisClass());
+            } catch (Exception e) {
+            Logs.logger("Não foi possível inserir novo modelo - " + e.getMessage(), getThisClass());
+            throw new Exception("Nao foi possivel inserir novo modelo - " + e.getMessage());
+            }*/
+
             ImprimirGrid(interControle.listagemModelo());
 
         } catch (Exception erro) {
 
             JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());
         }
-        
-        cpInserir.setText("");
-        saidaLogo.setIcon(null);
 
-        
+        cpInserir.setText("");
+        //saidaLogo.setIcon(null);
+
         Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos", getThisClass());
     }//GEN-LAST:event_btnInserirMouseClicked
 
-    private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterarMouseEntered
-
-    private void menuLogOffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogOffMouseClicked
-        Logs.logger("Encerrando Software",getThisClass());
-        this.dispose();
-    }//GEN-LAST:event_menuLogOffMouseClicked
-
-    private void btnAttListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttListaMouseClicked
-        try {
-            carregarComboBoxMarcas();
-            ImprimirGrid(interControle.listagemModelo());
-            Logs.logger("lista de Marcas atualizada com sucesso!", telaMarcaCarros.class.getName());
-        } catch (Exception ex) {
-            Logs.logger("Nao foi atualizada a lista!", telaMarcaCarros.class.getName());
-        }
-    }//GEN-LAST:event_btnAttListaMouseClicked
-
-    private void btnVoltarPagAntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarPagAntMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_btnVoltarPagAntMouseClicked
+    private void jComboBoxMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcasActionPerformed
+        //setComboBoxMarcaSelecionada(jComboBoxMarcas.getSelectedItem().toString());
+    }//GEN-LAST:event_jComboBoxMarcasActionPerformed
 
     private void cpInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpInserirActionPerformed
 
-    private void jComboBoxMarcas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcas1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxMarcas1ActionPerformed
+    private void tabelaVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVeiculoMouseClicked
 
-    private void cpInserir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserir1ActionPerformed
+        try {
+            //this.saidaID.setText((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 0));
+            this.cpInserir.setText((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 1));
+
+            caminhoArquivo = (String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 3);
+            String nomeMarcaSelecionado = this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 2) + "";
+
+            String caminhoLogoMarca = "./src/com/neuron/icons/logo/"+nomeMarcaSelecionado.toUpperCase()+".jpeg";
+
+            //saidaDiretorio.setText(caminhoArquivo);
+
+            ImageIcon imgLogo = new ImageIcon();
+
+            imgLogo = iArquivo.RedimensionarImg("./src/com/neuron/icons"+caminhoArquivo,150,150);
+            //saidaLogo.setIcon(imgLogo);
+            jComboBoxMarcas.setSelectedIndex(Gerador.getIDMarcaSelecionada(nomeMarcaSelecionado)-1);
+
+            Logs.logger("Modelo selecionado na tabela: "+this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 1),getThisClass());
+
+            //saidaLogoMarca.setIcon(iArquivo.RedimensionarImg(caminhoLogoMarca, 105, 105));
+
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(this, err);
+            Logs.logger("Nao foi possivel selecionar modelo\n"+err.getMessage(),getThisClass());
+        }
+        //Set imagem da Marca
+
+        try {
+            //saidaLogoMarca.setIcon(Gerador.getLogoMarcaByNome((String) this.tabelaModelo.getValueAt(tabelaModelo.getSelectedRow(), 2)));
+        } catch (Exception e) {
+            Logs.logger("Nao foi possivel capturar imagem da logo Marca"+e.getMessage(), telaVeiculo.class.getName());
+        }
+    }//GEN-LAST:event_tabelaVeiculoMouseClicked
+
+    private void cpInserir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpInserir2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cpInserir1ActionPerformed
+    }//GEN-LAST:event_cpInserir2ActionPerformed
+
+    private void jComboBoxMarcas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcas3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMarcas3ActionPerformed
+
+    private void jComboBoxMarcas4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcas4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMarcas4ActionPerformed
+
+    private void jComboBoxMarcas5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcas5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMarcas5ActionPerformed
     
     private void customizeMenuBar(JMenuBar menuBar) throws Exception{
         IControleUser iContUser = new ControleUser();
@@ -823,27 +888,35 @@ public class telaVeiculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgBackground;
-    private javax.swing.JPanel bgBtnCarregarArquivo;
     private javax.swing.JPanel bgBtnInserir;
     private javax.swing.JPanel bgBtnInserir3;
     private javax.swing.JLabel btnAlterar;
     private javax.swing.JLabel btnAttLista;
-    private javax.swing.JLabel btnCarregarArquivo;
     private javax.swing.JLabel btnInserir;
     private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;
     private javax.swing.JTextField cpInserir;
     private javax.swing.JTextField cpInserir1;
+    private javax.swing.JTextField cpInserir2;
     private javax.swing.JLabel cpUser;
     private javax.swing.JComboBox<String> jComboBoxMarcas;
     private javax.swing.JComboBox<String> jComboBoxMarcas1;
+    private javax.swing.JComboBox<String> jComboBoxMarcas2;
+    private javax.swing.JComboBox<String> jComboBoxMarcas3;
+    private javax.swing.JComboBox<String> jComboBoxMarcas4;
+    private javax.swing.JComboBox<String> jComboBoxMarcas5;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar;
@@ -851,12 +924,8 @@ public class telaVeiculo extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logoNeuron;
     private javax.swing.JMenu menuLogOff;
-    private javax.swing.JLabel saidaDiretorio;
-    private javax.swing.JLabel saidaID;
-    private javax.swing.JLabel saidaLogo;
-    private javax.swing.JLabel saidaLogoMarca;
     private javax.swing.JLabel saidaStatusOperacao;
-    private javax.swing.JTable tabelaModelo;
+    private javax.swing.JTable tabelaVeiculo;
     private javax.swing.JLabel txtQtdeResultados;
     // End of variables declaration//GEN-END:variables
 }
