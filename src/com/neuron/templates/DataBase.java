@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package com.neuron.utils;
+package com.neuron.templates;
 
 /**
  *
@@ -31,6 +31,7 @@ public enum DataBase {
     BKPIDVEICULO("./src/com/neuron/temp/database/idControleVeiculo.txt"),
     
     BACKUP("./src/com/neuron/temp/database/"),
+    COR("./src/com/neuron/database/dbListaCores.txt"),
     RESTORE("./src/com/neuron/database/");
     
     

@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import com.neuron.templates.DataBase;
 
 
 public class Controle implements IControle{
@@ -138,6 +139,12 @@ public class Controle implements IControle{
     @Override
     public ArrayList<Modelo> listagemModelo() throws Exception {
         return rw.listagemModelo(); 
+    
+    }
+    
+    @Override
+    public ArrayList<String> listagemNomeModelo() throws Exception{
+        return rw.listagemNomeModelo();
     }
     
     @Override
@@ -146,12 +153,18 @@ public class Controle implements IControle{
     }
     
     @Override
-    public void verificaBanco(Telas tela) throws Exception{
-        rw.verificaBanco(tela);
+    public void inserirNovaCor(String nomeCor) throws Exception{
+        rw.inserirNovaCor(nomeCor.toUpperCase());
     }
     
-    public List<String> listagemNomeMarcasList() throws Exception{
-        return rw.listagemNomeMarcasList();
+    @Override
+    public ArrayList<String> listagemCores() throws Exception{
+        return rw.listagemCores();
+    }
+    
+    @Override
+    public void verificaBanco(Telas tela) throws Exception{
+        rw.verificaBanco(tela);
     }
     
     public String getThisClass() {

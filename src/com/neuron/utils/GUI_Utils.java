@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import jdk.jfr.events.FileWriteEvent;
+import com.neuron.templates.DataBase;
 
 public class GUI_Utils extends javax.swing.JFrame {
 

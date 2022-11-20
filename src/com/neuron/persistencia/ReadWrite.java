@@ -17,7 +17,7 @@ import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.Backup;
 import com.neuron.utils.CopyFiles;
-import com.neuron.utils.DataBase;
+import com.neuron.templates.DataBase;
 import com.neuron.utils.Gerador;
 import com.neuron.utils.Logs;
 import com.neuron.utils.ISelecionarArq;
@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ReadWrite implements IReadWrite{
@@ -267,6 +266,15 @@ public class ReadWrite implements IReadWrite{
     }
 
     @Override
+    public void inserirNovaCor(String nomeCor) throws Exception{
+        FileWriter fw = new FileWriter(DataBase.COR.getPathDB(),true);
+        BufferedWriter cor =new BufferedWriter(fw);
+        cor.write(nomeCor+"\n");
+        cor.close();
+    }
+    
+    //Listagem de nomes de Marca e Modelos,
+    @Override
     public ArrayList<String> listagemNomeMarcas() throws Exception {
         ArrayList<String> listaNomeMarca = new ArrayList<>();
         FileReader fr = new FileReader(DataBase.MARCA.getPathDB());
@@ -275,7 +283,6 @@ public class ReadWrite implements IReadWrite{
         String linha = "";
         
         while((linha=br.readLine())!=null){
-            Modelo modelo = new Modelo();
             String vetorString[] = linha.split(";");
             listaNomeMarca.add(vetorString[1]);
         }
@@ -284,21 +291,36 @@ public class ReadWrite implements IReadWrite{
     }
     
     @Override
-    public List<String> listagemNomeMarcasList() throws Exception {
-        List<String> listaNomeMarca = new ArrayList<>();
-        FileReader fr = new FileReader(DataBase.MARCA.getPathDB());
+    public ArrayList<String> listagemNomeModelo() throws Exception {
+        ArrayList<String> listaNomeModelo = new ArrayList<>();
+        FileReader fr = new FileReader(DataBase.MODELO.getPathDB());
         BufferedReader br = new BufferedReader(fr);
         
         String linha = "";
         
         while((linha=br.readLine())!=null){
-            Modelo modelo = new Modelo();
             String vetorString[] = linha.split(";");
-            listaNomeMarca.add(vetorString[1]);
+            listaNomeModelo.add(vetorString[1]);
         }
         br.close();
-        return listaNomeMarca;
+        return listaNomeModelo;
     }
+    
+    @Override
+    public ArrayList<String> listagemCores() throws Exception {
+        ArrayList<String> listaNomeCores = new ArrayList<>();
+        FileReader fr = new FileReader(DataBase.COR.getPathDB());
+        BufferedReader br = new BufferedReader(fr);
+
+        String linha = "";
+
+        while ((linha = br.readLine()) != null) {
+            listaNomeCores.add(linha);
+        }
+        br.close();
+        return listaNomeCores;
+    }
+    
 
     @Override
     public boolean verificaUser(ArrayList<String> usuario) throws Exception{

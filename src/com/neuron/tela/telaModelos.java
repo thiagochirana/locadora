@@ -511,7 +511,7 @@ public class telaModelos extends javax.swing.JFrame {
     }
     
     public void carregarComboBoxMarcas() throws Exception{
-        String[] arrayNomeMarcas = interControle.listagemNomeMarcasList().toArray(new String[interControle.listagemNomeMarcas().size()]);
+        String[] arrayNomeMarcas = interControle.listagemNomeMarcas().toArray(new String[interControle.listagemNomeMarcas().size()]);
         jComboBoxMarcas.removeAllItems();
         for (String itemMarca : arrayNomeMarcas) {
             jComboBoxMarcas.addItem(itemMarca);

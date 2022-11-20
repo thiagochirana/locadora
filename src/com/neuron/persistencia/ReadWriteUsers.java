@@ -6,8 +6,7 @@ package com.neuron.persistencia;
 
 import com.neuron.icons.Telas;
 import com.neuron.tela.*;
-import com.neuron.templates.Usuario;
-import com.neuron.utils.DataBase;
+import com.neuron.templates.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;

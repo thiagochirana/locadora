@@ -14,7 +14,6 @@ package com.neuron.persistencia;
 import com.neuron.icons.Telas;
 import com.neuron.templates.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public interface IReadWrite{
@@ -22,11 +21,14 @@ public interface IReadWrite{
     void alterarMarca(int id, String nomeMarca,String caminhoLogo) throws Exception;
     ArrayList<Marca> listagemMarca()throws Exception;
     ArrayList<String> listagemNomeMarcas() throws Exception;
-    public List<String> listagemNomeMarcasList() throws Exception;
     
     void incluirModelo(Modelo modelo)throws Exception;
     void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo, int idMarca) throws Exception;
-    ArrayList<Modelo> listagemModelo()throws Exception; 
+    ArrayList<Modelo> listagemModelo()throws Exception;
+    ArrayList<String> listagemNomeModelo() throws Exception;
+    
+    void inserirNovaCor(String nomeCor) throws Exception;
+    ArrayList<String> listagemCores() throws Exception;
     
     void verificaBanco(Telas tela) throws Exception;
     
