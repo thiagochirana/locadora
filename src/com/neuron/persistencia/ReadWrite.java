@@ -12,7 +12,7 @@
 package com.neuron.persistencia;
 
 import com.neuron.icons.*;
-import com.neuron.persistencia.exceptions.*;
+import com.neuron.exceptions.*;
 import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.Backup;
@@ -307,6 +307,26 @@ public class ReadWrite implements IReadWrite{
         } catch (Exception erro) {
             throw new Exception(erro);
         }
+    }
+    
+    @Override
+    public void incluirVeiculo(Veiculo veiculo) throws Exception {
+        try{
+            //cria o arquivo
+            FileWriter fw = new FileWriter(DataBase.VEICULO.getPathDB(),true);
+            //Criar o buffer do arquivo
+            BufferedWriter bw =new BufferedWriter(fw);
+            // Incluindo o id no objeto ******
+            veiculo.setIdVeiculo(Gerador.getIdVeiculo());
+            //Escreve no arquivo
+            bw.write(veiculo.toString()+"\n");
+            //fecha o arquivo
+            bw.close();	
+            
+            Backup.Database();
+      }catch(DataBaseException erro){
+            throw erro;
+      }
     }
 
     @Override

@@ -198,6 +198,25 @@ public class Gerador {
         return id;
     }
     
+    public static int getIdVeiculo()throws FileNotFoundException, IOException{
+        FileReader fr = new FileReader(DataBase.IDVEICULO.getPathDB());
+        BufferedReader br  = new BufferedReader(fr);
+        String linha=br.readLine();
+        int id = Integer.parseInt(linha);
+        br.close();
+        id=id+1;
+        //cria o arquivo
+        FileWriter fw = new FileWriter(DataBase.IDVEICULO.getPathDB());
+        //Criar o buffer do arquivo
+        BufferedWriter bw =new BufferedWriter(fw);
+        //Escreve no arquivo
+        String saida = id+"";
+        bw.write(saida);
+        //fecha o arquivo
+        bw.close();	
+        return id;
+    }
+    
     public static int getIDMarcaSelecionada(String nomeMarca) throws FileNotFoundException, IOException {
         String dirMarca ="./src/com/neuron/database/dbMarca.txt";
         FileReader fr = new FileReader(dirMarca);
@@ -264,21 +283,5 @@ public class Gerador {
         String caminho = ".src/com/neuron/icons/logo/"+nomeMarca.toUpperCase()+".jpeg";
         Logs.logger("Procurando arquivo: "+caminho, Gerador.class.getName());
         return new ImageIcon(caminho);
-    }
-    
-    public static int getIDModeloSelecionado(String nomeModelo) throws Exception {
-        FileReader fr = new FileReader(DataBase.MODELO.getPathDB());
-        BufferedReader modelo = new BufferedReader(fr);
-        String linha;
-        int id = 0;
-        while( (linha=modelo.readLine())!=null ) {
-            if (linha.contains(nomeModelo)) {
-                String[] vetor = linha.split(";");
-                id = Integer.parseInt(vetor[0]);
-            }
-        }
-        modelo.close();
-        if (id == 0 ) throw new Exception("ID do modelo "+nomeModelo+" nao encontrado!");
-        return id;
     }
 }

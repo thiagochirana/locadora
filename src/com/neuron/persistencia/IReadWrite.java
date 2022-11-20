@@ -12,7 +12,7 @@
 package com.neuron.persistencia;
 
 import com.neuron.icons.Telas;
-import com.neuron.persistencia.exceptions.ComboBoxException;
+import com.neuron.exceptions.*;
 import com.neuron.templates.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,6 +30,7 @@ public interface IReadWrite{
     ArrayList<Modelo> listagemModelo()throws ComboBoxException;
     ArrayList<String> listagemNomeModelo() throws Exception;
     
+    void incluirVeiculo(Veiculo veiculo) throws Exception;
     ArrayList<Veiculo> listagemVeiculo() throws Exception;
     
     void inserirNovaCor(String nomeCor) throws Exception;

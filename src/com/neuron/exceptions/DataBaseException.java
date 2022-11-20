@@ -9,7 +9,7 @@
   
  ************* enjoy ******************/
 
-package com.neuron.persistencia.exceptions;
+package com.neuron.exceptions;
 
 
 public class DataBaseException extends Exception{

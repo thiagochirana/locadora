@@ -13,7 +13,7 @@ package com.neuron.controle;
 import com.neuron.icons.Telas;
 import com.neuron.templates.Marca;
 import com.neuron.persistencia.*;
-import com.neuron.persistencia.exceptions.ComboBoxException;
+import com.neuron.exceptions.*;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.*;
 import java.io.BufferedReader;
@@ -139,6 +139,11 @@ public class Controle implements IControle{
             throw new Exception("Nome do Modelo com espacos excessivos ou nao permitidos!");
         }
         rw.alterarModelo(id, nomeModelo.toUpperCase(), caminhoFotoModelo, idMarca);
+    }
+    
+    @Override
+    public void incluirVeiculo(Veiculo veiculo) throws Exception{
+        rw.incluirVeiculo(veiculo);
     }
     
     @Override

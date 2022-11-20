@@ -12,7 +12,7 @@
 package com.neuron.controle;
 
 import com.neuron.icons.Telas;
-import com.neuron.persistencia.exceptions.ComboBoxException;
+import com.neuron.exceptions.*;
 import com.neuron.templates.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,6 +31,7 @@ public interface IControle {
     ArrayList<Modelo> listagemModelo()throws ComboBoxException;
     ArrayList<String> listagemNomeModelo() throws Exception;
     
+    void incluirVeiculo(Veiculo veiculo) throws Exception;
     ArrayList<Veiculo> listagemVeiculo() throws Exception;
 
     void verificaBanco(Telas tela) throws Exception;
