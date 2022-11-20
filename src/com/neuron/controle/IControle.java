@@ -14,6 +14,7 @@ package com.neuron.controle;
 import com.neuron.icons.Telas;
 import com.neuron.templates.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public interface IControle {
@@ -26,11 +27,16 @@ public interface IControle {
     void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo, int idMarca) throws Exception;
     ArrayList<Modelo> listagemModelo()throws Exception;
     ArrayList<String> listagemNomeModelo() throws Exception;
+    
+    ArrayList<Veiculo> listagemVeiculo() throws Exception;
 
     void verificaBanco(Telas tela) throws Exception;
     
     void inserirNovaCor(String nomeCor) throws Exception;
     ArrayList<String> listagemCores() throws Exception;
+    ArrayList<String> listarTipoCombustivel() throws Exception;
+    ArrayList<String> listarTipoVeiculo() throws Exception;
+    ArrayList<String> listarDisponivel() throws Exception;
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

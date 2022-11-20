@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import com.neuron.templates.DataBase;
+import com.neuron.templates.TipoCombustivel;
+import com.neuron.templates.Veiculo;
 
 
 public class Controle implements IControle{
@@ -135,6 +137,11 @@ public class Controle implements IControle{
         }
         rw.alterarModelo(id, nomeModelo.toUpperCase(), caminhoFotoModelo, idMarca);
     }
+    
+    @Override
+    public ArrayList<Veiculo> listagemVeiculo() throws Exception{
+        return rw.listagemVeiculo();
+    }
 
     @Override
     public ArrayList<Modelo> listagemModelo() throws Exception {
@@ -160,6 +167,21 @@ public class Controle implements IControle{
     @Override
     public ArrayList<String> listagemCores() throws Exception{
         return rw.listagemCores();
+    }
+    
+    @Override
+    public ArrayList<String> listarTipoVeiculo() throws Exception{
+        return rw.listarTipoVeiculo();
+    }
+    
+    @Override
+    public ArrayList<String> listarDisponivel() throws Exception{
+        return rw.listarDisponivel();
+    }
+    
+    @Override
+    public ArrayList<String> listarTipoCombustivel() throws Exception{
+        return rw.listarTipoCombustivel();
     }
     
     @Override

@@ -16,39 +16,58 @@ import java.util.Date;
 
 public class Veiculo extends Modelo{
     int idVeiculo;
+    String cor;
+    String nomeModelo;
+    Disponibilidade disponivel;
+    String nomeMarca;
     String placa;
+    Date anoFabricacao;
+    TipoCombustivel tipoCombustivel;
+    int qulometragem;
+    TipoVeiculo tipoVeiculo;
+    
     int renavan;
     float precoCompra;
     float precoVenda;
-    Date anoFabricacao;
-    Date anoModelo;
-    int quilometragem;
+    
+    int idModeloRelacionado;
     
     public Veiculo(){
         
     }
 
-    public Veiculo(int idVeiculo, String placa, int renavan, float precoCompra, float precoVenda, Date anoFabricacao, Date anoModelo, int quilometragem) {
+    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, Date anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo) {
         this.idVeiculo = idVeiculo;
+        this.cor = cor;
+        this.nomeModelo = nomeModelo;
+        this.disponivel = disponivel;
+        this.nomeMarca = nomeMarca;
         this.placa = placa;
-        this.renavan = renavan;
-        this.precoCompra = precoCompra;
-        this.precoVenda = precoVenda;
         this.anoFabricacao = anoFabricacao;
-        this.anoModelo = anoModelo;
-        this.quilometragem = quilometragem;
+        this.tipoCombustivel = tipoCombustivel;
+        this.qulometragem = qulometragem;
+        this.tipoVeiculo = tipoVeiculo;
     }
 
-    public Veiculo(int idVeiculo, String placa, int renavan, float precoCompra, float precoVenda, Date anoFabricacao, Date anoModelo, int quilometragem, int idModelo, String nomeModelo, String dirFotoModelo, int idMarcaRelacinado) {
-        super(idModelo, nomeModelo, dirFotoModelo, idMarcaRelacinado);
+    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, Date anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo, int renavan, float precoCompra, float precoVenda, int idModeloRelacionado) {
         this.idVeiculo = idVeiculo;
+        this.cor = cor;
+        this.nomeModelo = nomeModelo;
+        this.disponivel = disponivel;
+        this.nomeMarca = nomeMarca;
         this.placa = placa;
+        this.anoFabricacao = anoFabricacao;
+        this.tipoCombustivel = tipoCombustivel;
+        this.qulometragem = qulometragem;
+        this.tipoVeiculo = tipoVeiculo;
         this.renavan = renavan;
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
-        this.anoFabricacao = anoFabricacao;
-        this.anoModelo = anoModelo;
-        this.quilometragem = quilometragem;
+        this.idModeloRelacionado = idModeloRelacionado;
+    }
+
+    public Veiculo(int idModelo, String nomeModelo, String dirFotoModelo, int idMarcaRelacinado) {
+        super(idModelo, nomeModelo, dirFotoModelo, idMarcaRelacinado);
     }
 
     public int getIdVeiculo() {
@@ -59,12 +78,76 @@ public class Veiculo extends Modelo{
         this.idVeiculo = idVeiculo;
     }
 
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public String getNomeModelo() {
+        return nomeModelo;
+    }
+
+    public void setNomeModelo(String nomeModelo) {
+        this.nomeModelo = nomeModelo;
+    }
+
+    public Disponibilidade getDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(Disponibilidade disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public String getNomeMarca() {
+        return nomeMarca;
+    }
+
+    public void setNomeMarca(String nomeMarca) {
+        this.nomeMarca = nomeMarca;
+    }
+
     public String getPlaca() {
         return placa;
     }
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public Date getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
+    public void setAnoFabricacao(Date anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
+    }
+
+    public TipoCombustivel getTipoCombustivel() {
+        return tipoCombustivel;
+    }
+
+    public void setTipoCombustivel(TipoCombustivel tipoCombustivel) {
+        this.tipoCombustivel = tipoCombustivel;
+    }
+
+    public int getQulometragem() {
+        return qulometragem;
+    }
+
+    public void setQulometragem(int qulometragem) {
+        this.qulometragem = qulometragem;
+    }
+
+    public TipoVeiculo getTipoVeiculo() {
+        return tipoVeiculo;
+    }
+
+    public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+        this.tipoVeiculo = tipoVeiculo;
     }
 
     public int getRenavan() {
@@ -91,38 +174,21 @@ public class Veiculo extends Modelo{
         this.precoVenda = precoVenda;
     }
 
-    public Date getAnoFabricacao() {
-        return anoFabricacao;
+    public int getIdModeloRelacionado() {
+        return idModeloRelacionado;
     }
 
-    public void setAnoFabricacao(Date anoFabricacao) {
-        this.anoFabricacao = anoFabricacao;
-    }
-
-    public Date getAnoModelo() {
-        return anoModelo;
-    }
-
-    public void setAnoModelo(Date anoModelo) {
-        this.anoModelo = anoModelo;
-    }
-
-    public int getQuilometragem() {
-        return quilometragem;
-    }
-
-    public void setQuilometragem(int quilometragem) {
-        this.quilometragem = quilometragem;
+    public void setIdModeloRelacionado(int idModeloRelacionado) {
+        this.idModeloRelacionado = idModeloRelacionado;
     }
 
     @Override
     public String toString() {
-        return idVeiculo + ";" + placa + ";" + renavan + ";" + precoCompra + ";" + 
-               precoVenda + ";" + anoFabricacao + ";" + anoModelo + ";" + quilometragem;
+        return idVeiculo + ";" + cor + ";" + nomeModelo + ";" + disponivel + ";" + nomeMarca + ";" + placa + ";" + 
+                anoFabricacao + ";" + tipoCombustivel + ";" + qulometragem + ";" + tipoVeiculo + ";" + 
+                renavan + ";" + precoCompra + ";" + precoVenda + ";" + idModeloRelacionado;
     }
-    
-    
-           
+         
 }
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

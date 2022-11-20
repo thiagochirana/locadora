@@ -27,8 +27,13 @@ public interface IReadWrite{
     ArrayList<Modelo> listagemModelo()throws Exception;
     ArrayList<String> listagemNomeModelo() throws Exception;
     
+    ArrayList<Veiculo> listagemVeiculo() throws Exception;
+    
     void inserirNovaCor(String nomeCor) throws Exception;
     ArrayList<String> listagemCores() throws Exception;
+    ArrayList<String> listarTipoCombustivel() throws Exception;
+    ArrayList<String> listarTipoVeiculo() throws Exception;
+    ArrayList<String> listarDisponivel() throws Exception;
     
     void verificaBanco(Telas tela) throws Exception;
     

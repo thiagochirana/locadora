@@ -17,7 +17,7 @@ import com.neuron.templates.Marca;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.Backup;
 import com.neuron.utils.CopyFiles;
-import com.neuron.templates.DataBase;
+import com.neuron.templates.*;
 import com.neuron.utils.Gerador;
 import com.neuron.utils.Logs;
 import com.neuron.utils.ISelecionarArq;
@@ -28,6 +28,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 
 public class ReadWrite implements IReadWrite{
@@ -264,6 +267,44 @@ public class ReadWrite implements IReadWrite{
             throw new Exception("Erro ao acessar Modelos cadastrados! Lista vazia ou com problemas! \n"+erro);
         }
     }
+    
+    // VEICULOS
+    @Override
+    public ArrayList<Veiculo> listagemVeiculo() throws Exception {
+        try {
+            ArrayList<Veiculo> listaVeiculo = new ArrayList<Veiculo>();
+            FileReader fr = new FileReader(DataBase.VEICULO.getPathDB());
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+            while ((linha = br.readLine()) != null) {
+                Veiculo veiculo = new Veiculo();
+                String aux[] = linha.split(";");
+                veiculo.setIdVeiculo(Integer.parseInt(aux[0]));
+                veiculo.setCor(aux[1]);
+                veiculo.setNomeModelo(aux[2]);
+                veiculo.setDisponivel(getDisponivel(aux[3]));
+                veiculo.setNomeMarca(aux[4]);
+                veiculo.setPlaca(aux[5]);
+                veiculo.setAnoFabricacao(new Date(aux[6]));
+                veiculo.setTipoCombustivel(getTipoCombustivel(aux[7]));
+                veiculo.setQulometragem(Integer.parseInt(aux[8]));
+                veiculo.setTipoVeiculo(getTipoVeiculo(aux[9]));
+                veiculo.setRenavan(Integer.parseInt(aux[10]));
+                veiculo.setPrecoCompra(Float.parseFloat(aux[11]));
+                veiculo.setPrecoVenda(Float.parseFloat(aux[12]));
+                veiculo.setIdModeloRelacionado(Integer.parseInt(aux[13]));
+                listaVeiculo.add(veiculo);
+            }
+            br.close();
+
+            return listaVeiculo;
+
+        } catch (Exception erro) {
+            Gerador.createDB(DataBase.MARCA.getPathDB());
+
+            throw new Exception(erro + "\nFoi criado um database de contingência ");
+        }
+    }
 
     @Override
     public void inserirNovaCor(String nomeCor) throws Exception{
@@ -321,7 +362,36 @@ public class ReadWrite implements IReadWrite{
         return listaNomeCores;
     }
     
+    @Override
+    public ArrayList<String> listarTipoCombustivel() throws Exception{
+        List<TipoCombustivel> combustivel = Arrays.asList(TipoCombustivel.values());
+        ArrayList<String> lista = new ArrayList<>();
+        for (TipoCombustivel tipoC : combustivel) {
+            lista.add(tipoC.toString());
+        }
+        return lista;
+    }
+    
+    @Override
+    public ArrayList<String> listarTipoVeiculo() throws Exception{
+        List<TipoVeiculo> veiculo = Arrays.asList(TipoVeiculo.values());
+        ArrayList<String> lista = new ArrayList<>();
+        for (TipoVeiculo tipoC : veiculo) {
+            lista.add(tipoC.toString());
+        }
+        return lista;
+    }
 
+    @Override
+    public ArrayList<String> listarDisponivel() throws Exception{
+        List<Disponibilidade> veiculo = Arrays.asList(Disponibilidade.values());
+        ArrayList<String> lista = new ArrayList<>();
+        for (Disponibilidade dispo : veiculo) {
+            lista.add(dispo.toString());
+        }
+        return lista;
+    }
+    
     @Override
     public boolean verificaUser(ArrayList<String> usuario) throws Exception{
         return true;
@@ -412,6 +482,54 @@ public class ReadWrite implements IReadWrite{
         }
     }
     
+    private Disponibilidade getDisponivel(String nomeDispo) {
+        switch (nomeDispo) {
+            case "DISPONÍVEL":
+                return Disponibilidade.DISPONÍVEL;
+            case "ALUGADO":
+                return Disponibilidade.ALUGADO;
+            case "MANUTENÇÃO":
+                return Disponibilidade.MANUTENÇÃO;
+            case "PERCA":
+                return Disponibilidade.PERCA;
+            case "VENDIDO":
+                return Disponibilidade.VENDIDO;
+            default:
+                return Disponibilidade.DISPONÍVEL;
+        }
+    }
+    
+    private TipoCombustivel getTipoCombustivel(String nomeCombustivel) {
+        switch (nomeCombustivel) {
+            case "GASOLINA":
+                return TipoCombustivel.GASOLINA;
+            case "ETANOL":
+                return TipoCombustivel.ETANOL;
+            case "DIESEL":
+                return TipoCombustivel.DIESEL;
+            case "GNV":
+                return TipoCombustivel.GNV;
+            case "FLEX":
+                return TipoCombustivel.FLEX;
+            default:
+                return TipoCombustivel.GASOLINA;
+        }
+    }
+    
+    private TipoVeiculo getTipoVeiculo(String nomeCombustivel) {
+        switch (nomeCombustivel) {
+            case "SEDAN":
+                return TipoVeiculo.SEDAN;
+            case "HATCH":
+                return TipoVeiculo.HATCH;
+            case "SUV":
+                return TipoVeiculo.SUV;
+            case "PICKUP":
+                return TipoVeiculo.PICKUP;
+            default:
+                return TipoVeiculo.SEDAN;
+        }
+    }
     
 }
 

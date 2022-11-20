@@ -265,4 +265,20 @@ public class Gerador {
         Logs.logger("Procurando arquivo: "+caminho, Gerador.class.getName());
         return new ImageIcon(caminho);
     }
+    
+    public static int getIDModeloSelecionado(String nomeModelo) throws Exception {
+        FileReader fr = new FileReader(DataBase.MODELO.getPathDB());
+        BufferedReader modelo = new BufferedReader(fr);
+        String linha;
+        int id = 0;
+        while( (linha=modelo.readLine())!=null ) {
+            if (linha.contains(nomeModelo)) {
+                String[] vetor = linha.split(";");
+                id = Integer.parseInt(vetor[0]);
+            }
+        }
+        modelo.close();
+        if (id == 0 ) throw new Exception("ID do modelo "+nomeModelo+" nao encontrado!");
+        return id;
+    }
 }
