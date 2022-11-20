@@ -25,8 +25,11 @@ import com.neuron.utils.SelecionarArq;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -140,9 +143,9 @@ public class ReadWrite implements IReadWrite{
             return listaDeMarcas;
             
         } catch(Exception erro){
-            Gerador.createDB(DataBase.MARCA.getPathDB());
+            //Gerador.createDB(DataBase.MARCA.getPathDB());
             
-            throw new Exception(erro +"\nFoi criado um database de contingência ");
+            throw new Exception(erro +"Marcas nao foram encontradas\nFoi criado um database de contingência ");
         } 
     }
 
@@ -233,7 +236,7 @@ public class ReadWrite implements IReadWrite{
     }
 
     @Override
-    public ArrayList<Modelo> listagemModelo() throws Exception {
+    public ArrayList<Modelo> listagemModelo() throws ComboBoxException {
         try {
             Logs.logger("Iniciando Listagem dos Moledos disponiveis", getThisClass());
             ArrayList<Modelo> listaModelo = new ArrayList<Modelo>();
@@ -264,7 +267,7 @@ public class ReadWrite implements IReadWrite{
             return listaModelo;
             
         } catch(Exception erro){
-            throw new Exception("Erro ao acessar Modelos cadastrados! Lista vazia ou com problemas! \n"+erro);
+            throw new ComboBoxException("Erro ao acessar Modelos cadastrados! Lista vazia ou com problemas! \n"+erro);
         }
     }
     
@@ -285,14 +288,16 @@ public class ReadWrite implements IReadWrite{
                 veiculo.setDisponivel(getDisponivel(aux[3]));
                 veiculo.setNomeMarca(aux[4]);
                 veiculo.setPlaca(aux[5]);
-                veiculo.setAnoFabricacao(new Date(aux[6]));
+                veiculo.setAnoFabricacao(aux[6]);
                 veiculo.setTipoCombustivel(getTipoCombustivel(aux[7]));
                 veiculo.setQulometragem(Integer.parseInt(aux[8]));
                 veiculo.setTipoVeiculo(getTipoVeiculo(aux[9]));
                 veiculo.setRenavan(Integer.parseInt(aux[10]));
                 veiculo.setPrecoCompra(Float.parseFloat(aux[11]));
                 veiculo.setPrecoVenda(Float.parseFloat(aux[12]));
-                veiculo.setIdModeloRelacionado(Integer.parseInt(aux[13]));
+                veiculo.setDataCompra(aux[13]);
+                veiculo.setDataVenda(aux[14]);
+                veiculo.setIdModeloRelacionado(Integer.parseInt(aux[15]));
                 listaVeiculo.add(veiculo);
             }
             br.close();
@@ -300,9 +305,7 @@ public class ReadWrite implements IReadWrite{
             return listaVeiculo;
 
         } catch (Exception erro) {
-            Gerador.createDB(DataBase.MARCA.getPathDB());
-
-            throw new Exception(erro + "\nFoi criado um database de contingência ");
+            throw new Exception(erro);
         }
     }
 
@@ -348,7 +351,7 @@ public class ReadWrite implements IReadWrite{
     }
     
     @Override
-    public ArrayList<String> listagemCores() throws Exception {
+    public ArrayList<String> listagemCores() throws ComboBoxException, FileNotFoundException, IOException {
         ArrayList<String> listaNomeCores = new ArrayList<>();
         FileReader fr = new FileReader(DataBase.COR.getPathDB());
         BufferedReader br = new BufferedReader(fr);

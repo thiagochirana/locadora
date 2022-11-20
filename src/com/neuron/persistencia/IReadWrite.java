@@ -12,7 +12,10 @@
 package com.neuron.persistencia;
 
 import com.neuron.icons.Telas;
+import com.neuron.persistencia.exceptions.ComboBoxException;
 import com.neuron.templates.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -24,13 +27,13 @@ public interface IReadWrite{
     
     void incluirModelo(Modelo modelo)throws Exception;
     void alterarModelo(int id, String nomeModelo,String caminhoFotoModelo, int idMarca) throws Exception;
-    ArrayList<Modelo> listagemModelo()throws Exception;
+    ArrayList<Modelo> listagemModelo()throws ComboBoxException;
     ArrayList<String> listagemNomeModelo() throws Exception;
     
     ArrayList<Veiculo> listagemVeiculo() throws Exception;
     
     void inserirNovaCor(String nomeCor) throws Exception;
-    ArrayList<String> listagemCores() throws Exception;
+    ArrayList<String> listagemCores() throws ComboBoxException, FileNotFoundException, IOException;
     ArrayList<String> listarTipoCombustivel() throws Exception;
     ArrayList<String> listarTipoVeiculo() throws Exception;
     ArrayList<String> listarDisponivel() throws Exception;

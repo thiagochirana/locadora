@@ -21,7 +21,7 @@ public class Veiculo extends Modelo{
     Disponibilidade disponivel;
     String nomeMarca;
     String placa;
-    Date anoFabricacao;
+    String anoFabricacao;
     TipoCombustivel tipoCombustivel;
     int qulometragem;
     TipoVeiculo tipoVeiculo;
@@ -30,13 +30,16 @@ public class Veiculo extends Modelo{
     float precoCompra;
     float precoVenda;
     
+    String dataCompra;
+    String dataVenda;
+    
     int idModeloRelacionado;
     
     public Veiculo(){
         
     }
 
-    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, Date anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo) {
+    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, String anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo) {
         this.idVeiculo = idVeiculo;
         this.cor = cor;
         this.nomeModelo = nomeModelo;
@@ -49,7 +52,7 @@ public class Veiculo extends Modelo{
         this.tipoVeiculo = tipoVeiculo;
     }
 
-    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, Date anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo, int renavan, float precoCompra, float precoVenda, int idModeloRelacionado) {
+    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, String anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo, int renavan, float precoCompra, float precoVenda, String dataCompra, String dataVenda,int idModeloRelacionado) {
         this.idVeiculo = idVeiculo;
         this.cor = cor;
         this.nomeModelo = nomeModelo;
@@ -63,6 +66,8 @@ public class Veiculo extends Modelo{
         this.renavan = renavan;
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
+        this.dataCompra = dataCompra;
+        this.dataVenda = dataVenda;
         this.idModeloRelacionado = idModeloRelacionado;
     }
 
@@ -118,11 +123,11 @@ public class Veiculo extends Modelo{
         this.placa = placa;
     }
 
-    public Date getAnoFabricacao() {
+    public String getAnoFabricacao() {
         return anoFabricacao;
     }
 
-    public void setAnoFabricacao(Date anoFabricacao) {
+    public void setAnoFabricacao(String anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
     }
 
@@ -182,11 +187,29 @@ public class Veiculo extends Modelo{
         this.idModeloRelacionado = idModeloRelacionado;
     }
 
+    public String getDataCompra() {
+        return dataCompra;
+    }
+
+    public void setDataCompra(String dataCompra) {
+        this.dataCompra = dataCompra;
+    }
+
+    public String getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(String dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+    
+    
+
     @Override
     public String toString() {
         return idVeiculo + ";" + cor + ";" + nomeModelo + ";" + disponivel + ";" + nomeMarca + ";" + placa + ";" + 
                 anoFabricacao + ";" + tipoCombustivel + ";" + qulometragem + ";" + tipoVeiculo + ";" + 
-                renavan + ";" + precoCompra + ";" + precoVenda + ";" + idModeloRelacionado;
+                renavan + ";" + precoCompra + ";" + precoVenda + ";" +dataCompra+";" +dataVenda+";"+ idModeloRelacionado;
     }
          
 }

@@ -13,6 +13,7 @@ package com.neuron.controle;
 import com.neuron.icons.Telas;
 import com.neuron.templates.Marca;
 import com.neuron.persistencia.*;
+import com.neuron.persistencia.exceptions.ComboBoxException;
 import com.neuron.templates.Modelo;
 import com.neuron.utils.*;
 import java.io.BufferedReader;
@@ -24,6 +25,8 @@ import java.util.List;
 import com.neuron.templates.DataBase;
 import com.neuron.templates.TipoCombustivel;
 import com.neuron.templates.Veiculo;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Controle implements IControle{
@@ -144,7 +147,7 @@ public class Controle implements IControle{
     }
 
     @Override
-    public ArrayList<Modelo> listagemModelo() throws Exception {
+    public ArrayList<Modelo> listagemModelo() throws ComboBoxException {
         return rw.listagemModelo(); 
     
     }
@@ -165,7 +168,8 @@ public class Controle implements IControle{
     }
     
     @Override
-    public ArrayList<String> listagemCores() throws Exception{
+    public ArrayList<String> listagemCores() throws ComboBoxException, FileNotFoundException, IOException{
+        if (rw.listagemCores() == null) throw new ComboBoxException("lista de Cores vazia! Acrescente uma cor"); 
         return rw.listagemCores();
     }
     
