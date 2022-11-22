@@ -24,13 +24,18 @@ import com.neuron.exceptions.*;
 import com.neuron.utils.*;
 import com.neuron.utils.TabelaImagemModelo;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import javax.swing.text.MaskFormatter;
 
 public class telaVeiculo extends javax.swing.JFrame {
 
@@ -44,7 +49,13 @@ public class telaVeiculo extends javax.swing.JFrame {
     Color verdeHover = new Color(51, 186, 0, 255);
 
     public telaVeiculo() {
+        
         initComponents();
+        try {
+            jTextFieldDataCompra = new JFormattedTextField(new MaskFormatter("##/##/####"));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+        }
         this.setLocationRelativeTo(null);
         //this.setUndecorated(true);
         this.setTitle("Veículos");
@@ -918,8 +929,7 @@ public class telaVeiculo extends javax.swing.JFrame {
         try {
             caminhoArquivo = (String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 3);
             String nomeMarcaSelecionado = this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 4) + "";
-            nomeMarcaSelecionado = nomeMarcaSelecionado.replace("./src/com/neuron/icons/logo/", "");
-            nomeMarcaSelecionado = nomeMarcaSelecionado.replace(".jpeg", "");
+            nomeMarcaSelecionado = nomeMarcaSelecionado.replace("./src/com/neuron/icons/logo/", "").replace(".jpeg", "");
             String idSelecionado = (String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 0);
 
             Iterator<Veiculo> lista = interControle.listagemVeiculo().iterator();

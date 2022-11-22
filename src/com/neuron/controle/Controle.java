@@ -11,20 +11,14 @@
 
 package com.neuron.controle;
 import com.neuron.icons.Telas;
-import com.neuron.templates.Marca;
+import com.neuron.templates.*;
 import com.neuron.persistencia.*;
 import com.neuron.exceptions.*;
-import com.neuron.templates.Modelo;
 import com.neuron.utils.*;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import com.neuron.templates.DataBase;
-import com.neuron.templates.TipoCombustivel;
-import com.neuron.templates.Veiculo;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -143,6 +137,30 @@ public class Controle implements IControle{
     
     @Override
     public void incluirVeiculo(Veiculo veiculo) throws Exception{
+        int aux = 0;
+        if(veiculo.getPlaca().equals("")){
+            throw new Exception("Nao foi possivel inserir novo veiculo sem Placa! Por favor insira uma Placa compativel");
+        }
+        if(veiculo.getPlaca().length() != 8){
+            throw new Exception("Nao foi possivel inserir novo veiculo sem Placa! Por favor insira uma Placa compativel");
+        }
+        
+        try {
+            aux = Integer.parseInt(veiculo.getAnoFabricacao());
+            if (veiculo.getAnoFabricacao().length() != 4) {
+                throw new Exception("Ano de Fabricacao invalido! Por favor insira um ano correto");
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        if (veiculo.getDataCompra().length() <= 10) {
+            
+        }
+        
+        if((veiculo.getRenavan()+"").equals("")){
+            throw new Exception("Nao foi possivel inserir novo veiculo sem RENAVAM! Por favor insira um RENAVAM compativel");
+        }
         rw.incluirVeiculo(veiculo);
     }
     

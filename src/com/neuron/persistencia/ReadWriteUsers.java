@@ -199,7 +199,7 @@ public class ReadWriteUsers implements IReadWriteUsers{
             jMCarros.add(itemMenu(itemCarAcidente));
             jMCarros.add(itemMenu(itemCarMarca,jf));
             jMCarros.add(itemMenu(itemCarModelo,jf));
-            jMCarros.add(itemMenu(itemCarVeiculo)); 
+            jMCarros.add(itemMenu(itemCarVeiculo,jf)); 
         }
         jmenubar.add(jMCarros).setFont(new java.awt.Font("Segoe UI", 0, 14));
         
@@ -225,23 +225,25 @@ public class ReadWriteUsers implements IReadWriteUsers{
         return jmenubar;
     }
     
-    private JMenuItem itemMenu(JMenuItem item){
-        JMenuItem jmi = item;
+    private JMenuItem itemMenu(JMenuItem itemMenu){
+        JMenuItem jmi = itemMenu;
         jmi.setFont(new java.awt.Font("Segoe UI", 0, 14));
         return jmi;
     }
     
-    private JMenuItem itemMenu(JMenuItem item, JFrame jf){
-        JMenuItem jmi = item;
+    private JMenuItem itemMenu(JMenuItem itemMenu, JFrame jframe){
+        JMenuItem jmi = itemMenu;
         jmi.setFont(new java.awt.Font("Segoe UI", 0, 14));
         
         jmi.addMouseListener(new MouseListener(){
         @Override
+        //CONFIGURACAO CLIQUE NO MENU ITEM PARA A TELA QUE QUISER
         public void mousePressed(MouseEvent evt){
-            jf.dispose();
+            jframe.dispose();
             if (jmi == itemCarMarca) new telaMarcaCarros().setVisible(true);
             if (jmi == itemCarModelo) new telaModelos().setVisible(true);
             if (jmi == itemPerLogout) new telaLogin().setVisible(true);
+            if (jmi == itemCarVeiculo) new telaVeiculo().setVisible(true);
         }
         
         @Override
