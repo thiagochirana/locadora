@@ -20,13 +20,8 @@ import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.*;
 import com.neuron.icons.*;
-import com.neuron.exceptions.*;
 import com.neuron.utils.*;
-import com.neuron.utils.TabelaImagemModelo;
-import java.awt.event.MouseEvent;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
@@ -37,10 +32,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.text.MaskFormatter;
 
-public class telaVeiculo extends javax.swing.JFrame {
+public final class telaVeiculo extends javax.swing.JFrame {
 
     IControle interControle = new Controle();
-    ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "";
     String thisClass = "";
     IControladorImg iImg = new ControladorImg();
@@ -228,7 +222,7 @@ public class telaVeiculo extends javax.swing.JFrame {
         txtQtdeResultados.setBackground(new java.awt.Color(250, 250, 250));
         txtQtdeResultados.setForeground(new java.awt.Color(100, 210, 243));
         txtQtdeResultados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtQtdeResultados.setText("n modelos cadastrados.");
+        txtQtdeResultados.setText("n veículos cadastrados.");
 
         saidaStatusOperacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saidaStatusOperacao.setForeground(new java.awt.Color(1, 132, 222));
@@ -877,10 +871,29 @@ public class telaVeiculo extends javax.swing.JFrame {
 
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         try {
-            //int auxID = (Integer.parseInt(saidaID.getText()));
-            //interControle.alterarModelo(auxID, cpInserir.getText().toUpperCase(), "./src/com/neuron/icons" + saidaDiretorio.getText(),idCombo);
+            int id = Integer.parseInt((String)this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 0));
+            String cor = jComboBoxCorVeiculo.getSelectedItem().toString();
+            String modelo = jComboBoxModelo.getSelectedItem().toString();
+            Disponibilidade dispo = Get.disponibilidadeByNome(jComboBoxDisponivel.getSelectedItem().toString());
+            String marca = jComboBoxMarcas.getSelectedItem().toString();
+            String placa = jTextFieldPlacaVeiculo.getText();
+            String anoFabri = jTextFieldAno.getText();
+            TipoCombustivel tipo = Get.combustivelByNome(jComboBoxTipoCombustivel.getSelectedItem().toString());
+            int quilometro;
+            quilometro = Integer.parseInt((tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 8))==null?"0":(String)tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 8));
+            TipoVeiculo tipoVeiculo = Get.TipoVeiculoByNome(jComboBoxTipoVeiculo.getSelectedItem().toString());
+            int renavam = Integer.parseInt(jTextFieldRenavamVeiculo.getText());
+            float precoCompra = 0;
+            float precoVenda = 0;
+            String dataCompra = jTextFieldDataCompra.getText();
+            String dataVenda = jTextFieldDataVenda.getText();
+            int idModelo = Get.IDModeloSelecionado(modelo);
+            Veiculo v = new Veiculo(id, cor, modelo, dispo, marca, placa, anoFabri, tipo, quilometro, tipoVeiculo, renavam, precoCompra, precoVenda, dataCompra, dataVenda, idModelo);
+
+            interControle.alterarVeiculo(v);
             //ImprimirGrid(interControle.listagemModelo());
-            JOptionPane.showMessageDialog(this, "Modelo " + jTextFieldPlacaVeiculo.getText().toUpperCase() + " alterado com sucesso!");
+            
+            JOptionPane.showMessageDialog(this, "Veiculo " + jTextFieldPlacaVeiculo.getText().toUpperCase() + " alterado com sucesso!");
             //cpInfoAdicional.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

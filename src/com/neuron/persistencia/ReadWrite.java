@@ -19,6 +19,7 @@ import com.neuron.utils.Backup;
 import com.neuron.utils.CopyFiles;
 import com.neuron.templates.*;
 import com.neuron.utils.Gerador;
+import com.neuron.utils.Get;
 import com.neuron.utils.Logs;
 import com.neuron.utils.ISelecionarArq;
 import com.neuron.utils.SelecionarArq;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class ReadWrite implements IReadWrite{
@@ -328,11 +330,73 @@ public class ReadWrite implements IReadWrite{
             throw erro;
       }
     }
+    
+    @Override
+    public void alterarVeiculo(Veiculo veiculo) throws Exception {
+        try {
+            Veiculo v;
+            String linha = "";
+            
+            //Criar o txt auxiliar para manipulacao da pilha 
+            String dbAux1 ="./src/com/neuron/database/dbVeiculoAux1.txt";
+            Gerador.createDB("dbVeiculoAux1");
+            FileWriter fwAux1 = new FileWriter(dbAux1);
+            BufferedWriter bwAux1 = new BufferedWriter(fwAux1);
+            
+            //Leitura do banco atual
+            String caminhoDbVeiculo= "./src/com/neuron/database/dbVeiculo.txt";
+            File dbVeiculo = new File(caminhoDbVeiculo);
+            BufferedReader br = new BufferedReader( new FileReader(caminhoDbVeiculo) );
+
+            //altera a linha caso o ID for igual ao do selecionado na tabelaMarca
+            int idSelecionado = veiculo.getIdVeiculo();
+            while ((linha = br.readLine()) != null) {
+                String[] vet = linha.split(";");
+                if(vet[0].equals(idSelecionado+"")){
+                    
+                    int id = veiculo.getIdVeiculo();
+                    String cor = veiculo.getCor();
+                    String modelo = veiculo.getNomeModelo();
+                    Disponibilidade dispo = veiculo.getDisponivel();
+                    String marca = veiculo.getNomeMarca();
+                    String placa = veiculo.getPlaca();
+                    String anoFabri = veiculo.getAnoFabricacao();
+                    TipoCombustivel tipo = veiculo.getTipoCombustivel();
+                    int quilometro = veiculo.getQulometragem();
+                    TipoVeiculo tipoVeiculo = veiculo.getTipoVeiculo();
+                    int renavam = veiculo.getRenavan();
+                    float precoCompra = veiculo.getPrecoCompra();
+                    float precoVenda = veiculo.getPrecoVenda();
+                    String dataCompra = veiculo.getDataCompra();
+                    String dataVenda = veiculo.getDataVenda();
+                    int idModelo = veiculo.getIdModelo();
+                    v = new Veiculo(id, cor, modelo, dispo, marca, placa, anoFabri, tipo, quilometro, tipoVeiculo, renavam, precoCompra, precoVenda, dataCompra, dataVenda, idModelo);
+
+                    bwAux1.write(veiculo.toString()+"\n");
+                } else {
+                    bwAux1.write(linha+"\n");
+                }
+            }
+            br.close();
+            bwAux1.close();
+            
+           File dbNovo = new File (dbAux1);
+            
+            //deleta o banco atual
+            dbVeiculo.delete();
+            
+            //renomeia o dbMarcaAux1 para ser o principal
+            dbNovo.renameTo(dbVeiculo);
+            
+            Backup.Database();
+        } catch (Exception e) {
+            throw new Exception("Nao foi possivel alterar modelo: "+e.getMessage());
+        }
+    }
 
     @Override
     public void inserirNovaCor(String nomeCor) throws Exception{
-        FileWriter fw = new FileWriter(DataBase.COR.getPathDB(),true);
-        BufferedWriter cor =new BufferedWriter(fw);
+        BufferedWriter cor = new BufferedWriter(new FileWriter(DataBase.COR.getPathDB(),true));
         cor.write(nomeCor+"\n");
         cor.close();
     }

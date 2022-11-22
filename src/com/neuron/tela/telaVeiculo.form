@@ -469,7 +469,7 @@
               <Color blue="f3" green="d2" red="64" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="n modelos cadastrados."/>
+            <Property name="text" type="java.lang.String" value="n ve&#xed;culos cadastrados."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="saidaStatusOperacao">

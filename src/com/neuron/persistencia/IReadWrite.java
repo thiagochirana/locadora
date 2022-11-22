@@ -31,6 +31,7 @@ public interface IReadWrite{
     ArrayList<String> listagemNomeModelo() throws Exception;
     
     void incluirVeiculo(Veiculo veiculo) throws Exception;
+    void alterarVeiculo(Veiculo veiculo) throws Exception;
     ArrayList<Veiculo> listagemVeiculo() throws Exception;
     
     void inserirNovaCor(String nomeCor) throws Exception;

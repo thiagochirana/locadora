@@ -31,7 +31,9 @@ public class Controle implements IControle{
         this.rw = new ReadWrite() {};
     }
     
-    //Marcas
+    //********************************************
+    //****************** MARCAS ******************
+    //********************************************
     private boolean buscarMarca(String descricao)throws Exception{
         try {
             ArrayList<Marca> listagem = rw.listagemMarca();
@@ -86,7 +88,14 @@ public class Controle implements IControle{
         return rw.listagemMarca(); 
     }
     
-    //Modelos
+    @Override
+    public ArrayList<String> listagemNomeMarcas() throws Exception{
+        return rw.listagemNomeMarcas();
+    }
+    
+    //********************************************
+    //***************** MODELOS ******************
+    //********************************************
     private boolean buscarModelo(String descricao)throws Exception{
         try {
             ArrayList<Modelo> listagem = rw.listagemModelo();
@@ -136,32 +145,103 @@ public class Controle implements IControle{
     }
     
     @Override
+    public ArrayList<Modelo> listagemModelo() throws ComboBoxException {
+        return rw.listagemModelo();
+
+    }
+
+    @Override
+    public ArrayList<String> listagemNomeModelo() throws Exception {
+        return rw.listagemNomeModelo();
+    }
+    
+    //********************************************
+    //***************** VEICULOS *****************
+    //********************************************
+    @Override
     public void incluirVeiculo(Veiculo veiculo) throws Exception{
-        int aux = 0;
-        if(veiculo.getPlaca().equals("")){
-            throw new Exception("Nao foi possivel inserir novo veiculo sem Placa! Por favor insira uma Placa compativel");
-        }
-        if(veiculo.getPlaca().length() != 8){
-            throw new Exception("Nao foi possivel inserir novo veiculo sem Placa! Por favor insira uma Placa compativel");
-        }
-        
-        try {
-            aux = Integer.parseInt(veiculo.getAnoFabricacao());
-            if (veiculo.getAnoFabricacao().length() != 4) {
-                throw new Exception("Ano de Fabricacao invalido! Por favor insira um ano correto");
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-        
-        if (veiculo.getDataCompra().length() <= 10) {
-            
-        }
-        
-        if((veiculo.getRenavan()+"").equals("")){
-            throw new Exception("Nao foi possivel inserir novo veiculo sem RENAVAM! Por favor insira um RENAVAM compativel");
-        }
+        validadorDeInformacoesVeiculoInserir(veiculo);
         rw.incluirVeiculo(veiculo);
+    }
+    
+    @Override
+    public void alterarVeiculo(Veiculo veiculo) throws Exception{
+        if (veiculo.getAnoFabricacao().length() != 4) throw new Exception("Ano de Fabricacao invalido");
+        if (veiculo.getRenavan() < 100000000 ) throw new Exception("RENAVAM invalido! Insira RENAVAM de nove digitos");
+        if (!validaPlacaPertenceAoID(veiculo.getIdVeiculo(), veiculo.getPlaca())) throw new Exception("Placa ja cadastrada! Por favor insira outra Placa");
+        if (!validaRENAVAMPertenceAoID(veiculo.getIdVeiculo(), veiculo.getRenavan())) throw new Exception("RENAVAM ja cadastrado! Por favor insira outro RENAVAM");
+        rw.alterarVeiculo(veiculo);
+    }
+    
+    //valida os dados antes de inserir/alterar no sistema
+    private void validadorDeInformacoesVeiculoInserir(Veiculo veiculo) throws Exception{
+        if (veiculo.getAnoFabricacao().length() != 4) throw new Exception("Ano de Fabricacao invalido");
+        if (veiculo.getPlaca().contains(" ")) throw new Exception("Placa invalida! Insira a informacao sem espacos");
+        if (buscarPlacaVeiculo(veiculo.getPlaca())) throw new Exception("Placa ja cadastrada! Insira outra placa");
+        if (veiculo.getPlaca().equals("")) throw new Exception("Placa sem Informacoes!");
+        if (veiculo.getPlaca().length() != 8) throw new Exception("Formato Invalido de Placa!");
+        if (buscarRenavamVeiculo(veiculo.getRenavan())) throw new Exception("RENAVAM ja cadastrado! Insira outro RENAVAM");
+        if ((veiculo.getRenavan() + "").equals("")) throw new Exception("RENAVAM vazio! Insira RENAVAM valido");
+        if (veiculo.getRenavan() < 100000000 ) throw new Exception("RENAVAM invalido! Insira RENAVAM de nove digitos");
+        if (veiculo.getDataCompra().length() <= 10) throw new Exception("Data de Compra invalido!");
+    }
+    
+    private boolean validaPlacaPertenceAoID(int id, String placa) throws Exception{
+        ArrayList<Veiculo> listagem = rw.listagemVeiculo();
+        for (Iterator<Veiculo> it = listagem.iterator(); it.hasNext();) {
+            Veiculo veiculo = it.next();
+            if (veiculo.getPlaca().equalsIgnoreCase(placa) && veiculo.getIdVeiculo()==id) {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    
+    private boolean validaRENAVAMPertenceAoID(int id, int renavam) throws Exception{
+        ArrayList<Veiculo> listagem = rw.listagemVeiculo();
+        for (Iterator<Veiculo> it = listagem.iterator(); it.hasNext();) {
+            Veiculo veiculo = it.next();
+            if (veiculo.getRenavan()==renavam && veiculo.getIdVeiculo()==id) {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    
+    private boolean buscarPlacaVeiculo(String placa) throws Exception {
+        try {
+            ArrayList<Veiculo> listagem = rw.listagemVeiculo();
+            for (Iterator<Veiculo> it = listagem.iterator(); it.hasNext();) {
+                Veiculo veiculo = it.next();
+                if (veiculo.getPlaca().equalsIgnoreCase(placa)) {
+                    Logs.logger("Nao e possivel inserir este Veiculo! Placa "+placa+" ja cadastrada!", getThisClass());
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception erro) {
+            Logs.logger("Nao foi possivel identificar se ha outro Veiculo de placa " + placa + " - " + erro.getMessage(), getThisClass());
+            throw erro;
+        }
+    }
+    
+    private boolean buscarRenavamVeiculo(int renavam) throws Exception {
+        try {
+            ArrayList<Veiculo> listagem = rw.listagemVeiculo();
+            for (Iterator<Veiculo> it = listagem.iterator(); it.hasNext();) {
+                Veiculo veiculo = it.next();
+                if (veiculo.getRenavan() == renavam) {
+                    Logs.logger("Nao e possivel inserir este Veiculo! Placa "+renavam+" ja cadastrada!", getThisClass());
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception erro) {
+            Logs.logger("Nao foi possivel identificar se ha outro Veiculo de placa " + renavam + " - " + erro.getMessage(), getThisClass());
+            throw erro;
+        }
     }
     
     @Override
@@ -169,21 +249,7 @@ public class Controle implements IControle{
         return rw.listagemVeiculo();
     }
 
-    @Override
-    public ArrayList<Modelo> listagemModelo() throws ComboBoxException {
-        return rw.listagemModelo(); 
     
-    }
-    
-    @Override
-    public ArrayList<String> listagemNomeModelo() throws Exception{
-        return rw.listagemNomeModelo();
-    }
-    
-    @Override
-    public ArrayList<String> listagemNomeMarcas() throws Exception{
-        return rw.listagemNomeMarcas();
-    }
     
     @Override
     public void inserirNovaCor(String nomeCor) throws Exception{
