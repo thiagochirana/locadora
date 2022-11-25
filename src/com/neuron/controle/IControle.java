@@ -17,8 +17,6 @@ import com.neuron.templates.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
 
 public interface IControle {
     void incluirMarca(Marca marca)throws Exception;

@@ -13,6 +13,8 @@ package com.neuron.tela;
 
 import com.neuron.controle.*;
 import com.neuron.templates.Usuario;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 
 
@@ -20,10 +22,27 @@ public class telaLogin extends javax.swing.JFrame {
 
     IControleUser iControle = new ControleUser();
     
+    KeyListener l = new KeyListener() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) System.out.println("apertou");
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            
+        }
+    };
     
     public telaLogin() {
         this.setUndecorated(true);
         initComponents();
+        this.addKeyListener(l);
         this.setLocationRelativeTo(null);
         jPasswordField.setText("");
         
@@ -68,6 +87,14 @@ public class telaLogin extends javax.swing.JFrame {
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntrarActionPerformed(evt);
+            }
+        });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyTyped(evt);
             }
         });
 
@@ -243,6 +270,29 @@ public class telaLogin extends javax.swing.JFrame {
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        try {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                System.out.println("THIS IS MY GOOD EYE");
+                String login = cpLogin.getText();
+                String pass = jPasswordField.getText();
+                Usuario user = new Usuario(0, login, pass);
+                if (iControle.validarAcesso(user, this)) {
+                    this.dispose();
+                    //JOptionPane.showMessageDialog(this, "Acesso permitido");
+                    telaDashboard tela = new telaDashboard();
+                    tela.setVisible(true);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_btnEntrarKeyPressed
+
+    private void btnEntrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyTyped
+        
+    }//GEN-LAST:event_btnEntrarKeyTyped
 
     /**
      * @param args the command line arguments
