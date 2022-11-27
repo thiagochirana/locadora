@@ -19,7 +19,6 @@ import com.neuron.utils.Backup;
 import com.neuron.utils.CopyFiles;
 import com.neuron.templates.*;
 import com.neuron.utils.Gerador;
-import com.neuron.utils.Get;
 import com.neuron.utils.Logs;
 import com.neuron.utils.ISelecionarArq;
 import com.neuron.utils.SelecionarArq;
@@ -30,12 +29,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 
 public class ReadWrite implements IReadWrite{
@@ -67,7 +63,7 @@ public class ReadWrite implements IReadWrite{
             
             CopyFiles.copiarImgSelecionada(caminho, "./src/com/neuron/icons/logo/", marca.getNomeMarca()+".jpeg");
             
-            Backup.Database();
+            //Backup.Database();
       }catch(DataBaseException erro){
             throw erro;
       }
@@ -119,7 +115,7 @@ public class ReadWrite implements IReadWrite{
             
             iImg.limparImgNaoUsadas(Telas.MODELO);
             
-            Backup.Database();
+            //Backup.Database();
         } catch (DataBaseException e) {
             throw e;
         }
@@ -177,7 +173,7 @@ public class ReadWrite implements IReadWrite{
             
             Logs.logger(modelo.getNomeModelo()+" salvo com sucesso! ",getThisClass());
             
-            Backup.Database();
+           // Backup.Database();
         } catch (Exception erro) {
             Logs.logger("Nao foi possivel Salvar o modelo "+modelo.getNomeModelo()+" no database! "+erro.getMessage(),getThisClass());
             throw erro;
@@ -231,7 +227,7 @@ public class ReadWrite implements IReadWrite{
             //renomeia o dbMarcaAux1 para ser o principal
             dbModeloNovo.renameTo(dbModeloAux);
             
-            Backup.Database();
+            //Backup.Database();
         } catch (Exception e) {
             throw new Exception("Nao foi possivel alterar modelo: "+e.getMessage());
         }
@@ -325,8 +321,8 @@ public class ReadWrite implements IReadWrite{
             //fecha o arquivo
             bw.close();	
             
-            Backup.Database();
-      }catch(DataBaseException erro){
+            //Backup.Database();
+        }catch(IOException erro){
             throw erro;
       }
     }
@@ -369,8 +365,9 @@ public class ReadWrite implements IReadWrite{
                     float precoVenda = veiculo.getPrecoVenda();
                     String dataCompra = veiculo.getDataCompra();
                     String dataVenda = veiculo.getDataVenda();
+                    String info = veiculo.getInfoAdicional();
                     int idModelo = veiculo.getIdModelo();
-                    v = new Veiculo(id, cor, modelo, dispo, marca, placa, anoFabri, tipo, quilometro, tipoVeiculo, renavam, precoCompra, precoVenda, dataCompra, dataVenda, idModelo);
+                    v = new Veiculo(id, cor, modelo, dispo, marca, placa, anoFabri, tipo, quilometro, tipoVeiculo, renavam, precoCompra, precoVenda, dataCompra, dataVenda,info, idModelo);
 
                     bwAux1.write(veiculo.toString()+"\n");
                 } else {
@@ -388,7 +385,7 @@ public class ReadWrite implements IReadWrite{
             //renomeia o dbMarcaAux1 para ser o principal
             dbNovo.renameTo(dbVeiculo);
             
-            Backup.Database();
+            //Backup.Database();
         } catch (Exception e) {
             throw new Exception("Nao foi possivel alterar modelo: "+e.getMessage());
         }
@@ -553,19 +550,19 @@ public class ReadWrite implements IReadWrite{
                 } else {
                     dataOriginal.close();
                     dataBack.close();
-                    Backup.Restaurar();
+                   // Backup.Restaurar();
                     stop = true;
                 }
             }
             if (!orig.equals(bkp)) {
                 dataOriginal.close();
                 dataBack.close();
-                Backup.Restaurar();
+                //Backup.Restaurar();
             }
         } else {
             dataOriginal.close();
             dataBack.close();
-            Backup.Restaurar();
+            //Backup.Restaurar();
         }
     }
     

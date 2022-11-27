@@ -32,7 +32,7 @@ public class Veiculo extends Modelo{
     
     String dataCompra;
     String dataVenda;
-    
+    String infoAdicional;
     int idModeloRelacionado;
     
     public Veiculo(){
@@ -52,7 +52,7 @@ public class Veiculo extends Modelo{
         this.tipoVeiculo = tipoVeiculo;
     }
 
-    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, String anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo, int renavan, float precoCompra, float precoVenda, String dataCompra, String dataVenda,int idModeloRelacionado) {
+    public Veiculo(int idVeiculo, String cor, String nomeModelo, Disponibilidade disponivel, String nomeMarca, String placa, String anoFabricacao, TipoCombustivel tipoCombustivel, int qulometragem, TipoVeiculo tipoVeiculo, int renavan, float precoCompra, float precoVenda, String dataCompra, String dataVenda, String infoAdicional,int idModeloRelacionado) {
         this.idVeiculo = idVeiculo;
         this.cor = cor;
         this.nomeModelo = nomeModelo;
@@ -68,6 +68,7 @@ public class Veiculo extends Modelo{
         this.precoVenda = precoVenda;
         this.dataCompra = dataCompra;
         this.dataVenda = dataVenda;
+        this.infoAdicional = infoAdicional;
         this.idModeloRelacionado = idModeloRelacionado;
     }
 
@@ -202,6 +203,15 @@ public class Veiculo extends Modelo{
     public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
     }
+
+    public String getInfoAdicional() {
+        return infoAdicional;
+    }
+
+    public void setInfoAdicional(String infoAdicional) {
+        this.infoAdicional = infoAdicional;
+    }
+    
     
     
 
@@ -209,7 +219,7 @@ public class Veiculo extends Modelo{
     public String toString() {
         return idVeiculo + ";" + cor + ";" + nomeModelo + ";" + disponivel + ";" + nomeMarca + ";" + placa + ";" + 
                 anoFabricacao + ";" + tipoCombustivel + ";" + qulometragem + ";" + tipoVeiculo + ";" + 
-                renavan + ";" + precoCompra + ";" + precoVenda + ";" +dataCompra+";" +dataVenda+";"+ idModeloRelacionado;
+                renavan + ";" + precoCompra + ";" + precoVenda + ";" +dataCompra+";" +dataVenda+";"+infoAdicional+";"+ idModeloRelacionado;
     }
          
 }

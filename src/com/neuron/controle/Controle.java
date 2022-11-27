@@ -34,31 +34,30 @@ public class Controle implements IControle{
     //********************************************
     //****************** MARCAS ******************
     //********************************************
-    private boolean buscarMarca(String descricao)throws Exception{
+    
+    private boolean buscarMarca(int id, String descricao)throws Exception{
         try {
             ArrayList<Marca> listagem = rw.listagemMarca();
-            Iterator<Marca> lista = listagem.iterator();
-            while(lista.hasNext()){
-                 Marca marca = lista.next();
-                if(marca.getNomeMarca().replace(" ","").equalsIgnoreCase(descricao.replace(" ",""))){
+            for (Marca marca : listagem) {
+                if (marca.getNomeMarca().replace(" ", "").equalsIgnoreCase(descricao.replace(" ", "")) && marca.getIdMarca() != id) {
                     return true;
                 }
             }
             return false;
         } catch (Exception erro) {
-            Logs.logger("Nao foi possivel identificar se ha outra Marca com o nome "+descricao+" - "+erro.getMessage(), getThisClass());
+            Logs.logger("Nao foi possivel identificar se ha outra Marca com o nome " + descricao + " - " + erro.getMessage(), getThisClass());
             throw erro;
-        }  
+        }
     }
     
     @Override
     public void incluirMarca(Marca m) throws Exception {
         Marca marca = m;
-        if (buscarMarca(marca.getNomeMarca() )) {
+        if (buscarMarca(marca.getIdMarca(),marca.getNomeMarca() )) {
             throw new Exception("Marca já foi cadastrada");
         }
         if(marca.getNomeMarca()==null ||marca.getNomeMarca().equals("")){
-            throw new Exception("Marca sem nome!");
+            throw new Exception("Marca sem nome inserido para cadastro! Por favor insira um nome de Marca");
         }
         char[] carac = marca.getNomeMarca().toCharArray();
         char ver = ' ';
@@ -74,7 +73,7 @@ public class Controle implements IControle{
     
     @Override
     public void alterarMarca(int id, String nomeMarca,String caminhoLogo) throws Exception{
-        if (buscarMarca(nomeMarca.replace(" ",""))) throw new Exception("Nome de marca ja existe! Por favor escolha outro nome");
+        //if (buscarMarca(nomeMarca.replace(" ",""))) throw new Exception("Nome de marca ja existe! Por favor escolha outro nome");
         char[] carac = nomeMarca.toCharArray();
         char ver = ' ';
         if (nomeMarca.contains("  ") || carac[0] == ver) {
@@ -183,7 +182,7 @@ public class Controle implements IControle{
         if (buscarRenavamVeiculo(veiculo.getRenavan())) throw new Exception("RENAVAM ja cadastrado! Insira outro RENAVAM");
         if ((veiculo.getRenavan() + "").equals("")) throw new Exception("RENAVAM vazio! Insira RENAVAM valido");
         if (veiculo.getRenavan() < 100000000 ) throw new Exception("RENAVAM invalido! Insira RENAVAM de nove digitos");
-        if (veiculo.getDataCompra().length() <= 10) throw new Exception("Data de Compra invalido!");
+        if (veiculo.getDataCompra().length() < 10) throw new Exception("Data de Compra invalido!");
     }
     
     private boolean validaPlacaPertenceAoID(int id, String placa) throws Exception{

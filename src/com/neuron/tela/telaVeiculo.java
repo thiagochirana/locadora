@@ -39,9 +39,10 @@ public final class telaVeiculo extends javax.swing.JFrame {
     String caminhoArquivo = "";
     String thisClass = "";
     IControladorImg iImg = new ControladorImg();
-    Color azulHover = new Color(0, 23, 132, 255);
+    Color azulHover = new Color(0, 23, 100, 255);
     Color azulPadrao = new Color(1, 132, 222, 255);
     Color verdeHover = new Color(51, 186, 0, 255);
+    Color amareloHover = new Color(250, 196, 0, 255);
 
     public telaVeiculo() {
         
@@ -105,7 +106,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         bgBtnInserir = new javax.swing.JPanel();
         btnInserirVeiculo = new javax.swing.JLabel();
-        bgBtnInserir3 = new javax.swing.JPanel();
+        bgBtnAlterar = new javax.swing.JPanel();
         btnAlterar = new javax.swing.JLabel();
         btnAttLista = new javax.swing.JLabel();
         btnVoltarPagAnt = new javax.swing.JLabel();
@@ -121,9 +122,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
         jComboBoxTipoCombustivel = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextFieldDataCompra = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextFieldDataVenda = new javax.swing.JFormattedTextField();
         jLabel16 = new javax.swing.JLabel();
         jComboBoxDisponivel = new javax.swing.JComboBox<>();
         btnAddColor = new javax.swing.JLabel();
@@ -138,6 +137,8 @@ public final class telaVeiculo extends javax.swing.JFrame {
         btnBuscarVeiculo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaObs = new javax.swing.JTextArea();
+        jTextFieldDataCompra = new javax.swing.JTextField();
+        jLabelDataVenda = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         menuLogOff = new javax.swing.JMenu();
 
@@ -263,8 +264,8 @@ public final class telaVeiculo extends javax.swing.JFrame {
             .addComponent(btnInserirVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
-        bgBtnInserir3.setBackground(new java.awt.Color(1, 132, 222));
-        bgBtnInserir3.setPreferredSize(new java.awt.Dimension(170, 35));
+        bgBtnAlterar.setBackground(new java.awt.Color(1, 132, 222));
+        bgBtnAlterar.setPreferredSize(new java.awt.Dimension(170, 35));
 
         btnAlterar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
@@ -277,16 +278,19 @@ public final class telaVeiculo extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAlterarMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAlterarMouseExited(evt);
+            }
         });
 
-        javax.swing.GroupLayout bgBtnInserir3Layout = new javax.swing.GroupLayout(bgBtnInserir3);
-        bgBtnInserir3.setLayout(bgBtnInserir3Layout);
-        bgBtnInserir3Layout.setHorizontalGroup(
-            bgBtnInserir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout bgBtnAlterarLayout = new javax.swing.GroupLayout(bgBtnAlterar);
+        bgBtnAlterar.setLayout(bgBtnAlterarLayout);
+        bgBtnAlterarLayout.setHorizontalGroup(
+            bgBtnAlterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
         );
-        bgBtnInserir3Layout.setVerticalGroup(
-            bgBtnInserir3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        bgBtnAlterarLayout.setVerticalGroup(
+            bgBtnAlterarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
@@ -383,18 +387,9 @@ public final class telaVeiculo extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(1, 132, 222));
         jLabel14.setText("Data de Compra:");
 
-        jTextFieldDataCompra.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldDataCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 132, 222)));
-        jTextFieldDataCompra.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldDataCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(1, 132, 222));
         jLabel15.setText("Data de Venda:");
-
-        jTextFieldDataVenda.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldDataVenda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 132, 222)));
-        jTextFieldDataVenda.setForeground(new java.awt.Color(1, 132, 222));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(1, 132, 222));
@@ -542,6 +537,24 @@ public final class telaVeiculo extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTextAreaObs);
 
+        jTextFieldDataCompra.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldDataCompra.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldDataCompra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldDataCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDataCompraActionPerformed(evt);
+            }
+        });
+        jTextFieldDataCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldDataCompraKeyPressed(evt);
+            }
+        });
+
+        jLabelDataVenda.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelDataVenda.setForeground(new java.awt.Color(1, 132, 222));
+        jLabelDataVenda.setText("NÃO VENDIDO");
+
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
         bgBackgroundLayout.setHorizontalGroup(
@@ -585,7 +598,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
                                             .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bgBtnInserir3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
                                                 .addComponent(jLabel10)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -621,8 +634,8 @@ public final class telaVeiculo extends javax.swing.JFrame {
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                         .addComponent(jLabel15)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane2)))
+                                        .addComponent(jLabelDataVenda))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(saidaStatusOperacao, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -687,7 +700,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
                             .addComponent(btnAddColor))
                         .addGap(40, 40, 40)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bgBtnInserir3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 50, Short.MAX_VALUE))
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
@@ -707,7 +720,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)
                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel15)
-                                    .addComponent(jTextFieldDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabelDataVenda))))
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addGap(13, 13, 13)
@@ -924,7 +937,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAttListaMouseClicked
 
     private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered
-        // TODO add your handling code here:
+        bgBtnAlterar.setBackground(amareloHover);
     }//GEN-LAST:event_btnAlterarMouseEntered
 
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
@@ -944,9 +957,10 @@ public final class telaVeiculo extends javax.swing.JFrame {
             float precoCompra = 0;
             float precoVenda = 0;
             String dataCompra = jTextFieldDataCompra.getText();
-            String dataVenda = jTextFieldDataVenda.getText();
+            String dataVenda = jLabelDataVenda.getText();
+            String info = jTextAreaObs.getText();
             int idModelo = Get.IDModeloSelecionado(modelo);
-            Veiculo v = new Veiculo(id, cor, modelo, dispo, marca, placa, anoFabri, tipo, quilometro, tipoVeiculo, renavam, precoCompra, precoVenda, dataCompra, dataVenda, idModelo);
+            Veiculo v = new Veiculo(id, cor, modelo, dispo, marca, placa, anoFabri, tipo, quilometro, tipoVeiculo, renavam, precoCompra, precoVenda, dataCompra, dataVenda, info, idModelo);
 
             interControle.alterarVeiculo(v);
             //ImprimirGrid(interControle.listagemModelo());
@@ -974,9 +988,10 @@ public final class telaVeiculo extends javax.swing.JFrame {
             float precoCompra =  0;
             float precoVenda = 0;
             String dataCompra = jTextFieldDataCompra.getText();
-            String dataVenda = jTextFieldDataVenda.getText();
+            String dataVenda = jLabelDataVenda.getText();
+            String info = jTextAreaObs.getText();
             int idModelo = Get.IDModeloSelecionado(modelo);
-            Veiculo v = new Veiculo(0,cor,modelo,dispo,marca,placa,anoFabri,tipo,quilometro,tipoVeiculo,renavam,precoCompra,precoVenda,dataCompra,dataVenda,idModelo);
+            Veiculo v = new Veiculo(0,cor,modelo,dispo,marca,placa,anoFabri,tipo,quilometro,tipoVeiculo,renavam,precoCompra,precoVenda,dataCompra,dataVenda,info,idModelo);
             
             interControle.incluirVeiculo(v);
             //ImprimirGrid(interControle.listagemModelo());
@@ -1012,7 +1027,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
                 if (grid[0].equals(idSelecionado)) {
                     jTextFieldRenavamVeiculo.setText(listaVeiculo.getRenavan() + "");
                     jTextFieldDataCompra.setText(listaVeiculo.getDataCompra());
-                    jTextFieldDataVenda.setText(listaVeiculo.getDataVenda());
+                    jLabelDataVenda.setText(listaVeiculo.getDataVenda());
                 }
 
             }
@@ -1065,7 +1080,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlugarVeiculoMouseEntered
 
     private void btnInserirVeiculoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseEntered
-        bgBtnInserir.setBackground(azulHover);
+        bgBtnInserir.setBackground(verdeHover);
     }//GEN-LAST:event_btnInserirVeiculoMouseEntered
 
     private void btnInserirVeiculoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseExited
@@ -1087,6 +1102,18 @@ public final class telaVeiculo extends javax.swing.JFrame {
     private void jTextAreaObsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextAreaObsFocusLost
         jTextAreaObs.setBorder(new LineBorder(new Color(1,132,222,255)));// TODO add your handling code here:
     }//GEN-LAST:event_jTextAreaObsFocusLost
+
+    private void jTextFieldDataCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDataCompraActionPerformed
+        
+    }//GEN-LAST:event_jTextFieldDataCompraActionPerformed
+
+    private void btnAlterarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseExited
+        bgBtnAlterar.setBackground(azulPadrao);
+    }//GEN-LAST:event_btnAlterarMouseExited
+
+    private void jTextFieldDataCompraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDataCompraKeyPressed
+
+    }//GEN-LAST:event_jTextFieldDataCompraKeyPressed
 
     private void customizeMenuBar(JMenuBar menuBar) throws Exception {
         IControleUser iContUser = new ControleUser();
@@ -1171,10 +1198,10 @@ public final class telaVeiculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgBackground;
+    private javax.swing.JPanel bgBtnAlterar;
     private javax.swing.JPanel bgBtnAlugarVeiculo;
     private javax.swing.JPanel bgBtnIniciarAluguel2;
     private javax.swing.JPanel bgBtnInserir;
-    private javax.swing.JPanel bgBtnInserir3;
     private javax.swing.JLabel btnAddColor;
     private javax.swing.JLabel btnAlterar;
     private javax.swing.JLabel btnAlugarVeiculo;
@@ -1204,14 +1231,14 @@ public final class telaVeiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelDataVenda;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextAreaObs;
     private javax.swing.JTextField jTextFieldAno;
-    private javax.swing.JFormattedTextField jTextFieldDataCompra;
-    private javax.swing.JFormattedTextField jTextFieldDataVenda;
+    private javax.swing.JTextField jTextFieldDataCompra;
     private javax.swing.JTextField jTextFieldPlacaVeiculo;
     private javax.swing.JTextField jTextFieldPotencia;
     private javax.swing.JTextField jTextFieldRenavamVeiculo;

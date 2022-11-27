@@ -100,73 +100,73 @@ public class Backup {
         log.close();
     }
     
-    public static void Marca() throws Exception{
-        File orig = new File(DataBase.MARCA.getPathDB());
-        File dest = new File(DataBase.BACKUP.getPathDB());
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("dbMarca.txt backup realizado", Backup.class.getName());
-
-        orig = new File(DataBase.IDMARCA.getPathDB());
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("IdControleMarca.txt backup realizado", Backup.class.getName());
-        
-        FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
-        BufferedWriter log = new BufferedWriter(file);
-        String hora = "Data e hora do backup da Marca e ID realizados: " + datahora();
-        log.write(hora);
-        log.close();
+    /*public static void Marca() throws Exception{
+    File orig = new File(DataBase.MARCA.getPathDB());
+    File dest = new File(DataBase.BACKUP.getPathDB());
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("dbMarca.txt backup realizado", Backup.class.getName());
+    
+    orig = new File(DataBase.IDMARCA.getPathDB());
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("IdControleMarca.txt backup realizado", Backup.class.getName());
+    
+    FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
+    BufferedWriter log = new BufferedWriter(file);
+    String hora = "Data e hora do backup da Marca e ID realizados: " + datahora();
+    log.write(hora);
+    log.close();
     }
     
     public static void RestaurarMarca() throws Exception{
-        File dest = new File(DataBase.RESTORE.getPathDB());
-        File orig = new File(DataBase.BACKUP.getPathDB()+"dbMarca.txt");
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("dbMarca.txt restaurado", Backup.class.getName());
-
-        orig = new File(DataBase.IDMARCA.getPathDB());
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("IdControleMarca.txt restaurado", Backup.class.getName());
-        
-        FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
-        BufferedWriter log = new BufferedWriter(file);
-        String hora = "Data e hora da restauracao de Marca e ID realizados: " + datahora();
-        log.write(hora);
-        log.close();
+    File dest = new File(DataBase.RESTORE.getPathDB());
+    File orig = new File(DataBase.BACKUP.getPathDB()+"dbMarca.txt");
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("dbMarca.txt restaurado", Backup.class.getName());
+    
+    orig = new File(DataBase.IDMARCA.getPathDB());
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("IdControleMarca.txt restaurado", Backup.class.getName());
+    
+    FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
+    BufferedWriter log = new BufferedWriter(file);
+    String hora = "Data e hora da restauracao de Marca e ID realizados: " + datahora();
+    log.write(hora);
+    log.close();
     }
     
     public static void Modelo() throws Exception{
-        File dest = new File(DataBase.BACKUP.getPathDB());
-        File orig = new File(DataBase.MODELO.getPathDB());
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("dbModelo.txt backup realizado", Backup.class.getName());
-
-        orig = new File(DataBase.IDMODELO.getPathDB());
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("IdControleModelo.txt backup realizado", Backup.class.getName());
-        
-        FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
-        BufferedWriter log = new BufferedWriter(file);
-        String hora = "Data e hora do backup do Modelo e ID realizados: " + datahora();
-        log.write(hora);
-        log.close();
+    File dest = new File(DataBase.BACKUP.getPathDB());
+    File orig = new File(DataBase.MODELO.getPathDB());
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("dbModelo.txt backup realizado", Backup.class.getName());
+    
+    orig = new File(DataBase.IDMODELO.getPathDB());
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("IdControleModelo.txt backup realizado", Backup.class.getName());
+    
+    FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
+    BufferedWriter log = new BufferedWriter(file);
+    String hora = "Data e hora do backup do Modelo e ID realizados: " + datahora();
+    log.write(hora);
+    log.close();
     }
     
     public static void Veiculo() throws Exception{
-        File orig = new File(DataBase.VEICULO.getPathDB());
-        File dest = new File(DataBase.BACKUP.getPathDB());
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("dbVeiculo.txt backup realizado", Backup.class.getName());
-
-        orig = new File(DataBase.IDVEICULO.getPathDB());
-        Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        Logs.logger("IdControleVeiculo.txt backup realizado", Backup.class.getName());
-        
-        FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
-        BufferedWriter log = new BufferedWriter(file);
-        String hora = "Data e hora do backup dos Veiculos e ID realizados: " + datahora();
-        log.write(hora);
-        log.close();
-    }
+    File orig = new File(DataBase.VEICULO.getPathDB());
+    File dest = new File(DataBase.BACKUP.getPathDB());
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("dbVeiculo.txt backup realizado", Backup.class.getName());
+    
+    orig = new File(DataBase.IDVEICULO.getPathDB());
+    Files.copy(orig.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    Logs.logger("IdControleVeiculo.txt backup realizado", Backup.class.getName());
+    
+    FileWriter file = new FileWriter(DataBase.BACKUP.getPathDB());
+    BufferedWriter log = new BufferedWriter(file);
+    String hora = "Data e hora do backup dos Veiculos e ID realizados: " + datahora();
+    log.write(hora);
+    log.close();
+    }*/
     
     private static String datahora() {
         Date data = new Date();

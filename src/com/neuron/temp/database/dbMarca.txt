@@ -15,8 +15,9 @@
 15;ALFA ROMEO;./src/com/neuron/icons/logo/ALFA ROMEO.jpeg
 16;CLIDCIRCUITO;./src/com/neuron/icons/logo/CLIDCIRCUITO.jpeg
 17;LOGSTER;./src/com/neuron/icons/logo/LOGSTER.jpeg
-18;TESTADINHA;./src/com/neuron/icons/logo/TESTADINHA.jpeg
+18;TESTADINHAS;./src/com/neuron/icons/logo/TESTADINHAS.jpeg
 19;GOHORSE;./src/com/neuron/icons/logo/GOHORSE.jpeg
 20;VARE;./src/com/neuron/icons/logo/VARE.jpeg
 21;BULLISHIT;./src/com/neuron/icons/logo/BULLISHIT.jpeg
 22;HONDA;./src/com/neuron/icons/logo/HONDA.jpeg
+23;LEPRECHAU;./src/com/neuron/icons/logo/LEPRECHAU.jpeg
