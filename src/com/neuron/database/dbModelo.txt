@@ -3,3 +3,9 @@
 3;ASDFSAFASFD;./src/com/neuron/icons/modelo/ASDFSAFASFD.jpeg;7
 22;KATIAU;./src/com/neuron/icons/modelo/KATIAU.jpeg;8
 23;BROW;./src/com/neuron/icons/modelo/BROW.jpeg;8
+24;COR;./src/com/neuron/icons/modelo/COR.jpeg;22
+25;LOGAO;./src/com/neuron/icons/modelo/LOGAO.jpeg;17
+26;LOGAOOOO;./src/com/neuron/icons/modelo/LOGAOOOO.jpeg;3
+27;CARRO2;./src/com/neuron/icons/modelo/CARRO2.jpeg;10
+28;CARRO TESTE;./src/com/neuron/icons/modelo/CARRO TESTE.jpeg;10
+29;CARRO 22;./src/com/neuron/icons/modelo/CARRO 22.jpeg;24

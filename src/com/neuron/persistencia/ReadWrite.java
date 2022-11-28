@@ -74,7 +74,6 @@ public class ReadWrite implements IReadWrite{
         try {
             System.out.println(caminhoLogo);
             Marca marca = new Marca();
-            ArrayList<Marca> aux = new ArrayList<Marca>();
             String linha = "";
             
             //Criar o txt auxiliar para manipulacao da pilha 
@@ -101,7 +100,6 @@ public class ReadWrite implements IReadWrite{
                     bwAux1.write(linha+"\n");
                 }
             }
-            fr.close();
             br.close();
             bwAux1.close();
             

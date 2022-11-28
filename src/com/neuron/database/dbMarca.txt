@@ -10,14 +10,15 @@
 10;TESTE2@;./src/com/neuron/icons/logo/TESTE2@.jpeg
 11;INSERIRMARCA;./src/com/neuron/icons/logo/INSERIRMARCA.jpeg
 12;NOVAMARCA;./src/com/neuron/icons/logo/NOVAMARCA.jpeg
-13;USANDOMARCA;./src/com/neuron/icons/logo/USANDOMARCA.jpeg
+13;FERRARIS;./src/com/neuron/icons/logo/FERRARIS.jpeg
 14; LARAVEL;./src/com/neuron/icons/logo/ LARAVEL.jpeg
 15;ALFA ROMEO;./src/com/neuron/icons/logo/ALFA ROMEO.jpeg
 16;CLIDCIRCUITO;./src/com/neuron/icons/logo/CLIDCIRCUITO.jpeg
 17;LOGSTER;./src/com/neuron/icons/logo/LOGSTER.jpeg
-18;TESTADINHAS;./src/com/neuron/icons/logo/TESTADINHAS.jpeg
+18;CONFIA;./src/com/neuron/icons/logo/CONFIA.jpeg
 19;GOHORSE;./src/com/neuron/icons/logo/GOHORSE.jpeg
 20;VARE;./src/com/neuron/icons/logo/VARE.jpeg
 21;BULLISHIT;./src/com/neuron/icons/logo/BULLISHIT.jpeg
 22;HONDA;./src/com/neuron/icons/logo/HONDA.jpeg
 23;LEPRECHAU;./src/com/neuron/icons/logo/LEPRECHAU.jpeg
+24;TESTE222;./src/com/neuron/icons/logo/TESTE222.jpeg

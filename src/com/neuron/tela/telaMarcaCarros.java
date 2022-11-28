@@ -526,7 +526,7 @@ public class telaMarcaCarros extends javax.swing.JFrame {
 
     private void btnAttListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttListaMouseClicked
         try {
-            //ImprimirGrid(interControle.listagemVeiculo());
+            ImprimirGrid(interControle.listagemMarca());
             Logs.logger("lista de Marcas atualizada com sucesso!", telaMarcaCarros.class.getName());
         } catch (Exception ex) {
             Logs.logger("Nao foi atualizada a lista!", telaMarcaCarros.class.getName());

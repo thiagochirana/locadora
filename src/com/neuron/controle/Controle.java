@@ -39,7 +39,7 @@ public class Controle implements IControle{
         try {
             ArrayList<Marca> listagem = rw.listagemMarca();
             for (Marca marca : listagem) {
-                if (marca.getNomeMarca().replace(" ", "").equalsIgnoreCase(descricao.replace(" ", "")) && marca.getIdMarca() != id) {
+                if (marca.getNomeMarca().equalsIgnoreCase(descricao) && marca.getIdMarca() != id) {
                     return true;
                 }
             }
@@ -59,6 +59,10 @@ public class Controle implements IControle{
         if(marca.getNomeMarca()==null ||marca.getNomeMarca().equals("")){
             throw new Exception("Marca sem nome inserido para cadastro! Por favor insira um nome de Marca");
         }
+        String nomemarca = marca.getNomeMarca();
+        if (nomemarca.charAt(nomemarca.length()-1) == ' ') {
+            throw new Exception("Nome da Marca com espacos invalidos no final");
+        }
         char[] carac = marca.getNomeMarca().toCharArray();
         char ver = ' ';
         if (marca.getNomeMarca().contains("  ") || carac[0] == ver) {
@@ -67,13 +71,20 @@ public class Controle implements IControle{
         if(marca.getDirLogo()==null || marca.getDirLogo().equals("")){
             throw new Exception("Marca "+marca.getNomeMarca()+" sem logo!");
         }
+        
         rw.incluirMarca(marca);
         
     }
     
     @Override
     public void alterarMarca(int id, String nomeMarca,String caminhoLogo) throws Exception{
-        //if (buscarMarca(nomeMarca.replace(" ",""))) throw new Exception("Nome de marca ja existe! Por favor escolha outro nome");
+        if (buscarMarca(id,nomeMarca.replace(" ",""))) {
+            throw new Exception("Nome de marca ja existe! Por favor escolha outro nome");
+        }
+        String nomemarca = nomeMarca;
+        if (nomemarca.charAt(nomemarca.length()-1) == ' ') {
+            throw new Exception("Nome da Marca com espacos invalidos no final");
+        }
         char[] carac = nomeMarca.toCharArray();
         char ver = ' ';
         if (nomeMarca.contains("  ") || carac[0] == ver) {
@@ -95,12 +106,11 @@ public class Controle implements IControle{
     //********************************************
     //***************** MODELOS ******************
     //********************************************
-    private boolean buscarModelo(String descricao)throws Exception{
+    private boolean buscarModelo(int id, String descricao)throws Exception{
         try {
             ArrayList<Modelo> listagem = rw.listagemModelo();
-            for (Iterator<Modelo> it = listagem.iterator(); it.hasNext();) {
-                Modelo modelo = it.next();
-                if(modelo.getNomeModelo().equalsIgnoreCase(descricao)){
+            for (Modelo modelo : listagem) {
+                if(modelo.getNomeModelo().equalsIgnoreCase(descricao) && id != modelo.getIdModelo()){
                     Logs.logger("Modelo já foi cadastrado", getThisClass());
                     return true;
                 }
@@ -115,11 +125,16 @@ public class Controle implements IControle{
     @Override
     public void incluirModelo(Modelo model) throws Exception {
         Modelo modelo = model;
-        if (buscarModelo(modelo.getNomeModelo())) {
+        if (buscarModelo(modelo.getIdModelo(),modelo.getNomeModelo())) {
         throw new Exception("Modelo ja foi cadastrado");
         }
         if (modelo.getNomeModelo().isEmpty() || modelo.getNomeModelo() == null){
             throw new Exception("Modelo sem nome");
+        }
+        
+        String nomeModelo = modelo.getNomeModelo();
+        if (nomeModelo.charAt(nomeModelo.length()-1) == ' ') {
+            throw new Exception("Nome do Modelo com espacos invalidos no final");
         }
         
         char[] carac = modelo.getNomeModelo().toCharArray();
@@ -134,8 +149,18 @@ public class Controle implements IControle{
     }
 
     @Override
-    public void alterarModelo(int id, String nomeModelo, String caminhoFotoModelo, int idMarca) throws Exception {
-        char[] carac = nomeModelo.toCharArray();
+    public void alterarModelo(int id, String nome, String caminhoFotoModelo, int idMarca) throws Exception {
+        
+        if (buscarModelo(id,nome)) {
+        throw new Exception("Modelo ja foi cadastrado");
+        }
+        
+        String nomeModelo = nome;
+        if (nomeModelo.charAt(nomeModelo.length()-1) == ' ') {
+            throw new Exception("Nome do Modelo com espacos invalidos no final");
+        }
+        
+        char[] carac = nome.toCharArray();
         char ver = ' ';
         if (nomeModelo.contains("  ") || carac[0] == ver) {
             throw new Exception("Nome do Modelo com espacos excessivos ou nao permitidos!");

@@ -160,11 +160,6 @@ public class telaModelos extends javax.swing.JFrame {
                 tabelaModeloMouseClicked(evt);
             }
         });
-        tabelaModelo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaModeloMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tabelaModelo);
         if (tabelaModelo.getColumnModel().getColumnCount() > 0) {
             tabelaModelo.getColumnModel().getColumn(4).setCellRenderer(new TabelaImagemMarca());
@@ -683,7 +678,7 @@ public class telaModelos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAttListaMouseClicked
 
     private void btnVoltarPagAntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarPagAntMouseClicked
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnVoltarPagAntMouseClicked
     
     private void customizeMenuBar(JMenuBar menuBar) throws Exception{
