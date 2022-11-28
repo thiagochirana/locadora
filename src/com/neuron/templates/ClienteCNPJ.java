@@ -12,7 +12,7 @@
 package com.neuron.templates;
 
 
-public class ClienteCNPJ{
+public class ClienteCNPJ extends Cliente{
     
     private int idPJ = 1; //tipo serial, NUMERO DEVE SER IMPAR, sempre vai ser idPJ += 2;
     private String razaoSocial = ""; //razao Social do cliente

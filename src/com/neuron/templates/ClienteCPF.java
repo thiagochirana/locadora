@@ -12,7 +12,7 @@
 package com.neuron.templates;
 
 
-public class ClienteCPF{
+public class ClienteCPF extends Cliente{
     
     private int idPF = 0; //tipo serial, NUMERO DEVE SER PAR, sempre vai ser idPF += 2;
     private String nome = ""; //Nome do cliente

@@ -8,14 +8,8 @@
 @College FATESG Senai
   
  ************* enjoy ******************/
+package com.neuron.controle;
 
-package com.neuron.templates;
-
-import java.util.ArrayList;
-
-
-public interface IClienteCPF {
-    ArrayList<ClienteCPF> listaClienteCPF()throws Exception;
+public class ControleCliente {
+    
 }
-
-// Software developed by Thiago Macedo -> https://github.com/othiagomacedo
