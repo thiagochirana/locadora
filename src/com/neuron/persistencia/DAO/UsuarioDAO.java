@@ -10,7 +10,9 @@
  ************* enjoy ******************/
 package com.neuron.persistencia.DAO;
 
+import com.neuron.persistencia.IUsuarioDAO;
 
-public class UsuarioDAO {
+
+public class UsuarioDAO implements IUsuarioDAO{
     
 }

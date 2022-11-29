@@ -479,13 +479,13 @@ public class ReadWrite implements IReadWrite{
         return true;
     }
     
-    public String getThisClass() {
+    private String getThisClass() {
         thisClass = getClass() + "";
         thisClass = thisClass.replace("class ", "");
         return thisClass;
     }
 
-    public String getCaminhoImg() throws Exception{
+    private String getCaminhoImg() throws Exception{
         File file =  new File("./src/com/neuron/temp/pathImg.txt");
         FileReader fr = new FileReader("./src/com/neuron/temp/pathImg.txt");
         BufferedReader br = new BufferedReader(fr);
