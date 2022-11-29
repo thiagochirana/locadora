@@ -13,16 +13,29 @@ package com.neuron.persistencia.DAO;
 
 import com.neuron.exceptions.ComboBoxException;
 import com.neuron.persistencia.IGuiDAO;
-import com.neuron.templates.DataBase;
+import com.neuron.templates.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class GuiDAO implements IGuiDAO{
 
     public GuiDAO() {
+    }
+    
+    @Override
+    public void inserirNovaCor(Cor cor) throws Exception{
+        try {
+            BufferedWriter color = new BufferedWriter(new FileWriter(DataBase.COR.getPathDB(), true));
+            color.write(cor.toString() + "\n");
+            color.close();
+        } catch (Exception e) {
+            throw e;
+        }
     }
     
     @Override

@@ -11,10 +11,12 @@
 package com.neuron.persistencia;
 
 import com.neuron.exceptions.ComboBoxException;
+import com.neuron.templates.Cor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public interface IGuiDAO {
+    void inserirNovaCor(Cor cor) throws Exception;
     ArrayList<String> listagemCores() throws ComboBoxException, FileNotFoundException, IOException;
 }
