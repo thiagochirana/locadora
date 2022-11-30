@@ -19,14 +19,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.*;
+import com.neuron.controle.control.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
 import com.neuron.utils.TabelaImagemModelo;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +34,8 @@ import javax.swing.table.TableColumnModel;
 
 public class telaModelos extends javax.swing.JFrame {
 
-    IControle interControle = new Controle();
+    IControleModelo interControle = new ControleModelo();
+    IControleMarca interMarca = new ControleMarca();
     ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "";
     String thisClass = "";
@@ -506,7 +506,7 @@ public class telaModelos extends javax.swing.JFrame {
     }
     
     public void carregarComboBoxMarcas() throws Exception{
-        String[] arrayNomeMarcas = interControle.listagemNomeMarcas().toArray(new String[interControle.listagemNomeMarcas().size()]);
+        String[] arrayNomeMarcas = interMarca.listagemNomeMarcas().toArray(new String[interMarca.listagemNomeMarcas().size()]);
         jComboBoxMarcas.removeAllItems();
         for (String itemMarca : arrayNomeMarcas) {
             jComboBoxMarcas.addItem(itemMarca);

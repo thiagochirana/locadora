@@ -12,7 +12,6 @@
 package com.neuron.persistencia.DAO;
 
 import com.neuron.exceptions.ComboBoxException;
-import com.neuron.persistencia.IGuiDAO;
 import com.neuron.templates.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,10 +20,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.neuron.persistencia.IGUIDAO;
 
-public class GuiDAO implements IGuiDAO{
+public class GUIDAO implements IGUIDAO{
 
-    public GuiDAO() {
+    public GUIDAO() {
     }
     
     @Override

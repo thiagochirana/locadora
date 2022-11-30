@@ -9,13 +9,14 @@
   
  ************* enjoy ******************/
 
-package com.neuron.persistencia.DAO;
+package com.neuron.controle;
 
-import com.neuron.persistencia.IClienteDAO;
+import com.neuron.templates.Cliente;
+import java.util.ArrayList;
 
 
-public class ClienteDAO implements IClienteDAO{
-    
+public interface IControleCliente {
+    ArrayList<Cliente> listagemCliente()throws Exception;
 }
 
 // Software developed by Thiago Chirana -> https://github.com/othiagomacedo

@@ -24,6 +24,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VeiculoDAO implements IVeiculoDAO{
     
@@ -148,6 +150,36 @@ public class VeiculoDAO implements IVeiculoDAO{
         }
     }
 
+    @Override
+    public ArrayList<String> listarTipoCombustivel() throws Exception {
+        List<TipoCombustivel> combustivel = Arrays.asList(TipoCombustivel.values());
+        ArrayList<String> lista = new ArrayList<>();
+        for (TipoCombustivel tipoC : combustivel) {
+            lista.add(tipoC.toString());
+        }
+        return lista;
+    }
+
+    @Override
+    public ArrayList<String> listarTipoVeiculo() throws Exception {
+        List<TipoVeiculo> veiculo = Arrays.asList(TipoVeiculo.values());
+        ArrayList<String> lista = new ArrayList<>();
+        for (TipoVeiculo tipoC : veiculo) {
+            lista.add(tipoC.toString());
+        }
+        return lista;
+    }
+
+    @Override
+    public ArrayList<String> listarDisponivel() throws Exception {
+        List<Disponibilidade> veiculo = Arrays.asList(Disponibilidade.values());
+        ArrayList<String> lista = new ArrayList<>();
+        for (Disponibilidade dispo : veiculo) {
+            lista.add(dispo.toString());
+        }
+        return lista;
+    }
+    
     private Disponibilidade getDisponivel(String nomeDispo) {
         switch (nomeDispo) {
             case "DISPONÍVEL":

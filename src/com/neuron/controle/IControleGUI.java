@@ -8,15 +8,17 @@
 @College FATESG Senai
   
  ************* enjoy ******************/
-package com.neuron.persistencia;
 
-import com.neuron.exceptions.ComboBoxException;
+package com.neuron.controle;
+
 import com.neuron.templates.Cor;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public interface IGUIDAO {
+
+
+public interface IControleGUI {
     void inserirNovaCor(Cor cor) throws Exception;
-    ArrayList<String> listagemCores() throws ComboBoxException, FileNotFoundException, IOException;
+    ArrayList<String> listagemCores() throws Exception;
 }
+
+// Software developed by Thiago Chirana -> https://github.com/othiagomacedo

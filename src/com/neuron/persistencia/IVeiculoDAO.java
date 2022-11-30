@@ -15,4 +15,7 @@ public interface IVeiculoDAO {
     ArrayList<Veiculo> listagemVeiculo() throws Exception;
     void incluirVeiculo(Veiculo veiculo) throws Exception;
     void alterarVeiculo(Veiculo veiculo) throws Exception;
+    ArrayList<String> listarTipoCombustivel() throws Exception;
+    ArrayList<String> listarTipoVeiculo() throws Exception;
+    ArrayList<String> listarDisponivel() throws Exception;
 }

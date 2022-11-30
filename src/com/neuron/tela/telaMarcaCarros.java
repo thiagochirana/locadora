@@ -13,23 +13,19 @@ package com.neuron.tela;
 
 import com.neuron.templates.Marca;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.*;
+import com.neuron.controle.control.ControleMarca;
 import com.neuron.utils.*;
 import com.neuron.icons.*;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.MenuElement;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -39,7 +35,7 @@ import javax.swing.table.TableColumnModel;
 
 public class telaMarcaCarros extends javax.swing.JFrame {
 
-    IControle interControle = new Controle();
+    IControleMarca interControle = new ControleMarca();
     ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "novo arquivo";
     IControladorImg iImg = new ControladorImg();
@@ -67,11 +63,11 @@ public class telaMarcaCarros extends javax.swing.JFrame {
             Logs.logger("Nao foi possivel limpar imagens do diretorio ./src/com/neuron/icons/logo/", getClass().toString());
         }
         
-        try {
-            interControle.verificaBanco(Telas.MARCA);
+        /*try {
+        interControle.verificaBanco(Telas.MARCA);
         } catch (Exception e) {
-            Logs.logger(e.getMessage(), getClass().toString());
-        }
+        Logs.logger(e.getMessage(), getClass().toString());
+        }*/
         
         try {
             

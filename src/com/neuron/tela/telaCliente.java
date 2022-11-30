@@ -18,7 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import com.neuron.controle.*;
+import com.neuron.controle.IControleCliente;
+import com.neuron.controle.control.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
 import java.text.ParseException;
@@ -27,15 +28,14 @@ import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.text.MaskFormatter;
 
-public final class telaCliente extends javax.swing.JFrame {
+public class telaCliente extends javax.swing.JFrame {
 
-    IControle interControle = new Controle();
+    IControleCliente interControle = new ControleCliente();
     String caminhoArquivo = "";
     String thisClass = "";
     IControladorImg iImg = new ControladorImg();
@@ -61,12 +61,6 @@ public final class telaCliente extends javax.swing.JFrame {
         resizeColunas(); //tamanho colunas
         //limparTela(); //limpar tela
         
-        try {
-            MaskFormatter mask = new MaskFormatter("##/##/####");
-            jTextFieldDataCompra = new JFormattedTextField(mask);
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
 
         try { 
             carregarComboBoxMarcas();
@@ -76,8 +70,8 @@ public final class telaCliente extends javax.swing.JFrame {
             carregarComboBoxTipoVeiculo();
             carregarComboBoxDisponivel();
             
-            if (!interControle.listagemVeiculo().isEmpty() || interControle.listagemVeiculo() != null) {
-                ImprimirGrid(interControle.listagemVeiculo());
+            if (!interControle.listagemCliente().isEmpty() || interControle.listagemCliente()!= null) {
+                ImprimirGrid(interControle.listagemCliente());
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
@@ -100,7 +94,7 @@ public final class telaCliente extends javax.swing.JFrame {
         tabelaVeiculo = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldPlacaVeiculo = new javax.swing.JTextField();
+        jTextFieldNomeRazao = new javax.swing.JTextField();
         txtQtdeResultados = new javax.swing.JLabel();
         saidaStatusOperacao = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -112,22 +106,22 @@ public final class telaCliente extends javax.swing.JFrame {
         btnVoltarPagAnt = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnBuscarVeiculo = new javax.swing.JLabel();
-        jTextFieldPlacaVeiculo1 = new javax.swing.JTextField();
-        jTextFieldPlacaVeiculo2 = new javax.swing.JTextField();
+        jTextFieldCpfCnpj = new javax.swing.JTextField();
+        jTextFieldNomeMotorista = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldPlacaVeiculo3 = new javax.swing.JTextField();
+        jTextFieldNumCNH = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanelFotoCNH = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxStatusCliente = new javax.swing.JComboBox<>();
         jTextFieldPlacaVeiculo4 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         bgBtnCarregarArquivo = new javax.swing.JPanel();
         btnCarregarArquivo = new javax.swing.JLabel();
-        jTextFieldPlacaVeiculo5 = new javax.swing.JTextField();
+        jTextFieldNumRG = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextFieldPlacaVeiculo6 = new javax.swing.JTextField();
+        jTextFieldTelefone = new javax.swing.JTextField();
         jMenuBar = new javax.swing.JMenuBar();
         menuLogOff = new javax.swing.JMenu();
 
@@ -186,7 +180,6 @@ public final class telaCliente extends javax.swing.JFrame {
             tabelaVeiculo.getColumnModel().getColumn(1).setResizable(false);
             tabelaVeiculo.getColumnModel().getColumn(2).setResizable(false);
             tabelaVeiculo.getColumnModel().getColumn(3).setResizable(false);
-            tabelaVeiculo.getColumnModel().getColumn(3).setCellRenderer(null);
             tabelaVeiculo.getColumnModel().getColumn(4).setResizable(false);
             tabelaVeiculo.getColumnModel().getColumn(5).setResizable(false);
             tabelaVeiculo.getColumnModel().getColumn(6).setResizable(false);
@@ -201,12 +194,12 @@ public final class telaCliente extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(1, 132, 222));
         jLabel2.setText("Nome/Razao Social:");
 
-        jTextFieldPlacaVeiculo.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldPlacaVeiculo.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldPlacaVeiculo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldPlacaVeiculo.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNomeRazao.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeRazao.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeRazao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeRazao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlacaVeiculoActionPerformed(evt);
+                jTextFieldNomeRazaoActionPerformed(evt);
             }
         });
 
@@ -306,21 +299,21 @@ public final class telaCliente extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldPlacaVeiculo1.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldPlacaVeiculo1.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldPlacaVeiculo1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldPlacaVeiculo1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCpfCnpj.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldCpfCnpj.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldCpfCnpj.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldCpfCnpj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlacaVeiculo1ActionPerformed(evt);
+                jTextFieldCpfCnpjActionPerformed(evt);
             }
         });
 
-        jTextFieldPlacaVeiculo2.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldPlacaVeiculo2.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldPlacaVeiculo2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldPlacaVeiculo2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNomeMotorista.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeMotorista.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeMotorista.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlacaVeiculo2ActionPerformed(evt);
+                jTextFieldNomeMotoristaActionPerformed(evt);
             }
         });
 
@@ -328,12 +321,12 @@ public final class telaCliente extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(1, 132, 222));
         jLabel7.setText("Nº CNH:");
 
-        jTextFieldPlacaVeiculo3.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldPlacaVeiculo3.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldPlacaVeiculo3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldPlacaVeiculo3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNumCNH.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNumCNH.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNumCNH.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNumCNH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlacaVeiculo3ActionPerformed(evt);
+                jTextFieldNumCNHActionPerformed(evt);
             }
         });
 
@@ -345,21 +338,21 @@ public final class telaCliente extends javax.swing.JFrame {
         jPanelFotoCNH.setLayout(jPanelFotoCNHLayout);
         jPanelFotoCNHLayout.setHorizontalGroup(
             jPanelFotoCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+            .addGap(0, 308, Short.MAX_VALUE)
         );
         jPanelFotoCNHLayout.setVerticalGroup(
             jPanelFotoCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 131, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(1, 132, 222));
         jLabel9.setText("Status:");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(1, 132, 222));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(null);
+        jComboBoxStatusCliente.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxStatusCliente.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxStatusCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxStatusCliente.setBorder(null);
 
         jTextFieldPlacaVeiculo4.setBackground(new java.awt.Color(250, 250, 250));
         jTextFieldPlacaVeiculo4.setForeground(new java.awt.Color(1, 132, 222));
@@ -398,12 +391,12 @@ public final class telaCliente extends javax.swing.JFrame {
             .addComponent(btnCarregarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        jTextFieldPlacaVeiculo5.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldPlacaVeiculo5.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldPlacaVeiculo5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldPlacaVeiculo5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNumRG.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNumRG.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNumRG.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNumRG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlacaVeiculo5ActionPerformed(evt);
+                jTextFieldNumRGActionPerformed(evt);
             }
         });
 
@@ -415,12 +408,12 @@ public final class telaCliente extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(1, 132, 222));
         jLabel12.setText("Telefone:");
 
-        jTextFieldPlacaVeiculo6.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldPlacaVeiculo6.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldPlacaVeiculo6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldPlacaVeiculo6.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldTelefone.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldTelefone.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldTelefone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlacaVeiculo6ActionPerformed(evt);
+                jTextFieldTelefoneActionPerformed(evt);
             }
         });
 
@@ -450,66 +443,63 @@ public final class telaCliente extends javax.swing.JFrame {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                            .addComponent(jLabel9)
-                                            .addGap(12, 12, 12)
-                                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(35, 35, 35)
-                                            .addComponent(jLabel10)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextFieldPlacaVeiculo4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(140, 140, 140))
-                                        .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                            .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40)
+                                        .addComponent(bgBtnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                                 .addComponent(jLabel2)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldPlacaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldPlacaVeiculo3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jLabel11)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldPlacaVeiculo5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jTextFieldNomeRazao, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
                                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(jLabel6))
                                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                                         .addGap(7, 7, 7)
-                                                        .addComponent(jTextFieldPlacaVeiculo2))
+                                                        .addComponent(jTextFieldNomeMotorista))
                                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextFieldPlacaVeiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextFieldPlacaVeiculo6))))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
-                                                .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(bgBtnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)))
+                                                        .addComponent(jTextFieldTelefone)))))
+                                        .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                    .addComponent(jLabel10)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jTextFieldPlacaVeiculo4))
+                                                .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                    .addComponent(jLabel11)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(59, 59, 59)
                                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 4, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jPanelFotoCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                                .addComponent(jPanelFotoCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 53, Short.MAX_VALUE))
+                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(19, 19, 19))))
         );
         bgBackgroundLayout.setVerticalGroup(
@@ -533,45 +523,49 @@ public final class telaCliente extends javax.swing.JFrame {
                             .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(14, 14, 14)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(14, 14, 14)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(148, 148, 148))
+                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addComponent(jPanelFotoCNH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18))))
                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextFieldPlacaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldNomeRazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextFieldPlacaVeiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
-                            .addComponent(jTextFieldPlacaVeiculo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextFieldPlacaVeiculo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextFieldPlacaVeiculo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPlacaVeiculo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldPlacaVeiculo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)))
-                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(14, 14, 14)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelFotoCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -604,36 +598,27 @@ public final class telaCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ImprimirGrid(ArrayList<Veiculo> listaDeVeiculo) {
+    private void ImprimirGrid(ArrayList<Cliente> listaDeClientes) {
         try {
             DefaultTableModel veiculo = (DefaultTableModel) tabelaVeiculo.getModel();
-            TabelaImagem tabelaImagem = new TabelaImagem();
             //set imagem no grid
-            tabelaVeiculo.getColumnModel().getColumn(4).setCellRenderer(tabelaImagem);
-
-            ImageIcon logoMarcaCell;
 
             //Limpa a tabela 
             veiculo.setNumRows(0); //setar numero de linhas exibidas para 0
-            Iterator<Veiculo> lista = listaDeVeiculo.iterator();
+            Iterator<Cliente> lista = listaDeClientes.iterator();
 
             while (lista.hasNext()) {
-                String[] grid = new String[15];
-                Veiculo listaVeiculo = lista.next();
-                grid[0] = listaVeiculo.getIdVeiculo() + "";
-                grid[1] = listaVeiculo.getCor();
-                grid[2] = listaVeiculo.getNomeModelo();
-                grid[3] = listaVeiculo.getDisponivel() + "";
-                grid[4] = listaVeiculo.getNomeMarca();
-                grid[5] = listaVeiculo.getPlaca();
-                grid[6] = listaVeiculo.getAnoFabricacao() + "";
-                grid[7] = listaVeiculo.getTipoCombustivel().toString();
-                grid[8] = listaVeiculo.getQulometragem() + "";
-                grid[9] = listaVeiculo.getTipoVeiculo() + "";
+                String[] grid = new String[7];
+                Cliente cliente = lista.next();
+                grid[0] = cliente.getId() + "";
+                grid[1] = cliente.getNome();
+                grid[2] = cliente.getCpfCnpj();
+                grid[3] = cliente.getMotorista()+ "";
+                grid[4] = cliente.getDDI() + "("+ cliente.getDDD()+")" + cliente.getNumero();
+                grid[5] = cliente.getStatusMulta().toString();
+                grid[6] = cliente.getValorMulta()%.2+"";
 
-                //logoCell = new ImageIcon(listaVeiculo.getDirFotoModelo());
-                logoMarcaCell = new ImageIcon("./src/com/neuron/icons/logo/" + grid[4] + ".jpeg");
-                veiculo.addRow(new Object[]{grid[0], grid[1], grid[2], grid[3], logoMarcaCell, grid[5], grid[6], grid[7], grid[8], grid[9]});
+                veiculo.addRow(new Object[]{grid});
 
             }
         } catch (Exception erro) {
@@ -650,51 +635,11 @@ public final class telaCliente extends javax.swing.JFrame {
 
     }
 
-    public void carregarComboBoxMarcas() throws Exception {
-        String[] array = interControle.listagemNomeMarcas().toArray(new String[interControle.listagemNomeMarcas().size()]);
-        jComboBoxMarcas.removeAllItems();
+    public void carregarComboBoxStatus() throws Exception {
+        String[] array = interControle.listagemCliente().toArray(new String[interControle.listagemCliente().size()]);
+        jComboBoxStatusCliente.removeAllItems();
         for (String item : array) {
-            jComboBoxMarcas.addItem(item);
-        }
-    }
-
-    public void carregarComboBoxModelo() throws Exception {
-        String[] array = interControle.listagemNomeModelo().toArray(new String[interControle.listagemNomeModelo().size()]);
-        jComboBoxModelo.removeAllItems();
-        for (String item : array) {
-            jComboBoxModelo.addItem(item);
-        }
-    }
-
-    public void carregarComboBoxCores() throws Exception {
-        String[] arrayCores = interControle.listagemCores().toArray(new String[interControle.listagemCores().size()]);
-        jComboBoxCorVeiculo.removeAllItems();
-        for (String cor : arrayCores) {
-            jComboBoxCorVeiculo.addItem(cor);
-        }
-    }
-
-    public void carregarComboBoxTipoCombustivel() throws Exception {
-        String[] arrayCombustivel = interControle.listarTipoCombustivel().toArray(new String[interControle.listarTipoCombustivel().size()]);
-        jComboBoxTipoVeiculo.removeAllItems();
-        for (String combustivel : arrayCombustivel) {
-            jComboBoxTipoVeiculo.addItem(combustivel);
-        }
-    }
-
-    public void carregarComboBoxTipoVeiculo() throws Exception {
-        String[] arrayVeiculo = interControle.listarTipoVeiculo().toArray(new String[interControle.listarTipoVeiculo().size()]);
-        jComboBoxTipoCombustivel.removeAllItems();
-        for (String veiculo : arrayVeiculo) {
-            jComboBoxTipoCombustivel.addItem(veiculo);
-        }
-    }
-
-    public void carregarComboBoxDisponivel() throws Exception {
-        String[] arrayDispo = interControle.listarDisponivel().toArray(new String[interControle.listarDisponivel().size()]);
-        jComboBoxDisponivel.removeAllItems();
-        for (String dispo : arrayDispo) {
-            jComboBoxDisponivel.addItem(dispo);
+            jComboBoxStatusCliente.addItem(item);
         }
     }
 
@@ -721,6 +666,53 @@ public final class telaCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_menuLogOffMouseClicked
 
+    private void jTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
+
+    private void jTextFieldNumRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumRGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNumRGActionPerformed
+
+    private void btnCarregarArquivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCarregarArquivoMouseEntered
+
+    private void btnCarregarArquivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseClicked
+        Logs.logger("Iniciando selecao de imagem",getThisClass());
+        try {
+            ImageIcon imgLogo = new ImageIcon();
+            imgLogo = iArquivo.abrirBuscadorImg(saidaLogo.getWidth(),saidaLogo.getHeight());
+            setCaminhoArquivo((String) iArquivo.getCaminhoDoArquivo());
+            saidaLogo.setIcon(imgLogo);
+            Logs.logger("Imagem selecionada com sucesso do diretorio "+iArquivo.getCaminhoDoArquivo(),getThisClass());
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            Logs.logger("Nao foi possivel selecionar imagem para este modelo\n"+e.getMessage(),getThisClass());
+        }
+    }//GEN-LAST:event_btnCarregarArquivoMouseClicked
+
+    private void jTextFieldPlacaVeiculo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPlacaVeiculo4ActionPerformed
+
+    private void jTextFieldNumCNHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumCNHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNumCNHActionPerformed
+
+    private void jTextFieldNomeMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeMotoristaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeMotoristaActionPerformed
+
+    private void jTextFieldCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfCnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCpfCnpjActionPerformed
+
+    private void btnBuscarVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVeiculoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarVeiculoMouseClicked
+
     private void btnVoltarPagAntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarPagAntMouseClicked
         this.dispose();
     }//GEN-LAST:event_btnVoltarPagAntMouseClicked
@@ -734,6 +726,10 @@ public final class telaCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAttListaMouseClicked
 
+    private void btnAlterarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseExited
+        bgBtnAlterar.setBackground(azulPadrao);
+    }//GEN-LAST:event_btnAlterarMouseExited
+
     private void btnAlterarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseEntered
         bgBtnAlterar.setBackground(amareloHover);
     }//GEN-LAST:event_btnAlterarMouseEntered
@@ -745,7 +741,7 @@ public final class telaCliente extends javax.swing.JFrame {
             String modelo = jComboBoxModelo.getSelectedItem().toString();
             Disponibilidade dispo = Get.disponibilidadeByNome(jComboBoxDisponivel.getSelectedItem().toString());
             String marca = jComboBoxMarcas.getSelectedItem().toString();
-            String placa = jTextFieldPlacaVeiculo.getText();
+            String placa = jTextFieldNomeRazao.getText();
             String anoFabri = jTextFieldAno.getText();
             TipoCombustivel tipo = Get.combustivelByNome(jComboBoxTipoVeiculo.getSelectedItem().toString());
             int quilometro;
@@ -762,8 +758,8 @@ public final class telaCliente extends javax.swing.JFrame {
 
             interControle.alterarVeiculo(v);
             //ImprimirGrid(interControle.listagemModelo());
-            
-            JOptionPane.showMessageDialog(this, "Veiculo " + jTextFieldPlacaVeiculo.getText().toUpperCase() + " alterado com sucesso!");
+
+            JOptionPane.showMessageDialog(this, "Veiculo " + jTextFieldNomeRazao.getText().toUpperCase() + " alterado com sucesso!");
             ImprimirGrid(interControle.listagemVeiculo());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -771,13 +767,21 @@ public final class telaCliente extends javax.swing.JFrame {
         limparTela();
     }//GEN-LAST:event_btnAlterarMouseClicked
 
+    private void btnInserirVeiculoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseExited
+        bgBtnInserir.setBackground(azulPadrao);
+    }//GEN-LAST:event_btnInserirVeiculoMouseExited
+
+    private void btnInserirVeiculoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseEntered
+        bgBtnInserir.setBackground(verdeHover);
+    }//GEN-LAST:event_btnInserirVeiculoMouseEntered
+
     private void btnInserirVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseClicked
         try {
             String cor = jComboBoxCorVeiculo.getSelectedItem().toString();
             String modelo = jComboBoxModelo.getSelectedItem().toString();
             Disponibilidade dispo = Get.disponibilidadeByNome(jComboBoxDisponivel.getSelectedItem().toString());
             String marca = jComboBoxMarcas.getSelectedItem().toString();
-            String placa = jTextFieldPlacaVeiculo.getText();
+            String placa = jTextFieldNomeRazao.getText();
             String anoFabri = jTextFieldAno.getText();
             TipoCombustivel tipo = Get.combustivelByNome(jComboBoxTipoVeiculo.getSelectedItem().toString());
             int quilometro = 0;
@@ -790,7 +794,7 @@ public final class telaCliente extends javax.swing.JFrame {
             String info = jTextAreaObs.getText();
             int idModelo = Get.IDModeloSelecionado(modelo);
             Veiculo v = new Veiculo(0,cor,modelo,dispo,marca,placa,anoFabri,tipo,quilometro,tipoVeiculo,renavam,precoCompra,precoVenda,dataCompra,dataVenda,info,idModelo);
-            
+
             interControle.incluirVeiculo(v);
             //ImprimirGrid(interControle.listagemModelo());
         } catch (Exception erro) {
@@ -798,15 +802,15 @@ public final class telaCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());
         }
 
-        jTextFieldPlacaVeiculo.setText("");
+        jTextFieldNomeRazao.setText("");
         //saidaLogo.setIcon(null);
 
         Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos", getThisClass());
     }//GEN-LAST:event_btnInserirVeiculoMouseClicked
 
-    private void jTextFieldPlacaVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculoActionPerformed
+    private void jTextFieldNomeRazaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculoActionPerformed
+    }//GEN-LAST:event_jTextFieldNomeRazaoActionPerformed
 
     private void tabelaVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVeiculoMouseClicked
 
@@ -830,7 +834,7 @@ public final class telaCliente extends javax.swing.JFrame {
 
             }
 
-            this.jTextFieldPlacaVeiculo.setText((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 5));
+            this.jTextFieldNomeRazao.setText((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 5));
             jComboBoxMarcas.setSelectedItem(nomeMarcaSelecionado);
             jComboBoxModelo.setSelectedItem((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 2));
             jComboBoxCorVeiculo.setSelectedItem((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 1));
@@ -844,66 +848,6 @@ public final class telaCliente extends javax.swing.JFrame {
             Logs.logger(err.getMessage(), getThisClass());
         }
     }//GEN-LAST:event_tabelaVeiculoMouseClicked
-
-    private void btnInserirVeiculoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseEntered
-        bgBtnInserir.setBackground(verdeHover);
-    }//GEN-LAST:event_btnInserirVeiculoMouseEntered
-
-    private void btnInserirVeiculoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseExited
-        bgBtnInserir.setBackground(azulPadrao);
-    }//GEN-LAST:event_btnInserirVeiculoMouseExited
-
-    private void btnBuscarVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarVeiculoMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarVeiculoMouseClicked
-
-    private void btnAlterarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseExited
-        bgBtnAlterar.setBackground(azulPadrao);
-    }//GEN-LAST:event_btnAlterarMouseExited
-
-    private void jTextFieldPlacaVeiculo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculo1ActionPerformed
-
-    private void jTextFieldPlacaVeiculo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculo2ActionPerformed
-
-    private void jTextFieldPlacaVeiculo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculo3ActionPerformed
-
-    private void jTextFieldPlacaVeiculo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculo4ActionPerformed
-
-    private void btnCarregarArquivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseClicked
-        Logs.logger("Iniciando selecao de imagem",getThisClass());
-        try {
-            ImageIcon imgLogo = new ImageIcon();
-            imgLogo = iArquivo.abrirBuscadorImg(saidaLogo.getWidth(),saidaLogo.getHeight());
-            setCaminhoArquivo((String) iArquivo.getCaminhoDoArquivo());
-            saidaLogo.setIcon(imgLogo);
-            Logs.logger("Imagem selecionada com sucesso do diretorio "+iArquivo.getCaminhoDoArquivo(),getThisClass());
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            Logs.logger("Nao foi possivel selecionar imagem para este modelo\n"+e.getMessage(),getThisClass());
-        }
-
-    }//GEN-LAST:event_btnCarregarArquivoMouseClicked
-
-    private void btnCarregarArquivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCarregarArquivoMouseEntered
-
-    private void jTextFieldPlacaVeiculo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculo5ActionPerformed
-
-    private void jTextFieldPlacaVeiculo6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculo6ActionPerformed
 
     private void customizeMenuBar(JMenuBar menuBar) throws Exception {
         IControleUser iContUser = new ControleUser();
@@ -1015,7 +959,7 @@ public final class telaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;
     private javax.swing.JLabel cpUser;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxStatusCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1027,17 +971,16 @@ public final class telaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelFotoCNH;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextFieldPlacaVeiculo;
-    private javax.swing.JTextField jTextFieldPlacaVeiculo1;
-    private javax.swing.JTextField jTextFieldPlacaVeiculo2;
-    private javax.swing.JTextField jTextFieldPlacaVeiculo3;
+    private javax.swing.JTextField jTextFieldCpfCnpj;
+    private javax.swing.JTextField jTextFieldNomeMotorista;
+    private javax.swing.JTextField jTextFieldNomeRazao;
+    private javax.swing.JTextField jTextFieldNumCNH;
+    private javax.swing.JTextField jTextFieldNumRG;
     private javax.swing.JTextField jTextFieldPlacaVeiculo4;
-    private javax.swing.JTextField jTextFieldPlacaVeiculo5;
-    private javax.swing.JTextField jTextFieldPlacaVeiculo6;
+    private javax.swing.JTextField jTextFieldTelefone;
     private javax.swing.JLabel logoNeuron;
     private javax.swing.JMenu menuLogOff;
     private javax.swing.JLabel saidaStatusOperacao;

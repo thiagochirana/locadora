@@ -10,6 +10,260 @@
  ************* enjoy ******************/
 package com.neuron.templates;
 
-public class Cliente {
+public class Cliente extends Endereco{
+    
+    int id;
+    String cpfCnpj;
+    String nome;
+    String razaoSocial;
+    String rg;
+    String email;
+    String motorista;
+    int nCNH;
+    String caminhoImgCNH;
+    String caminhoImgCNHCompleto;
+    StatusMulta statusMulta;
+    float valorMulta;
+
+    public Cliente(int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, String caminhoImgCNHCompleto, StatusMulta statusMulta, float valorMulta) {
+        this.id = id;
+        this.cpfCnpj = cpfCnpj;
+        this.nome = nome;
+        this.razaoSocial = razaoSocial;
+        this.rg = rg;
+        this.email = email;
+        this.motorista = motorista;
+        this.nCNH = nCNH;
+        this.caminhoImgCNH = caminhoImgCNH;
+        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
+        this.statusMulta = statusMulta;
+        this.valorMulta = valorMulta;
+    }
+
+    public Cliente(int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, String caminhoImgCNHCompleto, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado, int DDI, int DDD, int numero) {
+        super(logradouro, complemento, CEP, bairro, cidade, estado, DDI, DDD, numero);
+        this.id = id;
+        this.cpfCnpj = cpfCnpj;
+        this.nome = nome;
+        this.razaoSocial = razaoSocial;
+        this.rg = rg;
+        this.email = email;
+        this.motorista = motorista;
+        this.nCNH = nCNH;
+        this.caminhoImgCNH = caminhoImgCNH;
+        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
+        this.statusMulta = statusMulta;
+        this.valorMulta = valorMulta;
+    }
+
+    public Cliente(int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, String caminhoImgCNHCompleto, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado) {
+        super(logradouro, complemento, CEP, bairro, cidade, estado);
+        this.id = id;
+        this.cpfCnpj = cpfCnpj;
+        this.nome = nome;
+        this.razaoSocial = razaoSocial;
+        this.rg = rg;
+        this.email = email;
+        this.motorista = motorista;
+        this.nCNH = nCNH;
+        this.caminhoImgCNH = caminhoImgCNH;
+        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
+        this.statusMulta = statusMulta;
+        this.valorMulta = valorMulta;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCpfCnpj() {
+        return cpfCnpj;
+    }
+
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(String motorista) {
+        this.motorista = motorista;
+    }
+
+    public int getnCNH() {
+        return nCNH;
+    }
+
+    public void setnCNH(int nCNH) {
+        this.nCNH = nCNH;
+    }
+
+    public String getCaminhoImgCNH() {
+        return caminhoImgCNH;
+    }
+
+    public void setCaminhoImgCNH(String caminhoImgCNH) {
+        this.caminhoImgCNH = caminhoImgCNH;
+    }
+
+    public String getCaminhoImgCNHCompleto() {
+        return caminhoImgCNHCompleto;
+    }
+
+    public void setCaminhoImgCNHCompleto(String caminhoImgCNHCompleto) {
+        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
+    }
+
+    public StatusMulta getStatusMulta() {
+        return statusMulta;
+    }
+
+    public void setStatusMulta(StatusMulta statusMulta) {
+        this.statusMulta = statusMulta;
+    }
+
+    public float getValorMulta() {
+        return valorMulta;
+    }
+
+    public void setValorMulta(float valorMulta) {
+        this.valorMulta = valorMulta;
+    }
+
+    @Override
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    @Override
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    @Override
+    public String getComplemento() {
+        return complemento;
+    }
+
+    @Override
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    @Override
+    public int getCEP() {
+        return CEP;
+    }
+
+    @Override
+    public void setCEP(int CEP) {
+        this.CEP = CEP;
+    }
+
+    @Override
+    public String getBairro() {
+        return bairro;
+    }
+
+    @Override
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    @Override
+    public String getCidade() {
+        return cidade;
+    }
+
+    @Override
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    @Override
+    public String getEstado() {
+        return estado;
+    }
+
+    @Override
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public int getDDD() {
+        return DDD;
+    }
+
+    @Override
+    public void setDDD(int DDD) {
+        this.DDD = DDD;
+    }
+
+    @Override
+    public int getDDI() {
+        return DDI;
+    }
+
+    @Override
+    public void setDDI(int DDI) {
+        this.DDI = DDI;
+    }
+
+    @Override
+    public int getNumero() {
+        return numero;
+    }
+
+    @Override
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    @Override
+    public String toString() {
+        return cpfCnpj + ";" + nome + ",;" + razaoSocial + ";" + rg + ";" + email + ";" + motorista + ";"
+                + nCNH + ";" + caminhoImgCNH + ";" + caminhoImgCNHCompleto + ";" + statusMulta + ";" + valorMulta;
+    }
+    
+    
     
 }

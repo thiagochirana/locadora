@@ -7,8 +7,8 @@
  * @Course Software Engineering
  * @College FATESG Senai
  *
- ************* enjoy *****************
- */
+ ************* enjoy *****************/
+
 package com.neuron.tela;
 
 import com.neuron.templates.*;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.*;
-import com.neuron.icons.*;
+import com.neuron.controle.control.*;
 import com.neuron.utils.*;
 import java.text.ParseException;
 import javax.swing.ImageIcon;
@@ -35,10 +35,14 @@ import javax.swing.text.MaskFormatter;
 
 public final class telaVeiculo extends javax.swing.JFrame {
 
-    IControle interControle = new Controle();
+    IControleVeiculo interControle = new ControleVeiculo();
+    IControleMarca interMarca = new ControleMarca();
+    IControleModelo interModelo = new ControleModelo();
+    IControleGUI interCor = new ControleGUI();
+    
+    
     String caminhoArquivo = "";
     String thisClass = "";
-    IControladorImg iImg = new ControladorImg();
     Color azulHover = new Color(0, 23, 100, 255);
     Color azulPadrao = new Color(1, 132, 222, 255);
     Color verdeHover = new Color(51, 186, 0, 255);
@@ -810,15 +814,11 @@ public final class telaVeiculo extends javax.swing.JFrame {
     }
 
     public void limparTela() {
-        /*saidaLogo.setIcon(null);
-        saidaDiretorio.setText("");
-        saidaLogoMarca.setIcon(null);
-        saidaID.setText("");*/
 
     }
 
     public void carregarComboBoxMarcas() throws Exception {
-        String[] array = interControle.listagemNomeMarcas().toArray(new String[interControle.listagemNomeMarcas().size()]);
+        String[] array = interMarca.listagemNomeMarcas().toArray(new String[interMarca.listagemNomeMarcas().size()]);
         jComboBoxMarcas.removeAllItems();
         for (String item : array) {
             jComboBoxMarcas.addItem(item);
@@ -826,7 +826,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
     }
 
     public void carregarComboBoxModelo() throws Exception {
-        String[] array = interControle.listagemNomeModelo().toArray(new String[interControle.listagemNomeModelo().size()]);
+        String[] array = interModelo.listagemNomeModelo().toArray(new String[interModelo.listagemNomeModelo().size()]);
         jComboBoxModelo.removeAllItems();
         for (String item : array) {
             jComboBoxModelo.addItem(item);
@@ -834,7 +834,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
     }
 
     public void carregarComboBoxCores() throws Exception {
-        String[] arrayCores = interControle.listagemCores().toArray(new String[interControle.listagemCores().size()]);
+        String[] arrayCores = interCor.listagemCores().toArray(new String[interCor.listagemCores().size()]);
         jComboBoxCorVeiculo.removeAllItems();
         for (String cor : arrayCores) {
             jComboBoxCorVeiculo.addItem(cor);
@@ -891,7 +891,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
     private void btnAddColorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddColorMouseClicked
         try {
             String cor = JOptionPane.showInputDialog("Informe o nome da Cor desejada: ");
-            interControle.inserirNovaCor(cor);
+            interCor.inserirNovaCor(new Cor(cor,0,0,0,0));
             carregarComboBoxCores();
             JOptionPane.showMessageDialog(this, "Cor " + cor + " inserida com sucesso!");
         } catch (Exception e) {
@@ -994,7 +994,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
             Veiculo v = new Veiculo(0,cor,modelo,dispo,marca,placa,anoFabri,tipo,quilometro,tipoVeiculo,renavam,precoCompra,precoVenda,dataCompra,dataVenda,info,idModelo);
             
             interControle.incluirVeiculo(v);
-            //ImprimirGrid(interControle.listagemModelo());
+            ImprimirGrid(interControle.listagemVeiculo());
         } catch (Exception erro) {
 
             JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());

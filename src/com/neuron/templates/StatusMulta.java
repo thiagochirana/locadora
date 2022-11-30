@@ -9,13 +9,10 @@
   
  ************* enjoy ******************/
 
-package com.neuron.persistencia.DAO;
+package com.neuron.templates;
 
-import com.neuron.persistencia.IClienteDAO;
-
-
-public class ClienteDAO implements IClienteDAO{
-    
+public enum StatusMulta {
+    SEM_MULTA,QUITADO,EM_DIVIDA;
 }
 
 // Software developed by Thiago Chirana -> https://github.com/othiagomacedo

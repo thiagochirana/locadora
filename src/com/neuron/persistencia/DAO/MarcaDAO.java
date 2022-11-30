@@ -11,6 +11,7 @@
 package com.neuron.persistencia.DAO;
 
 import com.neuron.exceptions.DataBaseException;
+import com.neuron.icons.ControladorImg;
 import com.neuron.icons.IControladorImg;
 import com.neuron.icons.Telas;
 import com.neuron.persistencia.IMarcaDAO;
@@ -30,8 +31,9 @@ public class MarcaDAO implements IMarcaDAO{
     
     IControladorImg iImg;
 
-    public MarcaDAO(IControladorImg iImg) {
-        this.iImg = iImg;
+    public MarcaDAO() {
+        iImg = new ControladorImg();
+        
     }
     
     
