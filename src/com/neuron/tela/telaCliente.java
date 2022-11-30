@@ -22,20 +22,18 @@ import com.neuron.controle.IControleCliente;
 import com.neuron.controle.control.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
-import java.text.ParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import javax.swing.text.MaskFormatter;
 
 public class telaCliente extends javax.swing.JFrame {
 
     IControleCliente interControle = new ControleCliente();
+    ISelecionarArq iArquivo = new SelecionarArq();
     String caminhoArquivo = "";
     String thisClass = "";
     IControladorImg iImg = new ControladorImg();
@@ -63,13 +61,7 @@ public class telaCliente extends javax.swing.JFrame {
         
 
         try { 
-            carregarComboBoxMarcas();
-            carregarComboBoxModelo();
-            carregarComboBoxCores();
-            carregarComboBoxTipoCombustivel();
-            carregarComboBoxTipoVeiculo();
-            carregarComboBoxDisponivel();
-            
+            carregarComboBoxStatus();            
             if (!interControle.listagemCliente().isEmpty() || interControle.listagemCliente()!= null) {
                 ImprimirGrid(interControle.listagemCliente());
             }
@@ -91,7 +83,7 @@ public class telaCliente extends javax.swing.JFrame {
         cpUser = new javax.swing.JLabel();
         logoNeuron = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaVeiculo = new javax.swing.JTable();
+        tabelaClientes = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldNomeRazao = new javax.swing.JTextField();
@@ -99,7 +91,7 @@ public class telaCliente extends javax.swing.JFrame {
         saidaStatusOperacao = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         bgBtnInserir = new javax.swing.JPanel();
-        btnInserirVeiculo = new javax.swing.JLabel();
+        btnInserirCliente = new javax.swing.JLabel();
         bgBtnAlterar = new javax.swing.JPanel();
         btnAlterar = new javax.swing.JLabel();
         btnAttLista = new javax.swing.JLabel();
@@ -112,6 +104,7 @@ public class telaCliente extends javax.swing.JFrame {
         jTextFieldNumCNH = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanelFotoCNH = new javax.swing.JPanel();
+        jLabelFotoCNH = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBoxStatusCliente = new javax.swing.JComboBox<>();
         jTextFieldPlacaVeiculo4 = new javax.swing.JTextField();
@@ -142,10 +135,10 @@ public class telaCliente extends javax.swing.JFrame {
         logoNeuron.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         logoNeuron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/logoMin.png"))); // NOI18N
 
-        tabelaVeiculo.setAutoCreateRowSorter(true);
-        tabelaVeiculo.setBackground(new java.awt.Color(255, 255, 255));
-        tabelaVeiculo.setForeground(new java.awt.Color(1, 75, 222));
-        tabelaVeiculo.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaClientes.setAutoCreateRowSorter(true);
+        tabelaClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tabelaClientes.setForeground(new java.awt.Color(1, 75, 222));
+        tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -164,27 +157,27 @@ public class telaCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaVeiculo.setGridColor(new java.awt.Color(255, 255, 255));
-        tabelaVeiculo.setRowHeight(40);
-        tabelaVeiculo.setSelectionBackground(new java.awt.Color(1, 132, 222));
-        tabelaVeiculo.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tabelaVeiculo.getTableHeader().setReorderingAllowed(false);
-        tabelaVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaClientes.setGridColor(new java.awt.Color(255, 255, 255));
+        tabelaClientes.setRowHeight(40);
+        tabelaClientes.setSelectionBackground(new java.awt.Color(1, 132, 222));
+        tabelaClientes.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tabelaClientes.getTableHeader().setReorderingAllowed(false);
+        tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaVeiculoMouseClicked(evt);
+                tabelaClientesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelaVeiculo);
-        if (tabelaVeiculo.getColumnModel().getColumnCount() > 0) {
-            tabelaVeiculo.getColumnModel().getColumn(0).setResizable(false);
-            tabelaVeiculo.getColumnModel().getColumn(1).setResizable(false);
-            tabelaVeiculo.getColumnModel().getColumn(2).setResizable(false);
-            tabelaVeiculo.getColumnModel().getColumn(3).setResizable(false);
-            tabelaVeiculo.getColumnModel().getColumn(4).setResizable(false);
-            tabelaVeiculo.getColumnModel().getColumn(5).setResizable(false);
-            tabelaVeiculo.getColumnModel().getColumn(6).setResizable(false);
+        jScrollPane1.setViewportView(tabelaClientes);
+        if (tabelaClientes.getColumnModel().getColumnCount() > 0) {
+            tabelaClientes.getColumnModel().getColumn(0).setResizable(false);
+            tabelaClientes.getColumnModel().getColumn(1).setResizable(false);
+            tabelaClientes.getColumnModel().getColumn(2).setResizable(false);
+            tabelaClientes.getColumnModel().getColumn(3).setResizable(false);
+            tabelaClientes.getColumnModel().getColumn(4).setResizable(false);
+            tabelaClientes.getColumnModel().getColumn(5).setResizable(false);
+            tabelaClientes.getColumnModel().getColumn(6).setResizable(false);
         }
-        tabelaVeiculo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tabelaClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jSeparator1.setBackground(new java.awt.Color(1, 132, 222));
         jSeparator1.setForeground(new java.awt.Color(1, 132, 222));
@@ -206,7 +199,7 @@ public class telaCliente extends javax.swing.JFrame {
         txtQtdeResultados.setBackground(new java.awt.Color(250, 250, 250));
         txtQtdeResultados.setForeground(new java.awt.Color(100, 210, 243));
         txtQtdeResultados.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtQtdeResultados.setText("n veículos cadastrados.");
+        txtQtdeResultados.setText("n clientes cadastrados.");
 
         saidaStatusOperacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         saidaStatusOperacao.setForeground(new java.awt.Color(1, 132, 222));
@@ -217,19 +210,19 @@ public class telaCliente extends javax.swing.JFrame {
 
         bgBtnInserir.setBackground(new java.awt.Color(1, 132, 222));
 
-        btnInserirVeiculo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnInserirVeiculo.setForeground(new java.awt.Color(255, 255, 255));
-        btnInserirVeiculo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnInserirVeiculo.setText("INSERIR");
-        btnInserirVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnInserirCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnInserirCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnInserirCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnInserirCliente.setText("INSERIR");
+        btnInserirCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnInserirVeiculoMouseClicked(evt);
+                btnInserirClienteMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnInserirVeiculoMouseEntered(evt);
+                btnInserirClienteMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnInserirVeiculoMouseExited(evt);
+                btnInserirClienteMouseExited(evt);
             }
         });
 
@@ -237,11 +230,11 @@ public class telaCliente extends javax.swing.JFrame {
         bgBtnInserir.setLayout(bgBtnInserirLayout);
         bgBtnInserirLayout.setHorizontalGroup(
             bgBtnInserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnInserirVeiculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+            .addComponent(btnInserirCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
         );
         bgBtnInserirLayout.setVerticalGroup(
             bgBtnInserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnInserirVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(btnInserirCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
 
         bgBtnAlterar.setBackground(new java.awt.Color(1, 132, 222));
@@ -338,11 +331,11 @@ public class telaCliente extends javax.swing.JFrame {
         jPanelFotoCNH.setLayout(jPanelFotoCNHLayout);
         jPanelFotoCNHLayout.setHorizontalGroup(
             jPanelFotoCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+            .addComponent(jLabelFotoCNH, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
         jPanelFotoCNHLayout.setVerticalGroup(
             jPanelFotoCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jLabelFotoCNH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -493,7 +486,7 @@ public class telaCliente extends javax.swing.JFrame {
                                         .addComponent(jPanelFotoCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 53, Short.MAX_VALUE))
+                                .addGap(0, 66, Short.MAX_VALUE))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
@@ -600,7 +593,7 @@ public class telaCliente extends javax.swing.JFrame {
 
     private void ImprimirGrid(ArrayList<Cliente> listaDeClientes) {
         try {
-            DefaultTableModel veiculo = (DefaultTableModel) tabelaVeiculo.getModel();
+            DefaultTableModel veiculo = (DefaultTableModel) tabelaClientes.getModel();
             //set imagem no grid
 
             //Limpa a tabela 
@@ -644,7 +637,7 @@ public class telaCliente extends javax.swing.JFrame {
     }
 
     public void resizeColunas() {
-        TableColumnModel tCM = tabelaVeiculo.getColumnModel();
+        TableColumnModel tCM = tabelaClientes.getColumnModel();
         tCM.getColumn(0).setPreferredWidth(30);
         tCM.getColumn(1).setPreferredWidth(80);
         tCM.getColumn(2).setPreferredWidth(120);
@@ -682,14 +675,14 @@ public class telaCliente extends javax.swing.JFrame {
         Logs.logger("Iniciando selecao de imagem",getThisClass());
         try {
             ImageIcon imgLogo = new ImageIcon();
-            imgLogo = iArquivo.abrirBuscadorImg(saidaLogo.getWidth(),saidaLogo.getHeight());
+            imgLogo = iArquivo.abrirBuscadorImg(jLabelFotoCNH.getWidth(),jLabelFotoCNH.getHeight());
             setCaminhoArquivo((String) iArquivo.getCaminhoDoArquivo());
-            saidaLogo.setIcon(imgLogo);
+            jLabelFotoCNH.setIcon(imgLogo);
             Logs.logger("Imagem selecionada com sucesso do diretorio "+iArquivo.getCaminhoDoArquivo(),getThisClass());
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage());
-            Logs.logger("Nao foi possivel selecionar imagem para este modelo\n"+e.getMessage(),getThisClass());
+            Logs.logger("Nao foi possivel selecionar imagem para a CNH"+e.getMessage(),getThisClass());
         }
     }//GEN-LAST:event_btnCarregarArquivoMouseClicked
 
@@ -719,10 +712,10 @@ public class telaCliente extends javax.swing.JFrame {
 
     private void btnAttListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttListaMouseClicked
         try {
-            ImprimirGrid(interControle.listagemVeiculo());
-            Logs.logger("lista de Marcas atualizada com sucesso!", telaMarcaCarros.class.getName());
+            ImprimirGrid(interControle.listagemCliente());
+            Logs.logger("lista de Clientes atualizada com sucesso!", telaCliente.class.getName());
         } catch (Exception ex) {
-            Logs.logger("Nao foi atualizada a lista!", telaMarcaCarros.class.getName());
+            Logs.logger("Nao foi atualizada a lista!", telaCliente.class.getName());
         }
     }//GEN-LAST:event_btnAttListaMouseClicked
 
@@ -736,46 +729,29 @@ public class telaCliente extends javax.swing.JFrame {
 
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         try {
-            int id = Integer.parseInt((String)this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 0));
-            String cor = jComboBoxCorVeiculo.getSelectedItem().toString();
-            String modelo = jComboBoxModelo.getSelectedItem().toString();
-            Disponibilidade dispo = Get.disponibilidadeByNome(jComboBoxDisponivel.getSelectedItem().toString());
-            String marca = jComboBoxMarcas.getSelectedItem().toString();
-            String placa = jTextFieldNomeRazao.getText();
-            String anoFabri = jTextFieldAno.getText();
-            TipoCombustivel tipo = Get.combustivelByNome(jComboBoxTipoVeiculo.getSelectedItem().toString());
-            int quilometro;
-            quilometro = Integer.parseInt((tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 8))==null?"0":(String)tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 8));
-            TipoVeiculo tipoVeiculo = Get.TipoVeiculoByNome(jComboBoxTipoCombustivel.getSelectedItem().toString());
-            int renavam = Integer.parseInt(jTextFieldRenavamVeiculo.getText());
-            float precoCompra = 0;
-            float precoVenda = 0;
-            String dataCompra = jTextFieldDataCompra.getText();
-            String dataVenda = jLabelDataVenda.getText();
-            String info = jTextAreaObs.getText();
-            int idModelo = Get.IDModeloSelecionado(modelo);
-            Veiculo v = new Veiculo(id, cor, modelo, dispo, marca, placa, anoFabri, tipo, quilometro, tipoVeiculo, renavam, precoCompra, precoVenda, dataCompra, dataVenda, info, idModelo);
-
-            interControle.alterarVeiculo(v);
+            int id = Integer.parseInt((String)this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0));
+            
+            Cliente cliente = new Cliente();
+            interControle.alterarCliente(cliente);
             //ImprimirGrid(interControle.listagemModelo());
 
-            JOptionPane.showMessageDialog(this, "Veiculo " + jTextFieldNomeRazao.getText().toUpperCase() + " alterado com sucesso!");
-            ImprimirGrid(interControle.listagemVeiculo());
+            JOptionPane.showMessageDialog(this, "Cliente " + jTextFieldNomeRazao.getText().toUpperCase() + " alterado com sucesso!");
+            ImprimirGrid(interControle.listagemCliente());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         limparTela();
     }//GEN-LAST:event_btnAlterarMouseClicked
 
-    private void btnInserirVeiculoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseExited
+    private void btnInserirClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirClienteMouseExited
         bgBtnInserir.setBackground(azulPadrao);
-    }//GEN-LAST:event_btnInserirVeiculoMouseExited
+    }//GEN-LAST:event_btnInserirClienteMouseExited
 
-    private void btnInserirVeiculoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseEntered
+    private void btnInserirClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirClienteMouseEntered
         bgBtnInserir.setBackground(verdeHover);
-    }//GEN-LAST:event_btnInserirVeiculoMouseEntered
+    }//GEN-LAST:event_btnInserirClienteMouseEntered
 
-    private void btnInserirVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirVeiculoMouseClicked
+    private void btnInserirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirClienteMouseClicked
         try {
             String cor = jComboBoxCorVeiculo.getSelectedItem().toString();
             String modelo = jComboBoxModelo.getSelectedItem().toString();
@@ -806,19 +782,19 @@ public class telaCliente extends javax.swing.JFrame {
         //saidaLogo.setIcon(null);
 
         Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos", getThisClass());
-    }//GEN-LAST:event_btnInserirVeiculoMouseClicked
+    }//GEN-LAST:event_btnInserirClienteMouseClicked
 
     private void jTextFieldNomeRazaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeRazaoActionPerformed
 
-    private void tabelaVeiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaVeiculoMouseClicked
+    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
 
         try {
-            caminhoArquivo = (String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 3);
-            String nomeMarcaSelecionado = this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 4) + "";
+            caminhoArquivo = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3);
+            String nomeMarcaSelecionado = this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4) + "";
             nomeMarcaSelecionado = nomeMarcaSelecionado.replace("./src/com/neuron/icons/logo/", "").replace(".jpeg", "");
-            String idSelecionado = (String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 0);
+            String idSelecionado = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0);
 
             Iterator<Veiculo> lista = interControle.listagemVeiculo().iterator();
 
@@ -834,20 +810,20 @@ public class telaCliente extends javax.swing.JFrame {
 
             }
 
-            this.jTextFieldNomeRazao.setText((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 5));
+            this.jTextFieldNomeRazao.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5));
             jComboBoxMarcas.setSelectedItem(nomeMarcaSelecionado);
-            jComboBoxModelo.setSelectedItem((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 2));
-            jComboBoxCorVeiculo.setSelectedItem((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 1));
-            jComboBoxTipoVeiculo.setSelectedItem((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 7));
-            jComboBoxTipoCombustivel.setSelectedItem((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 9));
-            jComboBoxDisponivel.setSelectedItem((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 3));
-            this.jTextFieldAno.setText((String) this.tabelaVeiculo.getValueAt(tabelaVeiculo.getSelectedRow(), 6));
+            jComboBoxModelo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2));
+            jComboBoxCorVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1));
+            jComboBoxTipoVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7));
+            jComboBoxTipoCombustivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9));
+            jComboBoxDisponivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3));
+            this.jTextFieldAno.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6));
 
         } catch (Exception err) {
             JOptionPane.showMessageDialog(this, err);
             Logs.logger(err.getMessage(), getThisClass());
         }
-    }//GEN-LAST:event_tabelaVeiculoMouseClicked
+    }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void customizeMenuBar(JMenuBar menuBar) throws Exception {
         IControleUser iContUser = new ControleUser();
@@ -955,7 +931,7 @@ public class telaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel btnAttLista;
     private javax.swing.JLabel btnBuscarVeiculo;
     private javax.swing.JLabel btnCarregarArquivo;
-    private javax.swing.JLabel btnInserirVeiculo;
+    private javax.swing.JLabel btnInserirCliente;
     private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;
     private javax.swing.JLabel cpUser;
@@ -970,6 +946,7 @@ public class telaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelFotoCNH;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JPanel jPanelFotoCNH;
     private javax.swing.JScrollPane jScrollPane1;
@@ -984,7 +961,7 @@ public class telaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel logoNeuron;
     private javax.swing.JMenu menuLogOff;
     private javax.swing.JLabel saidaStatusOperacao;
-    private javax.swing.JTable tabelaVeiculo;
+    private javax.swing.JTable tabelaClientes;
     private javax.swing.JLabel txtQtdeResultados;
     // End of variables declaration//GEN-END:variables
 }
