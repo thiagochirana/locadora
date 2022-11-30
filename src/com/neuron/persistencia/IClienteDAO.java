@@ -4,10 +4,13 @@
  */
 package com.neuron.persistencia;
 
+import com.neuron.templates.Cliente;
+import java.util.ArrayList;
+
 /**
  *
  * @author thiag
  */
 public interface IClienteDAO {
-    
+    ArrayList<Cliente> listagemClientes() throws Exception;
 }

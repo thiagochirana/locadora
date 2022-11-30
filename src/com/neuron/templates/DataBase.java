@@ -21,6 +21,9 @@ public enum DataBase {
     USER("./src/com/neuron/database/dbUsers.txt"),
     IDUSER("./src/com/neuron/database/idControleUsers.txt"),
     
+    CLIENTE("./src/com/neuron/database/dbClientes.txt"),
+    IDCLIENTE("./src/com/neuron/database/idControleClientes.txt"),
+    
     BKPMARCA("./src/com/neuron/temp/database/dbMarca.txt"),
     BKPIDMARCA("./src/com/neuron/temp/database/idControleMarca.txt"),
     

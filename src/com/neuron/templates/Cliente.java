@@ -25,6 +25,10 @@ public class Cliente extends Endereco{
     StatusMulta statusMulta;
     float valorMulta;
 
+    public Cliente(){
+        
+    }
+    
     public Cliente(int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, String caminhoImgCNHCompleto, StatusMulta statusMulta, float valorMulta) {
         this.id = id;
         this.cpfCnpj = cpfCnpj;

@@ -12,11 +12,20 @@ package com.neuron.persistencia;
 
 import com.neuron.exceptions.ComboBoxException;
 import com.neuron.templates.Cor;
+import com.neuron.templates.Usuario;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
 public interface IGUIDAO {
     void inserirNovaCor(Cor cor) throws Exception;
     ArrayList<String> listagemCores() throws ComboBoxException, FileNotFoundException, IOException;
+    
+    boolean validarAcesso(Usuario user, JFrame jf) throws Exception;
+    JMenuBar customMenuBar(JFrame jf) throws Exception;
+    
+    ArrayList<String> UserDataHoraAcesso() throws Exception;
+    
 }
