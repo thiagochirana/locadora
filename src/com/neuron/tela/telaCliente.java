@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import com.neuron.controle.IControleCliente;
+import com.neuron.controle.IControleGUI;
 import com.neuron.controle.control.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
@@ -594,8 +595,6 @@ public class telaCliente extends javax.swing.JFrame {
     private void ImprimirGrid(ArrayList<Cliente> listaDeClientes) {
         try {
             DefaultTableModel veiculo = (DefaultTableModel) tabelaClientes.getModel();
-            //set imagem no grid
-
             //Limpa a tabela 
             veiculo.setNumRows(0); //setar numero de linhas exibidas para 0
             Iterator<Cliente> lista = listaDeClientes.iterator();
@@ -826,7 +825,7 @@ public class telaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void customizeMenuBar(JMenuBar menuBar) throws Exception {
-        IControleUser iContUser = new ControleUser();
+        IControleGUI iContUser = new ControleGUI();
         JMenuBar jmb = menuBar;
 
         //Barra customizada de acordo com o perfil

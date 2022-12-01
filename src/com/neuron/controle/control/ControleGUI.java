@@ -16,6 +16,8 @@ import com.neuron.persistencia.DAO.GUIDAO;
 import com.neuron.persistencia.IGUIDAO;
 import com.neuron.templates.Cor;
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 
 
 public class ControleGUI implements IControleGUI{
@@ -37,6 +39,10 @@ public class ControleGUI implements IControleGUI{
     @Override
     public ArrayList<String> listagemCores() throws Exception {
         return gui.listagemCores();
+    }
+    
+    public JMenuBar customMenuBar(JFrame jf) throws Exception{
+        return gui.customMenuBar(jf);
     }
     
 }

@@ -28,7 +28,7 @@ public class ControleCliente implements IControleCliente{
     
     @Override
     public ArrayList<Cliente> listagemCliente()throws Exception{
-        return new ArrayList<>();
+        return cliente.listagemClientes();
     }
     
     @Override

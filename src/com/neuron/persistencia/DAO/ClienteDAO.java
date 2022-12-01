@@ -26,52 +26,51 @@ public class ClienteDAO implements IClienteDAO{
     public ArrayList<Cliente> listagemClientes() throws Exception{
         File dbCliente = new File(DataBase.CLIENTE.getPathDB());
         // verifica se banco existe, se nao tenta puxar do backup
-        if(!dbCliente.exists()) {
-            FileWriter fl = new FileWriter(dbCliente);
-            fl.close();
-        } else {
-            try {
-                ArrayList<Cliente> lista = new ArrayList<>();
-                BufferedReader br = new BufferedReader(new FileReader(DataBase.CLIENTE.getPathDB()));
-                String linha = "";
-                
-                while ((linha = br.readLine()) != null) {
-                    Cliente cli = new Cliente();
-                    String vet[] = linha.split(";");
-                    cli.setId(Integer.parseInt(vet[0]));
-                    cli.setNome(vet[1]);
-                    cli.setRazaoSocial(vet[2]);
-                    cli.setRg(vet[3]);
-                    cli.setEmail(vet[4]);
-                    cli.setMotorista(vet[5]);
-                    cli.setnCNH(Integer.parseInt(vet[6]));
-                    cli.setCaminhoImgCNH(vet[7]);
-                    cli.setCaminhoImgCNHCompleto(vet[8]);
-                    cli.setStatusMulta(getStatusMulta(vet[9]));
-                    cli.setValorMulta(Float.parseFloat(vet[10]));
-                    cli.setLogradouro(vet[11]);
-                    cli.setComplemento(vet[12]);
-                    cli.setCEP(Integer.parseInt(vet[13]));
-                    cli.setBairro(vet[14]);
-                    cli.setCidade(vet[15]);
-                    cli.setEstado(vet[16]);
-                    cli.setDDI(Integer.parseInt(vet[17]));
-                    cli.setDDD(Integer.parseInt(vet[18]));
-                    cli.setNumero(Integer.parseInt(vet[19]));
-                    
-                    lista.add(cli);
-                }
-                br.close();
+        try {
+            if (!dbCliente.exists()) {
+                FileWriter fl = new FileWriter(dbCliente);
+                fl.close();
+            }             
 
-                return lista;
+            ArrayList<Cliente> lista = new ArrayList<>();
+            BufferedReader br = new BufferedReader(new FileReader(DataBase.CLIENTE.getPathDB()));
+            String linha = "";
 
-            } catch (Exception erro) {
-                //Gerador.createDB(DataBase.MARCA.getPathDB());
+            while ((linha = br.readLine()) != null) {
+                Cliente cli = new Cliente();
+                String vet[] = linha.split(";");
+                cli.setId(Integer.parseInt(vet[0]));
+                cli.setNome(vet[1]);
+                cli.setRazaoSocial(vet[2]);
+                cli.setRg(vet[3]);
+                cli.setEmail(vet[4]);
+                cli.setMotorista(vet[5]);
+                cli.setnCNH(Integer.parseInt(vet[6]));
+                cli.setCaminhoImgCNH(vet[7]);
+                cli.setCaminhoImgCNHCompleto(vet[8]);
+                cli.setStatusMulta(getStatusMulta(vet[9]));
+                cli.setValorMulta(Float.parseFloat(vet[10]));
+                cli.setLogradouro(vet[11]);
+                cli.setComplemento(vet[12]);
+                cli.setCEP(Integer.parseInt(vet[13]));
+                cli.setBairro(vet[14]);
+                cli.setCidade(vet[15]);
+                cli.setEstado(vet[16]);
+                cli.setDDI(Integer.parseInt(vet[17]));
+                cli.setDDD(Integer.parseInt(vet[18]));
+                cli.setNumero(Integer.parseInt(vet[19]));
 
-                throw new Exception(erro + "Marcas nao foram encontradas\nFoi criado um database de contingência ");
+                lista.add(cli);
             }
+            br.close();
+
+            return lista;
+
+        } catch (Exception erro) {
+            //Gerador.createDB(DataBase.MARCA.getPathDB());
+
+            throw new Exception(erro + "Marcas nao foram encontradas\nFoi criado um database de contingência ");
         }
-        return new ArrayList<>();
     }
     
     private StatusMulta getStatusMulta(String status) throws Exception{
