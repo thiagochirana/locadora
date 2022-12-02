@@ -14,67 +14,61 @@ public class Cliente extends Endereco{
     
     int id;
     String cpfCnpj;
-    String nome;
-    String razaoSocial;
+    String nomeRazaoSocial;
     String rg;
     String email;
     String motorista;
     int nCNH;
     String caminhoImgCNH;
-    String caminhoImgCNHCompleto;
     StatusMulta statusMulta;
     float valorMulta;
 
     public Cliente(){
         
     }
-    
-    public Cliente(int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, String caminhoImgCNHCompleto, StatusMulta statusMulta, float valorMulta) {
+
+    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta) {
         this.id = id;
         this.cpfCnpj = cpfCnpj;
-        this.nome = nome;
-        this.razaoSocial = razaoSocial;
+        this.nomeRazaoSocial = nomeRazaoSocial;
         this.rg = rg;
         this.email = email;
         this.motorista = motorista;
         this.nCNH = nCNH;
         this.caminhoImgCNH = caminhoImgCNH;
-        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
         this.statusMulta = statusMulta;
         this.valorMulta = valorMulta;
     }
 
-    public Cliente(int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, String caminhoImgCNHCompleto, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado, int DDI, int DDD, int numero) {
+    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado, int DDI, int DDD, int numero) {
         super(logradouro, complemento, CEP, bairro, cidade, estado, DDI, DDD, numero);
         this.id = id;
         this.cpfCnpj = cpfCnpj;
-        this.nome = nome;
-        this.razaoSocial = razaoSocial;
+        this.nomeRazaoSocial = nomeRazaoSocial;
         this.rg = rg;
         this.email = email;
         this.motorista = motorista;
         this.nCNH = nCNH;
         this.caminhoImgCNH = caminhoImgCNH;
-        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
         this.statusMulta = statusMulta;
         this.valorMulta = valorMulta;
     }
 
-    public Cliente(int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, String caminhoImgCNHCompleto, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado) {
+    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado) {
         super(logradouro, complemento, CEP, bairro, cidade, estado);
         this.id = id;
         this.cpfCnpj = cpfCnpj;
-        this.nome = nome;
-        this.razaoSocial = razaoSocial;
+        this.nomeRazaoSocial = nomeRazaoSocial;
         this.rg = rg;
         this.email = email;
         this.motorista = motorista;
         this.nCNH = nCNH;
         this.caminhoImgCNH = caminhoImgCNH;
-        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
         this.statusMulta = statusMulta;
         this.valorMulta = valorMulta;
     }
+    
+    
 
     public int getId() {
         return id;
@@ -92,20 +86,12 @@ public class Cliente extends Endereco{
         this.cpfCnpj = cpfCnpj;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeRazaoSocial() {
+        return nomeRazaoSocial;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+    public void setNomeRazaoSocial(String razaoSocial) {
+        this.nomeRazaoSocial = razaoSocial;
     }
 
     public String getRg() {
@@ -146,14 +132,6 @@ public class Cliente extends Endereco{
 
     public void setCaminhoImgCNH(String caminhoImgCNH) {
         this.caminhoImgCNH = caminhoImgCNH;
-    }
-
-    public String getCaminhoImgCNHCompleto() {
-        return caminhoImgCNHCompleto;
-    }
-
-    public void setCaminhoImgCNHCompleto(String caminhoImgCNHCompleto) {
-        this.caminhoImgCNHCompleto = caminhoImgCNHCompleto;
     }
 
     public StatusMulta getStatusMulta() {
@@ -264,8 +242,8 @@ public class Cliente extends Endereco{
 
     @Override
     public String toString() {
-        return cpfCnpj + ";" + nome + ",;" + razaoSocial + ";" + rg + ";" + email + ";" + motorista + ";"
-                + nCNH + ";" + caminhoImgCNH + ";" + caminhoImgCNHCompleto + ";" + statusMulta + ";" + valorMulta;
+        return cpfCnpj + ";" + nomeRazaoSocial + ";" + rg + ";" + email + ";" + motorista + ";"
+                + nCNH + ";" + caminhoImgCNH +";" + statusMulta + ";" + valorMulta;
     }
     
     

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
-public interface IGUIDAO {
+public interface IGuiDAO {
     void inserirNovaCor(Cor cor) throws Exception;
     ArrayList<String> listagemCores() throws ComboBoxException, FileNotFoundException, IOException;
     

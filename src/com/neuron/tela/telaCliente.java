@@ -23,6 +23,9 @@ import com.neuron.controle.IControleGUI;
 import com.neuron.controle.control.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenuBar;
@@ -104,18 +107,29 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextFieldNumCNH = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jPanelFotoCNH = new javax.swing.JPanel();
-        jLabelFotoCNH = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBoxStatusCliente = new javax.swing.JComboBox<>();
-        jTextFieldPlacaVeiculo4 = new javax.swing.JTextField();
+        jTextFieldValorMulta = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        bgBtnCarregarArquivo = new javax.swing.JPanel();
-        btnCarregarArquivo = new javax.swing.JLabel();
         jTextFieldNumRG = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jTextFieldEmail = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jTextFieldDDI = new javax.swing.JTextField();
+        jTextFieldDDD = new javax.swing.JTextField();
         jTextFieldTelefone = new javax.swing.JTextField();
+        jTextFieldNomeRazao1 = new javax.swing.JTextField();
+        jTextFieldNomeRazao2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jTextFieldNomeRazao3 = new javax.swing.JTextField();
+        jTextFieldNomeRazao4 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jTextFieldNomeRazao5 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jComboBoxEstadoBrasil = new javax.swing.JComboBox<>();
         jMenuBar = new javax.swing.JMenuBar();
         menuLogOff = new javax.swing.JMenu();
 
@@ -231,7 +245,7 @@ public class telaCliente extends javax.swing.JFrame {
         bgBtnInserir.setLayout(bgBtnInserirLayout);
         bgBtnInserirLayout.setHorizontalGroup(
             bgBtnInserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnInserirCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+            .addComponent(btnInserirCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
         bgBtnInserirLayout.setVerticalGroup(
             bgBtnInserirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,18 +340,7 @@ public class telaCliente extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel4.setText("Foto CNH:");
-
-        javax.swing.GroupLayout jPanelFotoCNHLayout = new javax.swing.GroupLayout(jPanelFotoCNH);
-        jPanelFotoCNH.setLayout(jPanelFotoCNHLayout);
-        jPanelFotoCNHLayout.setHorizontalGroup(
-            jPanelFotoCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelFotoCNH, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-        );
-        jPanelFotoCNHLayout.setVerticalGroup(
-            jPanelFotoCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelFotoCNH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jLabel4.setText("Logradouro:");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(1, 132, 222));
@@ -348,42 +351,18 @@ public class telaCliente extends javax.swing.JFrame {
         jComboBoxStatusCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxStatusCliente.setBorder(null);
 
-        jTextFieldPlacaVeiculo4.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldPlacaVeiculo4.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldPlacaVeiculo4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldPlacaVeiculo4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldValorMulta.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldValorMulta.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldValorMulta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldValorMulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPlacaVeiculo4ActionPerformed(evt);
+                jTextFieldValorMultaActionPerformed(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(1, 132, 222));
         jLabel10.setText("Valor Multa:");
-
-        bgBtnCarregarArquivo.setBackground(new java.awt.Color(1, 132, 222));
-
-        btnCarregarArquivo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnCarregarArquivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/carregarImg.png"))); // NOI18N
-        btnCarregarArquivo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCarregarArquivoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnCarregarArquivoMouseEntered(evt);
-            }
-        });
-
-        javax.swing.GroupLayout bgBtnCarregarArquivoLayout = new javax.swing.GroupLayout(bgBtnCarregarArquivo);
-        bgBtnCarregarArquivo.setLayout(bgBtnCarregarArquivoLayout);
-        bgBtnCarregarArquivoLayout.setHorizontalGroup(
-            bgBtnCarregarArquivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnCarregarArquivo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-        bgBtnCarregarArquivoLayout.setVerticalGroup(
-            bgBtnCarregarArquivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnCarregarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
 
         jTextFieldNumRG.setBackground(new java.awt.Color(250, 250, 250));
         jTextFieldNumRG.setForeground(new java.awt.Color(1, 132, 222));
@@ -398,9 +377,40 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(1, 132, 222));
         jLabel11.setText("Nº RG:");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel12.setText("Telefone:");
+        jTextFieldEmail.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldEmail.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldEmailActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel13.setText("Email:");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel14.setText("Telefone:");
+
+        jTextFieldDDI.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldDDI.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldDDI.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldDDI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDDIActionPerformed(evt);
+            }
+        });
+
+        jTextFieldDDD.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldDDD.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldDDD.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldDDD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDDDActionPerformed(evt);
+            }
+        });
 
         jTextFieldTelefone.setBackground(new java.awt.Color(250, 250, 250));
         jTextFieldTelefone.setForeground(new java.awt.Color(1, 132, 222));
@@ -410,6 +420,76 @@ public class telaCliente extends javax.swing.JFrame {
                 jTextFieldTelefoneActionPerformed(evt);
             }
         });
+
+        jTextFieldNomeRazao1.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeRazao1.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeRazao1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeRazao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeRazao1ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldNomeRazao2.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeRazao2.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeRazao2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeRazao2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeRazao2ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel5.setText("Complemento:");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel12.setText("CEP:");
+
+        jTextFieldNomeRazao3.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeRazao3.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeRazao3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeRazao3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeRazao3ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldNomeRazao4.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeRazao4.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeRazao4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeRazao4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeRazao4ActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel15.setText("Bairro:");
+
+        jTextFieldNomeRazao5.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeRazao5.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeRazao5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeRazao5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeRazao5ActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel16.setText("Cidade:");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(1, 132, 222));
+        jLabel17.setText("Estado");
+
+        jComboBoxEstadoBrasil.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBoxEstadoBrasil.setForeground(new java.awt.Color(1, 132, 222));
+        jComboBoxEstadoBrasil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxEstadoBrasil.setBorder(null);
 
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
@@ -436,61 +516,85 @@ public class telaCliente extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNomeRazao, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel6))
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                .addGap(7, 7, 7)
+                                                .addComponent(jTextFieldNomeMotorista))
+                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextFieldCpfCnpj))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, Short.MAX_VALUE)
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextFieldValorMulta))
+                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgBackgroundLayout.createSequentialGroup()
                                         .addComponent(bgBtnInserir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(40, 40, 40)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(bgBtnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldNomeRazao, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgBackgroundLayout.createSequentialGroup()
-                                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jLabel6))
-                                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                                        .addGap(7, 7, 7)
-                                                        .addComponent(jTextFieldNomeMotorista))
-                                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextFieldTelefone)))))
-                                        .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                                    .addComponent(jLabel10)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jTextFieldPlacaVeiculo4))
-                                                .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                                    .addComponent(jLabel11)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addGap(59, 59, 59)
-                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                        .addComponent(jPanelFotoCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 66, Short.MAX_VALUE))
+                                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldTelefone)))
+                                .addGap(28, 28, 28)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNomeRazao1))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNomeRazao2))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNomeRazao3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNomeRazao4))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldNomeRazao5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                        .addComponent(jLabel17)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBoxEstadoBrasil, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -505,61 +609,69 @@ public class telaCliente extends javax.swing.JFrame {
                     .addComponent(btnAttLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVoltarPagAnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(saidaStatusOperacao))
-                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBuscarVeiculo)
-                            .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(saidaStatusOperacao)
+                    .addComponent(btnBuscarVeiculo)
+                    .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldNomeRazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldNomeRazao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jTextFieldNomeRazao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(jTextFieldNomeRazao3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(jTextFieldNomeRazao4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(jTextFieldNomeRazao5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel17)
+                        .addComponent(jComboBoxEstadoBrasil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldValorMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(14, 14, 14)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(bgBtnCarregarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(148, 148, 148))
-                            .addGroup(bgBackgroundLayout.createSequentialGroup()
-                                .addComponent(jPanelFotoCNH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18))))
-                    .addGroup(bgBackgroundLayout.createSequentialGroup()
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextFieldNomeRazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)
-                            .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldPlacaVeiculo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                    .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -658,36 +770,13 @@ public class telaCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_menuLogOffMouseClicked
 
-    private void jTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
-
     private void jTextFieldNumRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumRGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumRGActionPerformed
 
-    private void btnCarregarArquivoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseEntered
+    private void jTextFieldValorMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorMultaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCarregarArquivoMouseEntered
-
-    private void btnCarregarArquivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarregarArquivoMouseClicked
-        Logs.logger("Iniciando selecao de imagem",getThisClass());
-        try {
-            ImageIcon imgLogo = new ImageIcon();
-            imgLogo = iArquivo.abrirBuscadorImg(jLabelFotoCNH.getWidth(),jLabelFotoCNH.getHeight());
-            setCaminhoArquivo((String) iArquivo.getCaminhoDoArquivo());
-            jLabelFotoCNH.setIcon(imgLogo);
-            Logs.logger("Imagem selecionada com sucesso do diretorio "+iArquivo.getCaminhoDoArquivo(),getThisClass());
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            Logs.logger("Nao foi possivel selecionar imagem para a CNH"+e.getMessage(),getThisClass());
-        }
-    }//GEN-LAST:event_btnCarregarArquivoMouseClicked
-
-    private void jTextFieldPlacaVeiculo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacaVeiculo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPlacaVeiculo4ActionPerformed
+    }//GEN-LAST:event_jTextFieldValorMultaActionPerformed
 
     private void jTextFieldNumCNHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumCNHActionPerformed
         // TODO add your handling code here:
@@ -749,29 +838,40 @@ public class telaCliente extends javax.swing.JFrame {
     private void btnInserirClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirClienteMouseEntered
         bgBtnInserir.setBackground(verdeHover);
     }//GEN-LAST:event_btnInserirClienteMouseEntered
-
+    //int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado, int DDI, int DDD, int numero) 
     private void btnInserirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirClienteMouseClicked
         try {
-            String cor = jComboBoxCorVeiculo.getSelectedItem().toString();
-            String modelo = jComboBoxModelo.getSelectedItem().toString();
-            Disponibilidade dispo = Get.disponibilidadeByNome(jComboBoxDisponivel.getSelectedItem().toString());
-            String marca = jComboBoxMarcas.getSelectedItem().toString();
-            String placa = jTextFieldNomeRazao.getText();
-            String anoFabri = jTextFieldAno.getText();
-            TipoCombustivel tipo = Get.combustivelByNome(jComboBoxTipoVeiculo.getSelectedItem().toString());
-            int quilometro = 0;
-            TipoVeiculo tipoVeiculo = Get.TipoVeiculoByNome(jComboBoxTipoCombustivel.getSelectedItem().toString());
-            int renavam = Integer.parseInt(jTextFieldRenavamVeiculo.getText());
-            float precoCompra =  0;
-            float precoVenda = 0;
-            String dataCompra = jTextFieldDataCompra.getText();
-            String dataVenda = jLabelDataVenda.getText();
-            String info = jTextAreaObs.getText();
-            int idModelo = Get.IDModeloSelecionado(modelo);
-            Veiculo v = new Veiculo(0,cor,modelo,dispo,marca,placa,anoFabri,tipo,quilometro,tipoVeiculo,renavam,precoCompra,precoVenda,dataCompra,dataVenda,info,idModelo);
-
-            interControle.incluirVeiculo(v);
-            //ImprimirGrid(interControle.listagemModelo());
+            /*String nomeRazao = jTextFieldNomeRazao.getText();
+            int cpfCnpj = Integer.parseInt(jTextFieldCpfCnpj.getText());
+            int telefone = Integer.parseInt(jTextFieldTelefone.getText());
+            String motorista = jTextFieldNomeMotorista.getText();
+            int cnh = Integer.parseInt(jTextFieldNumCNH.getText());
+            int rg = Integer.parseInt(jTextFieldNumRG.getText());
+            String statusCliente = jComboBoxStatusCliente.getSelectedItem().toString();
+            float vlrMulta = Float.parseFloat(jTextFieldValorMulta.getText());
+            String pathImgCNH = getCaminhoArquivo();*/
+            
+            int id = 0;
+            String cpfCnpj = jTextFieldCpfCnpj.getText();
+            String nomeRazaoSocial = jTextFieldNomeRazao.getText();
+            String rg = jTextFieldNumRG.getText();
+            String email = jTextFieldEmail.getText();
+            String motorista = jTextFieldNomeMotorista.getText();
+            int nCNH = Integer.parseInt(jTextFieldNumCNH.getText());
+            String caminhoImgCNH = getCaminhoArquivo();
+            StatusMulta statusMulta = jComboBoxStatusCliente.getSelectedItem().toString();
+            float valorMulta = Float.parseFloat(jTextFieldValorMulta.getText());
+            String logradouro = ;
+            String complemento;
+            int CEP;
+            String bairro;
+            String cidade;
+            String estado;
+            int DDI;
+            int DDD;
+            int numero;
+            
+            ImprimirGrid(interControle.listagemCliente());
         } catch (Exception erro) {
 
             JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());
@@ -824,6 +924,42 @@ public class telaCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
+    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmailActionPerformed
+
+    private void jTextFieldDDIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDDIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDDIActionPerformed
+
+    private void jTextFieldDDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDDDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDDDActionPerformed
+
+    private void jTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
+
+    private void jTextFieldNomeRazao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeRazao1ActionPerformed
+
+    private void jTextFieldNomeRazao2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeRazao2ActionPerformed
+
+    private void jTextFieldNomeRazao3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeRazao3ActionPerformed
+
+    private void jTextFieldNomeRazao4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeRazao4ActionPerformed
+
+    private void jTextFieldNomeRazao5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeRazao5ActionPerformed
+
     private void customizeMenuBar(JMenuBar menuBar) throws Exception {
         IControleGUI iContUser = new ControleGUI();
         JMenuBar jmb = menuBar;
@@ -840,12 +976,13 @@ public class telaCliente extends javax.swing.JFrame {
         });
     }
 
-    public String getCaminhoArquivo() {
-        return caminhoArquivo;
-    }
-
-    public void setCaminhoArquivo(String caminhoArquivo) {
-        this.caminhoArquivo = caminhoArquivo;
+    public String getCaminhoArquivo() throws Exception {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("./src/com/neuron/temp/pathImg.txt"));
+            return br.readLine();
+        } catch (Exception e) {
+            throw new Exception("Arquivo com caminho da imagem nao encontrado");
+        }
     }
 
     public String getThisClass() {
@@ -924,39 +1061,50 @@ public class telaCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgBackground;
     private javax.swing.JPanel bgBtnAlterar;
-    private javax.swing.JPanel bgBtnCarregarArquivo;
     private javax.swing.JPanel bgBtnInserir;
     private javax.swing.JLabel btnAlterar;
     private javax.swing.JLabel btnAttLista;
     private javax.swing.JLabel btnBuscarVeiculo;
-    private javax.swing.JLabel btnCarregarArquivo;
     private javax.swing.JLabel btnInserirCliente;
     private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;
     private javax.swing.JLabel cpUser;
+    private javax.swing.JComboBox<String> jComboBoxEstadoBrasil;
     private javax.swing.JComboBox<String> jComboBoxStatusCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelFotoCNH;
     private javax.swing.JMenuBar jMenuBar;
-    private javax.swing.JPanel jPanelFotoCNH;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextFieldCpfCnpj;
+    private javax.swing.JTextField jTextFieldDDD;
+    private javax.swing.JTextField jTextFieldDDI;
+    private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNomeMotorista;
     private javax.swing.JTextField jTextFieldNomeRazao;
+    private javax.swing.JTextField jTextFieldNomeRazao1;
+    private javax.swing.JTextField jTextFieldNomeRazao2;
+    private javax.swing.JTextField jTextFieldNomeRazao3;
+    private javax.swing.JTextField jTextFieldNomeRazao4;
+    private javax.swing.JTextField jTextFieldNomeRazao5;
     private javax.swing.JTextField jTextFieldNumCNH;
     private javax.swing.JTextField jTextFieldNumRG;
-    private javax.swing.JTextField jTextFieldPlacaVeiculo4;
     private javax.swing.JTextField jTextFieldTelefone;
+    private javax.swing.JTextField jTextFieldValorMulta;
     private javax.swing.JLabel logoNeuron;
     private javax.swing.JMenu menuLogOff;
     private javax.swing.JLabel saidaStatusOperacao;

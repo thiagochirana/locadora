@@ -21,8 +21,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import com.neuron.persistencia.IGUIDAO;
-import com.neuron.persistencia.PermissaoUsuario;
 import com.neuron.tela.telaDashboard;
 import com.neuron.tela.telaLogin;
 import com.neuron.tela.telaMarcaCarros;
@@ -44,8 +42,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.MenuElement;
 import javax.swing.plaf.basic.BasicMenuBarUI;
+import com.neuron.persistencia.IGuiDAO;
 
-public class GUIDAO implements IGUIDAO{
+public class GuiDAO implements IGuiDAO{
 
     String user;
     String nomeUser;
@@ -98,7 +97,7 @@ public class GUIDAO implements IGUIDAO{
     JMenuItem itemPerSuaConta = new JMenuItem("Perfil");
     JMenuItem itemPerLogout = new JMenuItem("Logout");
     
-    public GUIDAO() {
+    public GuiDAO() {
     }
     
     @Override

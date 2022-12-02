@@ -12,20 +12,20 @@
 package com.neuron.controle.control;
 
 import com.neuron.controle.IControleGUI;
-import com.neuron.persistencia.DAO.GUIDAO;
-import com.neuron.persistencia.IGUIDAO;
+import com.neuron.persistencia.DAO.GuiDAO;
 import com.neuron.templates.Cor;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import com.neuron.persistencia.IGuiDAO;
 
 
 public class ControleGUI implements IControleGUI{
     
-    IGUIDAO gui;
+    IGuiDAO gui;
 
     public ControleGUI() {
-        gui = new GUIDAO();
+        gui = new GuiDAO();
     }
     
     @Override
@@ -41,6 +41,7 @@ public class ControleGUI implements IControleGUI{
         return gui.listagemCores();
     }
     
+    @Override
     public JMenuBar customMenuBar(JFrame jf) throws Exception{
         return gui.customMenuBar(jf);
     }
