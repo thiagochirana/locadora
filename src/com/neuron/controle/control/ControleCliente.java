@@ -15,8 +15,10 @@ import com.neuron.controle.IControleCliente;
 import com.neuron.persistencia.IClienteDAO;
 import com.neuron.persistencia.DAO.ClienteDAO;
 import com.neuron.templates.Cliente;
+import com.neuron.templates.Estados;
 import com.neuron.utils.Logs;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ControleCliente implements IControleCliente{
@@ -33,16 +35,36 @@ public class ControleCliente implements IControleCliente{
     
     @Override
     public void alterarCliente(Cliente cliente) throws Exception{
-        if (buscarCliente(cliente.getId(),cliente.getNome(), Integer.valueOf(cliente.getCpfCnpj()))){
+        if (buscarCliente(cliente.getId(),cliente.getNomeRazaoSocial(), Integer.parseInt(cliente.getCpfCnpj()))){
             
         }
+    }
+    
+    @Override
+    public void InserirCliente(Cliente c) throws Exception{
+        cliente.InserirCliente(c);
+    }
+    
+    @Override
+    public Estados getEstadoByNome(String nomeEstado) throws Exception{
+        return cliente.getEstadoByNome(nomeEstado);
+    }
+    
+    @Override
+    public List<String> getStatusMulta() throws Exception{
+        return cliente.getStatusMulta();
+    }
+    
+    @Override
+    public List<String> getNomeEstados() throws Exception{
+        return cliente.getNomeEstados();
     }
     
     private boolean buscarCliente(int id, String descricao, int cpfCnpj)throws Exception{
         try {
             ArrayList<Cliente> listagem = cliente.listagemClientes();
             for (Cliente cli : listagem) {
-                if (cli.getNome().equalsIgnoreCase(descricao) && cli.getId() != id && !cli.getCpfCnpj().equals(cpfCnpj)) {
+                if (cli.getNomeRazaoSocial().equalsIgnoreCase(descricao) && cli.getId() != id && !cli.getCpfCnpj().equals(cpfCnpj)) {
                     return true;
                 }
             }

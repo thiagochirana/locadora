@@ -40,7 +40,7 @@ public class Cliente extends Endereco{
         this.valorMulta = valorMulta;
     }
 
-    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado, int DDI, int DDD, int numero) {
+    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado, int DDI, int DDD, int numero) {
         super(logradouro, complemento, CEP, bairro, cidade, estado, DDI, DDD, numero);
         this.id = id;
         this.cpfCnpj = cpfCnpj;
@@ -54,7 +54,7 @@ public class Cliente extends Endereco{
         this.valorMulta = valorMulta;
     }
 
-    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado) {
+    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado) {
         super(logradouro, complemento, CEP, bairro, cidade, estado);
         this.id = id;
         this.cpfCnpj = cpfCnpj;
@@ -201,12 +201,12 @@ public class Cliente extends Endereco{
     }
 
     @Override
-    public String getEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     @Override
-    public void setEstado(String estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 

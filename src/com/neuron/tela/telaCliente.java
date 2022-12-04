@@ -24,7 +24,6 @@ import com.neuron.controle.control.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -38,7 +37,6 @@ public class telaCliente extends javax.swing.JFrame {
 
     IControleCliente interControle = new ControleCliente();
     ISelecionarArq iArquivo = new SelecionarArq();
-    String caminhoArquivo = "";
     String thisClass = "";
     IControladorImg iImg = new ControladorImg();
     Color azulHover = new Color(0, 23, 100, 255);
@@ -65,7 +63,8 @@ public class telaCliente extends javax.swing.JFrame {
         
 
         try { 
-            carregarComboBoxStatus();            
+            carregarComboBoxStatus();  
+            carregarComboBoxEstados();
             if (!interControle.listagemCliente().isEmpty() || interControle.listagemCliente()!= null) {
                 ImprimirGrid(interControle.listagemCliente());
             }
@@ -119,17 +118,21 @@ public class telaCliente extends javax.swing.JFrame {
         jTextFieldDDI = new javax.swing.JTextField();
         jTextFieldDDD = new javax.swing.JTextField();
         jTextFieldTelefone = new javax.swing.JTextField();
-        jTextFieldNomeRazao1 = new javax.swing.JTextField();
-        jTextFieldNomeRazao2 = new javax.swing.JTextField();
+        jTextFieldLogradouro = new javax.swing.JTextField();
+        jTextFieldComplemento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextFieldNomeRazao3 = new javax.swing.JTextField();
-        jTextFieldNomeRazao4 = new javax.swing.JTextField();
+        jTextFieldCEP = new javax.swing.JTextField();
+        jTextFieldBairro = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jTextFieldNomeRazao5 = new javax.swing.JTextField();
+        jTextFieldCidade = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jComboBoxEstadoBrasil = new javax.swing.JComboBox<>();
+        jPanelImgCNH = new javax.swing.JPanel();
+        jLabelSetImgCNH = new javax.swing.JLabel();
+        bgBtnAddImgCNH = new javax.swing.JPanel();
+        btnAddImgCNH = new javax.swing.JLabel();
         jMenuBar = new javax.swing.JMenuBar();
         menuLogOff = new javax.swing.JMenu();
 
@@ -421,21 +424,21 @@ public class telaCliente extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldNomeRazao1.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldNomeRazao1.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldNomeRazao1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldNomeRazao1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldLogradouro.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldLogradouro.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldLogradouro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldLogradouro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeRazao1ActionPerformed(evt);
+                jTextFieldLogradouroActionPerformed(evt);
             }
         });
 
-        jTextFieldNomeRazao2.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldNomeRazao2.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldNomeRazao2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldNomeRazao2.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldComplemento.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldComplemento.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldComplemento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldComplemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeRazao2ActionPerformed(evt);
+                jTextFieldComplementoActionPerformed(evt);
             }
         });
 
@@ -447,21 +450,21 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(1, 132, 222));
         jLabel12.setText("CEP:");
 
-        jTextFieldNomeRazao3.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldNomeRazao3.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldNomeRazao3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldNomeRazao3.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCEP.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldCEP.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldCEP.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldCEP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeRazao3ActionPerformed(evt);
+                jTextFieldCEPActionPerformed(evt);
             }
         });
 
-        jTextFieldNomeRazao4.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldNomeRazao4.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldNomeRazao4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldNomeRazao4.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldBairro.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldBairro.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldBairro.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeRazao4ActionPerformed(evt);
+                jTextFieldBairroActionPerformed(evt);
             }
         });
 
@@ -469,12 +472,12 @@ public class telaCliente extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(1, 132, 222));
         jLabel15.setText("Bairro:");
 
-        jTextFieldNomeRazao5.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldNomeRazao5.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldNomeRazao5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldNomeRazao5.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldCidade.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldCidade.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldCidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeRazao5ActionPerformed(evt);
+                jTextFieldCidadeActionPerformed(evt);
             }
         });
 
@@ -490,6 +493,43 @@ public class telaCliente extends javax.swing.JFrame {
         jComboBoxEstadoBrasil.setForeground(new java.awt.Color(1, 132, 222));
         jComboBoxEstadoBrasil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxEstadoBrasil.setBorder(null);
+
+        jPanelImgCNH.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelImgCNHLayout = new javax.swing.GroupLayout(jPanelImgCNH);
+        jPanelImgCNH.setLayout(jPanelImgCNHLayout);
+        jPanelImgCNHLayout.setHorizontalGroup(
+            jPanelImgCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelSetImgCNH, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+        );
+        jPanelImgCNHLayout.setVerticalGroup(
+            jPanelImgCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelSetImgCNH, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        bgBtnAddImgCNH.setBackground(new java.awt.Color(1, 132, 222));
+
+        btnAddImgCNH.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAddImgCNH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/neuron/icons/carregarImg.png"))); // NOI18N
+        btnAddImgCNH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddImgCNHMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnAddImgCNHMouseEntered(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bgBtnAddImgCNHLayout = new javax.swing.GroupLayout(bgBtnAddImgCNH);
+        bgBtnAddImgCNH.setLayout(bgBtnAddImgCNHLayout);
+        bgBtnAddImgCNHLayout.setHorizontalGroup(
+            bgBtnAddImgCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAddImgCNH, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+        bgBtnAddImgCNHLayout.setVerticalGroup(
+            bgBtnAddImgCNHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnAddImgCNH, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout bgBackgroundLayout = new javax.swing.GroupLayout(bgBackground);
         bgBackground.setLayout(bgBackgroundLayout);
@@ -571,27 +611,32 @@ public class telaCliente extends javax.swing.JFrame {
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNomeRazao1))
+                                        .addComponent(jTextFieldLogradouro))
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNomeRazao2))
+                                        .addComponent(jTextFieldComplemento))
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNomeRazao3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNomeRazao4))
+                                        .addComponent(jTextFieldBairro))
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNomeRazao5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                                         .addComponent(jLabel17)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBoxEstadoBrasil, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jComboBoxEstadoBrasil, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                        .addComponent(jPanelImgCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(bgBtnAddImgCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(bgBackgroundLayout.createSequentialGroup()
                                 .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -610,72 +655,83 @@ public class telaCliente extends javax.swing.JFrame {
                     .addComponent(btnVoltarPagAnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saidaStatusOperacao)
                     .addComponent(btnBuscarVeiculo)
                     .addComponent(txtQtdeResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldNomeRazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldNomeRazao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jTextFieldNomeRazao2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jTextFieldCpfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
-                        .addComponent(jTextFieldNomeRazao3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(jTextFieldNomeRazao4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
+                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel16)
-                        .addComponent(jTextFieldNomeRazao5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel17)
-                        .addComponent(jComboBoxEstadoBrasil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxEstadoBrasil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jTextFieldNumCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldNumRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldValorMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(bgBackgroundLayout.createSequentialGroup()
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jComboBoxStatusCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldValorMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bgBtnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bgBtnInserir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanelImgCNH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cpData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cpUser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoNeuron, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(bgBackgroundLayout.createSequentialGroup()
+                        .addComponent(bgBtnAddImgCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -715,7 +771,7 @@ public class telaCliente extends javax.swing.JFrame {
                 String[] grid = new String[7];
                 Cliente cliente = lista.next();
                 grid[0] = cliente.getId() + "";
-                grid[1] = cliente.getNome();
+                grid[1] = cliente.getNomeRazaoSocial();
                 grid[2] = cliente.getCpfCnpj();
                 grid[3] = cliente.getMotorista()+ "";
                 grid[4] = cliente.getDDI() + "("+ cliente.getDDD()+")" + cliente.getNumero();
@@ -740,13 +796,21 @@ public class telaCliente extends javax.swing.JFrame {
     }
 
     public void carregarComboBoxStatus() throws Exception {
-        String[] array = interControle.listagemCliente().toArray(new String[interControle.listagemCliente().size()]);
+        String[] array = interControle.getStatusMulta().toArray(new String[interControle.getStatusMulta().size()]);
         jComboBoxStatusCliente.removeAllItems();
         for (String item : array) {
             jComboBoxStatusCliente.addItem(item);
         }
     }
-
+    
+    public void carregarComboBoxEstados() throws Exception {
+        String[] array = interControle.getNomeEstados().toArray(new String[interControle.getNomeEstados().size()]);
+        jComboBoxEstadoBrasil.removeAllItems();
+        for (String item : array) {
+            jComboBoxEstadoBrasil.addItem(item);
+        }
+    }
+    
     public void resizeColunas() {
         TableColumnModel tCM = tabelaClientes.getColumnModel();
         tCM.getColumn(0).setPreferredWidth(30);
@@ -838,19 +902,9 @@ public class telaCliente extends javax.swing.JFrame {
     private void btnInserirClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirClienteMouseEntered
         bgBtnInserir.setBackground(verdeHover);
     }//GEN-LAST:event_btnInserirClienteMouseEntered
-    //int id, String cpfCnpj, String nome, String razaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, String estado, int DDI, int DDD, int numero) 
+    
     private void btnInserirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInserirClienteMouseClicked
         try {
-            /*String nomeRazao = jTextFieldNomeRazao.getText();
-            int cpfCnpj = Integer.parseInt(jTextFieldCpfCnpj.getText());
-            int telefone = Integer.parseInt(jTextFieldTelefone.getText());
-            String motorista = jTextFieldNomeMotorista.getText();
-            int cnh = Integer.parseInt(jTextFieldNumCNH.getText());
-            int rg = Integer.parseInt(jTextFieldNumRG.getText());
-            String statusCliente = jComboBoxStatusCliente.getSelectedItem().toString();
-            float vlrMulta = Float.parseFloat(jTextFieldValorMulta.getText());
-            String pathImgCNH = getCaminhoArquivo();*/
-            
             int id = 0;
             String cpfCnpj = jTextFieldCpfCnpj.getText();
             String nomeRazaoSocial = jTextFieldNomeRazao.getText();
@@ -859,17 +913,21 @@ public class telaCliente extends javax.swing.JFrame {
             String motorista = jTextFieldNomeMotorista.getText();
             int nCNH = Integer.parseInt(jTextFieldNumCNH.getText());
             String caminhoImgCNH = getCaminhoArquivo();
-            StatusMulta statusMulta = jComboBoxStatusCliente.getSelectedItem().toString();
+            StatusMulta statusMulta = getStatusMulta(jComboBoxStatusCliente.getSelectedItem().toString());
             float valorMulta = Float.parseFloat(jTextFieldValorMulta.getText());
-            String logradouro = ;
-            String complemento;
-            int CEP;
-            String bairro;
-            String cidade;
-            String estado;
-            int DDI;
-            int DDD;
-            int numero;
+            String logradouro = jTextFieldLogradouro.getText();
+            String complemento = jTextFieldComplemento.getText();
+            int CEP = Integer.parseInt(jTextFieldCEP.getText());
+            String bairro = jTextFieldBairro.getText();
+            String cidade = jTextFieldCidade.getText();
+            Estados estado = interControle.getEstadoByNome(jComboBoxEstadoBrasil.getSelectedItem().toString());
+            int DDI = Integer.parseInt(jTextFieldDDI.getText());
+            int DDD = Integer.parseInt(jTextFieldDDD.getText());
+            int numero = Integer.parseInt(jTextFieldTelefone.getText());
+            
+            Cliente cli = new Cliente(id,cpfCnpj,nomeRazaoSocial,rg,email,motorista,nCNH,caminhoImgCNH,statusMulta,valorMulta,logradouro,complemento,CEP,bairro,cidade,estado,DDI,DDD,numero);
+            
+            interControle.InserirCliente(cli);
             
             ImprimirGrid(interControle.listagemCliente());
         } catch (Exception erro) {
@@ -889,39 +947,39 @@ public class telaCliente extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
 
-        try {
-            caminhoArquivo = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3);
-            String nomeMarcaSelecionado = this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4) + "";
-            nomeMarcaSelecionado = nomeMarcaSelecionado.replace("./src/com/neuron/icons/logo/", "").replace(".jpeg", "");
-            String idSelecionado = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0);
-
-            Iterator<Veiculo> lista = interControle.listagemVeiculo().iterator();
-
-            while (lista.hasNext()) {
-                String[] grid = new String[15];
-                Veiculo listaVeiculo = lista.next();
-                grid[0] = "" + listaVeiculo.getIdVeiculo();
-                if (grid[0].equals(idSelecionado)) {
-                    jTextFieldRenavamVeiculo.setText(listaVeiculo.getRenavan() + "");
-                    jTextFieldDataCompra.setText(listaVeiculo.getDataCompra());
-                    jLabelDataVenda.setText(listaVeiculo.getDataVenda());
-                }
-
-            }
-
-            this.jTextFieldNomeRazao.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5));
-            jComboBoxMarcas.setSelectedItem(nomeMarcaSelecionado);
-            jComboBoxModelo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2));
-            jComboBoxCorVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1));
-            jComboBoxTipoVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7));
-            jComboBoxTipoCombustivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9));
-            jComboBoxDisponivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3));
-            this.jTextFieldAno.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6));
-
-        } catch (Exception err) {
-            JOptionPane.showMessageDialog(this, err);
-            Logs.logger(err.getMessage(), getThisClass());
+        /* try {
+        caminhoArquivo = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3);
+        String nomeMarcaSelecionado = this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4) + "";
+        nomeMarcaSelecionado = nomeMarcaSelecionado.replace("./src/com/neuron/icons/logo/", "").replace(".jpeg", "");
+        String idSelecionado = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0);
+        
+        Iterator<Veiculo> lista = interControle.listagemVeiculo().iterator();
+        
+        while (lista.hasNext()) {
+        String[] grid = new String[15];
+        Veiculo listaVeiculo = lista.next();
+        grid[0] = "" + listaVeiculo.getIdVeiculo();
+        if (grid[0].equals(idSelecionado)) {
+        jTextFieldRenavamVeiculo.setText(listaVeiculo.getRenavan() + "");
+        jTextFieldDataCompra.setText(listaVeiculo.getDataCompra());
+        jLabelDataVenda.setText(listaVeiculo.getDataVenda());
         }
+        
+        }
+        
+        this.jTextFieldNomeRazao.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5));
+        jComboBoxMarcas.setSelectedItem(nomeMarcaSelecionado);
+        jComboBoxModelo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2));
+        jComboBoxCorVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1));
+        jComboBoxTipoVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7));
+        jComboBoxTipoCombustivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9));
+        jComboBoxDisponivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3));
+        this.jTextFieldAno.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6));
+        
+        } catch (Exception err) {
+        JOptionPane.showMessageDialog(this, err);
+        Logs.logger(err.getMessage(), getThisClass());
+        }*/
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
@@ -940,25 +998,44 @@ public class telaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
 
-    private void jTextFieldNomeRazao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao1ActionPerformed
+    private void jTextFieldLogradouroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLogradouroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeRazao1ActionPerformed
+    }//GEN-LAST:event_jTextFieldLogradouroActionPerformed
 
-    private void jTextFieldNomeRazao2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao2ActionPerformed
+    private void jTextFieldComplementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldComplementoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeRazao2ActionPerformed
+    }//GEN-LAST:event_jTextFieldComplementoActionPerformed
 
-    private void jTextFieldNomeRazao3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao3ActionPerformed
+    private void jTextFieldCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCEPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeRazao3ActionPerformed
+    }//GEN-LAST:event_jTextFieldCEPActionPerformed
 
-    private void jTextFieldNomeRazao4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao4ActionPerformed
+    private void jTextFieldBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBairroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeRazao4ActionPerformed
+    }//GEN-LAST:event_jTextFieldBairroActionPerformed
 
-    private void jTextFieldNomeRazao5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazao5ActionPerformed
+    private void jTextFieldCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeRazao5ActionPerformed
+    }//GEN-LAST:event_jTextFieldCidadeActionPerformed
+
+    private void btnAddImgCNHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddImgCNHMouseClicked
+        Logs.logger("Iniciando selecao de imagem",getThisClass());
+        try {
+            ImageIcon imgLogo = new ImageIcon();
+            imgLogo = iArquivo.abrirBuscadorImg(jPanelImgCNH.getWidth(),jPanelImgCNH.getHeight());
+            jLabelSetImgCNH.setIcon(imgLogo);
+            Logs.logger("Imagem selecionada com sucesso do diretorio "+iArquivo.getCaminhoDoArquivo(),getThisClass());
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            Logs.logger("Nao foi possivel selecionar imagem para este modelo\n"+e.getMessage(),getThisClass());
+        }
+
+    }//GEN-LAST:event_btnAddImgCNHMouseClicked
+
+    private void btnAddImgCNHMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddImgCNHMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddImgCNHMouseEntered
 
     private void customizeMenuBar(JMenuBar menuBar) throws Exception {
         IControleGUI iContUser = new ControleGUI();
@@ -976,6 +1053,19 @@ public class telaCliente extends javax.swing.JFrame {
         });
     }
 
+    private StatusMulta getStatusMulta(String status) throws Exception {
+        switch (status) {
+            case "EM DIVIDA":
+                return StatusMulta.EM_DIVIDA;
+            case "SEM MULTA":
+                return StatusMulta.SEM_MULTA;
+            case "QUITADO":
+                return StatusMulta.QUITADO;
+            default:
+                throw new Exception("Status nao encontrado");
+        }
+    }
+    
     public String getCaminhoArquivo() throws Exception {
         try {
             BufferedReader br = new BufferedReader(new FileReader("./src/com/neuron/temp/pathImg.txt"));
@@ -1060,11 +1150,15 @@ public class telaCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgBackground;
+    private javax.swing.JPanel bgBtnAddImgCNH;
     private javax.swing.JPanel bgBtnAlterar;
+    private javax.swing.JPanel bgBtnCarregarArquivo;
     private javax.swing.JPanel bgBtnInserir;
+    private javax.swing.JLabel btnAddImgCNH;
     private javax.swing.JLabel btnAlterar;
     private javax.swing.JLabel btnAttLista;
     private javax.swing.JLabel btnBuscarVeiculo;
+    private javax.swing.JLabel btnCarregarArquivo;
     private javax.swing.JLabel btnInserirCliente;
     private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;
@@ -1087,20 +1181,22 @@ public class telaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelSetImgCNH;
     private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JPanel jPanelImgCNH;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextFieldBairro;
+    private javax.swing.JTextField jTextFieldCEP;
+    private javax.swing.JTextField jTextFieldCidade;
+    private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldCpfCnpj;
     private javax.swing.JTextField jTextFieldDDD;
     private javax.swing.JTextField jTextFieldDDI;
     private javax.swing.JTextField jTextFieldEmail;
+    private javax.swing.JTextField jTextFieldLogradouro;
     private javax.swing.JTextField jTextFieldNomeMotorista;
     private javax.swing.JTextField jTextFieldNomeRazao;
-    private javax.swing.JTextField jTextFieldNomeRazao1;
-    private javax.swing.JTextField jTextFieldNomeRazao2;
-    private javax.swing.JTextField jTextFieldNomeRazao3;
-    private javax.swing.JTextField jTextFieldNomeRazao4;
-    private javax.swing.JTextField jTextFieldNomeRazao5;
     private javax.swing.JTextField jTextFieldNumCNH;
     private javax.swing.JTextField jTextFieldNumRG;
     private javax.swing.JTextField jTextFieldTelefone;

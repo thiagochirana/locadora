@@ -5,7 +5,9 @@
 package com.neuron.persistencia;
 
 import com.neuron.templates.Cliente;
+import com.neuron.templates.Estados;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,8 @@ import java.util.ArrayList;
  */
 public interface IClienteDAO {
     ArrayList<Cliente> listagemClientes() throws Exception;
+    void InserirCliente(Cliente cliente) throws Exception;
+    Estados getEstadoByNome(String nomeEstado) throws Exception;
+    List<String> getStatusMulta() throws Exception;
+    List<String> getNomeEstados() throws Exception;
 }

@@ -18,12 +18,12 @@ public class Endereco extends Telefone{
     int CEP;
     String bairro;
     String cidade;
-    String estado;
+    Estados estado;
 
     public Endereco() {
     }
 
-    public Endereco(String logradouro, String complemento, int CEP, String bairro, String cidade, String estado, int DDI, int DDD, int numero) {
+    public Endereco(String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado, int DDI, int DDD, int numero) {
         super(DDD, DDI, numero);
         this.logradouro = logradouro;
         this.complemento = complemento;
@@ -33,7 +33,7 @@ public class Endereco extends Telefone{
         this.estado = estado;
     }
 
-    public Endereco(String logradouro, String complemento, int CEP, String bairro, String cidade, String estado) {
+    public Endereco(String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado) {
         this.logradouro = logradouro;
         this.complemento = complemento;
         this.CEP = CEP;
@@ -82,11 +82,11 @@ public class Endereco extends Telefone{
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
