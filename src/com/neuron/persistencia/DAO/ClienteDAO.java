@@ -13,6 +13,7 @@ package com.neuron.persistencia.DAO;
 
 import com.neuron.persistencia.IClienteDAO;
 import com.neuron.templates.*;
+import com.neuron.utils.CopyFiles;
 import com.neuron.utils.Gerador;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -87,6 +88,8 @@ public class ClienteDAO implements IClienteDAO{
             
             BufferedWriter bw = new BufferedWriter(new FileWriter(DataBase.CLIENTE.getPathDB()));
             cliente.setId(id);
+            
+            CopyFiles.copiarImgSelecionada(caminho, "./src/com/neuron/icons/logo/", marca.getNomeMarca() + ".jpeg");
             
             bw.write(cliente.toString());
             bw.close();

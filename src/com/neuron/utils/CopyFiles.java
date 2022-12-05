@@ -41,6 +41,20 @@ public class CopyFiles {
         ImageIO.write(buffer, "JPEG", dest);
     }
     
+    public static void copiarImgSelecionada(String origem, String destino, String nomeArquivo, int width, int heigth) throws Exception{
+        File orig = new File(origem);
+        File dest = new File(destino+nomeArquivo);
+        
+        BufferedImage imgSelecionada = ImageIO.read(orig);
+        BufferedImage buffer = new BufferedImage(width,heigth,BufferedImage.SCALE_SMOOTH);        
+        
+        Graphics2D gImg = buffer.createGraphics();
+        gImg.drawImage(imgSelecionada,0,0,width,heigth,null);
+        gImg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        gImg.dispose();
+        
+        ImageIO.write(buffer, "JPEG", dest);
+    }
     
     public static void copiarArquivo(String origem, String destino, String nomeArquivo)throws Exception{
         File orig = new File(origem);
