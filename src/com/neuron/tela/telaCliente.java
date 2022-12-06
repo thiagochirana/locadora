@@ -38,6 +38,7 @@ public class telaCliente extends javax.swing.JFrame {
     IControleCliente interControle = new ControleCliente();
     ISelecionarArq iArquivo = new SelecionarArq();
     String thisClass = "";
+    String caminhoCNHSelecionado;
     IControladorImg iImg = new ControladorImg();
     Color azulHover = new Color(0, 23, 100, 255);
     Color azulPadrao = new Color(1, 132, 222, 255);
@@ -890,7 +891,7 @@ public class telaCliente extends javax.swing.JFrame {
             String email = jTextFieldEmail.getText();
             String motorista = jTextFieldNomeMotorista.getText();
             int nCNH = Integer.parseInt(jTextFieldNumCNH.getText());
-            String caminhoImgCNH = getCaminhoArquivo();
+            String caminhoImgCNH = getCaminhoCNHSelecionado();
             StatusMulta statusMulta = getStatusMulta(jComboBoxStatusCliente.getSelectedItem().toString().replace("_"," "));
             float valorMulta = Float.parseFloat(jTextFieldValorMulta.getText());
             String logradouro = jTextFieldLogradouro.getText();
@@ -989,6 +990,7 @@ public class telaCliente extends javax.swing.JFrame {
             jComboBoxStatusCliente.setSelectedItem(cli[8].replace(" ","_"));
             jComboBoxEstadoBrasil.setSelectedItem(cli[15].replace(" ","_"));
             jLabelSetImgCNH.setIcon(iArquivo.RedimensionarImg(cli[7], jLabelSetImgCNH.getWidth(), jLabelSetImgCNH.getHeight()));
+            setCaminhoCNHSelecionado(cli[7]);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
@@ -1092,6 +1094,16 @@ public class telaCliente extends javax.swing.JFrame {
         }
     }
 
+    public String getCaminhoCNHSelecionado() {
+        return caminhoCNHSelecionado;
+    }
+
+    public void setCaminhoCNHSelecionado(String caminhoCNHSelecionado) {
+        this.caminhoCNHSelecionado = caminhoCNHSelecionado;
+    }
+    
+    
+    
     public String getThisClass() {
         thisClass = getClass() + "";
         thisClass = thisClass.replace("class ", "");
