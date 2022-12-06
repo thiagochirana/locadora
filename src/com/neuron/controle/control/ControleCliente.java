@@ -19,6 +19,7 @@ import com.neuron.templates.Estados;
 import com.neuron.utils.Logs;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 
 public class ControleCliente implements IControleCliente{
@@ -51,13 +52,23 @@ public class ControleCliente implements IControleCliente{
     }
     
     @Override
-    public List<String> getStatusMulta() throws Exception{
-        return cliente.getStatusMulta();
+    public List<String> getListaStatusMulta() throws Exception{
+        return cliente.getListaStatusMulta();
     }
     
     @Override
     public List<String> getNomeEstados() throws Exception{
         return cliente.getNomeEstados();
+    }
+    
+    @Override
+    public ImageIcon getImgCNHById(int id,int width,int heigth) throws Exception{
+        return cliente.getImgCNHById(id,width,heigth);
+    }
+    
+    @Override
+    public String[] getClienteById(int id) throws Exception{
+        return cliente.getClienteById(id);
     }
     
     private boolean buscarCliente(int id, String descricao, int cpfCnpj)throws Exception{

@@ -53,14 +53,12 @@ public class telaCliente extends javax.swing.JFrame {
         
         try {
             menuLogOff.setVisible(false);
-            customizeMenuBar(jMenuBar); //customizar cor do menu
+            customizeMenuBar(jMenuBar); //customizar menu
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
         datahora(); //data e hora no sistema
-        resizeColunas(); //tamanho colunas
-        //limparTela(); //limpar tela
-        
+        resizeColunas(); //tamanho colunas   
 
         try { 
             carregarComboBoxStatus();  
@@ -186,15 +184,6 @@ public class telaCliente extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tabelaClientes);
-        if (tabelaClientes.getColumnModel().getColumnCount() > 0) {
-            tabelaClientes.getColumnModel().getColumn(0).setResizable(false);
-            tabelaClientes.getColumnModel().getColumn(1).setResizable(false);
-            tabelaClientes.getColumnModel().getColumn(2).setResizable(false);
-            tabelaClientes.getColumnModel().getColumn(3).setResizable(false);
-            tabelaClientes.getColumnModel().getColumn(4).setResizable(false);
-            tabelaClientes.getColumnModel().getColumn(5).setResizable(false);
-            tabelaClientes.getColumnModel().getColumn(6).setResizable(false);
-        }
         tabelaClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jSeparator1.setBackground(new java.awt.Color(1, 132, 222));
@@ -770,15 +759,15 @@ public class telaCliente extends javax.swing.JFrame {
             while (lista.hasNext()) {
                 String[] grid = new String[7];
                 Cliente cliente = lista.next();
-                grid[0] = cliente.getId() + "";
+                grid[0] = cliente.getId()+"";
                 grid[1] = cliente.getNomeRazaoSocial();
                 grid[2] = cliente.getCpfCnpj();
                 grid[3] = cliente.getMotorista()+ "";
                 grid[4] = cliente.getDDI() + "("+ cliente.getDDD()+")" + cliente.getNumero();
                 grid[5] = cliente.getStatusMulta().toString();
-                grid[6] = cliente.getValorMulta()%.2+"";
+                grid[6] = cliente.getValorMulta()+"";
 
-                veiculo.addRow(new Object[]{grid});
+                veiculo.addRow(new Object[]{grid[0],grid[1],grid[2],grid[3],grid[4],grid[5],grid[6]});
 
             }
         } catch (Exception erro) {
@@ -796,7 +785,8 @@ public class telaCliente extends javax.swing.JFrame {
     }
 
     public void carregarComboBoxStatus() throws Exception {
-        String[] array = interControle.getStatusMulta().toArray(new String[interControle.getStatusMulta().size()]);
+        String[] array;
+        array = interControle.getListaStatusMulta().toArray(new String[interControle.getListaStatusMulta().size()]);
         jComboBoxStatusCliente.removeAllItems();
         for (String item : array) {
             jComboBoxStatusCliente.addItem(item);
@@ -813,13 +803,12 @@ public class telaCliente extends javax.swing.JFrame {
     
     public void resizeColunas() {
         TableColumnModel tCM = tabelaClientes.getColumnModel();
-        tCM.getColumn(0).setPreferredWidth(30);
-        tCM.getColumn(1).setPreferredWidth(80);
-        tCM.getColumn(2).setPreferredWidth(120);
-        tCM.getColumn(3).setPreferredWidth(70);
+        tCM.getColumn(0).setPreferredWidth(1);
+        tCM.getColumn(1).setPreferredWidth(150);
+        tCM.getColumn(2).setPreferredWidth(50);
+        tCM.getColumn(3).setPreferredWidth(50);
         tCM.getColumn(4).setPreferredWidth(30);
-        tCM.getColumn(5).setPreferredWidth(70);
-        tCM.getColumn(6).setPreferredWidth(50);
+        tCM.getColumn(5).setPreferredWidth(10);
     }
 
     public void datahora() {
@@ -913,7 +902,7 @@ public class telaCliente extends javax.swing.JFrame {
             String motorista = jTextFieldNomeMotorista.getText();
             int nCNH = Integer.parseInt(jTextFieldNumCNH.getText());
             String caminhoImgCNH = getCaminhoArquivo();
-            StatusMulta statusMulta = getStatusMulta(jComboBoxStatusCliente.getSelectedItem().toString());
+            StatusMulta statusMulta = getStatusMulta(jComboBoxStatusCliente.getSelectedItem().toString().replace("_"," "));
             float valorMulta = Float.parseFloat(jTextFieldValorMulta.getText());
             String logradouro = jTextFieldLogradouro.getText();
             String complemento = jTextFieldComplemento.getText();
@@ -935,10 +924,10 @@ public class telaCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro Inserir novo Cadastro\n" + erro.getMessage());
         }
 
-        jTextFieldNomeRazao.setText("");
+        //jTextFieldNomeRazao.setText("");
         //saidaLogo.setIcon(null);
 
-        Logs.logger("Limpeza da tela e lista atualizada disponível na tela Modelos", getThisClass());
+        Logs.logger("Limpeza da tela e lista atualizada disponível na tela", getThisClass());
     }//GEN-LAST:event_btnInserirClienteMouseClicked
 
     private void jTextFieldNomeRazaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeRazaoActionPerformed
@@ -947,39 +936,33 @@ public class telaCliente extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
 
-        /* try {
-        caminhoArquivo = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3);
-        String nomeMarcaSelecionado = this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4) + "";
-        nomeMarcaSelecionado = nomeMarcaSelecionado.replace("./src/com/neuron/icons/logo/", "").replace(".jpeg", "");
-        String idSelecionado = (String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0);
-        
-        Iterator<Veiculo> lista = interControle.listagemVeiculo().iterator();
-        
-        while (lista.hasNext()) {
-        String[] grid = new String[15];
-        Veiculo listaVeiculo = lista.next();
-        grid[0] = "" + listaVeiculo.getIdVeiculo();
-        if (grid[0].equals(idSelecionado)) {
-        jTextFieldRenavamVeiculo.setText(listaVeiculo.getRenavan() + "");
-        jTextFieldDataCompra.setText(listaVeiculo.getDataCompra());
-        jLabelDataVenda.setText(listaVeiculo.getDataVenda());
+        int idSelecionado = Integer.parseInt((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0) );
+        try {
+            jLabelSetImgCNH.setIcon(interControle.getImgCNHById(idSelecionado,jLabelSetImgCNH.getWidth(),jLabelSetImgCNH.getHeight()));
+            
+            String[] cli = interControle.getClienteById(idSelecionado);
+            jTextFieldNomeRazao.setText(cli[2]);
+            jTextFieldCpfCnpj.setText(cli[1]);
+            jTextFieldNomeMotorista.setText(cli[5]);
+            jTextFieldNumCNH.setText(cli[6]);
+            jTextFieldNumRG.setText(cli[3]);
+            jTextFieldValorMulta.setText(cli[9]);
+            jTextFieldEmail.setText(cli[4]);
+            jTextFieldDDI.setText(cli[16]);
+            jTextFieldDDD.setText(cli[17]);
+            jTextFieldTelefone.setText(cli[18]);
+            jTextFieldLogradouro.setText(cli[10]);
+            jTextFieldComplemento.setText(cli[11]);
+            jTextFieldCEP.setText(cli[12]);
+            jTextFieldBairro.setText(cli[13]);
+            jTextFieldCidade.setText(cli[14]);
+            jComboBoxStatusCliente.setSelectedItem(cli[8].replace(" ","_"));
+            jComboBoxEstadoBrasil.setSelectedItem(cli[15].replace(" ","_"));
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
         }
         
-        }
-        
-        this.jTextFieldNomeRazao.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5));
-        jComboBoxMarcas.setSelectedItem(nomeMarcaSelecionado);
-        jComboBoxModelo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2));
-        jComboBoxCorVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1));
-        jComboBoxTipoVeiculo.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7));
-        jComboBoxTipoCombustivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9));
-        jComboBoxDisponivel.setSelectedItem((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3));
-        this.jTextFieldAno.setText((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6));
-        
-        } catch (Exception err) {
-        JOptionPane.showMessageDialog(this, err);
-        Logs.logger(err.getMessage(), getThisClass());
-        }*/
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
@@ -1028,7 +1011,7 @@ public class telaCliente extends javax.swing.JFrame {
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage());
-            Logs.logger("Nao foi possivel selecionar imagem para este modelo\n"+e.getMessage(),getThisClass());
+            Logs.logger("Nao foi possivel selecionar imagem"+e.getMessage(),getThisClass());
         }
 
     }//GEN-LAST:event_btnAddImgCNHMouseClicked
@@ -1061,6 +1044,10 @@ public class telaCliente extends javax.swing.JFrame {
                 return StatusMulta.SEM_MULTA;
             case "QUITADO":
                 return StatusMulta.QUITADO;
+            case "EM_DIVIDA":
+                return StatusMulta.EM_DIVIDA;
+            case "SEM_MULTA":
+                return StatusMulta.SEM_MULTA;
             default:
                 throw new Exception("Status nao encontrado");
         }
@@ -1152,13 +1139,11 @@ public class telaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel bgBackground;
     private javax.swing.JPanel bgBtnAddImgCNH;
     private javax.swing.JPanel bgBtnAlterar;
-    private javax.swing.JPanel bgBtnCarregarArquivo;
     private javax.swing.JPanel bgBtnInserir;
     private javax.swing.JLabel btnAddImgCNH;
     private javax.swing.JLabel btnAlterar;
     private javax.swing.JLabel btnAttLista;
     private javax.swing.JLabel btnBuscarVeiculo;
-    private javax.swing.JLabel btnCarregarArquivo;
     private javax.swing.JLabel btnInserirCliente;
     private javax.swing.JLabel btnVoltarPagAnt;
     private javax.swing.JLabel cpData;

@@ -50,22 +50,15 @@ public class Gerador {
         return id;
     }
     
-    public static int getIdCliente()throws FileNotFoundException, IOException{
+    public static int getIdCliente()throws Exception{
         String nomeDoArquivo ="./src/com/neuron/database/idControleCliente.txt";
-        FileReader fr = new FileReader(nomeDoArquivo);
-        BufferedReader br  = new BufferedReader(fr);
+        BufferedReader br  = new BufferedReader(new FileReader(nomeDoArquivo));
         String linha=br.readLine();
         int id = Integer.parseInt(linha);
         br.close();
-        id=id+2;
-        //cria o arquivo
-        FileWriter fw = new FileWriter(nomeDoArquivo);
-        //Criar o buffer do arquivo
-        BufferedWriter bw =new BufferedWriter(fw);
-        //Escreve no arquivo
-        String saida = id+"";
-        bw.write(saida);
-        //fecha o arquivo
+        id=id+1;
+        BufferedWriter bw =new BufferedWriter(new FileWriter(nomeDoArquivo));
+        bw.write(id+"");
         bw.close();	
         return id;
     }

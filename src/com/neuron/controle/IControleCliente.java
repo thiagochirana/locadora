@@ -14,6 +14,7 @@ package com.neuron.controle;
 import com.neuron.templates.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 
 public interface IControleCliente {
@@ -21,8 +22,10 @@ public interface IControleCliente {
     void InserirCliente(Cliente cliente) throws Exception;
     void alterarCliente(Cliente cliente) throws Exception;
     Estados getEstadoByNome(String nomeEstado) throws Exception;
-    List<String> getStatusMulta() throws Exception;
+    List<String> getListaStatusMulta() throws Exception;
     List<String> getNomeEstados() throws Exception;
+    ImageIcon getImgCNHById(int id,int width,int heigth) throws Exception;
+    String[] getClienteById(int id) throws Exception;
 }
 
 // Software developed by Thiago Chirana -> https://github.com/othiagomacedo

@@ -15,6 +15,8 @@ import com.neuron.persistencia.IClienteDAO;
 import com.neuron.templates.*;
 import com.neuron.utils.CopyFiles;
 import com.neuron.utils.Gerador;
+import com.neuron.utils.ISelecionarArq;
+import com.neuron.utils.SelecionarArq;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,9 +24,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import jdk.jfr.events.FileWriteEvent;
+import javax.swing.ImageIcon;
 
 
 public class ClienteDAO implements IClienteDAO{
@@ -54,18 +55,18 @@ public class ClienteDAO implements IClienteDAO{
                 cli.setEmail(vet[4]);
                 cli.setMotorista(vet[5]);
                 cli.setnCNH(Integer.parseInt(vet[6]));
-                cli.setCaminhoImgCNH(vet[9]);
-                cli.setStatusMulta(getStatusMulta(vet[10]));
-                cli.setValorMulta(Float.parseFloat(vet[11]));
-                cli.setLogradouro(vet[12]);
-                cli.setComplemento(vet[13]);
-                cli.setCEP(Integer.parseInt(vet[14]));
-                cli.setBairro(vet[15]);
-                cli.setCidade(vet[16]);
-                cli.setEstado(getEstadoByNome(vet[14]));
-                cli.setDDI(Integer.parseInt(vet[17]));
-                cli.setDDD(Integer.parseInt(vet[18]));
-                cli.setNumero(Integer.parseInt(vet[19]));
+                cli.setCaminhoImgCNH(vet[7]);
+                cli.setStatusMulta(getStatusMulta(vet[8]));
+                cli.setValorMulta(Float.parseFloat(vet[9]));
+                cli.setLogradouro(vet[10]);
+                cli.setComplemento(vet[11]);
+                cli.setCEP(Integer.parseInt(vet[12]));
+                cli.setBairro(vet[13]);
+                cli.setCidade(vet[14]);
+                cli.setEstado(getEstadoByNome(vet[15]));
+                cli.setDDI(Integer.parseInt(vet[16]));
+                cli.setDDD(Integer.parseInt(vet[17]));
+                cli.setNumero(Integer.parseInt(vet[18]));
 
                 lista.add(cli);
             }
@@ -86,13 +87,13 @@ public class ClienteDAO implements IClienteDAO{
             String path = getCaminhoImg();
             int id = Gerador.getIdCliente();
             
-            BufferedWriter bw = new BufferedWriter(new FileWriter(DataBase.CLIENTE.getPathDB()));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(DataBase.CLIENTE.getPathDB(),true));
             cliente.setId(id);
-            
-            CopyFiles.copiarImgSelecionada(caminho, "./src/com/neuron/icons/logo/", marca.getNomeMarca() + ".jpeg");
-            
-            bw.write(cliente.toString());
+            cliente.setCaminhoImgCNH("./src/com/neuron/icons/cliente/fotoCNH/"+ cliente.getNomeRazaoSocial()+"_"+cliente.getCpfCnpj() + ".jpeg");
+            bw.write(cliente.toString()+"\n");
             bw.close();
+            
+            CopyFiles.copiarImgSelecionada(path, "./src/com/neuron/icons/cliente/fotoCNH/", cliente.getNomeRazaoSocial()+"_"+cliente.getCpfCnpj() + ".jpeg",250,200);
             
         } catch (Exception e) {
             throw e;
@@ -100,7 +101,7 @@ public class ClienteDAO implements IClienteDAO{
     }
     
     @Override
-    public List<String> getStatusMulta() throws Exception{
+    public List<String> getListaStatusMulta() throws Exception{
         List<String> aux = new ArrayList<>();
         List<StatusMulta> l = Arrays.asList(StatusMulta.values());
         for (StatusMulta statusMulta : l) {
@@ -181,6 +182,44 @@ public class ClienteDAO implements IClienteDAO{
         }
     }
     
+    @Override
+    public ImageIcon getImgCNHById(int id,int width,int heigth) throws Exception{
+        ISelecionarArq iImg = new SelecionarArq();
+        ImageIcon cnh = new ImageIcon();
+        ArrayList<Cliente> lista = listagemClientes();
+        boolean achou = false;
+        for (Cliente cliente : lista) {
+            if (id == cliente.getId()){
+                cnh = iImg.RedimensionarImg(cliente.getCaminhoImgCNH(),width,heigth);
+                achou = true;
+            }
+        }
+        if (achou==true) return cnh; else throw new Exception("Nao foi possivel encontrar CNH desde cadastro");
+    }
+    
+    @Override
+    public String[] getClienteById(int id) throws Exception{
+        boolean ok = false;
+        ArrayList<Cliente> lista = listagemClientes();
+        int tamanho = lista.toString().split(";").length;
+        String aux;
+        String[] achado = new String[tamanho];
+        
+        for (Cliente cli : lista) {
+            if (id == cli.getId()) {
+                aux = cli.toString();
+                achado = aux.split(";");
+                ok = true;
+                return achado;
+            }
+        }
+        if (ok != true) {
+            throw new Exception("nao foi possivel encontrar cliente");
+        } else {
+            return achado;
+        }
+    }
+    
     private String getCaminhoImg() throws Exception {
         File file = new File("./src/com/neuron/temp/pathImg.txt");
         FileReader fr = new FileReader("./src/com/neuron/temp/pathImg.txt");
@@ -193,12 +232,16 @@ public class ClienteDAO implements IClienteDAO{
     
     private StatusMulta getStatusMulta(String status) throws Exception{
         switch (status){
+            case "EM_DIVIDA":
+                return StatusMulta.EM_DIVIDA;
+            case "SEM_MULTA":
+                return StatusMulta.SEM_MULTA;
+            case "QUITADO":
+                return StatusMulta.QUITADO;
             case "EM DIVIDA":
                 return StatusMulta.EM_DIVIDA;
             case "SEM MULTA":
                 return StatusMulta.SEM_MULTA;
-            case "QUITADO":
-                return StatusMulta.QUITADO;
             default:
                 throw new Exception("Status nao encontrado");
         }

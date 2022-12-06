@@ -27,19 +27,6 @@ public class Cliente extends Endereco{
         
     }
 
-    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta) {
-        this.id = id;
-        this.cpfCnpj = cpfCnpj;
-        this.nomeRazaoSocial = nomeRazaoSocial;
-        this.rg = rg;
-        this.email = email;
-        this.motorista = motorista;
-        this.nCNH = nCNH;
-        this.caminhoImgCNH = caminhoImgCNH;
-        this.statusMulta = statusMulta;
-        this.valorMulta = valorMulta;
-    }
-
     public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado, int DDI, int DDD, int numero) {
         super(logradouro, complemento, CEP, bairro, cidade, estado, DDI, DDD, numero);
         this.id = id;
@@ -54,22 +41,7 @@ public class Cliente extends Endereco{
         this.valorMulta = valorMulta;
     }
 
-    public Cliente(int id, String cpfCnpj, String nomeRazaoSocial, String rg, String email, String motorista, int nCNH, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado) {
-        super(logradouro, complemento, CEP, bairro, cidade, estado);
-        this.id = id;
-        this.cpfCnpj = cpfCnpj;
-        this.nomeRazaoSocial = nomeRazaoSocial;
-        this.rg = rg;
-        this.email = email;
-        this.motorista = motorista;
-        this.nCNH = nCNH;
-        this.caminhoImgCNH = caminhoImgCNH;
-        this.statusMulta = statusMulta;
-        this.valorMulta = valorMulta;
-    }
     
-    
-
     public int getId() {
         return id;
     }
@@ -242,10 +214,7 @@ public class Cliente extends Endereco{
 
     @Override
     public String toString() {
-        return cpfCnpj + ";" + nomeRazaoSocial + ";" + rg + ";" + email + ";" + motorista + ";"
-                + nCNH + ";" + caminhoImgCNH +";" + statusMulta + ";" + valorMulta;
+        return id + ";" + cpfCnpj + ";" + nomeRazaoSocial + ";" + rg + ";" + email + ";" + motorista + ";" + nCNH + ";" + caminhoImgCNH + ";" + statusMulta + ";" + valorMulta + ";" + logradouro + ";" + complemento + ";" + CEP + ";" + bairro + ";" + cidade + ";" + estado + ";" + DDI + ";" + DDD + ";" + numero;
     }
-    
-    
-    
+   
 }
