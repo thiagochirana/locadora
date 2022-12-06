@@ -15,8 +15,6 @@ import com.neuron.persistencia.IClienteDAO;
 import com.neuron.templates.*;
 import com.neuron.utils.CopyFiles;
 import com.neuron.utils.Gerador;
-import com.neuron.utils.ISelecionarArq;
-import com.neuron.utils.SelecionarArq;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,7 +23,6 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.ImageIcon;
 
 
 public class ClienteDAO implements IClienteDAO{
@@ -171,6 +168,7 @@ public class ClienteDAO implements IClienteDAO{
             dbCliNovo.renameTo(dbCliAux);
             
         } catch (Exception e) {
+            throw new Exception("Nao foi possivel realizar a alteracao: "+e.getMessage());
         }
     }
     
@@ -254,21 +252,6 @@ public class ClienteDAO implements IClienteDAO{
             default:
                 throw new Exception("Nao foi possivel identificar o Estado, tente novamente!");
         }
-    }
-    
-    @Override
-    public ImageIcon getImgCNHById(int id,int width,int heigth) throws Exception{
-        ISelecionarArq iImg = new SelecionarArq();
-        ImageIcon cnh = new ImageIcon();
-        ArrayList<Cliente> lista = listagemClientes();
-        boolean achou = false;
-        for (Cliente cliente : lista) {
-            if (id == cliente.getId()){
-                cnh = iImg.RedimensionarImg(cliente.getCaminhoImgCNH(),width,heigth);
-                achou = true;
-            }
-        }
-        if (achou==true) return cnh; else throw new Exception("Nao foi possivel encontrar CNH desde cadastro");
     }
     
     @Override

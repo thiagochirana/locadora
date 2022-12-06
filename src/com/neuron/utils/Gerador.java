@@ -51,7 +51,7 @@ public class Gerador {
     }
     
     public static int getIdCliente()throws Exception{
-        String nomeDoArquivo ="./src/com/neuron/database/idControleCliente.txt";
+        String nomeDoArquivo ="./src/com/neuron/database/idControleClientes.txt";
         BufferedReader br  = new BufferedReader(new FileReader(nomeDoArquivo));
         String linha=br.readLine();
         int id = Integer.parseInt(linha);

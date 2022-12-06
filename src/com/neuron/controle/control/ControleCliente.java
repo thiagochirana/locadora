@@ -19,7 +19,6 @@ import com.neuron.templates.Estados;
 import com.neuron.utils.Logs;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
 
 
 public class ControleCliente implements IControleCliente{
@@ -63,11 +62,6 @@ public class ControleCliente implements IControleCliente{
     }
     
     @Override
-    public ImageIcon getImgCNHById(int id,int width,int heigth) throws Exception{
-        return cliente.getImgCNHById(id,width,heigth);
-    }
-    
-    @Override
     public String[] getClienteById(int id) throws Exception{
         return cliente.getClienteById(id);
     }
@@ -82,8 +76,8 @@ public class ControleCliente implements IControleCliente{
             }
             return false;
         } catch (Exception erro) {
-            Logs.logger("Nao foi possivel identificar se ha outra Marca com o nome " + descricao + " - " + erro.getMessage(), getThisClass());
-            throw erro;
+            Logs.logger("Nao foi possivel identificar se ha outro Cliente com o nome " + descricao + ": " + erro.getMessage(), getThisClass());
+            throw new Exception("Nao foi possivel identificar se ha outro Cliente com o nome " + descricao + ": " + erro.getMessage());
         }
     }
     

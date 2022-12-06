@@ -904,6 +904,9 @@ public class telaCliente extends javax.swing.JFrame {
             int DDD = Integer.parseInt(jTextFieldDDD.getText());
             int numero = Integer.parseInt(jTextFieldTelefone.getText());
             
+            String aux = id + " - " + cpfCnpj + " - " + nomeRazaoSocial + " - " + rg + " - " + email + " - " + motorista + " - " + nCNH + " - " + caminhoImgCNH + " - " + statusMulta + " - " + valorMulta + " - " + logradouro + " - " + complemento + " - " + CEP + " - " + bairro + " - " + cidade + " - " + estado + " - " + DDI + " - " + DDD + " - " + numero;
+            
+            Logs.logger(aux, getThisClass());
             Cliente cli = new Cliente(id,cpfCnpj,nomeRazaoSocial,rg,email,motorista,nCNH,caminhoImgCNH,statusMulta,valorMulta,logradouro,complemento,CEP,bairro,cidade,estado,DDI,DDD,numero);
             interControle.alterarCliente(cli);
 
@@ -966,9 +969,9 @@ public class telaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldNomeRazaoActionPerformed
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
-
-        int idSelecionado = Integer.parseInt((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0) );
+        
         try {
+            int idSelecionado = Integer.parseInt((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0) );
             //jLabelSetImgCNH.setIcon(interControle.getImgCNHById(idSelecionado,jLabelSetImgCNH.getWidth(),jLabelSetImgCNH.getHeight()));
             
             String[] cli = interControle.getClienteById(idSelecionado);
