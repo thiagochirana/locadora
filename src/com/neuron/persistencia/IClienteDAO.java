@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 public interface IClienteDAO {
     ArrayList<Cliente> listagemClientes() throws Exception;
     void InserirCliente(Cliente cliente) throws Exception;
+    void alterarCliente(Cliente cliente) throws Exception;
     Estados getEstadoByNome(String nomeEstado) throws Exception;
     List<String> getListaStatusMulta() throws Exception;
     List<String> getNomeEstados() throws Exception;

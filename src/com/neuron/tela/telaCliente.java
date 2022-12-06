@@ -777,11 +777,24 @@ public class telaCliente extends javax.swing.JFrame {
     }
 
     public void limparTela() {
-        /*saidaLogo.setIcon(null);
-        saidaDiretorio.setText("");
-        saidaLogoMarca.setIcon(null);
-        saidaID.setText("");*/
-
+        jTextFieldNomeRazao.setText("");
+        jTextFieldCpfCnpj.setText("");
+        jTextFieldNomeMotorista.setText("");
+        jTextFieldNumCNH.setText("");
+        jTextFieldNumRG.setText("");
+        jTextFieldValorMulta.setText("");
+        jTextFieldEmail.setText("");
+        jTextFieldDDI.setText("");
+        jTextFieldDDD.setText("");
+        jTextFieldTelefone.setText("");
+        jTextFieldLogradouro.setText("");
+        jTextFieldComplemento.setText("");
+        jTextFieldCEP.setText("");
+        jTextFieldBairro.setText("");
+        jTextFieldCidade.setText("");
+        jComboBoxStatusCliente.setSelectedIndex(0);
+        jComboBoxEstadoBrasil.setSelectedIndex(0);
+        jLabelSetImgCNH.setIcon(null);
     }
 
     public void carregarComboBoxStatus() throws Exception {
@@ -870,11 +883,28 @@ public class telaCliente extends javax.swing.JFrame {
 
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
         try {
-            int id = Integer.parseInt((String)this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0));
+            int id = Integer.parseInt((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0) );
+            String cpfCnpj = jTextFieldCpfCnpj.getText();
+            String nomeRazaoSocial = jTextFieldNomeRazao.getText();
+            String rg = jTextFieldNumRG.getText();
+            String email = jTextFieldEmail.getText();
+            String motorista = jTextFieldNomeMotorista.getText();
+            int nCNH = Integer.parseInt(jTextFieldNumCNH.getText());
+            String caminhoImgCNH = getCaminhoArquivo();
+            StatusMulta statusMulta = getStatusMulta(jComboBoxStatusCliente.getSelectedItem().toString().replace("_"," "));
+            float valorMulta = Float.parseFloat(jTextFieldValorMulta.getText());
+            String logradouro = jTextFieldLogradouro.getText();
+            String complemento = jTextFieldComplemento.getText();
+            int CEP = Integer.parseInt(jTextFieldCEP.getText());
+            String bairro = jTextFieldBairro.getText();
+            String cidade = jTextFieldCidade.getText();
+            Estados estado = interControle.getEstadoByNome(jComboBoxEstadoBrasil.getSelectedItem().toString());
+            int DDI = Integer.parseInt(jTextFieldDDI.getText());
+            int DDD = Integer.parseInt(jTextFieldDDD.getText());
+            int numero = Integer.parseInt(jTextFieldTelefone.getText());
             
-            Cliente cliente = new Cliente();
-            interControle.alterarCliente(cliente);
-            //ImprimirGrid(interControle.listagemModelo());
+            Cliente cli = new Cliente(id,cpfCnpj,nomeRazaoSocial,rg,email,motorista,nCNH,caminhoImgCNH,statusMulta,valorMulta,logradouro,complemento,CEP,bairro,cidade,estado,DDI,DDD,numero);
+            interControle.alterarCliente(cli);
 
             JOptionPane.showMessageDialog(this, "Cliente " + jTextFieldNomeRazao.getText().toUpperCase() + " alterado com sucesso!");
             ImprimirGrid(interControle.listagemCliente());
@@ -938,7 +968,7 @@ public class telaCliente extends javax.swing.JFrame {
 
         int idSelecionado = Integer.parseInt((String) this.tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0) );
         try {
-            jLabelSetImgCNH.setIcon(interControle.getImgCNHById(idSelecionado,jLabelSetImgCNH.getWidth(),jLabelSetImgCNH.getHeight()));
+            //jLabelSetImgCNH.setIcon(interControle.getImgCNHById(idSelecionado,jLabelSetImgCNH.getWidth(),jLabelSetImgCNH.getHeight()));
             
             String[] cli = interControle.getClienteById(idSelecionado);
             jTextFieldNomeRazao.setText(cli[2]);
@@ -958,7 +988,7 @@ public class telaCliente extends javax.swing.JFrame {
             jTextFieldCidade.setText(cli[14]);
             jComboBoxStatusCliente.setSelectedItem(cli[8].replace(" ","_"));
             jComboBoxEstadoBrasil.setSelectedItem(cli[15].replace(" ","_"));
-            
+            jLabelSetImgCNH.setIcon(iArquivo.RedimensionarImg(cli[7], jLabelSetImgCNH.getWidth(), jLabelSetImgCNH.getHeight()));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }

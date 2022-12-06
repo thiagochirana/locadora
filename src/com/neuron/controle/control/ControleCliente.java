@@ -35,10 +35,11 @@ public class ControleCliente implements IControleCliente{
     }
     
     @Override
-    public void alterarCliente(Cliente cliente) throws Exception{
-        if (buscarCliente(cliente.getId(),cliente.getNomeRazaoSocial(), Integer.parseInt(cliente.getCpfCnpj()))){
+    public void alterarCliente(Cliente client) throws Exception{
+        if (buscarCliente(client.getId(),client.getNomeRazaoSocial(), Integer.parseInt(client.getCpfCnpj()))){
             
         }
+        cliente.alterarCliente(client);
     }
     
     @Override

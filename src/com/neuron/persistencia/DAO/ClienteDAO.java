@@ -33,11 +33,18 @@ public class ClienteDAO implements IClienteDAO{
     @Override
     public ArrayList<Cliente> listagemClientes() throws Exception{
         File dbCliente = new File(DataBase.CLIENTE.getPathDB());
+        File idCliente = new File(DataBase.IDCLIENTE.getPathDB());
         // verifica se banco existe, se nao tenta puxar do backup
         try {
             if (!dbCliente.exists()) {
+                //criar banco
                 FileWriter fl = new FileWriter(dbCliente);
                 fl.close();
+                //criar o ID
+                FileWriter fC = new FileWriter(idCliente);
+                fC.write("0");
+                fC.close();
+                
                 throw new Exception("Lista vazia! Por gentileza cadastre um novo cliente");
             }             
 
@@ -97,6 +104,73 @@ public class ClienteDAO implements IClienteDAO{
             
         } catch (Exception e) {
             throw e;
+        }
+    }
+    
+    @Override
+    public void alterarCliente(Cliente cliente) throws Exception{
+        File dbCliente = new File(DataBase.CLIENTE.getPathDB());
+        Cliente cli = new Cliente();
+        try {
+            if (!dbCliente.exists()) {
+                InserirCliente(cliente);
+                throw new Exception("Lista vazia! Este cadastro sera o primeiro cliente");
+            }
+            
+            String linha = "";
+            
+            //Criar o txt auxiliar para manipulacao da pilha 
+            String dbAux1 = "./src/com/neuron/database/dbClienteAux1.txt";
+            FileWriter fwAux1 = new FileWriter(dbAux1);
+            BufferedWriter bwAux1 = new BufferedWriter(fwAux1);
+
+            //Leitura do banco atual
+            String caminhoDbCliente = DataBase.CLIENTE.getPathDB();
+            File dbCli = new File(caminhoDbCliente);
+            File dbCliAux = new File(caminhoDbCliente);
+            FileReader fr = new FileReader(caminhoDbCliente);
+            BufferedReader br = new BufferedReader(fr);
+
+            //altera a linha caso o ID for igual ao do selecionado na tabelaMarca
+            while ((linha = br.readLine()) != null) {
+                String[] vet = linha.split(";");
+                if (vet[0].equals(cliente.getId())) {
+                    cli.setId(Integer.parseInt(vet[0]));
+                    cli.setCpfCnpj(vet[1]);
+                    cli.setNomeRazaoSocial(vet[2]);
+                    cli.setRg(vet[3]);
+                    cli.setEmail(vet[4]);
+                    cli.setMotorista(vet[5]);
+                    cli.setnCNH(Integer.parseInt(vet[6]));
+                    cli.setCaminhoImgCNH(vet[7]);
+                    cli.setStatusMulta(getStatusMulta(vet[8]));
+                    cli.setValorMulta(Float.parseFloat(vet[9]));
+                    cli.setLogradouro(vet[10]);
+                    cli.setComplemento(vet[11]);
+                    cli.setCEP(Integer.parseInt(vet[12]));
+                    cli.setBairro(vet[13]);
+                    cli.setCidade(vet[14]);
+                    cli.setEstado(getEstadoByNome(vet[15]));
+                    cli.setDDI(Integer.parseInt(vet[16]));
+                    cli.setDDD(Integer.parseInt(vet[17]));
+                    cli.setNumero(Integer.parseInt(vet[18]));
+                    bwAux1.write(cli.toString() + "\n");
+                } else {
+                    bwAux1.write(linha + "\n");
+                }
+            }
+            br.close();
+            bwAux1.close();
+
+            File dbCliNovo = new File(dbAux1);
+
+            //deleta o banco atual
+            dbCli.delete();
+
+            //renomeia o dbMarcaAux1 para ser o principal
+            dbCliNovo.renameTo(dbCliAux);
+            
+        } catch (Exception e) {
         }
     }
     
@@ -199,6 +273,7 @@ public class ClienteDAO implements IClienteDAO{
     
     @Override
     public String[] getClienteById(int id) throws Exception{
+        //caminho da imagem => vetor[7]
         boolean ok = false;
         ArrayList<Cliente> lista = listagemClientes();
         int tamanho = lista.toString().split(";").length;
@@ -209,6 +284,7 @@ public class ClienteDAO implements IClienteDAO{
             if (id == cli.getId()) {
                 aux = cli.toString();
                 achado = aux.split(";");
+                //achado[tamanho+1] = new ImageIcon((String)achado[7]);
                 ok = true;
                 return achado;
             }
