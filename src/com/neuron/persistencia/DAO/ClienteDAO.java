@@ -134,7 +134,7 @@ public class ClienteDAO implements IClienteDAO{
             //altera a linha caso o ID for igual ao do selecionado na tabelaMarca
             while ((linha = br.readLine()) != null) {
                 String[] vet = linha.split(";");
-                if (vet[0].equals(cliente.getId())) {
+                if (vet[0].equals(cliente.getId()+"")) {
                     cli.setId(Integer.parseInt(vet[0]));
                     cli.setCpfCnpj(vet[1]);
                     cli.setNomeRazaoSocial(vet[2]);

@@ -1,2 +1,3 @@
 5;12345678900;Lookalike;09876;email@email.com;Thiago;123456;./src/com/neuron/icons/cliente/fotoCNH/Lookalike_12345678900.jpeg;QUITADO;123.0;Rua Cariri;Rua da havana;74573130;Maresia;Maues;AMAZONAS;55;62;996196243
 6;CPFCNPJ;Nome;101010;email@email.com;Motorista;909090;./src/com/neuron/icons/cliente/fotoCNH/Nome_CPFCNPJ.jpeg;QUITADO;0.0;Logradouro;Complemento;74573130;Bairro;Cidade;RORAIMA;55;92;999990123
+1;00987654321;ASTRONEER;789456;email@email.com;Thiago;789456;./src/com/neuron/icons/cliente/fotoCNH/ASTRONEER_00987654321.jpeg;EM_DIVIDA;24000.0;Rua Cariris;Rua da havanas;745731;Santa Luzia;Maues;AMAZONAS;55;62;996196243
