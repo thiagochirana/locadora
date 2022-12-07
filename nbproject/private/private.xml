@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/thiag/Documents/NetBeansProjects/locadora/src/com/neuron/tela/telaCliente.java</file>
-            <file>file:/C:/Users/thiag/Documents/NetBeansProjects/locadora/src/com/neuron/utils/SelecionarArq.java</file>
-            <file>file:/C:/Users/thiag/Documents/NetBeansProjects/locadora/src/com/neuron/utils/CopyFiles.java</file>
-            <file>file:/C:/Users/thiag/Documents/NetBeansProjects/locadora/src/com/neuron/persistencia/DAO/ClienteDAO.java</file>
+            <file>file:/C:/Users/aluno/Documents/youngblood/locadora/src/com/neuron/persistencia/DAO/ClienteDAO.java</file>
+            <file>file:/C:/Users/aluno/Documents/youngblood/locadora/src/com/neuron/tela/telaCliente.java</file>
+            <file>file:/C:/Users/aluno/Documents/youngblood/locadora/src/com/neuron/controle/control/ControleCliente.java</file>
+            <file>file:/C:/Users/aluno/Documents/youngblood/locadora/src/com/neuron/controle/IControleCliente.java</file>
         </group>
     </open-files>
 </project-private>
