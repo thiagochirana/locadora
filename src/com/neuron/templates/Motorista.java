@@ -14,21 +14,22 @@
 Vetor de Sets da Classe Motorista
 	
 [0].setIdMotorista
-[1].setNumeroCNH
-[2].setDataVencimento
-[3].setCaminhoImgCNH
-[4].setStatusMulta
-[5].setValorMulta
-[6].setLogradouro
-[7].setComplemento
-[8].setCEP
-[9].setBairro
-[10].setCidade
-[11].setEstado
-[12].setDDI
-[13].setDDD
-[14].setNumero
-[15].setIdClienteVinculado
+[1].setNomeMotorista
+[2].setNumeroCNH
+[3].setDataVencimento
+[4].setCaminhoImgCNH
+[5].setStatusMulta
+[6].setValorMulta
+[7].setLogradouro
+[8].setComplemento
+[9].setCEP
+[10].setBairro
+[11].setCidade
+[12].setEstado
+[13].setDDI
+[14].setDDD
+[15].setNumero
+[16].setIdClienteVinculado
 */
 
 package com.neuron.templates;
@@ -37,6 +38,7 @@ package com.neuron.templates;
 public class Motorista extends Endereco{
     
     int idMotorista;
+    String nomeMotorista;
     int numeroCNH;
     String dataVencimento;
     String caminhoImgCNH;
@@ -47,9 +49,10 @@ public class Motorista extends Endereco{
     public Motorista() {
     }
 
-    public Motorista(int idMotorista, int numeroCNH, String dataVencimento, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, int IdClienteVinculado, String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado, int DDI, int DDD, int numero) {
+    public Motorista(int idMotorista, String nomeMotorista, int numeroCNH, String dataVencimento, String caminhoImgCNH, StatusMulta statusMulta, float valorMulta, int IdClienteVinculado, String logradouro, String complemento, int CEP, String bairro, String cidade, Estados estado, int DDI, int DDD, int numero) {
         super(logradouro, complemento, CEP, bairro, cidade, estado, DDI, DDD, numero);
         this.idMotorista = idMotorista;
+        this.nomeMotorista = nomeMotorista;
         this.numeroCNH = numeroCNH;
         this.dataVencimento = dataVencimento;
         this.caminhoImgCNH = caminhoImgCNH;
@@ -68,6 +71,14 @@ public class Motorista extends Endereco{
         this.idMotorista = idMotorista;
     }
 
+    public String getNomeMotorista() {
+        return nomeMotorista;
+    }
+
+    public void setNomeMotorista(String nomeMotorista) {
+        this.nomeMotorista = nomeMotorista;
+    }
+    
     public int getNumeroCNH() {
         return numeroCNH;
     }
