@@ -370,7 +370,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel12.setText("Tipo Veículo:");
+        jLabel12.setText("Combustível:");
 
         jComboBoxTipoCombustivel.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoCombustivel.setForeground(new java.awt.Color(1, 132, 222));
@@ -385,7 +385,7 @@ public final class telaVeiculo extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(1, 132, 222));
-        jLabel13.setText("Combustível:");
+        jLabel13.setText("Tipo Veiculo:");
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(1, 132, 222));

@@ -774,7 +774,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="de" green="84" red="1" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tipo Ve&#xed;culo:"/>
+            <Property name="text" type="java.lang.String" value="Combust&#xed;vel:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoCombustivel">
@@ -815,7 +815,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="de" green="84" red="1" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Combust&#xed;vel:"/>
+            <Property name="text" type="java.lang.String" value="Tipo Veiculo:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
