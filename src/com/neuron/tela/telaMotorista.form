@@ -107,7 +107,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jTextFieldCpf" max="32767" attributes="0"/>
-                                              <Component id="jTextFieldNome" max="32767" attributes="0"/>
+                                              <Component id="jTextFieldNomeMotorista" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -217,7 +217,7 @@
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldNomeMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldLogradouro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -364,7 +364,7 @@
                   <Table columnCount="6" rowCount="4">
                     <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="Nome" type="java.lang.Object"/>
-                    <Column editable="false" title="CPF" type="java.lang.Object"/>
+                    <Column editable="false" title="CNH" type="java.lang.Object"/>
                     <Column editable="false" title="Telefone" type="java.lang.Object"/>
                     <Column editable="false" title="Status" type="java.lang.Object"/>
                     <Column editable="false" title="Valor Multa" type="java.lang.Object"/>
@@ -446,7 +446,7 @@
             <Property name="text" type="java.lang.String" value="Nome:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldNome">
+        <Component class="javax.swing.JTextField" name="jTextFieldNomeMotorista">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fa" green="fa" red="fa" type="rgb"/>
@@ -463,7 +463,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNomeMotoristaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="txtQtdeResultados">

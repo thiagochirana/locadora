@@ -9,17 +9,21 @@
   
  ************* enjoy ******************/
 
-package com.neuron.persistencia;
+package com.neuron.controle;
 
-import com.neuron.templates.*;
+import com.neuron.templates.Estados;
+import com.neuron.templates.Motorista;
 import java.util.ArrayList;
 
 
-public interface IMotoristaDAO {
+public interface IControleMotorista {
     ArrayList<Motorista> listagemMotorista() throws Exception;
-    Estados getEstadoByNome(String nomeEstado) throws Exception;
-    void inserirMotorista(Motorista motorista) throws Exception;
-    void alterarMotorista(Motorista motorista) throws Exception;
-}
 
-// Software developed by Thiago Chirana -> https://github.com/othiagomacedo
+    Estados getEstadoByNome(String nomeEstado) throws Exception;
+
+    void inserirMotorista(Motorista motorista) throws Exception;
+
+    void alterarMotorista(Motorista motorista) throws Exception;
+} 
+
+// Software developed by Thiago Macedo -> https://github.com/othiagomacedo

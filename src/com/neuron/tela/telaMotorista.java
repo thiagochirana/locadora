@@ -18,8 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-import com.neuron.controle.IControleCliente;
-import com.neuron.controle.IControleGUI;
+import com.neuron.controle.*;
 import com.neuron.controle.control.*;
 import com.neuron.icons.*;
 import com.neuron.utils.*;
@@ -35,7 +34,7 @@ import javax.swing.table.TableColumnModel;
 
 public class telaMotorista extends javax.swing.JFrame {
 
-    IControleCliente interControle = new ControleCliente();
+    IControleMotorista interControle = new ControleMotorista();
     ISelecionarArq iArquivo = new SelecionarArq();
     String thisClass = "";
     String caminhoCNHSelecionado;
@@ -62,10 +61,10 @@ public class telaMotorista extends javax.swing.JFrame {
         resizeColunas(); //tamanho colunas   
 
         try { 
-            carregarComboBoxStatus();  
-            carregarComboBoxEstados();
-            if (!interControle.listagemCliente().isEmpty() || interControle.listagemCliente()!= null) {
-                ImprimirGrid(interControle.listagemCliente());
+            //carregarComboBoxStatus();  
+            //carregarComboBoxEstados();
+            if (!interControle.listagemMotorista().isEmpty() || interControle.listagemMotorista()!= null) {
+                ImprimirGrid(interControle.listagemMotorista());
             }
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
@@ -88,7 +87,7 @@ public class telaMotorista extends javax.swing.JFrame {
         tabelaMotorista = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldNome = new javax.swing.JTextField();
+        jTextFieldNomeMotorista = new javax.swing.JTextField();
         txtQtdeResultados = new javax.swing.JLabel();
         saidaStatusOperacao = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -161,7 +160,7 @@ public class telaMotorista extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "CPF", "Telefone", "Status", "Valor Multa"
+                "ID", "Nome", "CNH", "Telefone", "Status", "Valor Multa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -193,12 +192,12 @@ public class telaMotorista extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(1, 132, 222));
         jLabel2.setText("Nome:");
 
-        jTextFieldNome.setBackground(new java.awt.Color(250, 250, 250));
-        jTextFieldNome.setForeground(new java.awt.Color(1, 132, 222));
-        jTextFieldNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
-        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNomeMotorista.setBackground(new java.awt.Color(250, 250, 250));
+        jTextFieldNomeMotorista.setForeground(new java.awt.Color(1, 132, 222));
+        jTextFieldNomeMotorista.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 132, 222), 1, true));
+        jTextFieldNomeMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNomeActionPerformed(evt);
+                jTextFieldNomeMotoristaActionPerformed(evt);
             }
         });
 
@@ -551,7 +550,7 @@ public class telaMotorista extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextFieldCpf)
-                                            .addComponent(jTextFieldNome)))
+                                            .addComponent(jTextFieldNomeMotorista)))
                                     .addGroup(bgBackgroundLayout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -634,7 +633,7 @@ public class telaMotorista extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(bgBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNomeMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
@@ -727,23 +726,22 @@ public class telaMotorista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ImprimirGrid(ArrayList<Cliente> listaDeClientes) {
+    private void ImprimirGrid(ArrayList<Motorista> listaDeClientes) {
         try {
             DefaultTableModel veiculo = (DefaultTableModel) tabelaMotorista.getModel();
             //Limpa a tabela 
             veiculo.setNumRows(0); //setar numero de linhas exibidas para 0
-            Iterator<Cliente> lista = listaDeClientes.iterator();
+            Iterator<Motorista> lista = listaDeClientes.iterator();
 
             while (lista.hasNext()) {
                 String[] grid = new String[7];
-                Cliente cliente = lista.next();
-                grid[0] = cliente.getId()+"";
-                grid[1] = cliente.getNomeRazaoSocial();
-                grid[2] = cliente.getCpfCnpj();
-                grid[3] = cliente.getMotorista()+ "";
-                grid[4] = cliente.getDDI() + "("+ cliente.getDDD()+")" + cliente.getNumero();
-                grid[5] = cliente.getStatusMulta().toString();
-                grid[6] = cliente.getValorMulta()+"";
+                Motorista motora = lista.next();
+                grid[0] = motora.getIdMotorista()+"";
+                grid[1] = motora.getNomeMotorista();
+                grid[2] = motora.getNumeroCNH() + "";
+                grid[3] = motora.getDDI() + "("+ motora.getDDD()+")" + motora.getNumero();
+                grid[4] = motora.getStatusMulta().toString();
+                grid[5] = motora.getValorMulta()+"";
 
                 veiculo.addRow(new Object[]{grid[0],grid[1],grid[2],grid[3],grid[4],grid[5],grid[6]});
 
@@ -755,7 +753,7 @@ public class telaMotorista extends javax.swing.JFrame {
     }
 
     public void limparTela() {
-        jTextFieldNome.setText("");
+        jTextFieldNomeMotorista.setText("");
         jTextFieldCpf.setText("");
         jTextFieldNumCNH.setText("");
         jTextFieldNumRG.setText("");
@@ -774,6 +772,7 @@ public class telaMotorista extends javax.swing.JFrame {
         jLabelSetImgCNH.setIcon(null);
     }
 
+    /*
     public void carregarComboBoxStatus() throws Exception {
         String[] array;
         array = interControle.getListaStatusMulta().toArray(new String[interControle.getListaStatusMulta().size()]);
@@ -790,6 +789,7 @@ public class telaMotorista extends javax.swing.JFrame {
             jComboBoxEstadoBrasil.addItem(item);
         }
     }
+    */
     
     public void resizeColunas() {
         TableColumnModel tCM = tabelaMotorista.getColumnModel();
@@ -835,7 +835,7 @@ public class telaMotorista extends javax.swing.JFrame {
 
     private void btnAttListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttListaMouseClicked
         try {
-            ImprimirGrid(interControle.listagemCliente());
+            ImprimirGrid(interControle.listagemMotorista());
             Logs.logger("lista de Clientes atualizada com sucesso!", telaMotorista.class.getName());
         } catch (Exception ex) {
             Logs.logger("Nao foi atualizada a lista!", telaMotorista.class.getName());
@@ -854,7 +854,7 @@ public class telaMotorista extends javax.swing.JFrame {
         try {
             int id = Integer.parseInt((String) this.tabelaMotorista.getValueAt(tabelaMotorista.getSelectedRow(), 0) );
             String cpfCnpj = jTextFieldCpf.getText();
-            String nomeRazaoSocial = jTextFieldNome.getText();
+            String nomeRazaoSocial = jTextFieldNomeMotorista.getText();
             String rg = jTextFieldNumRG.getText();
             String email = jTextFieldEmail.getText();
             String motorista = jTextFieldNomeMotorista.getText();
@@ -876,10 +876,10 @@ public class telaMotorista extends javax.swing.JFrame {
             
             Logs.logger(aux, getThisClass());
             Cliente cli = new Cliente(id,cpfCnpj,nomeRazaoSocial,rg,email,motorista,nCNH,caminhoImgCNH,statusMulta,valorMulta,logradouro,complemento,CEP,bairro,cidade,estado,DDI,DDD,numero);
-            interControle.alterarCliente(cli);
+            interControle.alterarMotorista(motorista);
 
-            JOptionPane.showMessageDialog(this, "Cliente " + jTextFieldNome.getText().toUpperCase() + " alterado com sucesso!");
-            ImprimirGrid(interControle.listagemCliente());
+            JOptionPane.showMessageDialog(this, "Cliente " + jTextFieldNomeMotorista.getText().toUpperCase() + " alterado com sucesso!");
+            ImprimirGrid(interControle.listagemMotorista());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -898,7 +898,7 @@ public class telaMotorista extends javax.swing.JFrame {
         try {
             int id = 0;
             String cpfCnpj = jTextFieldCpf.getText();
-            String nomeRazaoSocial = jTextFieldNome.getText();
+            String nomeRazaoSocial = jTextFieldNomeMotorista.getText();
             String rg = jTextFieldNumRG.getText();
             String email = jTextFieldEmail.getText();
             String motorista = jTextFieldNomeMotorista.getText();
@@ -918,7 +918,7 @@ public class telaMotorista extends javax.swing.JFrame {
             
             Cliente cli = new Cliente(id,cpfCnpj,nomeRazaoSocial,rg,email,motorista,nCNH,caminhoImgCNH,statusMulta,valorMulta,logradouro,complemento,CEP,bairro,cidade,estado,DDI,DDD,numero);
             
-            interControle.InserirCliente(cli);
+            interControle.inserirMotorista(cli);
             
             ImprimirGrid(interControle.listagemCliente());
         } catch (Exception erro) {
@@ -932,9 +932,9 @@ public class telaMotorista extends javax.swing.JFrame {
         Logs.logger("Limpeza da tela e lista atualizada disponível na tela", getThisClass());
     }//GEN-LAST:event_btnInserirClienteMouseClicked
 
-    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+    private void jTextFieldNomeMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeMotoristaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNomeActionPerformed
+    }//GEN-LAST:event_jTextFieldNomeMotoristaActionPerformed
 
     private void tabelaMotoristaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMotoristaMouseClicked
         
@@ -943,7 +943,7 @@ public class telaMotorista extends javax.swing.JFrame {
             //jLabelSetImgCNH.setIcon(interControle.getImgCNHById(idSelecionado,jLabelSetImgCNH.getWidth(),jLabelSetImgCNH.getHeight()));
             
             String[] cli = interControle.getClienteById(idSelecionado);
-            jTextFieldNome.setText(cli[2]);
+            jTextFieldNomeMotorista.setText(cli[2]);
             jTextFieldCpf.setText(cli[1]);
             jTextFieldNomeMotorista.setText(cli[5]);
             jTextFieldNumCNH.setText(cli[6]);
@@ -1228,7 +1228,7 @@ public class telaMotorista extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldDDI;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldLogradouro;
-    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldNomeMotorista;
     private javax.swing.JTextField jTextFieldNumCNH;
     private javax.swing.JTextField jTextFieldNumRG;
     private javax.swing.JTextField jTextFieldTelefone;

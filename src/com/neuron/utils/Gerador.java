@@ -63,6 +63,19 @@ public class Gerador {
         return id;
     }
     
+    public static int getIdMotorista()throws Exception{
+        String nomeDoArquivo ="./src/com/neuron/database/idControleMotorista.txt";
+        BufferedReader br  = new BufferedReader(new FileReader(nomeDoArquivo));
+        String linha=br.readLine();
+        int id = Integer.parseInt(linha);
+        br.close();
+        id=id+1;
+        BufferedWriter bw =new BufferedWriter(new FileWriter(nomeDoArquivo));
+        bw.write(id+"");
+        bw.close();	
+        return id;
+    }
+    
     public static int getIdCNPJ()throws FileNotFoundException, IOException{
         String nomeDoArquivo ="./src/com/neuron/database/idControlePessoaJuridica.txt";
         FileReader fr = new FileReader(nomeDoArquivo);
