@@ -4,13 +4,18 @@
  */
 package com.neuron.utils;
 
+import com.neuron.controle.IControleMotorista;
+import com.neuron.controle.control.ControleMotorista;
 import com.neuron.exceptions.TipoCombustivelException;
 import com.neuron.templates.DataBase;
 import com.neuron.templates.Disponibilidade;
+import com.neuron.templates.Motorista;
 import com.neuron.templates.TipoCombustivel;
 import com.neuron.templates.TipoVeiculo;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -84,11 +89,55 @@ public class Get {
     public static int getIdMotoristaByCNH(int CNH) throws Exception{
         try {
             
-            IControle
+            IControleMotorista mot = new ControleMotorista();
+            ArrayList<Motorista> motora = mot.listagemMotorista();
+            Iterator<Motorista> list = motora.iterator();
             
-            return 0 ;
+            boolean achou = false;
+            int idSelecionado = 0;
+            
+            while (list.hasNext()){
+                Motorista motor = list.next();
+                if (motor.getNumeroCNH() == CNH ) {
+                    idSelecionado = motor.getNumeroCNH(); 
+                }
+            }
+            
+            if (achou){
+                return idSelecionado;
+            } else {
+                throw new Exception ("nao foi possivel encontrar motorista com a CNH n: "+CNH);
+            }
+            
         } catch (Exception e) {
-            throw new Exception (e + " | nao foi possivel encontrar motorista com a CNH n: "+CNH);
+            throw e;
+        }
+    }
+    
+    public static int getIdClienteMotorista(int idMotorista) throws Exception{
+     
+        try{
+            IControleMotorista mot = new ControleMotorista();
+            ArrayList<Motorista> motora = mot.listagemMotorista();
+            Iterator<Motorista> list = motora.iterator();
+
+            boolean achou = false;
+            int idSelecionado = 0;
+
+            while (list.hasNext()) {
+                Motorista motor = list.next();
+                if (motor.getIdMotorista() == idMotorista) {
+                    idSelecionado = motor.getIdClienteVinculado();
+                }
+            }
+
+            if (achou) {
+                return idSelecionado;
+            } else {
+                throw new Exception("nao foi possivel encontrar o cliente vinculado ao motorista");
+            }
+        } catch (Exception e) {
+            throw e;
         }
     }
 }

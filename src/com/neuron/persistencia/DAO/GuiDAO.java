@@ -21,11 +21,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import com.neuron.tela.telaDashboard;
-import com.neuron.tela.telaLogin;
-import com.neuron.tela.telaMarcaCarros;
-import com.neuron.tela.telaModelos;
-import com.neuron.tela.telaVeiculo;
+import com.neuron.tela.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -71,6 +67,7 @@ public class GuiDAO implements IGuiDAO{
     JMenuItem itemCliLista = new JMenuItem("Listar");
     JMenuItem itemCliContrato = new JMenuItem("Em contrato");
     JMenuItem itemCliPendentes = new JMenuItem("Pendentes Devolucao");
+    JMenuItem itemCliMotorista = new JMenuItem("Motoristas");
 
     //jMenuItens Carros
     JMenuItem itemCarDisponivel = new JMenuItem("Disponíveis");
@@ -223,6 +220,7 @@ public class GuiDAO implements IGuiDAO{
         jMCliente.add(itemMenu(itemCliLista));
         jMCliente.add(itemMenu(itemCliContrato));
         jMCliente.add(itemMenu(itemCliPendentes));
+        jMCliente.add(itemMenu(itemCliMotorista));
         jmenubar.add(jMCliente).setFont(new java.awt.Font("Segoe UI", 0, 14));
 
         jMCarros.add(itemMenu(itemCarDisponivel));
@@ -287,6 +285,12 @@ public class GuiDAO implements IGuiDAO{
                 }
                 if (jmi == itemCarVeiculo) {
                     new telaVeiculo().setVisible(true);
+                }
+                if (jmi == itemCliMotorista) {
+                    new telaMotorista().setVisible(true);
+                }
+                if (jmi == itemAluguelAlugar) {
+                    new telaLocacao().setVisible(true);
                 }
             }
 

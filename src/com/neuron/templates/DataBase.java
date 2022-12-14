@@ -24,8 +24,8 @@ public enum DataBase {
     CLIENTE("./src/com/neuron/database/dbClientes.txt"),
     IDCLIENTE("./src/com/neuron/database/idControleClientes.txt"),
     
-    MOTORISTA("./src/com/neuron/database/dbClientes.txt"),
-    IDMOTORISTA("./src/com/neuron/database/idControleClientes.txt"),
+    MOTORISTA("./src/com/neuron/database/dbMotorista.txt"),
+    IDMOTORISTA("./src/com/neuron/database/idControleMotorista.txt"),
     
     CATEGORIA("./src/com/neuron/database/dbCategoria.txt"),
     IDCATEGORIA("./src/com/neuron/database/idControleCategoria.txt"),

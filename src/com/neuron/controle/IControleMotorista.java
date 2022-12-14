@@ -14,6 +14,7 @@ package com.neuron.controle;
 import com.neuron.templates.Estados;
 import com.neuron.templates.Motorista;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public interface IControleMotorista {
@@ -24,6 +25,10 @@ public interface IControleMotorista {
     void inserirMotorista(Motorista motorista) throws Exception;
 
     void alterarMotorista(Motorista motorista) throws Exception;
+    
+    List<String> getListaStatusMulta() throws Exception;
+    List<String> getNomeEstados() throws Exception;
+    List<String> listarClientesComboBox() throws Exception;
 } 
 
 // Software developed by Thiago Macedo -> https://github.com/othiagomacedo

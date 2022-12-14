@@ -15,6 +15,7 @@ import com.neuron.persistencia.IMotoristaDAO;
 import com.neuron.persistencia.DAO.*;
 import com.neuron.templates.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ControleMotorista implements IControleMotorista{
@@ -43,6 +44,21 @@ public class ControleMotorista implements IControleMotorista{
     @Override
     public void alterarMotorista(Motorista motorista) throws Exception{
         motor.alterarMotorista(motorista);
+    }
+    
+    @Override
+    public List<String> getNomeEstados() throws Exception{
+        return motor.getNomeEstados();
+    }
+    
+    @Override
+    public List<String> getListaStatusMulta() throws Exception{
+        return motor.getListaStatusMulta();
+    }
+    
+    @Override
+    public List<String> listarClientesComboBox() throws Exception{
+        return motor.listarClientesComboBox();
     }
 } 
 

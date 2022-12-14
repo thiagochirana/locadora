@@ -21,6 +21,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class MotoristaDAO implements IMotoristaDAO{
@@ -70,12 +73,32 @@ public class MotoristaDAO implements IMotoristaDAO{
     }
     
     @Override
+    public List<String> listarClientesComboBox() throws Exception{
+        
+        ArrayList<String> lista = new ArrayList<>();
+        
+        IClienteDAO cli = new ClienteDAO();
+        
+        ArrayList<Cliente> clientes = cli.listagemClientes();
+        
+        Iterator<Cliente> lis = clientes.iterator();
+        
+        while(lis.hasNext()){
+            Cliente aux = lis.next();
+            String saida = aux.getNomeRazaoSocial() + " : "+ aux.getCpfCnpj();
+            lista.add(saida);
+        }
+        
+        return lista;
+    }
+    
+    @Override
     public void inserirMotorista(Motorista motorista) throws Exception{
         try {
             String path = getCaminhoImg();
             int id = Gerador.getIdCliente();
             
-            BufferedWriter bw = new BufferedWriter(new FileWriter(DataBase.CLIENTE.getPathDB(),true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(DataBase.MOTORISTA.getPathDB(),true));
             motorista.setIdMotorista(id);
             motorista.setCaminhoImgCNH("./src/com/neuron/icons/motorista/fotoCNH/"+ motorista.getNomeMotorista()+"_"+motorista.getNumeroCNH()+ ".jpeg");
             bw.write(motorista.toString()+"\n");
@@ -213,6 +236,26 @@ public class MotoristaDAO implements IMotoristaDAO{
             default:
                 throw new Exception("Nao foi possivel identificar o Estado, tente novamente!");
         }
+    }
+    
+    @Override
+    public List<String> getListaStatusMulta() throws Exception{
+        List<String> aux = new ArrayList<>();
+        List<StatusMulta> l = Arrays.asList(StatusMulta.values());
+        for (StatusMulta statusMulta : l) {
+            aux.add(statusMulta.toString().replace("_", " "));
+        }
+        return aux;
+    }
+    
+    @Override
+    public List<String> getNomeEstados() throws Exception{
+        List<String> aux = new ArrayList<>();
+        List<Estados> l = Arrays.asList(Estados.values());
+        for (Estados estados : l) {
+            aux.add(estados.toString().replace("_", " "));
+        }
+        return aux;
     }
     
     private StatusMulta getStatusMulta(String status) throws Exception{

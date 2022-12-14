@@ -1,3 +1,4 @@
 1;12345678900;Nome;0123;email@email.com;Motorista;789546;./src/com/neuron/icons/cliente/fotoCNH/Nome_12345678900.jpeg;SEM_MULTA;879.0;Logradouro;Complemento;12312312;Bairro;Cidade;AMAPA;55;62;996196243
 2;123124123;Lookalike Agencia;4444;meuemail@email.com;Thiago;3213;./src/com/neuron/icons/cliente/fotoCNH/Lookalike Agencia_123124123.jpeg;SEM_MULTA;0.0;Logradouro;Complemento;12312312;Bairro;Maues;AMAZONAS;55;62;996196243
 3;123124123;Lookalike Agencia;4444;meuemail@email.com;Thiago;3213;./src/com/neuron/icons/cliente/fotoCNH/Lookalike Agencia_123124123.jpeg;SEM_MULTA;0.0;Logradouro;Complemento;12312312;Bairro;Maues;AMAZONAS;55;62;996196243
+4;123;1234;./src/com/neuron/icons/motorista/fotoCNH/Nome_123.jpeg;SEM_MULTA;0.0;Logradouro;Complemento;135246;Sta Lusiza;Maues;AMAZONAS;11;22;33333333;0

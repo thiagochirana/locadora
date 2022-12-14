@@ -59,6 +59,15 @@ public class Motorista extends Endereco{
         this.statusMulta = statusMulta;
         this.valorMulta = valorMulta;
         this.IdClienteVinculado = IdClienteVinculado;
+        setLogradouro(logradouro);
+        setComplemento(complemento);
+        setCEP(CEP);
+        setBairro(bairro);
+        setCidade(cidade);
+        setEstado(estado);
+        setDDI(DDI);
+        setDDD(DDD);
+        setNumero(numero);
     }
 
     
