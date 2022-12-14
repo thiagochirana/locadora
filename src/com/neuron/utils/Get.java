@@ -80,4 +80,15 @@ public class Get {
             default: throw new Exception("Nao foi encontrado o tipo Veiculo "+nomeTipo);
         }
     }
+    
+    public static int getIdMotoristaByCNH(int CNH) throws Exception{
+        try {
+            
+            IControle
+            
+            return 0 ;
+        } catch (Exception e) {
+            throw new Exception (e + " | nao foi possivel encontrar motorista com a CNH n: "+CNH);
+        }
+    }
 }
